@@ -1,0 +1,96 @@
+/* navbar */
+.app-navbar {
+  font-weight: 500;
+  letter-spacing: .05em;
+  position: absolute;
+}
+
+
+/* header block */
+
+
+/* iphone block */
+.app-iphone-block {
+  padding-bottom: 60px;
+}
+@media (min-width: 768px) {
+  .app-iphone-block {
+    padding-bottom: 0;
+  }
+}
+
+
+/* code block */
+.app-code-block {
+  background-color: #262F36;
+  overflow: hidden;
+}
+
+
+/* pull quote block */
+
+
+/* brand ribbon block */
+.app-ribbon {
+  background: #2595FF;
+}
+.app-ribbon .container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: -30px;
+}
+.app-ribbon img {
+  margin: 0 10px 30px;
+}
+
+
+/* marketing grid block */
+
+
+/* price plan block */
+
+
+/* footer block */
+.app-footer {
+  background-color: #262F36;
+}
+.app-footer a {
+  color: #fff;
+}
+
+
+/* general block overrrides */
+@media (max-width: 768px) {
+  .block .lead {
+    line-height: 1.3;
+  }
+  .block h3 {
+    line-height: 1.15;
+  }
+}
+
+
+/* general inverse overrides */
+.block-inverse .text-muted {
+  color: rgba(255, 255, 255, .7) !important;
+}
+
+
+/* general btn overrides */
+.btn-lg {
+  font-size: 18px;
+}
+.block-secondary .btn-lg {
+  width: 100%;
+}
+.btn-lg:not(.btn-block) {
+  padding: 12px 50px;
+}
+@media (min-width: 768px) {
+  .btn-lg:not(.btn-block) {
+    width: auto;
+  }
+}
+
+
+/* ie10+ */
