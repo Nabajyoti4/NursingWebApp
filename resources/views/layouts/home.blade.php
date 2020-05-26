@@ -14,24 +14,23 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600" rel="stylesheet"
           type="text/css">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!--Bootstrap link-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- CSS only -->
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
+
     <!-- link icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
     {{--    fontawesome link    --}}
     <script src="https://kit.fontawesome.com/282f852346.js"></script>
+
     <style>
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
             body {
@@ -66,6 +65,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('login')}}">Login/register</a>
         </li>
     </ul>
 </div>
@@ -104,6 +106,9 @@
                         </li>
                         <li class="nav-item px-1 ">
                             <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item px-1 ">
+                            <a class="nav-link" href="{{route('login')}}">Login/register</a>
                         </li>
                     </ul>
                 </div>
@@ -394,11 +399,11 @@
     <div class="block app-ribbon pt-3">
         <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>
         <div class="container text-xs-center p-5">
-            <img src="assets/img/startup-4.svg">
-            <img src="assets/img/startup-5.svg">
-            <img src="assets/img/startup-6.svg">
-            <img src="assets/img/startup-7.svg">
-            <img src="assets/img/startup-8.svg">
+{{--            <img src="assets/img/startup-4.svg">--}}
+{{--            <img src="assets/img/startup-5.svg">--}}
+{{--            <img src="assets/img/startup-6.svg">--}}
+{{--            <img src="assets/img/startup-7.svg">--}}
+{{--            <img src="assets/img/startup-8.svg">--}}
         </div>
     </div>
     <!--Business partners section end-->
@@ -483,62 +488,63 @@
     @yield('team-cards')
     <!--card end-->
 
-    <!-- footer -->
-    <div class="block block-inverse app-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 mb-5">
-                    <ul class="list-unstyled list-spaced">
-                        <li class="mb-2">
-                            <h6 class="text-uppercase">About</h6>
-                        </li>
-                        <li class="text-muted">
-                            We’ve been working on Go Analytics for the better part of a decade and are super proud of
-                            what
-                            we’ve
-                            created. If you’d like to learn more, or are interested in a job, address us anytime at <a
-                                href="mailto: themes@getbootstrap.com">themes@getbootstrap.com</a>.
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-2 offset-md-1 mb-5">
-                    <ul class="list-unstyled list-spaced">
-                        <li class="mb-2">
-                            <h6 class="text-uppercase">Product</h6>
-                        </li>
-                        <li class="text-muted">Features</li>
-                        <li class="text-muted">Examples</li>
-                        <li class="text-muted">Tour</li>
-                        <li class="text-muted">Gallery</li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-5">
-                    <ul class="list-unstyled list-spaced">
-                        <li class="mb-2">
-                            <h6 class="text-uppercase">Apis</h6>
-                        </li>
-                        <li class="text-muted">Rich data</li>
-                        <li class="text-muted">Simple data</li>
-                        <li class="text-muted">Real time</li>
-                        <li class="text-muted">Social</li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-5">
-                    <ul class="list-unstyled list-spaced">
-                        <li class="mb-2">
-                            <h6 class="text-uppercase">Legal</h6>
-                        </li>
-                        <li class="text-muted">Terms</li>
-                        <li class="text-muted">Legal</li>
-                        <li class="text-muted">Privacy</li>
-                        <li class="text-muted">License</li>
-                    </ul>
-                </div>
+</div>
+
+<!-- footer -->
+<div class="block block-inverse app-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-5">
+                <ul class="list-unstyled list-spaced">
+                    <li class="mb-2">
+                        <h6 class="text-uppercase">About</h6>
+                    </li>
+                    <li class="text-muted">
+                        We’ve been working on Go Analytics for the better part of a decade and are super proud of
+                        what
+                        we’ve
+                        created. If you’d like to learn more, or are interested in a job, address us anytime at <a
+                            href="mailto: themes@getbootstrap.com">themes@getbootstrap.com</a>.
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 offset-md-1 mb-5">
+                <ul class="list-unstyled list-spaced">
+                    <li class="mb-2">
+                        <h6 class="text-uppercase">Product</h6>
+                    </li>
+                    <li class="text-muted">Features</li>
+                    <li class="text-muted">Examples</li>
+                    <li class="text-muted">Tour</li>
+                    <li class="text-muted">Gallery</li>
+                </ul>
+            </div>
+            <div class="col-md-2 mb-5">
+                <ul class="list-unstyled list-spaced">
+                    <li class="mb-2">
+                        <h6 class="text-uppercase">Apis</h6>
+                    </li>
+                    <li class="text-muted">Rich data</li>
+                    <li class="text-muted">Simple data</li>
+                    <li class="text-muted">Real time</li>
+                    <li class="text-muted">Social</li>
+                </ul>
+            </div>
+            <div class="col-md-2 mb-5">
+                <ul class="list-unstyled list-spaced">
+                    <li class="mb-2">
+                        <h6 class="text-uppercase">Legal</h6>
+                    </li>
+                    <li class="text-muted">Terms</li>
+                    <li class="text-muted">Legal</li>
+                    <li class="text-muted">Privacy</li>
+                    <li class="text-muted">License</li>
+                </ul>
             </div>
         </div>
     </div>
-    <!-- footer end -->
 </div>
+<!-- footer end -->
 
 {{--loading the needed scripts--}}
 <script>
