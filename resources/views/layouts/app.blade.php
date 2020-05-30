@@ -11,7 +11,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
+    {{--    fontawesome link    --}}
+    <script src="https://kit.fontawesome.com/282f852346.js"></script>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -79,5 +81,26 @@
         @yield('content')
     </main>
 </div>
+<script>
+    const inputs = document.querySelectorAll(".input");
+
+    function addcl(){
+        let parent = this.parentNode.parentNode;
+        parent.classList.add("focus");
+    }
+
+    function remcl(){
+        let parent = this.parentNode.parentNode;
+        if(this.value == ""){
+            parent.classList.remove("focus");
+        }
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener("focus", addcl);
+        input.addEventListener("blur", remcl);
+    });
+
+</script>
 </body>
 </html>
