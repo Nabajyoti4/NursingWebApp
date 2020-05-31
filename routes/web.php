@@ -16,9 +16,27 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Admin Routes
 Route::get('/admin', function (){
     return view('admin.index');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('admin/users','AdminController\AdminUsersController',['names'=> [
+    'index'=>'admin.users.index',
+    'edit'=>'admin.users.edit'
+]]);
+
+
+
+
+
+
+
 
