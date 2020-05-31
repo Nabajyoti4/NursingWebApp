@@ -1,0 +1,10 @@
+.navbar-fonts{
+    color: #fff !important;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+@media (max-width: 769px){
+    .navbar-fonts{
+        font-size: 1rem;
+    }
+}
