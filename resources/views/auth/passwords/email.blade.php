@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST"  action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -32,9 +32,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div class="form-group row mb-0 ml-4">
+                            <div class="col">
+                                <button type="submit" class="login_register_btn">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

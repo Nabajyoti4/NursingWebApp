@@ -11,12 +11,14 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
     {{--    fontawesome link    --}}
     <script src="https://kit.fontawesome.com/282f852346.js"></script>
 
 
     <!-- Styles -->
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
