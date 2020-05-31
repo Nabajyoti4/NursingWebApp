@@ -11,6 +11,21 @@
         <div class="login-content">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
+                @error('name')
+                <div class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @enderror
+                @error('email')
+                <div class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @enderror
+                @error('password')
+                <div class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @enderror
                 <img src="{{asset('img/avatar1.png')}}">
                 <div class="input-div one">
                     <div class="i">
@@ -19,12 +34,7 @@
                     <div class="div">
                         <h5>Full Name</h5>
                         <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name') }}" required autocomplete="name" >
-                        @error('name')
-                        <div class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                        @enderror
+                               value="{{ old('name') }}" required autocomplete="name">
                     </div>
                 </div>
                 <div class="input-div one">
@@ -43,12 +53,7 @@
                     <div class="div">
                         <h5>Email</h5>
                         <input id="email" type="text" class="input @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email">
-                        @error('email')
-                        <div class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                        @enderror
+                               value="{{ old('email') }}" required autocomplete="email">
                     </div>
                 </div>
                 <div class="input-div pass">
@@ -57,13 +62,9 @@
                     </div>
                     <div class="div">
                         <h5>Password</h5>
-                        <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password"
-                        required autocomplete="new-password">
-                        @error('password')
-                        <div class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                        @enderror
+                        <input id="password" type="password" class="input @error('password') is-invalid @enderror"
+                               name="password"
+                               required autocomplete="new-password">
                     </div>
                 </div>
                 <div class="input-div pass">
@@ -72,14 +73,15 @@
                     </div>
                     <div class="div">
                         <h5>Confirm Password</h5>
-                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required
+                               autocomplete="new-password">
                     </div>
                 </div>
                 <a href="{{route('login')}}">Already have an account?Click here</a>
                 <input type="submit" class="login_register_btn" value="Register">
-{{--                <button type="submit" class="btn btn-primary">--}}
-{{--                    {{ __('Register') }}--}}
-{{--                </button>--}}
+                {{--                <button type="submit" class="btn btn-primary">--}}
+                {{--                    {{ __('Register') }}--}}
+                {{--                </button>--}}
             </form>
         </div>
     </div>
