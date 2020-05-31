@@ -17,8 +17,9 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -46,11 +47,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link h4" href="{{ route('login') }}">Login</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link h4" href="{{ route('register') }}">Register</a>
                             </li>
                         @endif
                     @else

@@ -18,27 +18,29 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <h5>Email</h5>
+{{--                        <h5>Email</h5>--}}
                         <input type="text" class="input @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email">
-
+                               value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <br><br>
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
                         @enderror
                     </div>
+
                 </div>
                 <div class="input-div pass">
                     <div class="i">
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                        <h5>Password</h5>
+{{--                        <h5>Password</h5>--}}
                         <input type="password" class="input @error('password') is-invalid @enderror" name="password"
-                        required autocomplete="current-password">
+                               required autocomplete="current-password" placeholder="Password">
+                        <br><br>
                         @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback mt-2" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
@@ -52,7 +54,7 @@
                 <button type="submit" class="login_register_btn">
                     {{ __('Login') }}
                 </button>
-{{--                <input type="submit" class="btn" value="Login">--}}
+                {{--                <input type="submit" class="btn" value="Login">--}}
             </form>
         </div>
     </div>
