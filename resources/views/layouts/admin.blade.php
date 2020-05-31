@@ -12,6 +12,7 @@
         @yield('title')
     </title>
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="{{asset('css/adminpanel.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
@@ -340,7 +341,7 @@
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin_name</span>
-                            <img class="img-profile rounded-circle" src="../assets/img/admin.jpg">
+                            <img class="img-profile rounded-circle" src="{{asset('img/avatar1.png')}}">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
