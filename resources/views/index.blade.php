@@ -2,6 +2,7 @@
 @section('title')
     Homepage
 @endsection
+
 @section('content')
     <!-- header section starts -->
     <div class="p-1" style="background-image: url({{asset('img/navbar-back-1.jpg')}});background-repeat: no-repeat; background-size: cover">

@@ -11,16 +11,8 @@
     <title>
         @yield('title')
     </title>
-
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600" rel="stylesheet"
-          type="text/css">
     <!-- Scripts -->
-    <script src="{{asset('js/tether.min.js')}}" defer></script>
-    <script src="{{asset('js/jquery.min.js')}}" defer></script>
-    <script src="{{asset('js/toolkit.js')}}" defer></script>
-
     <script src="{{ asset('js/app.js') }}" defer></script>
-
 
     <!--Bootstrap link-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -31,7 +23,7 @@
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
 
-    <!-- link icon -->
+    <!-- link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
     {{--    fontawesome link    --}}
@@ -208,5 +200,11 @@
     //     document.location.reload(true);
     // }
 </script>
+
+{{--<script src="{{asset('js/tether.min.js')}}"></script>--}}
+{{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
+{{--<script src="{{asset('js/toolkit.js')}}"></script>--}}
+
+
 </body>
 </html>
