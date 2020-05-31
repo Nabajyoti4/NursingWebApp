@@ -7,4 +7,3 @@
             <li>No users found</li>
 @endforelse
 </ul>
-
