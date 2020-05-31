@@ -18,7 +18,7 @@
                     </div>
                     <div class="div">
                         <h5>Full Name</h5>
-                        <input id="name" type="text" class="input" @error('name') is-invalid @enderror" name="name"
+                        <input id="name" type="text" class="input" @error('name') is-invalid @enderror name="name"
                         value="{{ old('name') }}" required autocomplete="name" >
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="div">
                         <h5>Email</h5>
-                        <input id="email" type="text" class="input" @error('email') is-invalid @enderror" name="email"
+                        <input id="email" type="text" class="input" @error('email') is-invalid @enderror name="email"
                         value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="div">
                         <h5>Password</h5>
-                        <input id="password" type="password" class="input" @error('password') is-invalid @enderror" name="password"
+                        <input id="password" type="password" class="input" @error('password') is-invalid @enderror name="password"
                         required autocomplete="new-password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
