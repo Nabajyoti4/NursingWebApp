@@ -3087,7 +3087,6 @@ var ScrollSpy = function ($) {
         if (targetSelector) {
           target = $(targetSelector)[0];
         }
-
         if (target && (target.offsetWidth || target.offsetHeight)) {
           // todo (fat): remove sketch reliance on jQuery position/offset
           return [$(target)[offsetMethod]().top + offsetBase, targetSelector];
