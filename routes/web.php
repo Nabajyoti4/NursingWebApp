@@ -21,11 +21,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 // Admin Routes
-Route::get('/admin', function (){
-    return view('admin.index');
-});
+Route::get('admin','AdminController@index')->name('admin.index');
 
 
 Route::resource('admin/users','AdminController\AdminUsersController',['names'=> [
