@@ -23,6 +23,7 @@
                         <th>Email</th>
                         <th>Phone No</th>
                         <th>Created at</th>
+                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone_no}}</td>
                             <td>{{$user->created_at}}</td>
+                            <td><a href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
                         </tr>
                     @empty
                         <td>No users found</td>
