@@ -32,7 +32,7 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone_no}}</td>
-                            <td>{{$user->created_at}}</td>
+                            <td>{{$user->created_at->diffForHumans()}}</td>
                         </tr>
                     @empty
                         <td>No users found</td>
