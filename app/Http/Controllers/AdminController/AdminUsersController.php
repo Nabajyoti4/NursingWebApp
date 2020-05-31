@@ -11,12 +11,28 @@ class AdminUsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
-        $users = User::all();
+        /**
+         * Search variable check for serach request in request parameter
+         * if found return the search results
+         * else return all users from db
+         */
+        $search = request()->get('searchUser');
+
+
+        if ($search){
+            $users = User::where("name","LIKE","%{$search}%")->get();
+
+        }
+        else{
+            $users = User::all();
+
+
+        }
+
 
         return view('admin.users.index', compact('users'));
     }
