@@ -50,7 +50,9 @@
                 display: none;
             }
         }
+
     </style>
+    @yield('style')
 </head>
 
 <body>
