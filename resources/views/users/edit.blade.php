@@ -2,7 +2,27 @@
 @section('title')
     Edit User
 @endsection
+@section('style')
+    <style>
+        .header {
+            position: absolute;
+            top: -17px;
+            left: 1%;
+            padding: 0% 2px;
+            margin: 0%;
+            background:#fff;
+        }
 
+        .borderdiv {
+            position: relative;
+            padding: 32px;
+            border-radius: 2px;
+            border: 2px solid #dde4ea;
+            margin-top: 2rem;
+        }
+    </style>
+
+@endsection
 @section('content')
 
     <div class="container-fluid profile-bg p-3">
@@ -10,45 +30,66 @@
     @include('partials.navbar')
     <!-- navbar ends -->
         <div class="container emp-profile mt-3">
-    <form class="" action="{{ route('users.update', $user->id) }}" method="POST">
-        @csrf
-        @method('PATCH')
+            <form>
+                @csrf
+                <div class="form-group font-weight-bold">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="form-control" id="pwd" name="name" placeholder="Enter Name" value="{{$user->name}}">
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="name">Phone Number:</label>
+                    <input type="number" class="form-control" id="pwd" placeholder="Enter Phone number" value="{{$user->phone_no}}">
+                </div>
+                <div class="borderdiv">
+                    <label class="header font-weight-bold bg-light">Current Address</label>
+                    <div class="row">
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Street name">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Landmark">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="District">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="State">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Country">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Pin Code">
+                        </div>
+                    </div>
+                </div>
+                <div class="borderdiv">
+                    <label class="header font-weight-bold bg-light">Permanent Address</label>
+                    <div class="row">
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Street name">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control"placeholder="Landmark">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="District">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="State">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Country">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" placeholder="Pin Code">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button class="btn profile-edit-btn" type="submit">Update</button>
 
-        <div class="form-row">
-            <div class="col-3 mb-3">
-                <label for="name">FullName</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}" required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-3 mb-3">
-                <label for="phone_no">Phone No</label>
-                <input type="text" class="form-control" id="phone_no" name="phone_no" value="{{$user->phone_no}}"
-                       required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-3 mb-3">
-                <label for="address1">Address 1</label>
-                <textarea class="form-control" id="address1" name="address1" required rows="4"
-                          placeholder="Eg:Room No
-Street name, landmark
-district
-state, country"></textarea>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-3 mb-3">
-                <label for="address2">Address 2</label>
-                <textarea class="form-control" id="address2" name="address2" rows="4" placeholder="Eg:Room No
-Street name, landmark
-district
-state, country"
-                          required></textarea>
-            </div>
-        </div>
-        <button class="btn profile-edit-btn" type="submit">Update</button>
-    </form>
-        </div>
+
+            </form>
     </div>
 @endsection
