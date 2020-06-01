@@ -10,7 +10,7 @@
             left: 1%;
             padding: 0% 2px;
             margin: 0%;
-            background:#fff;
+            background:#;
         }
 
         .borderdiv {
