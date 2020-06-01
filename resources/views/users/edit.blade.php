@@ -30,16 +30,25 @@
     @include('partials.navbar')
     <!-- navbar ends -->
         <div class="container emp-profile mt-3">
-            <form>
+            <form  action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <div class="form-group font-weight-bold">
                     <label for="name">Full Name:</label>
                     <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{$user->name}}">
                 </div>
+
                 <div class="form-group font-weight-bold">
-                    <label for="name">Phone Number:</label>
+                    <label for="phone_no">Phone Number:</label>
                     <input type="number" class="form-control"  name="phone_no" placeholder="Enter Phone number" value="{{$user->phone_no}}">
                 </div>
+
+
+                <div class="form-group font-weight-bold">
+                    <label for="image">Upload Profile Pic: </label>
+                    <input type="file" class="form-control"  name="image">
+                </div>
+
                 <div class="borderdiv">
                     <label class="header font-weight-bold bg-light">Current Address</label>
                     <div class="row">
@@ -79,16 +88,15 @@
                             <input type="text" class="form-control" name="permanent_state" placeholder="State">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Country">
+                            <input type="text" class="form-control" name="permanent_country" placeholder="Country">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Pin Code">
+                            <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code">
                         </div>
                     </div>
                 </div>
                 <br>
                 <button class="btn profile-edit-btn" type="submit">Update</button>
-
 
             </form>
     </div>

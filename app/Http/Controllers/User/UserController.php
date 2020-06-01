@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -79,7 +81,31 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = $request->only(['name', 'phone_no']);
+        //  $data = $request->only(['name', 'phone_no']);
+        $data = $request->all();
+        $user = Auth::user();
+
+
+
+        if ($request->hasFile('image')){
+//        update if
+            $image= $request->image->store('users');
+
+
+//        delete old image
+            Storage::delete($user->photo->photo_location);
+
+            $photo = Photo::create(['photo_location'=>$image]);
+
+
+            $user['photo_id']=$photo->id;
+        }
+
+
+        $user->update($data);
+
+
+        return redirect(route('users.index'));
 
     }
 

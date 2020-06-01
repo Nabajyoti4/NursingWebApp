@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function photo(){
-        return $this->hasOne(Photo::class);
+        return $this->belongsTo(Photo::class);
     }
 
 }
