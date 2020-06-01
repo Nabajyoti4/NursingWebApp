@@ -88,12 +88,13 @@ class UserController extends Controller
 
         if ($request->hasFile('image')) {
 //        update if
-            $image = $request->image->store('users');
+            $image = $request->image->store('users', 'public');
 
 
 //        delete old image
             if ($user->photo_id) {
-                Storage::delete($user->photo->photo_location);
+
+                Storage::disk('public')->delete($user->photo->photo_location);
                 $photo->update(['photo_location'=>$image]);
             } else {
                 $photo = Photo::create(['photo_location' => $image]);
