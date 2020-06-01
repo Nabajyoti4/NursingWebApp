@@ -22,6 +22,7 @@
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 
     <!-- link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
