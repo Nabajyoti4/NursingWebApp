@@ -15,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = ['name', 'email', 'phone_no', 'password'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -34,5 +34,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+
+    /**
+     * every user had a current address
+     * permanent address
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
+
+    /**
+     * every user has a one profile photo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function photo(){
+        return $this->hasOne(Photo::class);
+    }
 
 }

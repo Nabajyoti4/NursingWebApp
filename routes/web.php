@@ -35,7 +35,8 @@ Route::resource('admin/users','AdminController\AdminUsersController',['names'=> 
 // User controller
 Route::resource('users','User\UserController',['names'=> [
     'index'=>'users.index',
-    'edit'=>'users.edit'
+    'edit'=>'users.edit',
+    'update'=>'users.update'
 ]]);
 
 

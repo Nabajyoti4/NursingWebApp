@@ -79,6 +79,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->only(['name', 'phone_no']);
+
     }
 
     /**

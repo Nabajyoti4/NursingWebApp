@@ -10,8 +10,9 @@
     @include('partials.navbar')
     <!-- navbar ends -->
         <div class="container emp-profile mt-3">
-    <form class="">
+    <form class="" action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
+        @method('PATCH')
 
         <div class="form-row">
             <div class="col-3 mb-3">

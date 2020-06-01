@@ -4,15 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class Photo extends Model
 {
     //
     protected $guarded = [];
 
-
     /**
-     * every address belongs to a user
-     * there is a current and permanent address
+     * Every photo belongs to a user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
