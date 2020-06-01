@@ -34,32 +34,32 @@
                 @csrf
                 <div class="form-group font-weight-bold">
                     <label for="name">Full Name:</label>
-                    <input type="text" class="form-control" id="pwd" name="name" placeholder="Enter Name" value="{{$user->name}}">
+                    <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{$user->name}}">
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="name">Phone Number:</label>
-                    <input type="number" class="form-control" id="pwd" placeholder="Enter Phone number" value="{{$user->phone_no}}">
+                    <input type="number" class="form-control"  name="phone_no" placeholder="Enter Phone number" value="{{$user->phone_no}}">
                 </div>
                 <div class="borderdiv">
                     <label class="header font-weight-bold bg-light">Current Address</label>
                     <div class="row">
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Street name">
+                            <input type="text" class="form-control" name="current_street" placeholder="Street name">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Landmark">
+                            <input type="text" class="form-control" name="current_landmark" placeholder="Landmark">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="District">
+                            <input type="text" class="form-control" name="current_district" placeholder="District">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="State">
+                            <input type="text" class="form-control" name="current_state" placeholder="State">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Country">
+                            <input type="text" class="form-control" name="current_country" placeholder="Country">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Pin Code">
+                            <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code">
                         </div>
                     </div>
                 </div>
@@ -67,16 +67,16 @@
                     <label class="header font-weight-bold bg-light">Permanent Address</label>
                     <div class="row">
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="Street name">
+                            <input type="text" class="form-control" name="permanent_street" placeholder="Street name">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control"placeholder="Landmark">
+                            <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="District">
+                            <input type="text" class="form-control" name="permanent_district" placeholder="District">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" placeholder="State">
+                            <input type="text" class="form-control" name="permanent_state" placeholder="State">
                         </div>
                         <div class="col-lg-4 p-2">
                             <input type="text" class="form-control" placeholder="Country">
