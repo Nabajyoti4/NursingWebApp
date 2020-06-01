@@ -89,7 +89,7 @@ class UserController extends Controller
 
         if ($request->hasFile('image')){
 //        update if
-            $image= $request->image->store('users');
+          $image= $request->image->store('users','public');
 
 
 //        delete old image
