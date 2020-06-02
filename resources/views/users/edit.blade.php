@@ -2,15 +2,23 @@
 @section('title')
     Edit User
 @endsection
+@section('links')
+    <!-- Theme CSS -->
+    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <!--  custom form style link -->
+    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+@endsection
 @section('style')
     <style>
         .header {
             position: absolute;
-            top: -17px;
+            top: -14px;
             left: 1%;
             padding: 0% 2px;
             margin: 0%;
-            background:#;
+            background: white!important;
         }
 
         .borderdiv {
@@ -21,32 +29,34 @@
             margin-top: 2rem;
         }
     </style>
-
 @endsection
 @section('content')
 
-    <div class="container-fluid profile-bg p-3">
+    <div class="container-fluid profile-bg">
         <!-- navbar start -->
     @include('partials.navbar')
     <!-- navbar ends -->
+        <div class="p-4">
         <div class="container emp-profile mt-3">
-            <form  action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-group font-weight-bold">
                     <label for="name">Full Name:</label>
-                    <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{$user->name}}">
+                    <input type="text" class="form-control" name="name" placeholder="Enter Name"
+                           value="{{$user->name}}">
                 </div>
 
                 <div class="form-group font-weight-bold">
                     <label for="phone_no">Phone Number:</label>
-                    <input type="number" class="form-control"  name="phone_no" placeholder="Enter Phone number" value="{{$user->phone_no}}">
+                    <input type="number" class="form-control" name="phone_no" placeholder="Enter Phone number"
+                           value="{{$user->phone_no}}">
                 </div>
 
 
                 <div class="form-group font-weight-bold">
                     <label for="image">Upload Profile Pic: </label>
-                    <input type="file" class="form-control"  name="image">
+                    <input type="file" class="form-control" name="image">
                 </div>
 
                 <div class="borderdiv">
@@ -127,5 +137,6 @@
                 <button class="btn profile-edit-btn" type="submit">Update</button>
 
             </form>
-    </div>
+        </div>
+        </div>
 @endsection
