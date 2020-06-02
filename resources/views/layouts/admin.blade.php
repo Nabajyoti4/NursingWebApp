@@ -75,7 +75,7 @@
                 <span>Users</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('nursejoin.index') }}">
                 <i class="fas fa-user"></i>
                 <span>Requests</span></a>
         </li>

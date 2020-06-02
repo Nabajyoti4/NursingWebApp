@@ -18,6 +18,9 @@ class NurseJoinRequestController extends Controller
     public function index()
     {
         //
+        $candidates = NurseJoinRequest::all();
+
+        return view('admin.requests.nurse.index',compact('candidates') );
     }
 
     /**
@@ -86,7 +89,26 @@ class NurseJoinRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+
+
+    }
+
+
+    public function approve(NurseJoinRequest $candidate){
+        $candidate->Approval=1;
+        $candidate->save();
+        session()->flash('success','Candidated Approved');
+        return redirect()->back();
+    }
+
+
+    public function disapprove(NurseJoinRequest $candidate){
+        $candidate->Approval=0;
+        $candidate->save();
+        session()->flash('success','Candidated Disapproved');
+        return redirect()->back();
     }
 
     /**
