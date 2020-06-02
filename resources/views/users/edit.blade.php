@@ -9,6 +9,7 @@
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <!--  custom form style link -->
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+    <link href="{{asset('css/error.css')}}" rel="stylesheet">
 @endsection
 @section('style')
     <style>
@@ -38,6 +39,7 @@
     <!-- navbar ends -->
         <div class="p-4">
         <div class="container emp-profile mt-3">
+            @include('partials.errors')
             <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
