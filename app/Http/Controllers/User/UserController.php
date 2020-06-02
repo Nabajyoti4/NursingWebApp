@@ -106,7 +106,6 @@ class UserController extends Controller
                 'street' => $data['permanent_street'],
                 'police_station' => $data['permanent_police'],
                 'post_office' => $data['permanent_post']
-
             ]);
 
             $current_address = Address::findOrfail($user->current_address_id);
@@ -148,9 +147,6 @@ class UserController extends Controller
                 'post_office' => $data['current_post']
 
             ]);
-
-
-
 
             // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;
