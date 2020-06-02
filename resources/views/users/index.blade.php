@@ -80,10 +80,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Curret Address</label>
+                                    <label>Current Address</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Delhi</p>
+                                    <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Current Address"}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -91,7 +91,7 @@
                                     <label>Permanent Address</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Delhi</p>
+                                    <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</p>
                                 </div>
                             </div>
                         </div>

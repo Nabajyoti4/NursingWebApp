@@ -16,8 +16,8 @@
         .borderdiv {
             position: relative;
             padding: 32px;
-            border-radius: 2px;
-            border: 2px solid #dde4ea;
+            border-radius: 10px;
+            border: 2px solid #75b3e2;
             margin-top: 2rem;
         }
     </style>
@@ -53,22 +53,36 @@
                     <label class="header font-weight-bold bg-light">Current Address</label>
                     <div class="row">
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_street" placeholder="Street name">
+                            <input type="text" class="form-control" name="current_street" placeholder="Street name"
+                            value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_landmark" placeholder="Landmark">
+                            <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_district" placeholder="District">
+                            <input type="text" class="form-control" name="current_city" placeholder="City"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_state" placeholder="State">
+                            <input type="text" class="form-control" name="current_state" placeholder="State"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_country" placeholder="Country">
+                            <input type="text" class="form-control" name="current_country" placeholder="Country"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code">
+                            <input type="text" class="form-control" name="current_police" placeholder="Police station"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_post" placeholder="Post office"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
                         </div>
                     </div>
                 </div>
@@ -76,22 +90,36 @@
                     <label class="header font-weight-bold bg-light">Permanent Address</label>
                     <div class="row">
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_street" placeholder="Street name">
+                            <input type="text" class="form-control" name="permanent_street" placeholder="Street name"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->street : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark">
+                            <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->landmark : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_district" placeholder="District">
+                            <input type="text" class="form-control" name="permanent_city" placeholder="city"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_state" placeholder="State">
+                            <input type="text" class="form-control" name="permanent_state" placeholder="State"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->state : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_country" placeholder="Country">
+                            <input type="text" class="form-control" name="permanent_country" placeholder="Country"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->country : ""}}">
                         </div>
                         <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code">
+                            <input type="text" class="form-control" name="permanent_police" placeholder="Police station"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->police_station : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="permanent_post" placeholder="Post office"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->post_office : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code"
+                                   value="{{$user->addresses->first() ? $user->addresses->first()->pin_code : ""}}">
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Address;
 use App\Http\Controllers\Controller;
 use App\Photo;
 use App\User;
@@ -82,9 +83,73 @@ class UserController extends Controller
     {
         //
         //  $data = $request->only(['name', 'phone_no']);
+
         $data = $request->all();
         $user = Auth::user();
-        $photo =Photo::findOrFail($user->photo_id);
+
+        /**
+         * check if user have a current and permanent address
+         */
+        if($user->permanent_address_id){
+            $permanent_address = Address::findOrfail($user->permanent_address_id);
+
+            $permanent_address->update(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+
+            ]);
+
+            $current_address = Address::findOrfail($user->current_address_id);
+            $current_address->update(['user_id' => $user->id,
+                'city' => $data['current_city'],
+                'state' => $data['current_state'],
+                'pin_code' => $data['current_pincode'],
+                'country' => $data['current_country'],
+                'landmark' => $data['current_landmark'],
+                'street' => $data['current_street'],
+                'police_station' => $data['current_police'],
+                'post_office' => $data['current_post']
+
+            ]);
+
+
+        }else{
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['current_city'],
+                'state' => $data['current_state'],
+                'pin_code' => $data['current_pincode'],
+                'country' => $data['current_country'],
+                'landmark' => $data['current_landmark'],
+                'street' => $data['current_street'],
+                'police_station' => $data['current_police'],
+                'post_office' => $data['current_post']
+
+            ]);
+
+            $permanent_address = Address::create(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+
+            ]);
+
+
+            $user['current_address_id'] = $current_address->id;
+            $user['permanent_address_id'] = $permanent_address->id;
+        }
+
+
 
         if ($request->hasFile('image')) {
 //        update if
@@ -93,7 +158,7 @@ class UserController extends Controller
 
 //        delete old image
             if ($user->photo_id) {
-
+                $photo =Photo::findOrFail($user->photo_id);
                 Storage::disk('public')->delete($user->photo->photo_location);
                 $photo->update(['photo_location'=>$image]);
             } else {
@@ -101,7 +166,8 @@ class UserController extends Controller
                 $user['photo_id'] = $photo->id;
 
             }
-                    }
+        }
+
 
 
         $user->update($data);
