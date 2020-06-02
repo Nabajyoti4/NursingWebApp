@@ -10,6 +10,9 @@
     <!--  custom form style link -->
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
     <link href="{{asset('css/error.css')}}" rel="stylesheet">
+
+    <!--  fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 @endsection
 @section('style')
     <style>
