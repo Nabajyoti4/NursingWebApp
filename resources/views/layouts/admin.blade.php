@@ -11,6 +11,8 @@
     <title>
         @yield('title')
     </title>
+
+    @yield('links')
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
@@ -18,6 +20,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
     <script src="{{asset('js/app.js')}}" defer></script>
+
+    @yield('style')
 
 </head>
 

@@ -25,9 +25,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin','AdminController@index')->name('admin.index');
 
 
+// Admin User controller
 Route::resource('admin/users','AdminController\AdminUsersController',['names'=> [
     'index'=>'admin.users.index',
-    'edit'=>'admin.users.edit'
+    'edit'=>'admin.users.edit',
+    'update'=>'admin.users.update'
 ]]);
 
 
