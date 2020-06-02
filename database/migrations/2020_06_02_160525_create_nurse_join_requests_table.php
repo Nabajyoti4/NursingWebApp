@@ -20,7 +20,7 @@ class CreateNurseJoinRequestsTable extends Migration
             $table->bigInteger('phone_no');
             $table->string('email');
             $table->integer('age');
-            $table->integer('Approval');
+            $table->integer('Approval')->nullable();
             $table->timestamps();
         });
     }

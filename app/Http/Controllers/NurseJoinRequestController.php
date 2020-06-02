@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\NurseJoinRequest;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+
 
 class NurseJoinRequestController extends Controller
 {
@@ -36,7 +40,19 @@ class NurseJoinRequestController extends Controller
     {
         //
 
-        dd($request->name);
+
+
+        $data = $request->all();
+
+
+        $nurse = NurseJoinRequest::create($data);
+
+        $admin = User::where('role', 'admin')->get();
+
+        Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
+
+        return redirect()->back();
+
     }
 
     /**

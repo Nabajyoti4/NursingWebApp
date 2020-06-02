@@ -395,6 +395,8 @@
 					To Join As A Nurse  Send Your Request
 				</span>
 
+                <input class="input100" type="hidden" name="user_id" value="{{Auth::user()->id}}" >
+
                 <div class="wrap-input100">
                     <input class="input100" type="text" name="name" placeholder="Full Name">
                     <span class="focus-input100"></span>
