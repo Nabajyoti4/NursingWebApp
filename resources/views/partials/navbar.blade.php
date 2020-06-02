@@ -5,7 +5,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('img/AArogya-new-edit-1.png')}}"
-                 style="width: 150px; height: 60px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
+                 style="width: 180px; height: 70px; background: #fff; padding: 10px; border-radius: 4px; color: #28669F;"
                  alt="">
         </a>
         <button class="navbar-toggler navbar-toggler-right hidden-md-up mt-2" type="button" data-target="#stage"
@@ -37,7 +37,7 @@
                 <!-- Authentication Links -->
                 @auth
                     <li class="nav-item dropdown no-arrow">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle navbar-fonts" href="#"
+                        <a class="nav-link dropdown-toggle navbar-fonts" href="#"
                            role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle" width="32px" src="{{asset('img/avatar1.png')}}">

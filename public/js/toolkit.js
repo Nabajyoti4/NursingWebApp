@@ -4414,7 +4414,7 @@ var Stage = function ($) {
     duration: 300,
     delay: 0,
     distance: 250,
-    hiddenElements: '#sidebar'
+    hiddenElements: '#sidebar_custom'
   };
 
   var Event = {

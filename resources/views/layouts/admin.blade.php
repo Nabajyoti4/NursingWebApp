@@ -13,7 +13,7 @@
     </title>
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link href="{{asset('css/adminpanel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
@@ -185,7 +185,11 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{asset('img/AArogya-new-edit-1.png')}}"
+                         style="width: 150px; height: 60px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
+                         alt="">
+                </a>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -400,10 +404,6 @@
 </div>
 <!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -424,6 +424,6 @@
         </div>
     </div>
 </div>
-<script src="{{asset('js/adminpanel.js')}}"></script>
+<script src="{{asset('js/admin/adminPanel.js')}}"></script>
 </body>
 </html>

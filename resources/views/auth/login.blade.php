@@ -18,7 +18,6 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-{{--                        <h5>Email</h5>--}}
                         <input type="text" class="input @error('email') is-invalid @enderror" name="email"
                                value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                         @error('email')
@@ -35,7 +34,6 @@
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-{{--                        <h5>Password</h5>--}}
                         <input type="password" class="input @error('password') is-invalid @enderror" name="password"
                                required autocomplete="current-password" placeholder="Password">
                         <br><br>
@@ -54,7 +52,6 @@
                 <button type="submit" class="login_register_btn">
                     {{ __('Login') }}
                 </button>
-                {{--                <input type="submit" class="btn" value="Login">--}}
             </form>
         </div>
     </div>

@@ -12,14 +12,14 @@
         @yield('title')
     </title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!--Bootstrap link-->
+    <!--Bootstrap css-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- CSS only -->
+    <!-- Theme CSS -->
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <!-- Theme CSS and custom css -->
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
@@ -57,7 +57,7 @@
 
 <body>
 <!--nav sidebar -->
-<div class="stage-shelf stage-shelf-right hidden" id="sidebar">
+<div class="stage-shelf stage-shelf-right hidden" id="sidebar_custom">
     <ul class="navbar-nav nav-bordered nav-stacked flex-column">
         <li class="nav-header">Menu</li>
         <!-- Authentication Links -->
@@ -203,11 +203,9 @@
     //     document.location.reload(true);
     // }
 </script>
-
-{{--<script src="{{asset('js/tether.min.js')}}"></script>--}}
-{{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-{{--<script src="{{asset('js/toolkit.js')}}"></script>--}}
-
-
+{{--required js --}}
+<script src="{{asset('js/tether.min.js')}}"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/toolkit.js')}}"></script>
 </body>
 </html>

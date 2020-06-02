@@ -20,8 +20,7 @@
         </form>
 
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">List of Admins</h1>
+    <hr>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -52,7 +51,9 @@
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
                         </tr>
                     @empty
-                        <td>No users found</td>
+                        <tr>
+                            <td colspan="6">No users found</td>
+                        </tr>
                     @endforelse
                     </tbody>
                 </table>

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src=" {{ asset("/storage/".$user->photo->photo_location) }}" alt=""/>
+                        <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}" alt=""/>
                     </div>
                 </div>
                 <div class="col-md-6">
