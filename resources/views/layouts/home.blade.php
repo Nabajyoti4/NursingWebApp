@@ -14,21 +14,20 @@
     <!-- Scripts -->
 
     <!--Bootstrap css-->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
     <!-- Theme CSS -->
+    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <!-- Theme CSS and custom css -->
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
-    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
 
     <!-- link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
-    {{--    fontawesome link    --}}
-    <script src="https://kit.fontawesome.com/282f852346.js"></script>
 
     <style>
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
