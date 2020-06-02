@@ -14,11 +14,11 @@
     <style>
         .header {
             position: absolute;
-            top: -17px;
+            top: -14px;
             left: 1%;
             padding: 0% 2px;
             margin: 0%;
-            background: #;
+            background: white!important;
         }
 
         .borderdiv {
@@ -32,10 +32,11 @@
 @endsection
 @section('content')
 
-    <div class="container-fluid profile-bg p-3">
+    <div class="container-fluid profile-bg">
         <!-- navbar start -->
     @include('partials.navbar')
     <!-- navbar ends -->
+        <div class="p-4">
         <div class="container emp-profile mt-3">
             <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -108,5 +109,6 @@
                 <button class="btn profile-edit-btn" type="submit">Update</button>
 
             </form>
+        </div>
         </div>
 @endsection

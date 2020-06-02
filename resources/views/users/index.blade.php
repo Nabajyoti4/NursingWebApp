@@ -15,12 +15,12 @@
 
 @endsection
 @section('content')
-
-<div class="container-fluid profile-bg p-3">
+<div class="container-fluid profile-bg">
     <!-- navbar start -->
 @include('partials.navbar')
 <!-- navbar ends -->
-    <div class="container emp-profile mt-3">
+    <div class="p-4">
+        <div class="container emp-profile mt-3">
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
@@ -157,8 +157,9 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
 
+</div>
 
 @endsection

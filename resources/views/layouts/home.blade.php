@@ -44,13 +44,13 @@
 <!--nav sidebar -->
 <div class="stage-shelf stage-shelf-right hidden" id="sidebar_custom">
     <ul class="navbar-nav nav-bordered nav-stacked flex-column">
-        <li class="nav-header">Menu</li>
         <!-- Authentication Links -->
         @auth
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#"
+            <li class="nav-item dropdown">
+
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
                    role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <img class="rounded-circle" width="32px" src="{{asset('img/avatar1.png')}}">
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
@@ -76,16 +76,16 @@
                     </a>
 
                 </div>
-
-
             </li>
         @else
-            <li class="nav-item px-1 ">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">Login/register</a>
-                {{--                            if logged in the profile link and --}}
             </li>
         @endauth
+
         <div class="dropdown-divider"></div>
+        <li class="nav-header">Menu</li>
+
         <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
         </li>
