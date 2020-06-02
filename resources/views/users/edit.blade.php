@@ -59,43 +59,7 @@
                     <input type="file" class="form-control" name="image">
                 </div>
 
-                <div class="borderdiv">
-                    <label class="header font-weight-bold bg-light">Current Address</label>
-                    <div class="row">
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_street" placeholder="Street name"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_city" placeholder="City"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_state" placeholder="State"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_country" placeholder="Country"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_police" placeholder="Police station"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_post" placeholder="Post office"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
-                        </div>
-                        <div class="col-lg-4 p-2">
-                            <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
-                                   value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
-                        </div>
-                    </div>
-                </div>
+
                 <div class="borderdiv">
                     <label class="header font-weight-bold bg-light">Permanent Address</label>
                     <div class="row">
@@ -130,6 +94,44 @@
                         <div class="col-lg-4 p-2">
                             <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code"
                                    value="{{$user->addresses->first() ? $user->addresses->first()->pin_code : ""}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="borderdiv">
+                    <label class="header font-weight-bold bg-light">Current Address</label>
+                    <div class="row">
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_street" placeholder="Street name"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_city" placeholder="City"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_state" placeholder="State"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_country" placeholder="Country"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_police" placeholder="Police station"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_post" placeholder="Post office"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
+                                   value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
                         </div>
                     </div>
                 </div>

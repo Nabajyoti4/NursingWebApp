@@ -81,10 +81,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        //  $data = $request->only(['name', 'phone_no']);
+        //for form forgery security purpose
+        $data = $request->only(['name','phone_no', 'image','current_city',
+              'current_landmark','current_street','current_post','current_country',
+              'current_pincode','current_police','current_state','permanent_city',
+              'permanent_landmark','permanent_street','permanent_post','permanent_country',
+              'permanent_pincode','permanent_police','permanent_state']);
 
-        $data = $request->all();
         $user = Auth::user();
 
         /**
@@ -120,17 +123,6 @@ class UserController extends Controller
 
 
         }else{
-            $current_address = Address::create(['user_id' => $user->id,
-                'city' => $data['current_city'],
-                'state' => $data['current_state'],
-                'pin_code' => $data['current_pincode'],
-                'country' => $data['current_country'],
-                'landmark' => $data['current_landmark'],
-                'street' => $data['current_street'],
-                'police_station' => $data['current_police'],
-                'post_office' => $data['current_post']
-
-            ]);
 
             $permanent_address = Address::create(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
@@ -144,7 +136,22 @@ class UserController extends Controller
 
             ]);
 
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['current_city'],
+                'state' => $data['current_state'],
+                'pin_code' => $data['current_pincode'],
+                'country' => $data['current_country'],
+                'landmark' => $data['current_landmark'],
+                'street' => $data['current_street'],
+                'police_station' => $data['current_police'],
+                'post_office' => $data['current_post']
 
+            ]);
+
+
+
+
+            // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;
             $user['permanent_address_id'] = $permanent_address->id;
         }
@@ -154,7 +161,6 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
 //        update if
             $image = $request->image->store('users', 'public');
-
 
 //        delete old image
             if ($user->photo_id) {
