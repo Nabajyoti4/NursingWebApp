@@ -11,23 +11,8 @@
     <title>
         @yield('title')
     </title>
-    <!-- Scripts -->
 
-    <!--Bootstrap css-->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-
-    <!-- Theme CSS -->
-    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
-
-    <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
-    <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
-    <!-- Theme CSS and custom css -->
-    <link href="{{asset('css/index.css')}}" rel="stylesheet">
-    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
-
-    <!-- link -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-
+    @yield('links')
 
     <style>
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -44,8 +29,9 @@
                 -webkit-overflow-scrolling: touch;
             }
         }
-        @media screen and(min-width: 768px){
-            #sidebar{
+
+        @media screen and(min-width: 768px) {
+            #sidebar {
                 display: none;
             }
         }
@@ -61,40 +47,42 @@
         <li class="nav-header">Menu</li>
         <!-- Authentication Links -->
         @auth
-            <li class="nav-item dropdown">
-
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#"
                    role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle" width="32px" src="{{asset('img/avatar1.png')}}">
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="{{ route('users.index') }}">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>
+                    <a class="dropdown-item" href="{{route('admin.index')}}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Admin Panel
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
+                            @csrf
+                        </form>
+                    </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <ul class="navbar-nav ml-auto flex-column">
-                        <li class="nav-link">
-                            <a class="dropdown-item" href="#">Profile</a>
-                        </li>
-                        <li class="nav-link">
-                            <a class="dropdown-item" href="#">Admin Panel</a>
-                        </li>
-                        <li class="nav-link">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                  style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
                 </div>
+
+
             </li>
         @else
-            <li class="nav-item">
+            <li class="nav-item px-1 ">
                 <a class="nav-link" href="{{route('login')}}">Login/register</a>
+                {{--                            if logged in the profile link and --}}
             </li>
         @endauth
         <div class="dropdown-divider"></div>

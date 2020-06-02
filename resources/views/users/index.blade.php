@@ -3,7 +3,17 @@
 @section('title')
     User Profile
 @endsection
+@section('links')
+    <!-- Theme CSS -->
+    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <!--  custom form style link -->
+    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+    <!--  fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
+@endsection
 @section('content')
 
 <div class="container-fluid profile-bg p-3">

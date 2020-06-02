@@ -2,6 +2,16 @@
 @section('title')
     Homepage
 @endsection
+@section('links')
+    <!-- Theme CSS -->
+    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <!-- Theme CSS and custom css -->
+    <link href="{{asset('css/index.css')}}" rel="stylesheet">
+    <!--  fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+@endsection
 
 @section('content')
     <!-- header section starts -->
@@ -361,7 +371,7 @@
 
                 <div class="col-12 col-md-4 mt-5 mt-lg-0">
                     <div class="address-location h-100">
-                        <h2 class="d-flex align-items-center">Branch Office(Dibrugarh</h2>
+                        <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
 
                         <ul class="p-0 m-0">
                             <li>Sashanpara Road, Near Sankar Dev Hospital, Mancotta Road.</li>
