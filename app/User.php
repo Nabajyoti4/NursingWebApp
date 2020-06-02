@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * every user has a one profile photo
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function photo(){
         return $this->belongsTo(Photo::class);
