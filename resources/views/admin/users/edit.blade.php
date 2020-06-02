@@ -4,7 +4,10 @@
 @endsection
 
 @section('links')
+
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+    <link href="{{asset('css/error.css')}}" rel="stylesheet">
+
 @endsection
 
 @section('style')
@@ -30,7 +33,8 @@
 
 @section('content')
 
-    <div class="container emp-profile mt-3 shadow mb-4">
+    <div class="container emp-profile mt-3">
+        @include('partials.errors')
         <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -129,7 +133,7 @@
                 </div>
             </div>
             <br>
-            <button class="btn profile-edit-btn text-white" type="submit">Update</button>
+            <button class="btn profile-edit-btn" type="submit">Update</button>
 
         </form>
     </div>

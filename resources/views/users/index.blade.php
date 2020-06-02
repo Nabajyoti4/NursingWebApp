@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="{{ route('users.edit', $user->id) }}">
+                    <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
                         <div  class="profile-edit-btn text-center">Edit Profile</div>
                     </a>
 

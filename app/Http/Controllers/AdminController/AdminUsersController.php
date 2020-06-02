@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Address;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
@@ -93,7 +94,7 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileRequest $request, $id)
     {
         //
         $data = $request->only(['name','phone_no', 'image','current_city',
