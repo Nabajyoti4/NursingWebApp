@@ -45,6 +45,21 @@ Route::resource('users','User\UserController',['names'=> [
 
 
 
+Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
+
+    'index'=>'nursejoin.index',
+    'create'=>'nursejoin.create',
+    'store'=>'nursejoin.store',
+    'edit'=>'nursejoin.edit',
+    'show'=>'nursejoin.show'
+
+]
+]);
+
+
+
+
+
 
 
 

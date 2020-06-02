@@ -384,37 +384,47 @@
             </div>
         </div>
     </div>
+    <!-- address section end  -->
 
-    <div class="address-form">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2>Mail Us For Enquiry</h2>
+    <!--Nurse request form-->
+    <div class="container-nurserequest">
+        <div class="wrap-nurserequest">
+            <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
+                @csrf
+				<span class="nurserequest-form-title">
+					To Join As A Nurse  Send Your Request
+				</span>
+
+                <div class="wrap-input100">
+                    <input class="input100" type="text" name="name" placeholder="Full Name">
+                    <span class="focus-input100"></span>
                 </div>
 
-                <div class="col-12  col-md-4">
-                    <input type="text" placeholder="Name">
+                <div class="wrap-input100 " >
+                    <input class="input100" type="text" name="email" placeholder="Email">
+                    <span class="focus-input100"></span>
                 </div>
 
-                <div class="col-12 col-md-4">
-                    <input type="email" placeholder="E-mail">
+                <div class="wrap-input100 " >
+                    <input class="input100" type="text" name="phone_no" placeholder="Contact number">
+                    <span class="focus-input100"></span>
                 </div>
 
-                <div class="col-12 col-md-4">
-                    <input type="text" placeholder="Subject">
+                <div class="wrap-input100 ">
+                    <input class="input100" type="text" name="age" placeholder="Age">
+                    <span class="focus-input100"></span>
                 </div>
 
-                <div class="col-12">
-                    <textarea name="name" rows="12" cols="80" placeholder="Message"></textarea>
+                <div class="container-nurserequest-form-btn">
+                    <button type="submit"  class="btn profile-edit-btn ">
+                        Send Request
+                    </button>
                 </div>
-
-                <div class="col-12">
-                    <input type="submit" name="" value="Send Message" class="button gradient-bg">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-    <!-- address section end  -->
+
+
 
     <!-- Card our team -->
     <div class="container-fluid team-background pr-0 pl-0">
