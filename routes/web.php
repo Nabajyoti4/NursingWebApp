@@ -69,9 +69,10 @@ Route::get('/nurse',function (){
 Route::get('/admin/nurse',function (){
     return view('admin.nurses.index');
 })->name('admin.nurses.index');
+
 Route::get('/admin/nurse/create',function (){
     return view('admin.nurses.create');
-})->name('admin.nurses.index');
+})->name('admin.nurse.create');
 
 
 

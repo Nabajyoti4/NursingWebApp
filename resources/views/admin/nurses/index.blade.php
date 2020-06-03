@@ -19,7 +19,11 @@
         </div>
     </form>
 
-
+    <div class="d-sm-inline-block justify-content-end">
+        <a class="btn btn-primary" href="{{route('admin.nurse.create')}}">
+            create
+        </a>
+    </div>
     <hr>
 
     <!-- DataTales Example -->

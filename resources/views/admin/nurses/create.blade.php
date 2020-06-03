@@ -116,7 +116,7 @@
                 </div>
             </div>
             <br>
-            <button class="btn profile-edit-btn" type="submit">Update</button>
+            <button class="btn btn-primary" type="submit">Create</button>
 
         </form>
     </div>
