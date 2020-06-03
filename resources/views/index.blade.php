@@ -15,10 +15,11 @@
 
 @section('content')
     <!-- header section starts -->
-    <div class="p-1" style="background-image: url({{asset('img/navbar-back-1.jpg')}});background-repeat: no-repeat; background-size: cover">
+    <div class="p-1"
+         style="background-image: url({{asset('img/navbar-back-1.jpg')}});background-repeat: no-repeat; background-size: cover">
         <!-- navbar start -->
-        @include('partials.navbar')
-        <!-- navbar ends -->
+    @include('partials.navbar')
+    <!-- navbar ends -->
 
         <!-- carousel -->
         <div class="block block-secondary app-iphone-block bg-transparent">
@@ -391,23 +392,26 @@
         <div class="wrap-nurserequest">
             <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
                 @csrf
-				<span class="nurserequest-form-title">
+                <span class="nurserequest-form-title">
 					To Join As A Nurse  Send Your Request
 				</span>
 
-                <input class="input100" type="hidden" name="user_id" value="{{Auth::user()->id}}" >
+                <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
+                @elseauth
+                    ''
+@endauth">
 
                 <div class="wrap-input100">
                     <input class="input100" type="text" name="name" placeholder="Full Name">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 " >
+                <div class="wrap-input100 ">
                     <input class="input100" type="text" name="email" placeholder="Email">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 " >
+                <div class="wrap-input100 ">
                     <input class="input100" type="text" name="phone_no" placeholder="Contact number">
                     <span class="focus-input100"></span>
                 </div>
@@ -418,7 +422,7 @@
                 </div>
 
                 <div class="container-nurserequest-form-btn">
-                    <button type="submit"  class="btn profile-edit-btn ">
+                    <button type="submit" class="btn profile-edit-btn ">
                         Send Request
                     </button>
                 </div>

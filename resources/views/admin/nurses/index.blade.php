@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Users
+    Nurses
 @endsection
 
 @section('content')
@@ -19,7 +19,11 @@
         </div>
     </form>
 
-
+    <div class="d-sm-inline-block justify-content-end">
+        <a class="btn btn-primary" href="{{route('admin.nurse.create')}}">
+            create
+        </a>
+    </div>
     <hr>
 
     <!-- DataTales Example -->
@@ -36,25 +40,43 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone No</th>
+                        <th>Age</th>
+                        <th>Shifts</th>
                         <th>Created at</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($users as $user)
-                        <tr>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->phone_no}}</td>
-                            <td>{{$user->created_at}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6">No users found</td>
-                        </tr>
-                    @endforelse
+{{--                    dummy tr  delete it when sending data --}}
+                    <tr>
+
+                        <td>1</td>
+                        <td>raj</td>
+                        <td>raj@gmail.com</td>
+                        <td>7894561230</td>
+                        <td>25</td>
+                        <td>12hr</td>
+                        <td>2 / 6 /2020</td>
+                        <td><a class="btn btn-primary small" href="">Edit</a></td>
+                    </tr>
+
+
+{{--                    @forelse($nurses as $nurse)--}}
+{{--                        <tr>                            --}}
+{{--                            <td>{{$nurse->id}}</td>--}}
+{{--                            <td>{{$nurse->name}}</td>--}}
+{{--                            <td>{{$nurse->email}}</td>--}}
+{{--                            <td>{{$nurse->phone_no}}</td>--}}
+{{--                            <td>{{$nurse->age}}</td>--}}
+{{--                            <td>{{$nurse->shifts}}</td>--}}
+{{--                            <td>{{$nurse->created_at}}</td>--}}
+{{--                            <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>--}}
+{{--                        </tr>--}}
+{{--                    @empty--}}
+{{--                        <tr>--}}
+{{--                            <td colspan="6">No users found</td>--}}
+{{--                        </tr>--}}
+{{--                    @endforelse--}}
                     </tbody>
                 </table>
             </div>
