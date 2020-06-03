@@ -53,23 +53,22 @@
                             <td>
                                 @if($candidate->Approval == 1)
                                     Approved
-                                @else
+                                @elseif($candidate->Approval == 0)
                                     Dissapproved
-                                 @endif
+                                @else
+                                    Pending
+                                @endif
 
                             </td>
                             <td>
 
                                 <form action="{{route('nursejoin.approve',$candidate->id)}}" method="post">
                                     @csrf
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" type="submit">Approved</button>
+                                    <button class="btn btn-primary"  type="submit">Approved</button>
                                 </form>
                             </td>
                             <td>
-                                    <form action="{{route('nursejoin.disapprove',$candidate->id)}}" method="post">
-                                        @csrf
-                                        <button class="btn btn-primary" type="submit">Disapproved</button>
-                                    </form>
+                                    <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
                             </td>
                         </tr>
                     @empty
@@ -81,32 +80,35 @@
                 </table>
 
 <!--pop up model-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="disapproveModal" tabindex="-1" role="dialog" aria-labelledby="disapproveModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
+                        <form action="" method="post" id="disapproveRequestMessage">
+                            @csrf
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <h5 class="modal-title" id="disapproveModalLabel">Reason For Rejection</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" class="form-control" name="recipient">
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                        <textarea class="form-control" name="message" ></textarea>
                                     </div>
-                                </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button  class="btn btn-primary" type="submit">Send message</button>
+                                    </div>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
-                            </div>
+
                         </div>
+                        </form>
                     </div>
                 </div>
 <!--pop up model end-->
@@ -118,15 +120,24 @@
 
 @section('script')
     <script>
-        $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
+
+        function handleDisapprove(id){
+
+            var message = document.getElementById('disapproveRequestMessage')
+
+            message.action = "/nursejoin/" + id + "/disapprove"
+
+            $('#disapproveModal').modal('show')
+        }
+
+
+        // $('#exampleModal').on('show.bs.modal', function (event) {
+        //     var button = $(event.relatedTarget)
+        //     var recipient = button.data('whatever')
+        //     var modal = $(this)
+        //     modal.find('.modal-title').text('New message to ' + recipient)
+        //     modal.find('.modal-body input').val(recipient)
+        // })
     </script>
 
 @endsection
