@@ -14,25 +14,25 @@
 
     @yield('links')
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-
-    <script src="{{asset('js/app.js')}}" defer></script>
 
     @yield('style')
 
 </head>
 
-<body id="page-top">
+<body>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+{{--        <a class="sidebar-brand-icon text-center" style="width:100px; background: #fff; padding: 10px; border-radius: 4px; color: #28669F;" href="{{ url('/') }}">--}}
+{{--           Home--}}
+{{--        </a>--}}
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
             <div class="sidebar-brand-icon">
@@ -189,11 +189,6 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('img/AArogya-new-edit-1.png')}}"
-                         style="width: 150px; height: 60px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
-                         alt="">
-                </a>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -428,6 +423,11 @@
         </div>
     </div>
 </div>
+
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
+
 </body>
 </html>
+
+
