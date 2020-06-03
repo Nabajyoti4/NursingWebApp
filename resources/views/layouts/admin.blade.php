@@ -65,7 +65,7 @@
                 <span>Sub Admins</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="nurses.html">
+            <a class="nav-link" href="{{route('admin.nurses.index')}}">
                 <i class="fas fa-user-md"></i>
                 <span>Nurses</span></a>
         </li>

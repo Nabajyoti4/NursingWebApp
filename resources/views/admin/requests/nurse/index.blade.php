@@ -36,9 +36,10 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone No</th>
+                        <th>Age</th>
                         <th>Created at</th>
-                        <th>Is Approved</th>
                         <th>Status</th>
+                        <th>Update</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,16 +51,17 @@
                             <td>{{$candidate->phone_no}}</td>
                             <td>{{$candidate->age}}</td>
                             <td>{{$candidate->created_at}}</td>
+                            <td>{{$candidate->Approval == 1?'Approved':'Disapproved'}}</td>
                             <td>
                                 @if($candidate->Approval == 0)
                                 <form action="{{route('nursejoin.approve',$candidate->id)}}" method="post">
                                     @csrf
-                                    <button class="btn btn-primary" type="submit">Approved</button>
+                                    <button class="btn btn-primary" type="submit">Approve</button>
                                 </form>
                             @else
                                     <form action="{{route('nursejoin.disapprove',$candidate->id)}}" method="post">
                                         @csrf
-                                        <button class="btn btn-primary" type="submit">Disapproved</button>
+                                        <button class="btn btn-primary" type="submit">Disapprove</button>
                                     </form>
                             @endif
                             </td>

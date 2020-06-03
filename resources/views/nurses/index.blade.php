@@ -51,7 +51,9 @@
                      alt="avatar">
                 <div class="pt-5">
                     <h3>Raju Moni Borah</h3>
+                    <hr>
                     <h4><i class="fas fa-mobile-alt"></i> 9874561230</h4>
+                    <hr>
                     <h4><i class="fas fa-envelope"></i> midoriya658@gmail.com</h4>
                 </div>
 
