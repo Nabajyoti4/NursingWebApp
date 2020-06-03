@@ -61,7 +61,9 @@ Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve
 Route::post('nursejoin/{candidate}/disapprove', 'NurseJoinRequestController@disapprove')->name('nursejoin.disapprove');
 
 
-
+Route::get('/nurse',function (){
+    return view('nurses.index');
+});
 
 
 
