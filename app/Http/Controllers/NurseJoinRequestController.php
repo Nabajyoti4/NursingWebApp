@@ -18,7 +18,7 @@ class NurseJoinRequestController extends Controller
     public function index()
     {
         //
-        $candidates = NurseJoinRequest::all();
+        $candidates = NurseJoinRequest::latest()->get();
 
         return view('admin.requests.nurse.index',compact('candidates') );
     }

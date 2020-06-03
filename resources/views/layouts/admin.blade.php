@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
-    <script src="{{asset('js/app.js')}}" defer></script>
+
 
     @yield('style')
 
@@ -428,6 +428,8 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
+@yield('script')
 </body>
 </html>
