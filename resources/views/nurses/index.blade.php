@@ -30,7 +30,7 @@
             position: relative;
             padding-top: 1rem;
             border-radius: 2px;
-            border-top: 2px solid #dde4ea;
+            border-top: 2px solid #4883b6;
             margin-top: 2rem;
         }
 
@@ -47,11 +47,12 @@
     <div class="container p-3">
         <div class="row p-5 bg-light">
             <div class="col-xs-12 col-lg-4">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail" width="250px"
+                <img src="{{asset('img/avatar1.png')}}" class="avatar img-thumbnail" width="250px"
                      alt="avatar">
                 <div class="pt-5">
                     <h3>Raju Moni Borah</h3>
-                    <h4>{Phone Number}</h4>
+                    <h4><i class="fas fa-mobile-alt"></i> 9874561230</h4>
+                    <h4><i class="fas fa-envelope"></i> midoriya658@gmail.com</h4>
                 </div>
 
             </div>
