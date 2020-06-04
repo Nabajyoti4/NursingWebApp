@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -74,6 +76,10 @@ Route::get('/admin/nurse/create',function (){
     return view('admin.nurses.create');
 })->name('admin.nurse.create');
 
-
+//admins
+Route::get('/admin/admins',function (){
+    $admins = User::where('role', 'admin')->get();
+    return view('admin.admins.index',compact('admins'));
+})->name('admin.admins.index');
 
 

@@ -46,10 +46,10 @@ class NurseJoinRequest extends Notification
         return (new MailMessage)
                     ->greeting('Hello Admin')
                     ->subject('New Request For Nurse Job')
-                    ->line('New request For Nurse Job approvel')
+                    ->line('New request For Nurse Job approval')
                     ->line('Request from '. $this->nurse->name)
                     ->action('Notification Action', url(route('nursejoin.index')))
-                    ->line('Visit The Link For approvel');
+                    ->line('Visit The Link For approval');
     }
 
     /**
