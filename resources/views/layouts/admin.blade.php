@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
+
+
     @yield('style')
 
 </head>
@@ -438,7 +440,7 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
-
+@yield('script')
 </body>
 </html>
 

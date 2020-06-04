@@ -33,7 +33,7 @@ class AdminUsersController extends Controller
 
         }
         else{
-            $users = User::all();
+            $users = User::latest()->get();
 
         }
 

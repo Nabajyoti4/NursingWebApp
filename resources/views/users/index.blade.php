@@ -14,11 +14,61 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
 @endsection
+
+@section('style')
+    <style>
+        .alert {
+            position: relative;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 0.25rem;
+        }
+
+        .alert-success {
+            color: #1d643b;
+            background-color: #d7f3e3;
+            border-color: #c7eed8;
+        }
+
+        .alert-success hr {
+            border-top-color: #b3e8ca;
+        }
+
+        .alert-dismissible {
+            padding-right: 3.85rem;
+        }
+
+        .alert-dismissible .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.75rem 1.25rem;
+            color: inherit;
+        }
+        .fade {
+            transition: opacity 0.15s linear;
+        }
+
+        .fade.show {
+            opacity: 1; }
+
+
+    </style>
+@endsection
 @section('content')
 <div class="container-fluid profile-bg">
     <!-- navbar start -->
 @include('partials.navbar')
 <!-- navbar ends -->
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <div class="p-4">
         <div class="container emp-profile mt-3">
             <div class="row">

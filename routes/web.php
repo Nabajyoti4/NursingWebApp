@@ -58,7 +58,7 @@ Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
 
 
 Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve')->name('nursejoin.approve');
-Route::post('nursejoin/{candidate}/disapprove', 'NurseJoinRequestController@disapprove')->name('nursejoin.disapprove');
+Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove');
 
 
 //for testing purpose

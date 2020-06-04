@@ -18,7 +18,7 @@ class NurseJoinRequestController extends Controller
     public function index()
     {
         //
-        $candidates = NurseJoinRequest::all();
+        $candidates = NurseJoinRequest::latest()->get();
 
         return view('admin.requests.nurse.index',compact('candidates') );
     }
@@ -104,7 +104,16 @@ class NurseJoinRequestController extends Controller
     }
 
 
-    public function disapprove(NurseJoinRequest $candidate){
+    public function disapprove(Request $request,  $id){
+
+
+
+        $candidate = NurseJoinRequest::findOrFail($id);
+        $user = User::findOrFail($candidate->user_id);
+
+
+        Notification::send($user, new \App\Notifications\NurseJoinDisapprove($request));
+
         $candidate->Approval=0;
         $candidate->save();
         session()->flash('success','Candidated Disapproved');
