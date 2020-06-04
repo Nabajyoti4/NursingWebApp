@@ -74,11 +74,23 @@
                 <i class="fas fa-user"></i>
                 <span>Users</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('nursejoin.index') }}">
-                <i class="fas fa-user"></i>
-                <span>Requests</span></a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-user"></i>
+            <span>Requests</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Requests:</h6>
+                <a class="collapse-item" href="{{ route('nursejoin.index') }}">Join Nurse</a>
+                <a class="collapse-item" href="">Hire Nurse</a>
+
+            </div>
+        </div>
+    </li>
+
         <!-- Heading -->
         <div class="sidebar-heading">
             Interface

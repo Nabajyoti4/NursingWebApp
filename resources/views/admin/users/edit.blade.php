@@ -32,7 +32,10 @@
 @endsection
 
 @section('content')
-
+    <div class="py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Updating User</h6>
+    </div>
+    <hr>
     <div class="container emp-profile mt-3">
         @include('partials.errors')
         <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
@@ -133,7 +136,7 @@
                 </div>
             </div>
             <br>
-            <button class="btn profile-edit-btn" type="submit">Update</button>
+            <button class="btn btn-primary" type="submit">Update</button>
 
         </form>
     </div>
