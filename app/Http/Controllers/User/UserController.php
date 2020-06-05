@@ -176,7 +176,7 @@ class UserController extends Controller
         $user->update($data);
 
 
-        return redirect(route('users.index'))->with('success','Details Updated successfully!');;
+        return redirect(route('users.index'))->with('success','Details Updated successfully!');
 
     }
 

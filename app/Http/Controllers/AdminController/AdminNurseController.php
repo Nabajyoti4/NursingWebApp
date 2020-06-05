@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminController;
 
-use App\NurseJoinRequest;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\Nurse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 
-
-class NurseJoinRequestController extends Controller
+class AdminNurseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,9 @@ class NurseJoinRequestController extends Controller
     public function index()
     {
         //
-        $candidates = NurseJoinRequest::latest()->get();
+        $nurses = Nurse::all();
 
-        return view('admin.requests.nurse.index',compact('candidates') );
+        return view('admin.nurses.index', compact('nurses'));
     }
 
     /**
@@ -31,6 +29,7 @@ class NurseJoinRequestController extends Controller
     public function create()
     {
         //
+        return view('admin.nurses.create');
     }
 
     /**
@@ -42,21 +41,6 @@ class NurseJoinRequestController extends Controller
     public function store(Request $request)
     {
         //
-
-
-
-        $data = $request->all();
-
-
-        $nurse = NurseJoinRequest::create($data);
-
-        $admin = User::where('role', 'admin')->get();
-
-        Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
-
-        return redirect()->back()->with('success','Request Has been Sent Succesfully!');
-
-
     }
 
     /**
@@ -90,35 +74,7 @@ class NurseJoinRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-
-
-    }
-
-
-    public function approve(NurseJoinRequest $candidate){
-        $candidate->Approval=1;
-        $candidate->save();
-        session()->flash('success','Candidated Approved');
-        return redirect()->back();
-    }
-
-
-    public function disapprove(Request $request,  $id){
-
-
-
-        $candidate = NurseJoinRequest::findOrFail($id);
-        $user = User::findOrFail($candidate->user_id);
-
-
-        Notification::send($user, new \App\Notifications\NurseJoinDisapprove($request));
-
-        $candidate->Approval=0;
-        $candidate->save();
-        session()->flash('success','Candidated Disapproved');
-        return redirect()->back();
+        //
     }
 
     /**

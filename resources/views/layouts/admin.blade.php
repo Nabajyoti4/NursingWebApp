@@ -69,7 +69,7 @@
                 <span>Sub Admins</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.nurses.index')}}">
+            <a class="nav-link" href="{{route('admin.nurse.index')}}">
                 <i class="fas fa-user-md"></i>
                 <span>Nurses</span></a>
         </li>
@@ -398,11 +398,11 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
     <!-- Page level plugins -->
-  <script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-  <script src="{{asset('js/admin/datatables-demo.js')}}"></script>
+<script src="{{asset('js/admin/datatables-demo.js')}}"></script>
 @yield('script')
 </body>
 </html>

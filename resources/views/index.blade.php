@@ -389,6 +389,15 @@
 
     <!--Nurse request form-->
     <div class="container-nurserequest">
+{{--        @if ($message = Session::get('success'))--}}
+{{--            <div class="alert alert-success alert-dismissible fade show">--}}
+{{--                <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+{{--                    <span aria-hidden="true">&times;</span>--}}
+{{--                </button>--}}
+{{--                <strong>{{ $message }}</strong>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+
         <div class="wrap-nurserequest">
             <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
                 @csrf
@@ -397,9 +406,7 @@
 				</span>
 
                 <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
-                @elseauth
-                    ''
-@endauth">
+                @elseauth''@endauth">
 
                 <div class="wrap-input100">
                     <input class="input100" type="text" name="name" placeholder="Full Name">
