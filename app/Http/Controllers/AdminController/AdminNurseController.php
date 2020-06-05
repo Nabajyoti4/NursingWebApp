@@ -41,6 +41,7 @@ class AdminNurseController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**

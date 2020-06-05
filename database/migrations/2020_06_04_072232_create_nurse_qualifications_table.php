@@ -16,6 +16,12 @@ class CreateNurseQualificationsTable extends Migration
         Schema::create('nurse_qualifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('nurse_id')->index();
+            $table->string('pan_card');
+            $table->string('adhar_card');
+            $table->string('voter_card');
+            $table->string('license_card');
+            $table->string('qualification');
+            $table->string('other_qualification');
             $table->timestamps();
         });
     }
