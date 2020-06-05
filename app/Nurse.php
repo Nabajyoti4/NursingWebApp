@@ -15,10 +15,10 @@ class Nurse extends Model
         'status'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function nurse_qualification(){
-        return $this->hasOne(NurseQualification::class);
+    public function qualification(){
+        return $this->belongsTo(Qualification::class);
     }
 
     /**

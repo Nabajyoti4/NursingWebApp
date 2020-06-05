@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NurseQualification extends Model
+class Qualification extends Model
 {
     //
+
     protected $fillable = ['nurse_id',
         'pan_card',
         'voter_card',
@@ -17,9 +18,9 @@ class NurseQualification extends Model
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function nurse(){
-        return $this->belongsTo(Nurse::class);
+        return $this->hasOne(Nurse::class);
     }
 }

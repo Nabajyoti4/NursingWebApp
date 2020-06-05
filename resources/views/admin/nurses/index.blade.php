@@ -56,6 +56,7 @@
                             <td>{{$nurse->user->phone_no}}</td>
                             <td>{{$nurse->age}}</td>
                             <td>{{$nurse->created_at}}</td>
+                            <td><img src="{{ $nurse->qualification?asset("/storage/".$nurse->employee_id.$nurse->user->id."/".$nurse->qualification->pan_card.".jpeg") :'No Photo'}}" alt=""/></td>
                             <td><a class="btn btn-primary small" href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
                         </tr>
                     @empty
