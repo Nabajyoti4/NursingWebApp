@@ -23,7 +23,7 @@
     <hr>
 
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Users</h6>
         </div>
@@ -48,7 +48,8 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone_no}}</td>
                             <td>{{$user->created_at}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
+                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i></td>
                         </tr>
                     @empty
                         <tr>
@@ -60,4 +61,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        setInterval(function() {
+            $("#usersTable").load(location.href+" #usersTable>*","");
+        }, 10000);
+    </script>
 @endsection

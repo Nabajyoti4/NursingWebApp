@@ -23,7 +23,7 @@
     <hr>
 
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" id="nurseTable">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Candidates for Nurses</h6>
         </div>
@@ -119,6 +119,14 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+        setInterval(function() {
+            console.log('load')
+            $("#nurseTable").load(location.href+" #nurseTable>*","");
+        }, 10000);
+    </script>
+
+
     <script>
 
         function handleDisapprove(id){
@@ -130,14 +138,6 @@
             $('#disapproveModal').modal('show')
         }
 
-
-        // $('#exampleModal').on('show.bs.modal', function (event) {
-        //     var button = $(event.relatedTarget)
-        //     var recipient = button.data('whatever')
-        //     var modal = $(this)
-        //     modal.find('.modal-title').text('New message to ' + recipient)
-        //     modal.find('.modal-body input').val(recipient)
-        // })
     </script>
 
 @endsection

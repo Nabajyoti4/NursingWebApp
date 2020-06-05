@@ -63,18 +63,16 @@ Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve
 Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove');
 
 
-//for testing purpose
+//for Admin Nurse
+Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =>[
+    'index'=>'admin.nurse.index',
+    'create'=>'admin.nurse.create',
+    'store'=>'admin.nurse.store',
+    'edit'=>'admin.nurse.edit',
+    'show'=>'admin.nurse.show'
+]
+]);
 
-Route::get('/nurse',function (){
-    return view('nurses.index');
-});
-Route::get('/admin/nurse',function (){
-    return view('admin.nurses.index');
-})->name('admin.nurses.index');
-
-Route::get('/admin/nurse/create',function (){
-    return view('admin.nurses.create');
-})->name('admin.nurse.create');
 
 //admins
 Route::get('/admin/admins',function (){
