@@ -29,6 +29,7 @@ class AdminNurseController extends Controller
     public function create()
     {
         //
+        return view('admin.nurses.create');
     }
 
     /**

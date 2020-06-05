@@ -398,11 +398,11 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
     <!-- Page level plugins -->
-  <script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-  <script src="{{asset('js/admin/datatables-demo.js')}}"></script>
+<script src="{{asset('js/admin/datatables-demo.js')}}"></script>
 @yield('script')
 </body>
 </html>

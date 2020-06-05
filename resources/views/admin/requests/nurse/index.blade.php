@@ -119,16 +119,14 @@
 @endsection
 
 @section('script')
+
     <script type="text/javascript">
         setInterval(function() {
-            console.log('load')
             $("#nurseTable").load(location.href+" #nurseTable>*","");
         }, 10000);
     </script>
 
-
     <script>
-
         function handleDisapprove(id){
 
             var message = document.getElementById('disapproveRequestMessage')
