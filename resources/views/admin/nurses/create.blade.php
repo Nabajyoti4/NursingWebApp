@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Edit User
+    Create Nurse
 @endsection
 
 @section('links')
@@ -52,7 +52,7 @@
 
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Profile Pic: </label>
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control-file" name="image">
             </div>
 
 
@@ -114,6 +114,27 @@
                         <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code">
                     </div>
                 </div>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="pan_image">Pan card: </label>
+                <input type="file" class="form-control-file" name="pan_image">
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="aadhar_image">Aadhar card: </label>
+                <input type="file" class="form-control-file" name="aadhar_image">
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="voter_image">Voter ID card: </label>
+                <input type="file" class="form-control-file" name="voter_image">
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="license_image">License: </label>
+                <input type="file" class="form-control-file" name="license_image">
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="qualification">Highest Qualification Certificate: </label>
+                <input type="file" class="form-control-file" name="qualification">
             </div>
             <br>
             <button class="btn btn-primary" type="submit">Create</button>
