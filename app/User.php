@@ -60,4 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Photo::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function nurse(){
+        return $this->hasOne(Nurse::class);
+    }
+
 }

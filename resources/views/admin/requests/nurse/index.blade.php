@@ -39,6 +39,7 @@
                         <th>Age</th>
                         <th>Status</th>
                         <th>Approve</th>
+                        <th>Create</th>
                         <th>Disapprove</th>
                     </tr>
                     </thead>
@@ -68,7 +69,13 @@
                                 </form>
                             </td>
                             <td>
-                                    <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
+                                <form action="{{route('admin.nurse.edit',$candidate->user_id)}}" method="GET">
+                                    @csrf
+                                    <button class="btn btn-primary"  type="submit">Create</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
                             </td>
                         </tr>
                     @empty

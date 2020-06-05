@@ -17,6 +17,7 @@ class CreateNursesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('employee_id')->unique()->index();
+            $table->integer('age');
             $table->unsignedBigInteger('qualification_id');
             $table->integer('is_active')->default(0);
             $table->integer('status')->default(0);

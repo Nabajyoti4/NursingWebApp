@@ -37,12 +37,11 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>User ID</th>
+                        <th>Employee ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone No</th>
                         <th>Age</th>
-                        <th>Shifts</th>
                         <th>Created at</th>
                         <th>Edit</th>
                     </tr>
@@ -51,12 +50,11 @@
 
                     @forelse($nurses as $nurse)
                         <tr>
-                            <td>{{$nurse->id}}</td>
-                            <td>{{$nurse->name}}</td>
-                            <td>{{$nurse->email}}</td>
-                            <td>{{$nurse->phone_no}}</td>
+                            <td>{{$nurse->employee_id}}</td>
+                            <td>{{$nurse->user->name}}</td>
+                            <td>{{$nurse->user->email}}</td>
+                            <td>{{$nurse->user->phone_no}}</td>
                             <td>{{$nurse->age}}</td>
-                            <td>{{$nurse->shifts}}</td>
                             <td>{{$nurse->created_at}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
                         </tr>
