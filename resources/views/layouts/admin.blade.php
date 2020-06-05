@@ -18,7 +18,7 @@
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-
+    <link rel="stylesheet" href="{{asset('css/dataTables.min.css')}}">
 
     @yield('style')
 
@@ -374,7 +374,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-
+</span>
     <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -397,6 +397,12 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
+    <!-- Page level plugins -->
+  <script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+  <script src="{{asset('js/admin/datatables-demo.js')}}"></script>
 @yield('script')
 </body>
 </html>

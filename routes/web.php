@@ -45,8 +45,6 @@ Route::resource('users','User\UserController',['names'=> [
 
 
 
-
-
 Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
 
     'index'=>'nursejoin.index',
@@ -79,5 +77,4 @@ Route::get('/admin/admins',function (){
     $admins = User::where('role', 'admin')->get();
     return view('admin.admins.index',compact('admins'));
 })->name('admin.admins.index');
-
 

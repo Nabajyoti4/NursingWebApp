@@ -17,6 +17,8 @@
 
 @section('style')
     <style>
+
+
         .alert {
             position: relative;
             padding: 0.75rem 1.25rem;
@@ -52,7 +54,9 @@
 
         .fade.show {
             opacity: 1; }
-
+        img[src=""] {
+            display:none;
+        }
 
     </style>
 @endsection
