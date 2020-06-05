@@ -33,7 +33,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" >
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
