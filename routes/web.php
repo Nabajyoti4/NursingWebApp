@@ -12,6 +12,7 @@
 */
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('index');
@@ -80,3 +81,7 @@ Route::get('/admin/admins',function (){
     return view('admin.admins.index',compact('admins'));
 })->name('admin.admins.index');
 
+//booking
+Route::get('/book',function (){
+    return view('bookings.index')->with('user',Auth::User());
+})->name('book.index');
