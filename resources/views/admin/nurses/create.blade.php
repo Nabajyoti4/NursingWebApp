@@ -60,7 +60,6 @@
 
 
 
-
          <div class="borderdiv">
              <label class="header font-weight-bold bg-light">Permanent Address</label>
              <div class="row">

@@ -50,6 +50,10 @@
                        value="{{$nurse->user->phone_no}}">
             </div>
 
+            <div class="form-group font-weight-bold">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" name="age"   value="{{$nurse->age}}" placeholder="Enter Age">
+            </div>
 
             <div >
                 <img src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}" width="20%" height="30%" />
@@ -58,6 +62,17 @@
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Profile Pic: </label>
                 <input type="file" class="form-control" name="image">
+            </div>
+
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Working Or On Leave</label>
+                <div class="form-group font-weight-bold">
+                    <label for="active">Active</label>
+                    <select  name="active">
+                        <option value="1">active</option>
+                        <option value="0">on leave</option>
+                    </select>
+                </div>
             </div>
 
 
