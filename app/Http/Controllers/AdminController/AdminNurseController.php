@@ -40,7 +40,7 @@ class AdminNurseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -65,21 +65,15 @@ class AdminNurseController extends Controller
        }
 
         // store the image in storage
-        $pan_photo = $data['pan_image']->store($emp_id.$user_id, 'public');
-        $voter_photo = $data['voter_image']->store($emp_id.$user_id, 'public');
-        $adhar_photo = $data['adhar_image']->store($emp_id.$user_id, 'public');
-        $license_photo = $data['license_image']->store($emp_id.$user_id, 'public');
-        $qualification_photo = $data['qualification']->store($emp_id.$user_id, 'public');
-        $other_qualification_photo = $data['other_qualification']->store($emp_id.$user_id, 'public');
+        $directoy = Hash::make($emp_id.$user_id);
+        $pan = $data['pan_image']->store($directoy, 'public');
+        $voter = $data['voter_image']->store($directoy, 'public');
+        $adhar = $data['adhar_image']->store($directoy, 'public');
+        $license = $data['license_image']->store($directoy, 'public');
+        $qualification= $data['qualification']->store($directoy, 'public');
+        $other_qualification = $data['other_qualification']->store($directoy, 'public');
 
 
-        // hash the name to make it more secure
-       $pan = time() . Hash::make($pan_photo);
-       $voter = time() . Hash::make($voter_photo);
-       $adhar = time() . Hash::make( $adhar_photo );
-       $license = time() . Hash::make($license_photo);
-       $qual = time() . Hash::make( $qualification_photo );
-       $other_qual = time() . Hash::make($other_qualification_photo);
 
 
 
@@ -88,8 +82,8 @@ class AdminNurseController extends Controller
            'voter_card' => $voter,
            'adhar_card' => $adhar,
            'license_card' => $license,
-           'qualification' => $qual,
-           'other_qualification' => $other_qual]);
+           'qualification' => $qualification,
+           'other_qualification' => $other_qualification]);
 
        $nurse_age = $data['nurse_age'];
        // create the new nurse record
@@ -100,7 +94,9 @@ class AdminNurseController extends Controller
            ]);
 
        $nurses = Nurse::all();
-       return view('admin.nurses.index', compact('nurses'))->with('success','Nurse Created  successfully!');;
+       return redirect()
+           ->route('admin.nurse.index', compact('nurses'))
+           ->with('success','Nurse Created  successfully!');;;
 
 
 
@@ -128,8 +124,8 @@ class AdminNurseController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        return view('admin.nurses.create', compact('user'));
+        $nurse = Nurse::findOrFail($id);
+        return view('admin.nurses.edit', compact('nurse'));
     }
 
     /**
