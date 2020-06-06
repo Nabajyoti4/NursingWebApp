@@ -4,8 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Nurse;
-use App\NurseQualification;
-use App\Photo;
+use App\Qualification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -85,7 +84,7 @@ class AdminNurseController extends Controller
 
 
        // create a qualification details record for the new nurse in qualification table
-       $qualification = NurseQualification::create(['pan_card' => $pan,
+       $qualification = Qualification::create(['pan_card' => $pan,
            'voter_card' => $voter,
            'adhar_card' => $adhar,
            'license_card' => $license,
@@ -100,7 +99,8 @@ class AdminNurseController extends Controller
            'qualification_id' => $qualification->id,
            ]);
 
-       return view('admin.nurses.index')->with('success','Nurse Created  successfully!');;
+       $nurses = Nurse::all();
+       return view('admin.nurses.index', compact('nurses'))->with('success','Nurse Created  successfully!');;
 
 
 
