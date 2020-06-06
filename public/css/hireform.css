@@ -1,34 +1,24 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: rgb(2,0,36);
-    background-image: linear-gradient(to left, rgba(72, 60, 241, 0.082) , rgba(54,66,150,1)), url("../img/form.jpg");
-    background-size: cover; 
-  }
-  
-  
+
   .wrapper_form{
       background-color: #fff;
     /* background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(119,131,214,1) 0%, rgba(0,212,255,1) 99%); */
-    margin: 100px auto;
+    margin: 30px auto;
     padding: 40px;
     width: 50%;
     min-width: 300px;
     box-shadow: 0 0 25px rgb(12, 12, 12);
   }
-  
+
   h1 {
-    text-align: center;  
+    text-align: center;
   }
   label{
-      
+
       color: black;
       font-weight: bold;
   }
-  
+
   input {
     padding: 10px;
     width: 100%;
@@ -37,17 +27,17 @@
     font-family: Raleway;
     border: 1px solid #aaaaaa;
   }
-  
+
   /* Mark input boxes that gets an error on validation: */
   input.invalid {
     background-color: #ffdddd;
   }
-  
+
   /* Hide all steps by default: */
   .tab {
     display: none;
   }
-  
+
   button {
     background-color: rgb(45, 48, 153);
     color: #ffffff;
@@ -57,32 +47,38 @@
     cursor: pointer;
     border-radius: 6px;
   }
-  
+
   button:hover {
     opacity: 0.8;
   }
-  
+
   #prevBtn {
     background-color: #bbbbbb;
   }
-  
+
   /* Make circles that indicate the steps of the form: */
   .step {
     height: 15px;
     width: 15px;
     margin: 0 2px;
     background-color: #bbbbbb;
-    border: none;  
+    border: none;
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
   }
-  
+
   .step.active {
     opacity: 1;
   }
-  
+
   /* Mark the steps that are finished and valid: */
   .step.finish {
     background-color:rgb(2,0,36);
+  }
+
+  @media (max-width: 768px) {
+      .wrapper_form{
+          width: 80%;
+      }
   }

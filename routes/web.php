@@ -83,6 +83,8 @@ Route::get('/admin/admins',function (){
 })->name('admin.admins.index');
 
 //booking
-Route::get('/book',function (){
-    return view('bookings.index')->with('user',Auth::User());
-})->name('book.index');
+Route::get('/patientapplication',function (){
+    return view('patientapplication.index')->with('user',Auth::User());
+})->name('application.index');
+
+

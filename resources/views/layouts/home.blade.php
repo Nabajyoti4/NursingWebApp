@@ -194,5 +194,7 @@
 <script src="{{asset('js/tether.min.js')}}"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/toolkit.js')}}"></script>
+
+@yield('scripts')
 </body>
 </html>
