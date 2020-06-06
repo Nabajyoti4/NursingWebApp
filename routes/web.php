@@ -73,6 +73,8 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 ]
 ]);
 
+Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
+
 
 //admins
 Route::get('/admin/admins',function (){

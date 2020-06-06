@@ -10,6 +10,7 @@ class Nurse extends Model
 
     protected $fillable = ['user_id',
         'employee_id',
+        'age',
         'qualification_id',
         'is_active',
         'status'];

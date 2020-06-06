@@ -54,7 +54,7 @@ class AdminNurseController extends Controller
         $user->update(['role' => 'nurse']);
 
         // reteive the values from request
-        $data = $request->only(['nurse_age','pan_image', 'voter_image', 'adhar_image', 'license_image','qualification', 'other_qualification']);
+        $data = $request->only(['age','pan_image', 'voter_image', 'adhar_image', 'license_image','qualification', 'other_qualification']);
 
         // create a employee id for nurse
         $last = Nurse::all()->last();
@@ -85,7 +85,8 @@ class AdminNurseController extends Controller
            'qualification' => $qualification,
            'other_qualification' => $other_qualification]);
 
-       $nurse_age = $data['nurse_age'];
+       $nurse_age = $data['age'];
+
        // create the new nurse record
        Nurse::create(['user_id' => $user_id,
            'employee_id' => $emp_id,
@@ -126,6 +127,19 @@ class AdminNurseController extends Controller
         //
         $nurse = Nurse::findOrFail($id);
         return view('admin.nurses.edit', compact('nurse'));
+    }
+
+
+    /**
+     * to create new nurse with user data
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function join($id)
+    {
+        //
+        $user = User::findOrFail($id);
+        return view('admin.nurses.create', compact('user'));
     }
 
     /**
