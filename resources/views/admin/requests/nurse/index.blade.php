@@ -69,7 +69,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="{{route('admin.nurse.edit',$candidate->user_id)}}" method="GET">
+                                <form action="{{route('admin.nurse.join',$candidate->user_id)}}" method="GET">
                                     @csrf
                                     <button class="btn btn-primary"  type="submit">Create</button>
                                 </form>

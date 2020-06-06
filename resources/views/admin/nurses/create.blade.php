@@ -50,8 +50,8 @@
             </div>
 
           <div class="form-group font-weight-bold">
-             <label for="nurse_age">Age</label>
-             <input type="number" class="form-control" name="nurse_age"  placeholder="Enter Age">
+             <label for="age">Age</label>
+             <input type="number" class="form-control" name="age"  placeholder="Enter Age">
          </div>
 
          <div >
