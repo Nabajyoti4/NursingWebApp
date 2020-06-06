@@ -35,21 +35,25 @@
 
     <div class="container emp-profile mt-3">
         @include('partials.errors')
-        <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.nurse.update', $nurse->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group font-weight-bold">
                 <label for="name">Full Name:</label>
                 <input type="text" class="form-control" name="name" placeholder="Enter Name"
-                       value="{{$user->name}}">
+                       value="{{$nurse->user->name}}">
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="phone_no">Phone Number:</label>
                 <input type="number" class="form-control" name="phone_no" placeholder="Enter Phone number"
-                       value="{{$user->phone_no}}">
+                       value="{{$nurse->user->phone_no}}">
             </div>
 
+
+            <div >
+                <img src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}" width="20%" height="30%" />
+            </div>
 
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Profile Pic: </label>
@@ -62,35 +66,35 @@
                 <div class="row">
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_street" placeholder="Street name"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->street : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->street : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->landmark : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->landmark : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_city" placeholder="city"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->city : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_state" placeholder="State"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->state : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->state : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_country" placeholder="Country"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->country : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->country : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_police" placeholder="Police station"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->police_station : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->police_station : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_post" placeholder="Post office"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->post_office : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->post_office : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->pin_code : ""}}">
+                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->pin_code : ""}}">
                     </div>
                 </div>
             </div>
@@ -100,36 +104,65 @@
                 <div class="row">
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_street" placeholder="Street name"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->street : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->landmark : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_city" placeholder="City"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->city : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_state" placeholder="State"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->state : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_country" placeholder="Country"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->country : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_police" placeholder="Police station"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->police_station : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_post" placeholder="Post office"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->post_office : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
+                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->pin_code : ""}}">
                     </div>
+                </div>
+            </div>
+
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light text-dark ">Identification And Qualification Details</label>
+                <div class="form-group font-weight-bold">
+                    <label for="pan_image">Pan card: </label>
+                    <input type="file" class="form-control-file" name="pan_image">
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="aadhar_image">Aadhar card: </label>
+                    <input type="file" class="form-control-file" name="adhar_image">
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="voter_image">Voter ID card: </label>
+                    <input type="file" class="form-control-file" name="voter_image">
+                </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="license_image">License: </label>
+                    <input type="file" class="form-control-file" name="license_image">
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="qualification">Highest Qualification Certificate: </label>
+                    <input type="file" class="form-control-file" name="qualification">
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="qualification">Other Qualification Certificate: </label>
+                    <input type="file" class="form-control-file" name="other_qualification">
                 </div>
             </div>
             <br>

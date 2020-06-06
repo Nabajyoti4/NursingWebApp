@@ -38,11 +38,11 @@
                     <thead>
                     <tr>
                         <th>Employee ID</th>
+                        <th>Profile Image</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone No</th>
-                        <th>Age</th>
-                        <th>Created at</th>
+                        <th>Status</th>
+                        <th>Active</th>
+                        <th>View Profile</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
@@ -51,12 +51,21 @@
                     @forelse($nurses as $nurse)
                         <tr>
                             <td>{{$nurse->employee_id}}</td>
+                            <td><img src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}" alt="" width="100" height="100"
+                                /></td>
                             <td>{{$nurse->user->name}}</td>
-                            <td>{{$nurse->user->email}}</td>
-                            <td>{{$nurse->user->phone_no}}</td>
-                            <td>{{$nurse->age}}</td>
-                            <td>{{$nurse->created_at}}</td>
-                            <td><img src="{{ $nurse->qualification?asset("/storage/".$nurse->employee_id.$nurse->user->id."/".$nurse->qualification->pan_card.".jpeg") :'No Photo'}}" alt=""/></td>
+                            <td>@if($nurse->status == 0)
+                                 Booked Button
+                                @else
+                                 Not Hired
+                                @endif
+                            </td>
+                            <td>@if($nurse->is_active == 0)
+                                    On leave
+                                @else
+                                    Working
+                                @endif</td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
                             <td><a class="btn btn-primary small" href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
                         </tr>
                     @empty

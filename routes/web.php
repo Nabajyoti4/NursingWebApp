@@ -68,6 +68,7 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
     'create'=>'admin.nurse.create',
     'store'=>'admin.nurse.store',
     'edit'=>'admin.nurse.edit',
+    'update'=>'admin.nurse.update',
     'show'=>'admin.nurse.show'
 ]
 ]);
