@@ -41,12 +41,12 @@
 
             <div class="form-group font-weight-bold">
                 <label for="name">Full Name:</label>
-                <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="Enter Name">
+                <input type="text" disabled class="form-control" name="name" value="{{$user->name}}" placeholder="Enter Name">
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="phone_no">Phone Number:</label>
-                <input type="number" class="form-control" name="phone_no" value="{{$user->phone_no}}" placeholder="Enter Phone number">
+                <input type="number" disabled class="form-control" name="phone_no" value="{{$user->phone_no}}" placeholder="Enter Phone number">
             </div>
 
           <div class="form-group font-weight-bold">
@@ -65,35 +65,35 @@
              <div class="row">
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_street" placeholder="Street name"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->street : ""}}">
+                            disabled value="{{$user->addresses->first() ? $user->addresses->first()->street : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->landmark : ""}}">
+                            disabled value="{{$user->addresses->first() ? $user->addresses->first()->landmark : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_city" placeholder="city"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
+                            disabled value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_state" placeholder="State"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->state : ""}}">
+                            disabled value="{{$user->addresses->first() ? $user->addresses->first()->state : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_country" placeholder="Country"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->country : ""}}">
+                            disabled value="{{$user->addresses->first() ? $user->addresses->first()->country : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_police" placeholder="Police station"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->police_station : ""}}">
+                           disabled value="{{$user->addresses->first() ? $user->addresses->first()->police_station : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_post" placeholder="Post office"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->post_office : ""}}">
+                           disabled value="{{$user->addresses->first() ? $user->addresses->first()->post_office : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code"
-                            value="{{$user->addresses->first() ? $user->addresses->first()->pin_code : ""}}">
+                            disabled disabled value="{{$user->addresses->first() ? $user->addresses->first()->pin_code : ""}}">
                  </div>
              </div>
          </div>
@@ -103,35 +103,35 @@
              <div class="row">
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_street" placeholder="Street name"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->street : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_city" placeholder="City"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_state" placeholder="State"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->state : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_country" placeholder="Country"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->country : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_police" placeholder="Police station"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->police_station : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_post" placeholder="Post office"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->post_office : ""}}">
                  </div>
                  <div class="col-lg-4 p-2">
                      <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
-                            value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
+                            disabled value="{{$user->addresses->last() ? $user->addresses->last()->pin_code : ""}}">
                  </div>
              </div>
          </div>

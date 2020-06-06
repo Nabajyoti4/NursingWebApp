@@ -22,7 +22,7 @@
             <!-- Right Side Of Navbar -->
             <div class="navbar-nav ml-auto">
                 <li class="nav-item px-1 ">
-                    <a class="nav-link navbar-fonts" href="#">Home</a>
+                    <a class="nav-link navbar-fonts" href="{{url('/')}}">Home</a>
                 </li>
                 <li class="nav-item px-1 ">
                     <a class="nav-link navbar-fonts" href="#">Services</a>

@@ -25,6 +25,7 @@
             margin-bottom: 1rem;
             border: 1px solid transparent;
             border-radius: 0.25rem;
+            box-shadow: black;
         }
 
         .alert-success {
@@ -66,8 +67,8 @@
 @include('partials.navbar')
 <!-- navbar ends -->
     @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <div class=" container alert alert-success alert-dismissible fade show">
+            <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <strong>{{ $message }}</strong>

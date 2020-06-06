@@ -108,7 +108,7 @@
 </div>
 
 <!-- footer -->
-<div class="block block-inverse app-footer">
+<div class="block block-inverse app-footer" style="display: flex;align-self: end">
     <div class="container">
         <div class="row">
             <div class="col-md-5 mb-5">
@@ -194,5 +194,7 @@
 <script src="{{asset('js/tether.min.js')}}"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/toolkit.js')}}"></script>
+
+@yield('scripts')
 </body>
 </html>

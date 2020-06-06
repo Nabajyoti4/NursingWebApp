@@ -20,7 +20,7 @@
                         <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name"
                                value="{{ old('name') }}" required autocomplete="name" placeholder="Full Name">
                         @error('name')
-                        <div class="invalid-feedback" role="alert">
+                        <div class="invalid-feedback mt-2" role="alert">
                             <strong>{{ $message }}</strong>
                         </div>
                         @enderror
@@ -31,7 +31,12 @@
                         <i class="fas fa-phone-square-alt"></i>
                     </div>
                     <div class="div">
-                        <input type="text" name="phone_no" class="input" placeholder="Phone">
+                        <input type="number" name="phone_no" class="input @error('phone_no') is-invalid @enderror" placeholder="Phone">
+                        @error('phone_no')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="input-div one">
@@ -42,7 +47,7 @@
                         <input id="email" type="text" class="input @error('email') is-invalid @enderror" name="email"
                                value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                         @error('email')
-                        <div class="invalid-feedback" role="alert">
+                        <div class="invalid-feedback mt-2" role="alert">
                             <strong>{{ $message }}</strong>
                         </div>
                         @enderror
@@ -57,7 +62,7 @@
                                name="password"
                                required autocomplete="new-password" placeholder="Password">
                         @error('password')
-                        <div class="invalid-feedback" role="alert">
+                        <div class="invalid-feedback mt-2" role="alert">
                             <strong>{{ $message }}</strong>
                         </div>
                         @enderror
@@ -68,8 +73,13 @@
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required
+                        <input id="password-confirm" type="password" class="input @error('password-confirm') is-invalid @enderror" name="password_confirmation" required
                                autocomplete="new-password" placeholder="Confirm Password">
+                        @error('password-confirm')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                 </div>
 {{--                <a href="{{route('login')}}">Already have an account?Click here</a>--}}
