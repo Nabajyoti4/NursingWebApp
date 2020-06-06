@@ -55,7 +55,7 @@
                                         Nurse or
                                         Caretaker.</h1>
                                     <p class="lead mb-4 text-muted text-center">Join the Team to help peoples.</p>
-                                    <button class="btn btn-outline-primary btn-lg text-center">Join now</button>
+                                    <a class="btn btn-outline-primary btn-lg text-center"  href="#joinForm" type="button">Join now</a>
                                 </div>
                             </div>
                         </div>
@@ -388,7 +388,7 @@
     <!-- address section end  -->
 
     <!--Nurse request form-->
-    <div class="container-nurserequest">
+    <div class="container-nurserequest" id="joinForm">
 {{--        @if ($message = Session::get('success'))--}}
 {{--            <div class="alert alert-success alert-dismissible fade show">--}}
 {{--                <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
