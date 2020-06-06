@@ -108,7 +108,7 @@
 </div>
 
 <!-- footer -->
-<div class="block block-inverse app-footer">
+<div class="block block-inverse app-footer" style="display: flex;align-self: end">
     <div class="container">
         <div class="row">
             <div class="col-md-5 mb-5">
