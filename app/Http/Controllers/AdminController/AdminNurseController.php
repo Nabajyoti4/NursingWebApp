@@ -93,11 +93,10 @@ class AdminNurseController extends Controller
            'other_qualification' => $other_qual]);
 
        $nurse_age = $data['nurse_age'];
-
        // create the new nurse record
        Nurse::create(['user_id' => $user_id,
-           'age' => $nurse_age,
            'employee_id' => $emp_id,
+           'age' => $nurse_age,
            'qualification_id' => $qualification->id,
            ]);
 
