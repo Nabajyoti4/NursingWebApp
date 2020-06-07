@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Search -->
-    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
           method="GET">
         @csrf
         <div class="input-group">
@@ -25,7 +25,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="nurseTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Candidates for Nurses</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Patient Requests</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -80,25 +80,25 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">No Candidate found</td>
+                            <td colspan="6">No Patient Request found</td>
                         </tr>
                     @endforelse
                     </tbody>
                 </table>
 
-<!--pop up model-->
+                <!--pop up model-->
                 <div class="modal fade" id="disapproveModal" tabindex="-1" role="dialog" aria-labelledby="disapproveModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <form action="" method="post" id="disapproveRequestMessage">
                             @csrf
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="disapproveModalLabel">Reason For Rejection</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="disapproveModalLabel">Reason For Rejection</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Recipient:</label>
                                         <input type="text" class="form-control" name="recipient">
@@ -112,13 +112,13 @@
                                         <button  class="btn btn-primary" type="submit">Send message</button>
                                     </div>
 
-                            </div>
+                                </div>
 
-                        </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-<!--pop up model end-->
+                <!--pop up model end-->
 
             </div>
         </div>

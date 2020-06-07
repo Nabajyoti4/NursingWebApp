@@ -20,7 +20,7 @@ class NurseJoinRequestController extends Controller
         //
         $candidates = NurseJoinRequest::latest()->get();
 
-        return view('admin.requests.nurse.index',compact('candidates') );
+        return view('admin.requests.nurse.index', compact('candidates'));
     }
 
     /**
@@ -36,25 +36,35 @@ class NurseJoinRequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-
-
 
         $data = $request->all();
 
+        // search for pending request if email
+        if(NurseJoinRequest::all()->isNotEmpty())
+        {
+            // searching for the candidate request in DB
+            $candidate = NurseJoinRequest::where('user_id',$data['user_id'])->get()->first();
 
-        $nurse = NurseJoinRequest::create($data);
+            // searching if the state is pending
+            if ($candidate['Approval'] == 2 ){
+                return redirect()->back()->with('pending', 'pending state');
+            }
+        }
+        else{
+            // create if no pending request for particular candidate
 
-        $admin = User::where('role', 'admin')->get();
+            $nurse = NurseJoinRequest::create($data);
+            $admin = User::where('role', 'admin')->get();
+            Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
 
-        Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
+            return redirect()->back()->with('success', 'Your request has been send, our team will talk with you shortly!');
+        }
 
-        return redirect()->back()->with('success','Request Has been Sent Succesfully!');
 
 
     }
@@ -62,7 +72,7 @@ class NurseJoinRequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +83,7 @@ class NurseJoinRequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,29 +94,28 @@ class NurseJoinRequestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
 
 
-
-
     }
 
 
-    public function approve(NurseJoinRequest $candidate){
-        $candidate->Approval=1;
+    public function approve(NurseJoinRequest $candidate)
+    {
+        $candidate->Approval = 1;
         $candidate->save();
-        session()->flash('success','Candidated Approved');
+        session()->flash('success', 'Candidated Approved');
         return redirect()->back();
     }
 
 
-    public function disapprove(Request $request,  $id){
-
+    public function disapprove(Request $request, $id)
+    {
 
 
         $candidate = NurseJoinRequest::findOrFail($id);
@@ -115,16 +124,16 @@ class NurseJoinRequestController extends Controller
 
         Notification::send($user, new \App\Notifications\NurseJoinDisapprove($request));
 
-        $candidate->Approval=0;
+        $candidate->Approval = 0;
         $candidate->save();
-        session()->flash('success','Candidated Disapproved');
+        session()->flash('success', 'Candidated Disapproved');
         return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

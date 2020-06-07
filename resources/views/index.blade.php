@@ -11,6 +11,8 @@
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+
 @endsection
 
 @section('content')
@@ -55,7 +57,8 @@
                                         Nurse or
                                         Caretaker.</h1>
                                     <p class="lead mb-4 text-muted text-center">Join the Team to help peoples.</p>
-                                    <a class="btn btn-outline-primary btn-lg text-center"  href="#joinForm" type="button">Join now</a>
+                                    <a class="btn btn-outline-primary btn-lg text-center" href="#joinForm"
+                                       type="button">Join now</a>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +78,27 @@
         <!-- carousel ends -->
     </div>
     <!-- header section ends -->
+
+    {{--    Modal for success or pending --}}
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your request has been send, our team will talk with you shortly!',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif($message = Session::get('pending'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'You have already send the request.Your request is in pending state\'',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
 
     <!--Welcome section-->
     <div class="block block-secondary app-iphone-block">
@@ -389,15 +413,6 @@
 
     <!--Nurse request form-->
     <div class="container-nurserequest" id="joinForm">
-{{--        @if ($message = Session::get('success'))--}}
-{{--            <div class="alert alert-success alert-dismissible fade show">--}}
-{{--                <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-{{--                    <span aria-hidden="true">&times;</span>--}}
-{{--                </button>--}}
-{{--                <strong>{{ $message }}</strong>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-
         <div class="wrap-nurserequest">
             <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
                 @csrf
@@ -406,20 +421,20 @@
 				</span>
 
                 <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
-                @elseauth''@endauth">
+                @elseauth''@endauth" required>
 
                 <div class="wrap-input100">
-                    <input class="input100" type="text" name="name" placeholder="Full Name">
+                    <input class="input100" type="text" name="name" placeholder="Full Name" required>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="email" placeholder="Email">
+                    <input class="input100" type="text" name="email" placeholder="Email" required>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="phone_no" placeholder="Contact number">
+                    <input class="input100" type="text" name="phone_no" placeholder="Contact number" required>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -504,6 +519,7 @@
         </div>
     </div>
     <!--card end-->
+
 
 @endsection
 
