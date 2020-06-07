@@ -52,7 +52,7 @@ class NurseJoinRequestController extends Controller
 
             // searching if the state is pending
             if ($candidate['Approval'] == 2 ){
-                return redirect()->back()->with('pending', 'pending state');
+                return redirect()->back()->with('pending', 'Your request is still pending wait for Admin approvel');
             }
         }
         else{
