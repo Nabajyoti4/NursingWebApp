@@ -40,7 +40,8 @@
                         <a class="nav-link dropdown-toggle navbar-fonts" href="#"
                            role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle" width="32px" src="{{asset('img/avatar1.png')}}">
+
+                            <img class="rounded-circle" style="object-fit: fill" width="40px" height="38px" src="{{Auth::user()->photo?asset("/storage/".Auth::user()->photo->photo_location):asset('img/avatar1.png')}}">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

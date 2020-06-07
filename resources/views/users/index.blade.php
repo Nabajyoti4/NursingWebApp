@@ -12,6 +12,7 @@
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
 @endsection
 
@@ -67,12 +68,14 @@
 @include('partials.navbar')
 <!-- navbar ends -->
     @if ($message = Session::get('success'))
-        <div class=" container alert alert-success alert-dismissible fade show">
-            <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>{{ $message }}</strong>
-        </div>
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Data Updated Successfully!',
+                showConfirmButton: true,
+            })
+        </script>
     @endif
     <div class="p-4">
         <div class="container emp-profile mt-3">
