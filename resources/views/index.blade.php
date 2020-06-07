@@ -98,12 +98,21 @@
                 showConfirmButton: true,
             })
         </script>
-    @elseif($message = Session::get('active'))
+    @elseif($message = Session::get('approve'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'info',
                 title: 'You are already approved Check mail.',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif($message = Session::get('disapprove'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'Your request has been disapproved Check mail for further details.',
                 showConfirmButton: true,
             })
         </script>

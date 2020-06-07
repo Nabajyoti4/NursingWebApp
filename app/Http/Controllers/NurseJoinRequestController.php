@@ -54,8 +54,11 @@ class NurseJoinRequestController extends Controller
             if ($candidate['Approval'] == 2 ){
                 return redirect()->back()->with('pending', 'pending state');
             }
+            elseif ($candidate['Approval']==0){
+                return redirect()->back()->with('disapprove', 'disapprove state');
+            }
             else{
-                return redirect()->back()->with('active', 'active state');
+                return redirect()->back()->with('approve', 'active state');
             }
 
         }
