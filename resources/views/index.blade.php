@@ -79,13 +79,22 @@
     </div>
     <!-- header section ends -->
 
-{{--    success modal --}}
+    {{--    Modal for success or pending --}}
     @if ($message = Session::get('success'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Your request has been send, our team will talk with you shortly!',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif($message = Session::get('pending'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'You have already send the request.Your request is in pending state\'',
                 showConfirmButton: true,
             })
         </script>
