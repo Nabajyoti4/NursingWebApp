@@ -85,7 +85,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Your request has been send, our team will talk with you shortly!',
+                title: {{$message}},
                 showConfirmButton: true,
             })
         </script>
@@ -94,11 +94,21 @@
             Swal.fire({
                 position: 'center',
                 icon: 'info',
-                title: 'You have already send the request.Your request is in pending state\'',
+                title: 'You have already send the request.Your request is in pending state',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif($message = Session::get('active'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'You are already approved Check mail.',
                 showConfirmButton: true,
             })
         </script>
     @endif
+
 
     <!--Welcome section-->
     <div class="block block-secondary app-iphone-block">

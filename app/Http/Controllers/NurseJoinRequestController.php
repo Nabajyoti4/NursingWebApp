@@ -45,7 +45,7 @@ class NurseJoinRequestController extends Controller
         $data = $request->all();
 
         // search for pending request if email
-        if(NurseJoinRequest::all()->isNotEmpty())
+        if(NurseJoinRequest::all()->where('user_id',$data['user_id'])->isNotEmpty())
         {
             // searching for the candidate request in DB
             $candidate = NurseJoinRequest::where('user_id',$data['user_id'])->get()->first();
@@ -54,6 +54,10 @@ class NurseJoinRequestController extends Controller
             if ($candidate['Approval'] == 2 ){
                 return redirect()->back()->with('pending', 'pending state');
             }
+            else{
+                return redirect()->back()->with('active', 'active state');
+            }
+
         }
         else{
             // create if no pending request for particular candidate
