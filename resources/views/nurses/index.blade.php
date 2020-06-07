@@ -18,6 +18,10 @@
 
 @section('style')
     <style>
+        span {
+            text-transform: capitalize;
+        }
+
         .header {
             position: absolute;
             top: -13px;
@@ -26,6 +30,7 @@
             margin: 0%;
             background: #fff;
         }
+
         .borderdiv {
             position: relative;
             padding-top: 1rem;
@@ -43,85 +48,97 @@
 @endsection
 @section('content')
     <div class="container-fluid profile-bg">
-    @include('partials.navbar')
-    <div class="container p-3">
-        <div class="row p-5 bg-light">
-            <div class="col-xs-12 col-lg-4">
-                <img src="{{asset('img/avatar1.png')}}" class="avatar img-thumbnail" width="250px"
-                     alt="avatar">
-                <div class="pt-5">
-                    <h3>Raju Moni Borah</h3>
-                    <hr>
-                    <h4><i class="fas fa-mobile-alt"></i> 9874561230</h4>
-                    <hr>
-                    <h4><i class="fas fa-envelope"></i> midoriya658@gmail.com</h4>
+        @include('partials.navbar')
+        <div class="container p-3">
+            <div class="row p-5 bg-light">
+                <div class="col-xs-12 col-lg-4">
+                    <img src="{{asset('/storage/'.$user->photo->photo_location)}}" class="avatar img-thumbnail" width="250px"
+                         alt="avatar">
+                    <div class="pt-5">
+                        <h3>{{$user->name}}</h3>
+                        <hr>
+                        <h4><i class="fas fa-mobile-alt"></i> {{$user->phone_no}}</h4>
+                        <hr>
+                        <h4><i class="fas fa-envelope"></i> {{$user->email}}</h4>
+                    </div>
+
                 </div>
+                <div class="col-xs-12 col-lg-6 ">
+                    <div class="bg-light">
+                        <div class="borderdiv">
 
-            </div>
-            <div class="col-xs-12 col-lg-6 ">
-                <div class="bg-light">
-                    <div class="borderdiv">
+                            <h5 class="header font-weight-bold bg-light">Qualification</h5>
+                            <div>
+                                <h5>HSLC</h5>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5>HS</h5>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5>NURSING</h5>
+                            </div>
 
-                        <h5 class="header font-weight-bold bg-light">Qualification</h5>
-                        <div>
-                            <h5>HSLC</h5>
                         </div>
-                        <hr>
-                        <div>
-                            <h5>HS</h5>
+                        <div class="borderdiv">
+                            <h5 class="header font-weight-bold bg-light">Current Address</h5>
+                            <div>
+                                <h5 class="font">Street</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->street : "Fill the current Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Landmark</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->landmark : "Fill the current Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">City</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the current Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">State</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->state : "Fill the current Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Country</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->country : "Fill the current Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Pin Code</h5>
+                                <span>:{{$user->addresses->last() ? $user->addresses->last()->pin_code : "Fill the current Address"}}</span>
+                            </div>
                         </div>
-                        <hr>
-                        <div>
-                            <h5>NURSING</h5>
+                        <div class="borderdiv">
+                            <h5 class="header font-weight-bold bg-light">Permanent Address</h5>
+                            <div>
+                                <h5 class="font">Street</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Landmark</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">City</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">State</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Country</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                            </div>
+                            <div>
+                                <h5 class="font">Pin Code</h5>
+                                <span>:{{$user->addresses->first() ? $user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                            </div>
                         </div>
 
                     </div>
-                    <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Current Address</h5>
-                        <div>
-                            <h5 class="font">Street</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Landmark</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">District</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">State</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Country</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Pin Code</h5><span>:</span>
-                        </div>
-                    </div>
-                    <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Permanent Address</h5>
-                        <div>
-                            <h5 class="font">Street</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Landmark</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">District</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">State</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Country</h5><span>:</span>
-                        </div>
-                        <div>
-                            <h5 class="font">Pin Code</h5><span>:</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

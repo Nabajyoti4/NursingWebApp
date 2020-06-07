@@ -1,9 +1,13 @@
+.wrapper{
+    padding: 10px;
+    background: radial-gradient(rgba(48, 22, 74, 0.72), #1f1634);
 
+}
   .wrapper_form{
       background-color: #fff;
     /* background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(119,131,214,1) 0%, rgba(0,212,255,1) 99%); */
-    margin: 30px auto;
+    margin: 0 auto;
     padding: 40px;
     width: 50%;
     min-width: 300px;

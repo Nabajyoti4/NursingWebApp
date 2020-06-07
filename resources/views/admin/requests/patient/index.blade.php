@@ -127,12 +127,6 @@
 
 @section('script')
 
-    <script type="text/javascript">
-        setInterval(function() {
-            $("#nurseTable").load(location.href+" #nurseTable>*","");
-        }, 10000);
-    </script>
-
     <script>
         function handleDisapprove(id){
 

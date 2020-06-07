@@ -42,7 +42,7 @@
                                     <p class="lead mb-4 text-muted text-center">We’re always here for you no matter what
                                         time of day.
                                     </p>
-                                    <button class="btn btn-outline-primary btn-lg text-center">Hire now</button>
+                                    <a href="{{route('application.index')}}" class="btn btn-outline-primary btn-lg text-center">Hire now</a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: {{$message}},
+                title: 'Your request has been send, We will get back to you shortly!',
                 showConfirmButton: true,
             })
         </script>

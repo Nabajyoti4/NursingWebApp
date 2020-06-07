@@ -37,15 +37,13 @@
     </style>
 @endsection
 @section('content')
-    <div style="background-color: #1b4b72">
+    <div style="background-color: #511b72;">
         <!-- navbar start -->
     @include('partials.navbar')
     <!-- navbar ends -->
     </div>
-
     <div class="wrapper">
         <div class="wrapper_form">
-            <div class="container emp-profile">
                 @include('partials.errors')
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -181,7 +179,6 @@
                         <span class="step"></span>
                     </div>
                 </form>
-            </div>
             <div>
                 <strong>Terms and Conditions:</strong> ( Registration Fees : 500/-, Advance Payment Requested: Cash/ Cheque/ Online
                 Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate for one
@@ -195,6 +192,7 @@
             </div>
         </div>
     </div>
+
 
 @endsection
 @section('scripts')

@@ -304,35 +304,46 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
+                    <!-- Authentication Links -->
+                    @auth
+                        <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin_name</span>
-                            <img class="img-profile rounded-circle" src="{{asset('img/avatar1.png')}}">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                            <img class="img-profile rounded-circle"
+                                 src="{{Auth::user()->photo?asset("/storage/".Auth::user()->photo->photo_location):asset('img/avatar1.png')}}">
                         </a>
-                        <!-- Dropdown - User Information -->
+                            <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                             <a class="dropdown-item" href="{{ route('users.index') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('admin.index')}}">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
+                                Admin Panel
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ __('Logout') }}
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
                             </a>
+
                         </div>
                     </li>
+                    @else
+                        <li class="nav-item px-1 ">
+                        <a class="nav-link  navbar-fonts" href="{{route('login')}}">Login/register</a>
+                        {{--                            if logged in the profile link and --}}
+                    </li>
+                    @endauth
+
 
                 </ul>
 
@@ -369,7 +380,7 @@
     <!-- End of Page Wrapper -->
 
 </span>
-    <!-- Logout Modal-->
+<!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -383,7 +394,8 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">Logout</a>
             </div>
         </div>
     </div>
@@ -391,11 +403,11 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
-    <!-- Page level plugins -->
+<!-- Page level plugins -->
 <script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/admin/dataTables.bootstrap4.min.js')}}"></script>
 
-    <!-- Page level custom scripts -->
+<!-- Page level custom scripts -->
 <script src="{{asset('js/admin/datatables-demo.js')}}"></script>
 @yield('script')
 </body>

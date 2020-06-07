@@ -69,7 +69,7 @@ class NurseJoinRequestController extends Controller
             $admin = User::where('role', 'admin')->get();
             Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
 
-            return redirect()->back()->with('success', 'Your request has been send, our team will talk with you shortly!');
+            return redirect()->back()->with('success', 'request send');
         }
 
 
