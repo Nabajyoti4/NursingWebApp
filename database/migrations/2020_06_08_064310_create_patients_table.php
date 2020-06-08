@@ -29,6 +29,7 @@ class CreatePatientsTable extends Migration
             $table->string('service_type');
             $table->string('patient_history');
             $table->string('patient_doctor');
+            $table->integer('status')->default(2);
             $table->timestamps();
         });
     }
