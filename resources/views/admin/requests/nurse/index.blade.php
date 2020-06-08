@@ -23,7 +23,7 @@
     <hr>
 
     <!-- DataTales Example -->
-    <div class="card shadow mb-4" id="nurseTable">
+    <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Candidates for Nurses</h6>
         </div>
@@ -43,7 +43,7 @@
                         <th>Disapprove</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="nurseTable">
                     @forelse($candidates as $candidate)
                         <tr>
                             <td>{{$candidate->id}}</td>

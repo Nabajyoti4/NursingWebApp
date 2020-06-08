@@ -76,6 +76,19 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
 
 
+
+// nurse routes
+//for Admin Nurse
+Route::resource('nurse','Nurse\NurseController', ['names' =>[
+    'index'=>'nurse.index',
+    'edit'=>'nurse.edit',
+]
+]);
+
+
+
+
+
 //admins
 Route::get('/admin/admins',function (){
     $admins = User::where('role', 'admin')->get();

@@ -40,7 +40,7 @@
                         <th>Edit</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="data">
                     @forelse($users as $user)
                         <tr>
                             <td>{{$user->id}}</td>
@@ -66,7 +66,7 @@
 @section('script')
     <script type="text/javascript">
         setInterval(function() {
-            $("#usersTable").load(location.href+" #usersTable>*","");
+            $("#data").load(location.href+" #data>*","");
         }, 10000);
     </script>
 @endsection

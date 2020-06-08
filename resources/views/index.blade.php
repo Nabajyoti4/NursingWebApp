@@ -42,7 +42,7 @@
                                     <p class="lead mb-4 text-muted text-center">We’re always here for you no matter what
                                         time of day.
                                     </p>
-                                    <button class="btn btn-outline-primary btn-lg text-center">Hire now</button>
+                                    <a href="{{route('application.index')}}" class="btn btn-outline-primary btn-lg text-center">Hire now</a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Your Request Has been approved , please check your mail',
+                title: 'Your request has been send, We will get back to you shortly!',
                 showConfirmButton: true,
             })
         </script>
@@ -98,12 +98,21 @@
                 showConfirmButton: true,
             })
         </script>
-    @elseif($message = Session::get('active'))
+    @elseif($message = Session::get('approve'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'info',
                 title: 'You are already approved Check mail.',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif($message = Session::get('disapprove'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'Your request has been disapproved Check mail for further details.',
                 showConfirmButton: true,
             })
         </script>
