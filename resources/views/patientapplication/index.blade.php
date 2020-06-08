@@ -45,9 +45,8 @@
     <div class="wrapper">
         <div class="wrapper_form">
                 @include('partials.errors')
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('users.patient.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PATCH')
                     <h1>Custom Application Form</h1>
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab">
@@ -55,6 +54,11 @@
                             <label for="name">Patient Full Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="Enter Name"
                                    value="">
+                        </div>
+
+                        <div class="form-group font-weight-bold">
+                            <label for="image">Upload Patient Pic: </label>
+                            <input type="file" class="form-control" name="image">
                         </div>
 
                         <div class="form-group font-weight-bold">
@@ -71,8 +75,8 @@
                         <div class="form-group font-weight-bold">
                             <label for="gender">Gender:</label>
                             <select name="gender" class="form-control">
-                                <option value="" class="form-control">Male</option>
-                                <option value="" class="form-control">Female</option>
+                                <option value="Male" class="form-control">Male</option>
+                                <option value="Female" class="form-control">Female</option>
                             </select>
                         </div>
 
@@ -136,19 +140,21 @@
                         <div class="form-group font-weight-bold">
                             <label for="shifts">Duty Shift of the Nurse:</label>
                             <select name="shifts" class="form-control">
-                                <option value="">Day Shift</option>
-                                <option value="">Night Shift</option>
-                                <option value="">24 hours</option>
+                                <option value="day">Day Shift</option>
+                                <option value="night">Night Shift</option>
+                                <option value="full">24 hours</option>
                             </select>
                         </div>
+
                         <div class="form-group font-weight-bold">
                             <label for="service">Service :</label>
                             <select name="service" class="form-control">
-                                <option value="">Nursing Aide</option>
-                                <option value="">Nursing Attendant</option>
-                                <option value="">Others</option>
+                                @foreach($services as $service)
+                                    <option value="{{$service->id}}">{{ $service->title }}</option>
+                                @endforeach
                             </select>
                         </div>
+
                         <div class="form-group font-weight-bold">
                             <label for="no_of_days">Period of Required (Days):</label>
                             <select name="no_of_days" class="form-control">
@@ -172,6 +178,14 @@
                             <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                             <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                         </div>
+                    </div>
+                    <div style="overflow:auto;">
+                        <center>
+                            <div>
+                                <button type="submit" id="submitBtn" >Submit</button>
+                            </div>
+                        </center>
+
                     </div>
                     <!-- Circles which indicates the steps of the form: -->
                     <div style="text-align:center;margin-top:40px;">

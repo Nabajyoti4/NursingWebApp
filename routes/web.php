@@ -115,9 +115,7 @@ Route::get('/admin/admins',function (){
     return view('admin.admins.index',compact('admins'));
 })->name('admin.admins.index');
 
-//booking
-Route::get('/patientapplication',function (){
-    return view('patientapplication.index')->with('user',Auth::User());
-})->name('application.index');
+
+
 
 

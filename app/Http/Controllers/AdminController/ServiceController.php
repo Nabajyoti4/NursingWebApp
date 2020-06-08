@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\AdminController;
 
-use App\Address;
 use App\Http\Controllers\Controller;
-use App\Patient;
-use App\Service;
 use Illuminate\Http\Request;
 
-
-class PatientController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,8 +25,6 @@ class PatientController extends Controller
     public function create()
     {
         //
-        $services = Service::all();
-        return view('patientapplication.index', compact('services'));
     }
 
     /**
@@ -42,33 +36,6 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->only(['patient_name', 'photo_id', 'phone_no', 'age',
-        'gender', 'address_id', 'family_members', 'guardian_name',
-        'relation_guardian', 'shift', 'days', 'service_id',
-        'patient_history', 'patient_doctor','permanent_city',
-         'permanent_landmark','permanent_street','permanent_post','permanent_country',
-            'permanent_pincode','permanent_police','permanent_state',]);
-
-        $user= Auth::user();
-
-        // store the address of patient
-        $permanent_address = Address::create(['user_id' => $user->id,
-            'city' => $data['permanent_city'],
-            'state' => $data['permanent_state'],
-            'pin_code' => $data['permanent_pincode'],
-            'country' => $data['permanent_country'],
-            'landmark' => $data['permanent_landmark'],
-            'street' => $data['permanent_street'],
-            'police_station' => $data['permanent_police'],
-            'post_office' => $data['permanent_post']
-        ]);
-
-
-        Patient::create([
-        ]);
-
-
-
     }
 
     /**

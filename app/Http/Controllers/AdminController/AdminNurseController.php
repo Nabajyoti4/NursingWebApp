@@ -9,10 +9,8 @@ use App\Photo;
 use App\Qualification;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Ramsey\Uuid\Uuid;
 
 class AdminNurseController extends Controller
 {

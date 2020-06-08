@@ -42,7 +42,7 @@
                                     <p class="lead mb-4 text-muted text-center">We’re always here for you no matter what
                                         time of day.
                                     </p>
-                                    <a href="{{route('application.index')}}" class="btn btn-outline-primary btn-lg text-center">Hire now</a>
+                                    <a href="{{route('users.patient.create')}}" class="btn btn-outline-primary btn-lg text-center">Hire now</a>
                                 </div>
                             </div>
                         </div>

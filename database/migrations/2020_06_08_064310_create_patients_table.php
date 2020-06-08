@@ -17,6 +17,7 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index();
             $table->string('patient_name');
+            $table->string('photo_id');
             $table->bigInteger('phone_no');
             $table->integer('age');
             $table->string('gender');
@@ -26,7 +27,7 @@ class CreatePatientsTable extends Migration
             $table->string('relation_guardian');
             $table->integer('shift');
             $table->integer('days');
-            $table->string('service_type');
+            $table->unsignedBigInteger('service_id');
             $table->string('patient_history');
             $table->string('patient_doctor');
             $table->integer('status')->default(2);
