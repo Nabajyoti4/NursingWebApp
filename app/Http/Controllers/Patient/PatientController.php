@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Patient;
 use App\Photo;
 use App\Service;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -40,7 +42,7 @@ class PatientController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -73,7 +75,7 @@ class PatientController extends Controller
 
 
         // create a new record for patient
-        Patient::create(['user_id' => $user->id,
+        $patient = Patient::create(['user_id' => $user->id,
             'patient_name' => $data['patient_name'],
             'photo_id' => $photo->id,
             'phone_no' => $data['phone_no'],
@@ -91,9 +93,14 @@ class PatientController extends Controller
         ]);
 
 
+        // select all the admins to send the request to them
+        $admin = User::where('role', 'admin')->get();
+        Notification::send($admin, new \App\Notifications\PatientRequest($patient));
+
+
         return redirect()
-            ->back()
-            ->with('success','patient request sended successfully!');
+            ->route('users.index')
+            ->with('patient','patient request sended successfully!');
 
     }
 

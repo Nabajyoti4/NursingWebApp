@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail(Auth::user()->id);
-        $patients = Patient::where('user_id', Auth::user()->id);
+        $patients = Patient::where('user_id', Auth::user()->id)->get();
 
 
         return view('users.index', compact('user','patients'));

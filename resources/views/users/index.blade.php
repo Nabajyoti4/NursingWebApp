@@ -8,6 +8,8 @@
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
     <!--  custom form style link -->
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
     <!--  fontawesome link -->
@@ -19,28 +21,16 @@
 @section('style')
     <style>
 
-
-        .alert {
-            position: relative;
-            padding: 0.75rem 1.25rem;
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            border-radius: 0.25rem;
-            box-shadow: black;
+        tr:hover{
+            background: lightgrey;
+            transition: all .5s;
+            color: black;
+            font-weight: bold;
         }
 
-        .alert-success {
-            color: #1d643b;
-            background-color: #d7f3e3;
-            border-color: #c7eed8;
-        }
 
         .alert-success hr {
             border-top-color: #b3e8ca;
-        }
-
-        .alert-dismissible {
-            padding-right: 3.85rem;
         }
 
         .alert-dismissible .close {
@@ -76,6 +66,15 @@
                 showConfirmButton: true,
             })
         </script>
+    @elseif ($message = Session::get('patient'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Nurse request Send Successfully!',
+                showConfirmButton: true,
+            })
+        </script>
     @endif
     <div class="p-4">
         <div class="container emp-profile mt-3">
@@ -98,7 +97,7 @@
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Booking Details</a>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Patient request  Details</a>
                             </li>
                         </ul>
                     </div>
@@ -158,52 +157,58 @@
                         </div>
 
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Experience</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
+
+                            <div class="card shadow mb-4" id="userPatientTable">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead >
+                                            <tr class="bg-dark text-white">
+                                                <th>Patient ID</th>
+                                                <th>Name</th>
+                                                <th>Phone No</th>
+                                                <th>Age</th>
+                                                <th>Status</th>
+                                                <th>Request date</th>
+                                                <th>View</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @forelse($patients as $patient)
+                                                <tr>
+                                                    <td>{{$patient->id}}</td>
+                                                    <td>{{$patient->patient_name}}</td>
+                                                    <td>{{$patient->phone_no}}</td>
+                                                    <td>{{$patient->age}}</td>
+                                                    <td>
+                                                        @if($patient->status == 1)
+                                                            Approved
+                                                        @elseif($patient->status == 0)
+                                                            Dissapproved
+                                                        @else
+                                                            Pending
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$patient->created_at}}</td>
+                                                    <td>
+                                                        <form action="{{route('users.patient.show',$patient->id)}}" method="GET">
+                                                            @csrf
+                                                            <button class="btn btn-primary"  type="submit">Show</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6">No Patient Request found</td>
+                                                </tr>
+                                            @endforelse
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Hourly Rate</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>10$/hr</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Total Projects</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>230</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>English Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Availability</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>6 months</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br/>
-                                    <p>Your detail description</p>
-                                </div>
-                            </div>
+
                         </div>
 
                     </div>
