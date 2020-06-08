@@ -85,7 +85,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: {{$message}},
+                title: 'Your Request Has been approved , please check your mail',
                 showConfirmButton: true,
             })
         </script>
