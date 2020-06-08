@@ -114,7 +114,8 @@ class AdminNurseController extends Controller
      */
     public function show($id)
     {
-        //
+        $nurse = Nurse::findOrFail($id);
+        return view('admin.nurses.show', compact('nurse'));
     }
 
     /**
