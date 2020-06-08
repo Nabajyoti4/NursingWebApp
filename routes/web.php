@@ -75,13 +75,33 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 
 Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
 
+// Admin patient
+Route::resource('admin/patient','AdminController\AdminPatientController', ['names' =>[
+    'index'=>'admin.patient.index',
+    'edit'=>'admin.patient.edit',
+    'update'=>'admin.patient.update',
+    'show'=>'admin.patient.show'
+]
+]);
 
 
 // nurse routes
-//for Admin Nurse
+//for  Nurse
 Route::resource('nurse','Nurse\NurseController', ['names' =>[
     'index'=>'nurse.index',
     'edit'=>'nurse.edit',
+]
+]);
+
+
+// patient for user
+Route::resource('users/patient','Patient\PatientController', ['names' =>[
+    'index'=>'users.patient.index',
+    'create'=>'users.patient.create',
+    'store'=>'users.patient.store',
+    'edit'=>'users.patient.edit',
+    'update'=>'users.patient.update',
+    'show'=>'users.patient.show'
 ]
 ]);
 
