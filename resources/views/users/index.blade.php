@@ -27,7 +27,7 @@
             color: black;
             font-weight: bold;
         }
-        
+
 
         .alert-success hr {
             border-top-color: #b3e8ca;
@@ -63,6 +63,15 @@
                 position: 'center',
                 icon: 'success',
                 title: 'Data Updated Successfully!',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif ($message = Session::get('patient'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Nurse request Send Successfully!',
                 showConfirmButton: true,
             })
         </script>
