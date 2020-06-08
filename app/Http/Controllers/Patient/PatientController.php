@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Patient;
 use App\Address;
 use App\Http\Controllers\Controller;
 use App\Patient;
+use App\Photo;
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class PatientController extends Controller
@@ -51,6 +54,7 @@ class PatientController extends Controller
 
         $user= Auth::user();
 
+
         // store the address of patient
         $permanent_address = Address::create(['user_id' => $user->id,
             'city' => $data['permanent_city'],
@@ -63,11 +67,33 @@ class PatientController extends Controller
             'post_office' => $data['permanent_post']
         ]);
 
+        // store the image
+            $image = $request->image->store('patients', 'public');
+            $photo = Photo::create(['photo_location' => $image]);
 
-        Patient::create([
+
+        // create a new record for patient
+        Patient::create(['user_id' => $user->id,
+            'patient_name' => $data['patient_name'],
+            'photo_id' => $photo->id,
+            'phone_no' => $data['phone_no'],
+            'age' => $data['age'],
+            'gender' => $data['gender'],
+            'address_id' => $permanent_address->id,
+            'family_members' => $data['family_members'],
+            'guardian_name' => $data['guardian_name'],
+            'relation_guardian' => $data['relation_guardian'],
+            'shift' => $data['shift'],
+            'days' => $data['days'],
+            'service_id' => $data['service_id'],
+            'patient_history' => $data['patient_history'],
+            'patient_doctor' => $data['patient_doctor']
         ]);
 
 
+        return redirect()
+            ->back()
+            ->with('success','patient request sended successfully!');
 
     }
 

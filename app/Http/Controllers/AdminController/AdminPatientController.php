@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class AdminPatientController extends Controller
@@ -15,6 +16,8 @@ class AdminPatientController extends Controller
     public function index()
     {
         //
+        $patients = Patient::all();
+        return view('admin.requests.patient.index', compact('patients'));
     }
 
     /**
@@ -47,6 +50,8 @@ class AdminPatientController extends Controller
     public function show($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        return view('admin.requests.patient.show', compact('patient'));
     }
 
     /**

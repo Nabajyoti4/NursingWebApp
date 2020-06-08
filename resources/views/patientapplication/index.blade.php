@@ -51,8 +51,8 @@
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab">
                         <div class="form-group font-weight-bold">
-                            <label for="name">Patient Full Name:</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter Name"
+                            <label for="patient_name">Patient Full Name:</label>
+                            <input type="text" class="form-control" name="patient_name" placeholder="Enter Name"
                                    value="">
                         </div>
 
@@ -123,23 +123,23 @@
 
                     <div class="tab">
                         <div class="form-group font-weight-bold">
-                            <label for="familymemberno">Total Family Member ( Both M/F):</label>
-                            <input type="text" class="form-control" name="familymemberno"
+                            <label for="family_members">Total Family Member ( Both M/F):</label>
+                            <input type="text" class="form-control" name="family_members"
                                    value="">
                         </div>
                         <div class="form-group font-weight-bold">
-                            <label for="relation">Relation with the Guardian :</label>
-                            <input type="text" class="form-control" name="guardianrelation"
+                            <label for="relation_guardian">Relation with the Guardian :</label>
+                            <input type="text" class="form-control" name="relation_guardian"
                                    value="">
                         </div>
                         <div class="form-group font-weight-bold">
-                            <label for="guardianname">Name of the Guardian:</label>
-                            <input type="text" class="form-control" name="guardianname"
+                            <label for="guardian_name">Name of the Guardian:</label>
+                            <input type="text" class="form-control" name="guardian_name"
                                    value="">
                         </div>
                         <div class="form-group font-weight-bold">
-                            <label for="shifts">Duty Shift of the Nurse:</label>
-                            <select name="shifts" class="form-control">
+                            <label for="shift">Duty Shift of the Nurse:</label>
+                            <select name="shift" class="form-control">
                                 <option value="day">Day Shift</option>
                                 <option value="night">Night Shift</option>
                                 <option value="full">24 hours</option>
@@ -147,8 +147,8 @@
                         </div>
 
                         <div class="form-group font-weight-bold">
-                            <label for="service">Service :</label>
-                            <select name="service" class="form-control">
+                            <label for="service_id">Service :</label>
+                            <select name="service_id" class="form-control">
                                 @foreach($services as $service)
                                     <option value="{{$service->id}}">{{ $service->title }}</option>
                                 @endforeach
@@ -156,22 +156,24 @@
                         </div>
 
                         <div class="form-group font-weight-bold">
-                            <label for="no_of_days">Period of Required (Days):</label>
-                            <select name="no_of_days" class="form-control">
-                                <option value="">30</option>
-                                <option value="">60</option>
-                                <option value="">other</option>
+                            <label for="days">Period of Required (Days):</label>
+                            <select type="number" name="days" class="form-control">
+                                <option value="30">30</option>
+                                <option value="60">60</option>
                             </select>
                         </div>
+
                         <div class="form-group font-weight-bold">
-                            <label for="patients_history">Patient's History :</label>
-                            <textarea name="patients_history" cols="30" rows="10" class="form-control"></textarea>
+                            <label for="patient_history">Patient's History :</label>
+                            <textarea name="patient_history" cols="30" rows="10" class="form-control"></textarea>
                         </div>
+
                         <div class="form-group font-weight-bold">
-                            <label for="doctots_and_hospital">Doctor and Hospital:</label>
-                            <textarea name="doctots_and_hospital" id="" cols="30" rows="10"
+                            <label for="patient_doctor">Doctor and Hospital:</label>
+                            <textarea name="patient_doctor" cols="30" rows="10"
                                       class="form-control"></textarea>
                         </div>
+
                     </div>
                     <div style="overflow:auto;">
                         <div style="float:right;">

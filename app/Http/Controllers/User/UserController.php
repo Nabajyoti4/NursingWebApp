@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
+use App\Patient;
 use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,9 +23,10 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail(Auth::user()->id);
+        $patients = Patient::where('user_id', Auth::user()->id);
 
 
-        return view('users.index', compact('user'));
+        return view('users.index', compact('user','patients'));
     }
 
     /**

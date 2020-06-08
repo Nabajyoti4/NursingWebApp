@@ -32,50 +32,39 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>Candidate ID</th>
+                        <th>Patient ID</th>
                         <th>Name</th>
-                        <th>Email</th>
                         <th>Phone No</th>
                         <th>Age</th>
                         <th>Status</th>
-                        <th>Approve</th>
-                        <th>Create</th>
+                        <th>View</th>
                         <th>Disapprove</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($candidates as $candidate)
+                    @forelse($patients as $patient)
                         <tr>
-                            <td>{{$candidate->id}}</td>
-                            <td>{{$candidate->name}}</td>
-                            <td>{{$candidate->email}}</td>
-                            <td>{{$candidate->phone_no}}</td>
-                            <td>{{$candidate->age}}</td>
+                            <td>{{$patient->id}}</td>
+                            <td>{{$patient->patient_name}}</td>
+                            <td>{{$patient->phone_no}}</td>
+                            <td>{{$patient->age}}</td>
                             <td>
-                                @if($candidate->Approval == 1)
+                                @if($patient->status == 1)
                                     Approved
-                                @elseif($candidate->Approval == 0)
+                                @elseif($patient->status == 0)
                                     Dissapproved
                                 @else
                                     Pending
                                 @endif
-
                             </td>
                             <td>
-
-                                <form action="{{route('nursejoin.approve',$candidate->id)}}" method="post">
+                                <form action="{{route('admin.patient.show',$patient->id)}}" method="GET">
                                     @csrf
-                                    <button class="btn btn-primary"  type="submit">Approved</button>
+                                    <button class="btn btn-primary"  type="submit">Show</button>
                                 </form>
                             </td>
                             <td>
-                                <form action="{{route('admin.nurse.join',$candidate->user_id)}}" method="GET">
-                                    @csrf
-                                    <button class="btn btn-primary"  type="submit">Create</button>
-                                </form>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
+                                <button class="btn btn-primary"  onclick="handleDisapprove({{$patient->id}})">Disapprove</button>
                             </td>
                         </tr>
                     @empty

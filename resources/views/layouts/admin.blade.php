@@ -89,7 +89,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Requests:</h6>
                     <a class="collapse-item" href="{{ route('nursejoin.index') }}">Join Nurse</a>
-                    <a class="collapse-item" href="">Hire Nurse</a>
+                    <a class="collapse-item" href="{{route('admin.patient.index')}}">Hire Nurse</a>
 
                 </div>
             </div>
