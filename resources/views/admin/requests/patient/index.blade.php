@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Nurse Candidates
+    Patient Requests
 @endsection
 
 @section('content')

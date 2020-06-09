@@ -74,7 +74,7 @@
                 <span>Nurses</span></a>
         </li>
          <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.users.index')}}">
+            <a class="nav-link" href="{{route('admin.patient.approved')}}">
                 <i class="fas fa-users"></i>
                 <span>Patients</span></a>
         </li>
