@@ -82,9 +82,10 @@ Route::resource('admin/patient','AdminController\AdminPatientController', ['name
     'index'=>'admin.patient.index',
     'edit'=>'admin.patient.edit',
     'update'=>'admin.patient.update',
-    'show'=>'admin.patient.show'
+    'show'=>'admin.patient.show',
 ]
 ]);
+Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
 Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
 
 

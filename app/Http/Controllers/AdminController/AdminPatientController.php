@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\AdminController;
-
-use App\Http\Controllers\Controller;
 use App\Patient;
 use App\Reject;
 use App\User;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
@@ -116,5 +116,14 @@ class AdminPatientController extends Controller
         return redirect()->back();
 
 
+    }
+
+    // method approve the patient
+    public function approve(Patient $patient)
+    {
+        $patient->status=1;
+        $patient->save();
+        session()->flash('success', 'Patient Approved');
+        return redirect()->back();
     }
 }

@@ -50,8 +50,12 @@
 @endsection
 
 @section('content')
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Nurse Details</h6>
+    </div>
     <div class="container p-3">
-        <div class="row p-5 bg-light">
+
+        <div class="row bg-light" >
             <div class="col-xs-12 col-lg-4">
                 <img
                     src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"

@@ -73,6 +73,11 @@
                 <i class="fas fa-user-md"></i>
                 <span>Nurses</span></a>
         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.users.index')}}">
+                <i class="fas fa-users"></i>
+                <span>Patients</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.users.index')}}">
                 <i class="fas fa-users"></i>
@@ -88,9 +93,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Requests:</h6>
-                    <a class="collapse-item" href="{{ route('nursejoin.index') }}">Join Nurse</a>
-                    <a class="collapse-item" href="{{route('admin.patient.index')}}">Hire Nurse</a>
-
+                    <a class="collapse-item" href="{{ route('nursejoin.index') }}">Nurse Requests</a>
+                    <a class="collapse-item" href="{{route('admin.patient.index')}}">Patient Requests</a>
                 </div>
             </div>
         </li>

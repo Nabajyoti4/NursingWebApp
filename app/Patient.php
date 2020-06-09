@@ -11,7 +11,7 @@ class Patient extends Model
         'patient_name', 'photo_id', 'phone_no', 'age',
         'gender', 'address_id', 'family_members', 'guardian_name',
         'relation_guardian', 'shift', 'days', 'service_id',
-        'patient_history', 'patient_doctor'];
+        'patient_history', 'patient_doctor','status'];
 
 
     /**
@@ -21,6 +21,9 @@ class Patient extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function service(){
+        return $this->belongsTo(Service::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
