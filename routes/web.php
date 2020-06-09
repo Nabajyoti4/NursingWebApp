@@ -75,6 +75,8 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 
 Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
 
+
+
 // Admin patient
 Route::resource('admin/patient','AdminController\AdminPatientController', ['names' =>[
     'index'=>'admin.patient.index',
@@ -83,6 +85,8 @@ Route::resource('admin/patient','AdminController\AdminPatientController', ['name
     'show'=>'admin.patient.show'
 ]
 ]);
+Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
+
 
 
 // nurse routes

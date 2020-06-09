@@ -4,7 +4,10 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Patient;
+use App\Reject;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class AdminPatientController extends Controller
 {
@@ -86,5 +89,32 @@ class AdminPatientController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * to send reject message for nurse hire to user
+     * @param Request $request
+     */
+    public function disapprove(Request $request, $id){
+
+        $data = $request->only(['tag', 'reason']);
+
+        $patient = Patient::findOrFail($id);
+
+        $patient->status = 0;
+        $patient->save();
+
+        Reject::create(['patient_id' => $id,
+            'tag' => $data['tag'],
+            'reason' => $data['reason']]);
+
+        $user = User::findOrFail($patient->user_id);
+
+        Notification::send($user, new \App\Notifications\PatientRequestCancel($request, $patient));
+
+        return redirect()->back();
+
+
     }
 }

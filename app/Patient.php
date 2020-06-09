@@ -22,4 +22,12 @@ class Patient extends Model
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function reject(){
+        return $this->hasOne(Reject::class);
+    }
+
+
 }

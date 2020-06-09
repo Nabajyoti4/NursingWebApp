@@ -92,10 +92,21 @@
                                         <label for="recipient-name" class="col-form-label">Recipient:</label>
                                         <input type="text" class="form-control" name="recipient">
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" name="message" ></textarea>
+                                        <label for="reason" class="col-form-label">Reason:</label>
+                                        <textarea class="form-control" name="reason" ></textarea>
                                     </div>
+
+                                    <div class="form-group ">
+                                        <label for="tag">Tag :</label>
+                                        <select name="tag" class="form-control">
+                                                <option value="area">Area Not Covered</option>
+                                                <option value="nurse">Nurse Not available</option>
+                                                <option value="service">Service Required Not covered</option>
+                                        </select>
+                                    </div>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button  class="btn btn-primary" type="submit">Send message</button>
@@ -121,7 +132,7 @@
 
             var message = document.getElementById('disapproveRequestMessage')
 
-            message.action = "/nursejoin/" + id + "/disapprove"
+            message.action = "/admin/patient/" + id + "/disapprove"
 
             $('#disapproveModal').modal('show')
         }
