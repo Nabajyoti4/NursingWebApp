@@ -80,10 +80,10 @@ Route::resource('admin/patient','AdminController\AdminPatientController', ['name
     'index'=>'admin.patient.index',
     'edit'=>'admin.patient.edit',
     'update'=>'admin.patient.update',
-    'show'=>'admin.patient.show'
+    'show'=>'admin.patient.show',
 ]
 ]);
-
+Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
 
 // nurse routes
 //for  Nurse

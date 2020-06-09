@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\AdminController;
-
-use App\Http\Controllers\Controller;
 use App\Patient;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
+use Illuminate\Http\Request;
 class AdminPatientController extends Controller
 {
     /**
@@ -86,5 +85,14 @@ class AdminPatientController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // method approve the patient
+    public function approve(Patient $patient)
+    {
+        $patient->status=1;
+        $patient->save();
+        session()->flash('success', 'Patient Approved');
+        return redirect()->back();
     }
 }
