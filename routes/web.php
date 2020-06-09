@@ -84,7 +84,7 @@ Route::resource('admin/patient','AdminController\AdminPatientController', ['name
 ]
 ]);
 Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
-
+Route::get('admin/approvedpatient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
 // nurse routes
 //for  Nurse
 Route::resource('nurse','Nurse\NurseController', ['names' =>[

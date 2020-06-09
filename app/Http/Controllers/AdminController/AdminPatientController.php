@@ -95,4 +95,11 @@ class AdminPatientController extends Controller
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
     }
+    // patients that are approved
+    public function approved()
+    {
+        //
+        $patients = Patient::all()->where('status',1);
+        return view('admin.patients.index', compact('patients'));
+    }
 }
