@@ -16,4 +16,11 @@ class Photo extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function patient(){
+        return $this->hasOne(Patient::class);
+    }
 }

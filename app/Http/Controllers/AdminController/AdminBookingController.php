@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
+use App\Nurse;
 use Illuminate\Http\Request;
 use SebastianBergmann\Comparator\Book;
 
@@ -16,7 +17,7 @@ class AdminBookingController extends Controller
      */
     public function index()
     {
-        
+
         return view('admin.bookings.index');
     }
 
@@ -45,7 +46,7 @@ class AdminBookingController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
