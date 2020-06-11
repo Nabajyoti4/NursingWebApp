@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use SebastianBergmann\Comparator\Book;
 
 class AdminBookingController extends Controller
 {
@@ -47,6 +49,8 @@ class AdminBookingController extends Controller
     public function show($id)
     {
         //
+        $book = Booking::findOrFail($id);
+        return view('admin.bookings.show', compact('book'));
     }
 
     /**
