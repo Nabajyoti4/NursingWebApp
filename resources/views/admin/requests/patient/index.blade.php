@@ -39,6 +39,7 @@
                         <th>Status</th>
                         <th>View</th>
                         <th>Disapprove</th>
+                        <th>Book</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,6 +66,12 @@
                             </td>
                             <td>
                                 <button class="btn btn-primary"  onclick="handleDisapprove({{$patient->id}})">Disapprove</button>
+                            </td>
+                            <td>
+                                <form action="{{route('admin.book.bookCreate',$patient->id)}}" method="get">
+                                    @csrf
+                                    <button class="btn btn-primary"  type="submit">Book</button>
+                                </form>
                             </td>
                         </tr>
                     @empty

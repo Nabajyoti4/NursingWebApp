@@ -75,6 +75,7 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 
 Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
 
+Route::get('admin.patient.bookCreate/{id}', 'AdminController\AdminBookingController@bookCreate')->name('admin.book.bookCreate');
 
 
 // Admin patient

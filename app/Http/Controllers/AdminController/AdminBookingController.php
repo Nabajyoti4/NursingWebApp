@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Nurse;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class AdminBookingController extends Controller
@@ -14,7 +16,7 @@ class AdminBookingController extends Controller
      */
     public function index()
     {
-        
+
         return view('admin.bookings.index');
     }
 
@@ -25,9 +27,15 @@ class AdminBookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bookings.create',compact('patient'));
     }
 
+    public function bookCreate($id)
+    {
+        $patient = Patient::findOrFail($id);
+        $nurses = Nurse::all();
+        return view('admin.bookings.create',compact('patient','nurses'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +44,8 @@ class AdminBookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //get the patient id
+        dd($request->all());
     }
 
     /**
