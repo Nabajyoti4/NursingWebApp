@@ -217,7 +217,7 @@ class AdminNurseController extends Controller
 
 
 
-        // find the qualification deatils of nurse
+        // find the qualification details of nurse
         $qualification = Qualification::findOrFail($nurse->qualification_id);
         $path = $qualification->pan_card;
         $directory = explode("/", $path);
