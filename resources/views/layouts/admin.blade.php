@@ -42,7 +42,7 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-        <li class="nav-item active">
+        <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}">
             <i class="fas fa-home"></i>
             <span>Go To Home</span>
@@ -58,14 +58,14 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="nav-link" href="{{route('admin.admins.index')}}">
-                <i class="fas fa-users-cog"></i>
+                <i class="fas fa-id-card"></i>
                 <span>Admins</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="subadmins.html">
-                <i class="fas fa-users-cog"></i>
+                <i class="fas fa-id-card-alt"></i>
                 <span>Sub Admins</span></a>
         </li>
         <li class="nav-item">
@@ -75,13 +75,18 @@
         </li>
          <li class="nav-item">
             <a class="nav-link" href="{{route('admin.patient.approved')}}">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-procedures fa-4x"></i>
                 <span>Patients</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.users.index')}}">
                 <i class="fas fa-users"></i>
                 <span>Users</span></a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.book.index')}}">
+                <i class="fas fa-book-medical"></i>
+                <span>Bookings</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
@@ -93,8 +98,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Requests:</h6>
-                    <a class="collapse-item" href="{{ route('nursejoin.index') }}">Nurse Requests</a>
-                    <a class="collapse-item" href="{{route('admin.patient.index')}}">Patient Requests</a>
+                    <a class="collapse-item" href="{{ route('nursejoin.index') }}"><i class="fas fa-user-nurse"></i> Nurse Requests</a>
+                    <a class="collapse-item" href="{{route('admin.patient.index')}}"><i class="fas fa-bed"></i> Patient Requests</a>
                 </div>
             </div>
         </li>
