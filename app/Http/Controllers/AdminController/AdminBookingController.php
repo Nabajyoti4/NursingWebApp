@@ -14,18 +14,19 @@ class AdminBookingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
+        $bookings = Booking::all();
 
-        return view('admin.bookings.index');
+        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -49,13 +50,32 @@ class AdminBookingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         //use request only to fetch the required data
+        $data = $request->only(['patient_id','total_payment','due_payment','nurse']);
+
         //fetch user_id from patient
-        //
+        $user = Patient::findOrFail($data['patient_id'])->user->id;
+
+        Booking::create(['user_id' => $user,
+                        'patient_id' => $data['patient_id'],
+                        'nurse_id' => $data['nurse'],
+                        'total_payment' => $data['total_payment'],
+                        'due_payment' => $data['due_payment']]
+                        );
+
+
+        $bookings = Booking::all();
+        return redirect()
+            ->route('admin.book.index', compact('bookings'))
+            ->with('success','Booking done successfully!');
+
+
+
+
     }
 
     /**
@@ -63,8 +83,6 @@ class AdminBookingController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {

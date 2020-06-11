@@ -36,7 +36,6 @@
                         <th>Nurse allotted</th>
                         <th>Shift</th>
                         <th>Days</th>
-                        <th>District</th>
                         <th>Total Payment</th>
                         <th>Status</th>
                         <th>Edit</th>
@@ -44,37 +43,41 @@
                     </thead>
                     <tbody>
 
-{{--                    @forelse($nurses as $nurse)--}}
-{{--                        <tr>--}}
-{{--                            <td>{{$nurse->employee_id}}</td>--}}
-{{--                            <td><img src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}" alt="" width="100" height="100"--}}
-{{--                                /></td>--}}
-{{--                            <td>{{$nurse->user->name}}</td>--}}
-{{--                            <td>@if($nurse->status == 0)--}}
-{{--                                    Booked Button--}}
-{{--                                @else--}}
-{{--                                    Not Hired--}}
-{{--                                @endif--}}
-{{--                            </td>--}}
-{{--                            <td>@if($nurse->is_active == 0)--}}
-{{--                                    On leave--}}
-{{--                                @else--}}
-{{--                                    Working--}}
-{{--                                @endif</td>--}}
-{{--                            <td><a class="btn btn-primary small" href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>--}}
-{{--                            <td><a class="btn btn-primary small" href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>--}}
-{{--                        </tr>--}}
-{{--                    @empty--}}
-{{--                        <tr>--}}
-{{--                            <td colspan="6">No Bookings found</td>--}}
-{{--                        </tr>--}}
-{{--                    @endforelse--}}
+                    @forelse($bookings as $booking)
+                        <tr>
+                            <td>{{$booking->id}}</td>
+                            <td>{{$booking->user->name}}</td>
+                            <td>{{$booking->patient->patient_name}}</td>
+                            <td>{{$booking->nurse->user->name}}</td>
+                            <td>{{$booking->patient->shift}}</td>
+                            <td>{{$booking->patient->days}}</td>
+                            <td>{{$booking->total_payment}}</td>
+                            <td>
+                                @if($booking->status == 0)
+                                    Rejected
+                                @elseif($booking->status == 1)
+                                    Completed
+                                @elseif($booking->status == 2)
+                                    Pending
+                                @elseif($booking->status == 3)
+                                    Running
+                                @else
+                                    Takeover
+                                @endif
+                            </td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6">No Bookings found</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    
+
 @endsection
 
 

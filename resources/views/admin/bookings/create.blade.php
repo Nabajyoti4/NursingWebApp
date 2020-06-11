@@ -61,6 +61,7 @@
     <div class="container p-3">
         <form action="{{route('admin.book.store')}}" method="POST">
             @csrf
+            <input type="hidden" value="{{$patient->id}}" name="patient_id">
             <div class="row bg-light">
                 <div class="col-xs-12 col-lg-4">
                     <img
@@ -136,8 +137,8 @@
                                             <td>{{$nurse->employee_id}}</td>
                                             <td><img
                                                     src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                                    alt="" width="100" height="100"
-                                                /></td>
+                                                    alt="" width="100" height="100"/>
+                                            </td>
                                             <td>{{$nurse->user->name}}</td>
                                         </tr>
                                     @empty
@@ -159,11 +160,17 @@
                 </div>
                 <div class="col-4">
                     <div class="form-group">
+                        <label for="due_payment">Due Payment</label>
+                        <input name="due_payment" class="form-control" type="number">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
                         <label for="nurse">Select Nurse</label>
-                        <select name="nurse" id="" class="form-control">
+                        <select name="nurse"  class="form-control">
                             <option value="">Select</option>
                             @forelse($nurses as $nurse)
-                                <option value="{{$nurse->employee_id}}">{{$nurse->employee_id}}</option>
+                                <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
                             @empty
                                 No users found
                             @endforelse
