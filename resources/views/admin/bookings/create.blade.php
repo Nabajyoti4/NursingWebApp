@@ -165,7 +165,9 @@
                         <select name="nurse" id="" class="form-control">
                             <option value="">Select</option>
                             @forelse($nurses as $nurse)
+                                @if(($nurse->user->addresses->last()->city) ==  ($patient->user->addresses->first()->city))
                                 <option value="{{$nurse->employee_id}}">{{$nurse->employee_id}}</option>
+                                @endif
                             @empty
                                 No users found
                             @endforelse
