@@ -33,8 +33,14 @@ class AdminBookingController extends Controller
     public function bookCreate($id)
     {
         $patient = Patient::findOrFail($id);
-        $nurses = Nurse::all();
-           return view('admin.bookings.create', compact('patient', 'nurses'));
+        $nursesAll = Nurse::all();
+        $nurses = array();
+        foreach ($nursesAll as $nurse) {
+            if (($nurse->user->addresses->last()->city) == ($patient->user->addresses->first()->city)) {
+                array_push($nurses, $nurse);
+            }
+        }
+        return view('admin.bookings.create', compact('patient', 'nurses'));
     }
 
     /**
