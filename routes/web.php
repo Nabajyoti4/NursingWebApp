@@ -91,6 +91,8 @@ Route::get('admin/approvedpatient','AdminController\AdminPatientController@appro
 Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
 
 
+//
+
 
 // nurse routes
 //for  Nurse

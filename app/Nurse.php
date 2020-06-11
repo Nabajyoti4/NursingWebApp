@@ -28,4 +28,11 @@ class Nurse extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
 }

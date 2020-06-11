@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
+use App\Nurse;
 use Illuminate\Http\Request;
+use SebastianBergmann\Comparator\Book;
 
 class AdminBookingController extends Controller
 {
@@ -57,12 +60,16 @@ class AdminBookingController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
+        $book = Booking::findOrFail($id);
+        return view('admin.bookings.show', compact('book'));
     }
 
     /**

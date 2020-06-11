@@ -32,5 +32,19 @@ class Patient extends Model
         return $this->hasOne(Reject::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function photo(){
+        return $this->belongsTo(Photo::class);
+    }
+
 
 }
