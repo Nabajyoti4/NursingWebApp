@@ -6,7 +6,6 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
-use App\Nurse;
 use Illuminate\Http\Request;
 use SebastianBergmann\Comparator\Book;
 
@@ -48,7 +47,9 @@ class AdminBookingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //use request only to fetch the required data
+        //fetch user_id from patient
+        //
     }
 
     /**
