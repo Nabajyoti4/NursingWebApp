@@ -59,7 +59,8 @@
     </div>
 
     <div class="container p-3">
-        <form action="{{ route('admin.book.store')}}" method="POST">
+        <form action="{{route('admin.book.store')}}" method="POST">
+            @csrf
             <div class="row bg-light">
                 <div class="col-xs-12 col-lg-4">
                     <img

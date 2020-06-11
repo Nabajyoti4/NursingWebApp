@@ -44,7 +44,7 @@ class AdminBookingController extends Controller
      */
     public function store(Request $request)
     {
-        //get the patient id
+
         dd($request->all());
     }
 
