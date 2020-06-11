@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminController;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
+use App\Patient;
+use App\Nurse;
 use Illuminate\Http\Request;
 use SebastianBergmann\Comparator\Book;
 
@@ -28,18 +30,25 @@ class AdminBookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bookings.create', compact('patient'));
+    }
+
+    public function bookCreate($id)
+    {
+        $patient = Patient::findOrFail($id);
+        $nurses = Nurse::all();
+           return view('admin.bookings.create', compact('patient', 'nurses'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -47,6 +56,8 @@ class AdminBookingController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -58,7 +69,7 @@ class AdminBookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -69,8 +80,8 @@ class AdminBookingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -81,7 +92,7 @@ class AdminBookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
