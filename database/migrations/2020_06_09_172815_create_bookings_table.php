@@ -18,7 +18,10 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('nurse_id');
-            $table->integer('status')->default(0);
+            // 0-> Reject , 1-> complete , 2-> pending, 3->running, 4->Takeover
+            $table->integer('status')->default(2);
+            $table->bigInteger('due_payment');
+            $table->bigInteger('total_payment');
             $table->timestamps();
         });
 
