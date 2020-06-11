@@ -111,6 +111,16 @@ Route::resource('users/patient','Patient\PatientController', ['names' =>[
 ]
 ]);
 
+// booking
+Route::resource('admin/book','AdminController\AdminBookingController', ['names' =>[
+    'index'=>'admin.book.index',
+    'create'=>'admin.book.create',
+    'store'=>'admin.book.store',
+    'edit'=>'admin.book.edit',
+    'update'=>'admin.book.update',
+    'show'=>'admin.book.show'
+]
+]);
 
 
 
@@ -120,7 +130,6 @@ Route::get('/admin/admins',function (){
     $admins = User::where('role', 'admin')->get();
     return view('admin.admins.index',compact('admins'));
 })->name('admin.admins.index');
-
 
 
 
