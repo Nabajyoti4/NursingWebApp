@@ -6,7 +6,6 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
-use App\Nurse;
 use Illuminate\Http\Request;
 use SebastianBergmann\Comparator\Book;
 
