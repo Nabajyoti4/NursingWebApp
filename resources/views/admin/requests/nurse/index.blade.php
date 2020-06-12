@@ -3,7 +3,37 @@
     Nurse Candidates
 @endsection
 
+@section('style')
+    <style>
+        #loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 1;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loading-image {
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+    </style>
+@endsection
+
+
+
 @section('content')
+
+    <div id="loading">
+        sending Nitification
+        <img id="loading-image" src="{{asset('img/loader.gif')}}" alt="Loading..." />
+    </div>
 
     <!-- Search -->
     <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
@@ -19,7 +49,6 @@
             </div>
         </div>
     </form>
-
     <hr>
 
     <!-- DataTales Example -->
@@ -101,7 +130,7 @@
                             <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                        <input type="text" class="form-control" name="recipient">
+                                        <input type="text" class="form-control" name="recipient" />
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Message:</label>
@@ -126,6 +155,7 @@
 @endsection
 
 @section('script')
+
     <script>
         function handleDisapprove(id){
 
@@ -137,5 +167,18 @@
         }
 
     </script>
+
+
+    <script>
+        $(window).on('load', function () {
+            $("#loading").fadeOut("slow");
+        });
+    </script>
+
+
+
+
+
+
 
 @endsection

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.min.css')}}">
 
-    @yield('style')
+@yield('style')
 
 </head>
 
@@ -418,6 +418,9 @@
 
 <!-- Page level custom scripts -->
 <script src="{{asset('js/admin/datatables-demo.js')}}"></script>
+
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>--}}
 @yield('script')
 </body>
 </html>
