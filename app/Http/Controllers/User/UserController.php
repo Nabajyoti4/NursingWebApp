@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Address;
+use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Patient;
@@ -24,9 +25,10 @@ class UserController extends Controller
         //
         $user = User::findOrFail(Auth::user()->id);
         $patients = Patient::where('user_id', Auth::user()->id)->get();
+        $bookings = Booking::where('user_id', Auth::user()->id)->get();
 
 
-        return view('users.index', compact('user','patients'));
+        return view('users.index', compact('user','patients','bookings'));
     }
 
     /**

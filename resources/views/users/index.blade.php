@@ -20,16 +20,7 @@
 
 @section('style')
     <style>
-
-        tr:hover{
-            background: lightgrey;
-            transition: all .5s;
-            color: black;
-            font-weight: bold;
-        }
-
-
-        .alert-success hr {
+         .alert-success hr {
             border-top-color: #b3e8ca;
         }
 
@@ -40,175 +31,203 @@
             padding: 0.75rem 1.25rem;
             color: inherit;
         }
+
         .fade {
             transition: opacity 0.15s linear;
         }
 
         .fade.show {
-            opacity: 1; }
+            opacity: 1;
+        }
+
         img[src=""] {
-            display:none;
+            display: none;
         }
 
     </style>
 @endsection
 @section('content')
-<div class="container-fluid profile-bg">
-    <!-- navbar start -->
-@include('partials.navbar')
-<!-- navbar ends -->
-    @if ($message = Session::get('success'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Data Updated Successfully!',
-                showConfirmButton: true,
-            })
-        </script>
-    @elseif ($message = Session::get('patient'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Nurse request Send Successfully!',
-                showConfirmButton: true,
-            })
-        </script>
-    @endif
-    <div class="p-4">
-        <div class="container emp-profile mt-3">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}" alt=""/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
-                        <h5>
-                            {{$user->name}}
-                        </h5>
-                        <h6>
-                            {{"Role"}}
-                        </h6>
-                        <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Patient request  Details</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
-                        <div  class="profile-edit-btn text-center">Edit Profile</div>
-                    </a>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 p-5">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Name</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$user->name}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$user->email}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$user->phone_no}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Permanent Address</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Current Address</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Current Address"}}</p>
-                                </div>
-                            </div>
-
+    <div class="container-fluid profile-bg">
+        <!-- navbar start -->
+    @include('partials.navbar')
+    <!-- navbar ends -->
+        @if ($message = Session::get('success'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Data Updated Successfully!',
+                    showConfirmButton: true,
+                })
+            </script>
+        @elseif ($message = Session::get('patient'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Nurse request Send Successfully!',
+                    showConfirmButton: true,
+                })
+            </script>
+        @endif
+        <div class="p-4">
+            <div class="container emp-profile mt-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}"
+                                 alt=""/>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                {{$user->name}}
+                            </h5>
+                            <h6>
+                                {{$user->role}}
+                            </h6>
+                            <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                       aria-controls="profile" aria-selected="false">Patient request Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="booking-tab" data-toggle="tab" href="#booking" role="tab"
+                                       aria-controls="booking" aria-selected="false">Booking Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
+                            <div class="profile-edit-btn text-center">Edit Profile</div>
+                        </a>
 
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 p-5">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$user->name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$user->email}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$user->phone_no}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Permanent Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Current Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Current Address"}}</p>
+                                    </div>
+                                </div>
 
-                            <div class="card shadow mb-4" id="userPatientTable">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead >
-                                            <tr class="bg-dark text-white">
-                                                <th>Patient ID</th>
-                                                <th>Name</th>
-                                                <th>Phone No</th>
-                                                <th>Age</th>
-                                                <th>Status</th>
-                                                <th>Request date</th>
-                                                <th>View</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @forelse($patients as $patient)
-                                                <tr>
-                                                    <td>{{$patient->id}}</td>
-                                                    <td>{{$patient->patient_name}}</td>
-                                                    <td>{{$patient->phone_no}}</td>
-                                                    <td>{{$patient->age}}</td>
-                                                    <td>
+                            </div>
+
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+
+                                    @forelse($patients as $patient)
+                                        <div class="col-sm-4">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header">Patient ID: {{$patient->id}}</div>
+                                                <div class="card-body">
+                                                    <p>Name : {{$patient->patient_name}}</p>
+                                                    <p>Phone No : {{$patient->phone_no}}</p>
+                                                    <p>Age : {{$patient->age}}</p>
+                                                    <p>Status :
                                                         @if($patient->status == 1)
                                                             Approved
                                                         @elseif($patient->status == 0)
                                                             Dissapproved
                                                         @else
                                                             Pending
-                                                        @endif
-                                                    </td>
-                                                    <td>{{$patient->created_at}}</td>
-                                                    <td>
-                                                        <form action="{{route('users.patient.show',$patient->id)}}" method="GET">
-                                                            @csrf
-                                                            <button class="btn btn-primary"  type="submit">Show</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="6">No Patient Request found</td>
-                                                </tr>
-                                            @endforelse
-                                            </tbody>
-                                        </table>
+                                                        @endif</p>
+                                                    <p>Request date : {{$patient->created_at}}</p>
+                                                    <p>
+                                                    <form action="{{route('users.patient.show',$patient->id)}}"
+                                                          method="GET">
+                                                        @csrf
+                                                        <button class="btn btn-primary" type="submit">Show
+                                                        </button>
+                                                    </form>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    </div>
+                                    @empty
+                                        <p>No Patient Request found</p>
+                                    @endforelse
                                 </div>
                             </div>
 
+                            <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+                                <div class="row">
+                                @forelse($bookings as $booking)
+                                    <div class="col-sm-4">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header">Booking ID : {{$booking->id}}</div>
+                                            <div class="card-body">
+                                                <p>UserName : {{$booking->user->name}}</p>
+                                                <p>Patient Name : {{$booking->patient->patient_name}}</p>
+                                                <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
+                                                <p>Status :
+                                                    @if($booking->status == 0)
+                                                        Rejected
+                                                    @elseif($booking->status == 1)
+                                                        Completed
+                                                    @elseif($booking->status == 2)
+                                                        Pending
+                                                    @elseif($booking->status == 3)
+                                                        Running
+                                                    @else
+                                                        Takeover
+                                                    @endif</p>
+                                                <p>Due Payment : {{$booking->due_payment}}</p>
+                                                <p>Total Payment : {{$booking->total_payment}}</p>
+                                                <p>Booked on : {{$booking->created_at}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No Patient Request found</p>
+                                @endforelse
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -216,7 +235,8 @@
             </div>
         </div>
     </div>
+    </div>
 
-</div>
+    </div>
 
 @endsection

@@ -23,7 +23,14 @@
 @yield('style')
 
 </head>
+<style>
+    tr:hover {
+        background: lightgrey;
+        transition: all .1s;
+        color: black;
+    }
 
+</style>
 <body>
 
 <!-- Page Wrapper -->
