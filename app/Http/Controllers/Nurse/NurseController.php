@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Nurse;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use Illuminate\Http\Request;
@@ -19,9 +20,9 @@ class NurseController extends Controller
         // find the current user
         $user = Auth::user();
         // find thw nurse with the id same as user_id
-        $nurse = Nurse::where('user_id',$user->id)->get()->first();
-
-        return view('nurses.index',compact('user','nurse'));
+        $nurse = Nurse::where('user_id', $user->id)->get()->first();
+        $bookings = Booking::where('nurse_id', $nurse->id)->get();
+        return view('nurses.index', compact('user', 'nurse','bookings'));
 
     }
 
@@ -38,7 +39,7 @@ class NurseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,18 +50,18 @@ class NurseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -71,8 +72,8 @@ class NurseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -83,7 +84,7 @@ class NurseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -179,7 +179,9 @@ class UserController extends Controller
 
         $user->update($data);
 
-
+        if ($user->role === "nurse"){
+            return redirect(route('nurse.index'))->with('success','Details Updated successfully!');
+        }
         return redirect(route('users.index'))->with('success','Details Updated successfully!');
 
     }

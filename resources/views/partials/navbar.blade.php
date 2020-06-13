@@ -50,6 +50,12 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
+                            @if(Auth::user()->role==="nurse")
+                                <a class="dropdown-item" href="" type="button">
+                                    <i class="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Attendance
+                                </a>
+                            @endif
                             <a class="dropdown-item" href="{{route('admin.index')}}">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Admin Panel

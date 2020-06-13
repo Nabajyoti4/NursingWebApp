@@ -107,7 +107,6 @@
                         <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
                             <div class="profile-edit-btn text-center">Edit Profile</div>
                         </a>
-
                     </div>
                 </div>
                 <div class="row">

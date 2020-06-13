@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Routes
@@ -99,6 +97,7 @@ Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientContro
 Route::resource('nurse','Nurse\NurseController', ['names' =>[
     'index'=>'nurse.index',
     'edit'=>'nurse.edit',
+    'update'=>'nurse.update',
 ]
 ]);
 

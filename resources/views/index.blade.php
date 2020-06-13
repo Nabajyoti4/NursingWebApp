@@ -11,7 +11,6 @@
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
 @endsection
 
@@ -470,8 +469,6 @@
             </form>
         </div>
     </div>
-
-
 
     <!-- Card our team -->
     <div class="container-fluid team-background pr-0 pl-0">
