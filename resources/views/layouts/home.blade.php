@@ -13,6 +13,7 @@
     </title>
 
     @yield('links')
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
     <style>
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {

@@ -185,12 +185,14 @@ hr {
     .container {
         max-width: 540px;
     }
+
 }
 
 @media (min-width: 768px) {
     .container {
         max-width: 720px;
     }
+
 }
 
 @media (min-width: 992px) {

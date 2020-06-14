@@ -36,4 +36,11 @@ class Booking extends Model
     public function patient(){
         return $this->belongsTo(Patient::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function attendance(){
+        return $this->belongsTo(Attendance::class);
+    }
 }

@@ -41,15 +41,24 @@
                            role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <img class="rounded-circle" style="object-fit: fill" width="40px" height="38px" src="{{Auth::user()->photo?asset("/storage/".Auth::user()->photo->photo_location):asset('img/avatar1.png')}}">
+                            <img class="rounded-circle" style="object-fit: fill" width="40px" height="38px"
+                                 src="{{Auth::user()->photo?asset("/storage/".Auth::user()->photo->photo_location):asset('img/avatar1.png')}}">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('users.index') }}">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
+                            @if(Auth::user()->role==="nurse")
+                                <a class="dropdown-item" href="{{ route('nurse.index') }}">
+                                    <i class="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                            @else
+                                <a class="dropdown-item" href="{{ route('users.index') }}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+
+                            @endif
                             <a class="dropdown-item" href="{{route('admin.index')}}">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Admin Panel

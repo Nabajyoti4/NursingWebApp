@@ -52,13 +52,13 @@ class NurseJoinRequestController extends Controller
 
             // searching if the state is pending
             if ($candidate['Approval'] == 2 ){
-                return redirect()->back()->with('pending', 'Your request is still pending wait for Admin approvel');
+                return redirect()->back()->with('info', 'You have already send the request.Your request is in pending state');
             }
             elseif ($candidate['Approval']==0){
-                return redirect()->back()->with('disapprove', 'disapprove state');
+                return redirect()->back()->with('info', 'Your request has been disapproved Check mail for further details.');
             }
             else{
-                return redirect()->back()->with('approve', 'active state');
+                return redirect()->back()->with('info', 'You are already approved Check mail');
             }
 
         }
@@ -69,7 +69,7 @@ class NurseJoinRequestController extends Controller
             $admin = User::where('role', 'admin')->get();
             Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
 
-            return redirect()->back()->with('success', 'request send');
+            return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
         }
 
 

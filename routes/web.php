@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin Routes
@@ -101,6 +99,7 @@ Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientContro
 Route::resource('nurse','Nurse\NurseController', ['names' =>[
     'index'=>'nurse.index',
     'edit'=>'nurse.edit',
+    'update'=>'nurse.update',
 ]
 ]);
 
@@ -124,6 +123,17 @@ Route::resource('admin/book','AdminController\AdminBookingController', ['names' 
     'edit'=>'admin.book.edit',
     'update'=>'admin.book.update',
     'show'=>'admin.book.show'
+]
+]);
+
+//attendance
+Route::resource('/attendance','AttendanceController', ['names' =>[
+    'index'=>'attendance.index',
+    'create'=>'attendance.create',
+    'store'=>'attendance.store',
+    'edit'=>'attendance.edit',
+    'update'=>'attendance.update',
+    'show'=>'attendance.show'
 ]
 ]);
 Route::get('admin/book/{id}/extend','AdminController\AdminBookingController@extend')->name('admin.book.extend');
