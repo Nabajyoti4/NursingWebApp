@@ -47,7 +47,7 @@ class Patient extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return mixed
      */
     public function getAddress(){
         return Address::findOrFail($this->address_id)->city;

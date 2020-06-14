@@ -12,7 +12,8 @@ class Booking extends Model
         'nurse_id',
         'status',
         'due_payment',
-        'total_payment'];
+        'total_payment',
+        'remaining_days'];
 
 
     /**

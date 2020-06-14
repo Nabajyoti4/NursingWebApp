@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->integer('status')->default(2);
             $table->bigInteger('due_payment');
             $table->bigInteger('total_payment');
+            $table->integer('remaining_days');
             $table->timestamps();
         });
 

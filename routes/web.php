@@ -32,7 +32,8 @@ Route::get('admin','AdminController@index')->name('admin.index');
 Route::resource('admin/users','AdminController\AdminUsersController',['names'=> [
     'index'=>'admin.users.index',
     'edit'=>'admin.users.edit',
-    'update'=>'admin.users.update'
+    'update'=>'admin.users.update',
+     'show'=>'admin.users.show'
 ]]);
 
 
@@ -86,6 +87,7 @@ Route::resource('admin/patient','AdminController\AdminPatientController', ['name
     'show'=>'admin.patient.show',
 ]
 ]);
+
 Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
 Route::get('admin/approvedpatient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
 Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
@@ -124,7 +126,7 @@ Route::resource('admin/book','AdminController\AdminBookingController', ['names' 
     'show'=>'admin.book.show'
 ]
 ]);
-
+Route::get('admin/book/{id}/extend','AdminController\AdminBookingController@extend')->name('admin.book.extend');
 
 
 

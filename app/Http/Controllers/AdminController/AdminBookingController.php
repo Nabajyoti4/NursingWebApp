@@ -58,13 +58,14 @@ class AdminBookingController extends Controller
         $data = $request->only(['patient_id','total_payment','due_payment','nurse']);
 
         //fetch user_id from patient
-        $user = Patient::findOrFail($data['patient_id'])->user->id;
+        $patient = Patient::findOrFail($data['patient_id']);
 
-        Booking::create(['user_id' => $user,
+        Booking::create(['user_id' => $patient->user->id,
                         'patient_id' => $data['patient_id'],
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
-                        'due_payment' => $data['due_payment']]
+                        'due_payment' => $data['due_payment'],
+                        'remaining_days' => $patient->days]
                         );
 
 
@@ -95,11 +96,13 @@ class AdminBookingController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
         //
+        Booking::findOrFail($id)->update(['status'=>3]);
+        return redirect()->back();
     }
 
     /**
@@ -111,7 +114,24 @@ class AdminBookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $data = $request->only(['action']);
+
+        $value = $data['action'];
+        // 0 reject
+        if($value == 0){
+            $booking->update(['status'=>3]);
+        }
+        // 4 takeover
+        elseif ($value == 4){
+            $booking->update(['status'=>4]);
+        }
+        // 1 complete
+        else{
+            $booking->update(['status'=>1]);
+        }
+
+
     }
 
     /**
@@ -123,5 +143,16 @@ class AdminBookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * @param $id
+     * extend the booking for required days
+     */
+    public function extend($id){
+        $booking = Booking::findOrFail($id);
+        
+        return view('admin.bookings.extend', compact('booking'));
     }
 }

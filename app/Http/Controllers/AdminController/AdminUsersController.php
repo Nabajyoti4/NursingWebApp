@@ -71,6 +71,7 @@ class AdminUsersController extends Controller
     public function show($id)
     {
         //
+        echo "Show page admin side say banna hai";
     }
 
     /**
