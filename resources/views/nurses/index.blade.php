@@ -60,7 +60,7 @@
                 })
             </script>
         @endif
-            <div class="container p-3">
+        <div class="container p-3">
             <div class="row p-5 bg-light">
                 <div class="col-xs-12 col-lg-4">
                     <img src="{{asset('/storage/'.$user->photo->photo_location)}}" class="avatar img-thumbnail"
@@ -73,9 +73,9 @@
                         <hr>
                         <h4><i class="fas fa-envelope"></i> {{$user->email}}</h4>
                         <hr>
-                            <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
-                                <div class="btn profile-edit-btn text-center">Edit Profile</div>
-                            </a>
+                        <a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none">
+                            <div class="btn profile-edit-btn text-center">Edit Profile</div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-lg-8">
@@ -212,7 +212,6 @@
                                         <div class="card shadow mb-4">
                                             <div class="card-header">Booking ID : {{$booking->id}}</div>
                                             <div class="card-body">
-                                                <p>UserName : {{$booking->user->name}}</p>
                                                 <p>Patient Name : {{$booking->patient->patient_name}}</p>
                                                 <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
                                                 <p>Status :
@@ -230,6 +229,47 @@
                                                 <p>Due Payment : {{$booking->due_payment}}</p>
                                                 <p>Total Payment : {{$booking->total_payment}}</p>
                                                 <p>Booked on : {{$booking->created_at}}</p>
+
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModalCenter">
+                                                    Give Attendance
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Upload a photo with a patient.</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{route('attendance.store')}}"
+                                                                  method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="booking_id" id="booking_id" value="{{$booking->id}}">
+                                                                    <label for="attendance_image">Upload File</label>
+                                                                    <input type="file" name="attendance_image"
+                                                                           class="form-control-file" id="attendance_image">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                    <button id="selfie_submit" type="submit" class="btn btn-primary">Upload
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -280,4 +320,61 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/exif.js')}}"></script>
+    <script>
+        const submitBtn = document.getElementById('selfie_submit').style;
+        submitBtn.display='none';
+        document.getElementById("attendance_image").onchange = function (e) {
+            var file = e.target.files[0]
+            if (file && file.name) {
+                EXIF.getData(file, function () {
+                    var exifData = EXIF.pretty(this);
+                    if (exifData) {
+                        exifData = exifData.split('\n');
+                        exifData.forEach(findDateTime);
+                        var DateTime;
+                        function findDateTime(item, index) {
+                            var data = (item.split(' : '));
+                            if (data[0]===("DateTime")) {
+                                DateTime = data;
+                            }
+                        }
+                        DateTime = DateTime[1].split(' ')[0];
+                        if(DateTime === "{{$date}}"){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Verifying Image',
+                                timer: 1800,
+                                showConfirmButton: false,
+                            })
+                            submitBtn.display="inline";
+                        }
+                        else{
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'Please, Insert Today\'s Image',
+                                showConfirmButton: false,
+                                timer: 1800
+                            })
+                            submitBtn.display="none";
+                        }
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'Please, Select a valid Image',
+                            showConfirmButton: false,
+                            timer: 1800
+                        })
+                        document.getElementById("attendance_image").value = "";
+                    }
+                });
+            }
+        }
+    </script>
 @endsection

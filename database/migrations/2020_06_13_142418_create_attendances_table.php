@@ -16,6 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('booking_id');
+            $table->string('photo');
             $table->integer('present')->default(0);
             $table->timestamps();
         });

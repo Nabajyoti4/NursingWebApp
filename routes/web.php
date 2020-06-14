@@ -124,6 +124,16 @@ Route::resource('admin/book','AdminController\AdminBookingController', ['names' 
 ]
 ]);
 
+//attendance
+Route::resource('/attendance','AttendanceController', ['names' =>[
+    'index'=>'attendance.index',
+    'create'=>'attendance.create',
+    'store'=>'attendance.store',
+    'edit'=>'attendance.edit',
+    'update'=>'attendance.update',
+    'show'=>'attendance.show'
+]
+]);
 
 
 

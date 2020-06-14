@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Nurse;
+namespace App\Http\Controllers;
 
+use App\Attendance;
 use App\Booking;
-use App\Http\Controllers\Controller;
-use App\Nurse;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class NurseController extends Controller
+class AttendanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +15,7 @@ class NurseController extends Controller
      */
     public function index()
     {
-        // find the current user
-        $user = Auth::user();
-        // find thw nurse with the id same as user_id
-        $nurse = $user->nurse;
-        $bookings = Booking::where('nurse_id', $nurse->id)->get();
-        $dateTime = Carbon::now()->format('Y:m:d');
-        $date = explode(" ",$dateTime)[0];
-        return view('nurses.index', compact('user', 'nurse','bookings','date'));
-
+        //
     }
 
     /**
@@ -47,7 +36,17 @@ class NurseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //get the data
+        $data = $request->only(['booking_id', 'attendance_image']);
+        $booking = Booking::findOrFail($data['booking_id']);
+        //check the image is valid or not
+        $image = $data['attendance_image']->store('attendance/'.$booking->nurse->user->name, 'public');
+//        //create the attendance record
+        Attendance::create([
+            'booking_id' => $data['booking_id'],
+            'photo' => $image,
+        ]);
+
     }
 
     /**
@@ -58,7 +57,7 @@ class NurseController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
