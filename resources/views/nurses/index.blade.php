@@ -55,7 +55,7 @@
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Data Updated Successfully :)',
+                    title: '{{$message}}',
                     showConfirmButton: true,
                 })
             </script>
@@ -231,7 +231,7 @@
                                                 <p>Booked on : {{$booking->created_at}}</p>
 
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                <button id="attendance_btn" type="button" class="btn btn-primary" data-toggle="modal"
                                                         data-target="#exampleModalCenter">
                                                     Give Attendance
                                                 </button>
@@ -348,7 +348,7 @@
                                 position: 'center',
                                 icon: 'success',
                                 title: 'Verifying Image',
-                                timer: 1800,
+                                timer: 1500,
                                 showConfirmButton: false,
                             })
                             submitBtn.display="inline";

@@ -78,45 +78,26 @@
     </div>
     <!-- header section ends -->
 
-    {{--    Modal for success or pending --}}
+    {{--    Modal for success or info --}}
     @if ($message = Session::get('success'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Your request has been send, We will get back to you shortly!',
+                title: '{{$message}}',
                 showConfirmButton: true,
             })
         </script>
-    @elseif($message = Session::get('pending'))
+    @elseif($message = Session::get('info'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'info',
-                title: 'You have already send the request.Your request is in pending state',
-                showConfirmButton: true,
-            })
-        </script>
-    @elseif($message = Session::get('approve'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'info',
-                title: 'You are already approved Check mail.',
-                showConfirmButton: true,
-            })
-        </script>
-    @elseif($message = Session::get('disapprove'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'info',
-                title: 'Your request has been disapproved Check mail for further details.',
+                title: '{{$message}}',
                 showConfirmButton: true,
             })
         </script>
     @endif
-
 
     <!--Welcome section-->
     <div class="block block-secondary app-iphone-block">
