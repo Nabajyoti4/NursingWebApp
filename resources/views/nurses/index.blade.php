@@ -338,7 +338,7 @@
                         var DateTime;
                         function findDateTime(item, index) {
                             var data = (item.split(' : '));
-                            if (data[0]===("DateTime")) {
+                            if (data[0]===("DateTimeOriginal")) {
                                 DateTime = data;
                             }
                         }
