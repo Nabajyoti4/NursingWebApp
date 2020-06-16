@@ -42,11 +42,11 @@ class AttendanceController extends Controller
         // get the data
         $data = $request->only(['booking_id', 'attendance_image']);
         $booking = Booking::findOrFail($data['booking_id']);
-
         // check the data is inserted or not
         if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
             $attendance = Attendance::where('booking_id', $booking->id)->get()->first();
             $serverDateTime = Carbon::now();
+
             //checking the date and time
             if (explode(" ", $attendance->created_at)[0] == explode(" ", $serverDateTime)[0]) {
                 return redirect(route('nurse.index'))->with('success', 'Attendance was marked as \'present\' already!');
@@ -63,7 +63,7 @@ class AttendanceController extends Controller
 
 
             //storing the image
-            //$image = $img->store('attendance/' . $booking->nurse->user->name, 'public');
+//            $image = $img->store('attendance/' . $booking->nurse->user->name, 'public');
             $image = '/attendance/' . $booking->nurse->user->name . '/' . $data['attendance_image']->getClientOriginalName();
             Storage::put($image, $img);
 
@@ -71,7 +71,8 @@ class AttendanceController extends Controller
             Attendance::create([
                 'booking_id' => $data['booking_id'],
                 'photo' => $image,
-                'present' => 1
+                'present' => 1,
+                'nurse_id'=>$booking->nurse_id,
             ]);
         }
 

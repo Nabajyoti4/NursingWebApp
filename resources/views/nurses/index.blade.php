@@ -90,7 +90,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="booking-tab" data-toggle="tab" href="#attendance" role="tab"
-                               aria-controls="attendance" aria-selected="false">Attendance</a>
+                               aria-controls="attendance" aria-selected="false">Mark Attendance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="booking-tab" data-toggle="tab" href="#viewAttendance" role="tab"
+                               aria-controls="salary" aria-selected="false">View Attendance</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="booking-tab" data-toggle="tab" href="#salary" role="tab"
@@ -204,7 +208,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        {{--attendance tab--}}
+                        {{--give attendance tab--}}
                         <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
                             <div class="row pt-2">
                                 @forelse($bookings as $booking)
@@ -229,15 +233,13 @@
                                                 <p>Due Payment : {{$booking->due_payment}}</p>
                                                 <p>Total Payment : {{$booking->total_payment}}</p>
                                                 <p>Booked on : {{$booking->created_at}}</p>
-
                                                 <!-- Button trigger modal -->
                                                 <button id="attendance_btn" type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModalCenter">
+                                                        data-target="#exampleModalCenter{{$booking->id}}">
                                                     Give Attendance
                                                 </button>
-
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                                <div class="modal fade" id="exampleModalCenter{{$booking->id}}" tabindex="-1"
                                                      role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -274,6 +276,33 @@
                                         </div>
                                     </div>
 
+                                @empty
+                                    <p>No attendance</p>
+                                @endforelse
+                            </div>
+                        </div>
+                        {{--view attendance tab--}}
+                        <div class="tab-pane fade" id="viewAttendance" role="tabpanel" aria-labelledby="attendance-tab">
+                            <div class="row pt-2">
+                                @forelse($attendances as $attendance)
+                                    <div class="col-sm-12">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
+                                            <div class="card-body">
+                                                <span>Date : {{$attendance->created_at}}</span>
+
+                                                <span style="float: right">
+                                                    @if($attendance->present == 0)
+                                                        Absent
+                                                    @else
+                                                        Present
+                                                    @endif
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 @empty
                                     <p>No attendance</p>
                                 @endforelse
