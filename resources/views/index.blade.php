@@ -3,6 +3,10 @@
     Homepage
 @endsection
 @section('links')
+
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+
+
     <!-- Theme CSS -->
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
@@ -410,6 +414,7 @@
     </div>
     <!-- address section end  -->
 
+
     <!--Nurse request form-->
     <div class="container-nurserequest" id="joinForm">
         <div class="wrap-nurserequest">
@@ -423,12 +428,14 @@
                 @elseauth''@endauth" required>
 
                 <div class="wrap-input100">
-                    <input class="input100" type="text" name="name" placeholder="Full Name" required>
+                    <input class="input100" type="text" name="name" placeholder="Full Name" value="@auth{{Auth::user()->name}}
+                    @elseauth''@endauth"required>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="email" placeholder="Email" required>
+                    <input class="input100" type="text" name="email" value="@auth{{Auth::user()->email}}
+                    @elseauth''@endauth" placeholder="Email" required readonly>
                     <span class="focus-input100"></span>
                 </div>
 

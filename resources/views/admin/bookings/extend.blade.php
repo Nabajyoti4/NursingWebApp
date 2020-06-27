@@ -53,7 +53,10 @@
     <div class="container p-3">
         <form action="{{route('admin.book.store')}}" method="POST">
             @csrf
-            <input type="hidden" value="{{$booking->patient->id}}" name="patient_id">
+            <input type="hidden" value="{{$booking->patient_id}}" name="patient_id">
+            <input type="hidden" value="{{$booking->nurse_id}}" name="nurse">
+
+            <!--deatils of user and patient-->
             <div class="row bg-light">
                 <div class="col-xs-12 col-lg-4">
                     <img
@@ -106,6 +109,27 @@
                     </div>
                 </div>
             </div>
+
+            <!--details of same nurse-->
+            <div  class="row">
+                <div class="col-lg-12">
+                    <div class="borderdiv">
+                        <h5 class="header font-weight-bold bg-light">Nurse Details</h5>
+                        <div>
+                            <h5 class="font">Name</h5>
+                            <span>:  {{$booking->nurse->user->name}} </span>
+                        </div>
+                        <div>
+                            <h5 class="font">Employee ID</h5>
+                            <span>:  {{$booking->nurse->employee_id}} </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--details of payment-->
             <div class="row">
             <div class="col-4">
                 <div class="form-group">

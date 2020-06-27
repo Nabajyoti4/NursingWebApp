@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Address;
+use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
@@ -195,5 +196,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function booking($id){
+        $book = Booking::findOrFail($id);
+        $attendances = Attendance::where('booking_id',$book->id)->get();
+        return view('bookings.show', compact('book', 'attendances'));
     }
 }
