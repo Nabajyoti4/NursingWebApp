@@ -14,6 +14,7 @@
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
 @endsection
 
@@ -234,10 +235,12 @@
                                                 <p>Total Payment : {{$booking->total_payment}}</p>
                                                 <p>Booked on : {{$booking->created_at}}</p>
                                                 <!-- Button trigger modal -->
+                                                @if($booking->status == 3)
                                                 <button id="attendance_btn" type="button" class="btn btn-primary" data-toggle="modal"
                                                         data-target="#exampleModalCenter{{$booking->id}}">
                                                     Give Attendance
                                                 </button>
+                                                @endif
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModalCenter{{$booking->id}}" tabindex="-1"
                                                      role="dialog" aria-labelledby="exampleModalCenterTitle"

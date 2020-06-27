@@ -15,7 +15,7 @@ class NurseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -29,14 +29,11 @@ class NurseController extends Controller
         // seperating the time na date
         $date = explode(" ",$dateTime)[0];
         // check if there is attendance for the nurse
-        if (Attendance::all()->where('nurse_id',$nurse->id)->isNotEmpty())
-        {
-            $attendances = Attendance::where('nurse_id',$nurse->id)->get();
-            return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
+        $attendances = Attendance::where('nurse_id',$nurse->id)->get();
+        return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
 
-        }
 
-        return view('nurses.index', compact('user', 'nurse','bookings','date'));
+
 
     }
 
