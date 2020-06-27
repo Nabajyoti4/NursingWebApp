@@ -40,7 +40,7 @@ class AdminBookingController extends Controller
         $nursesAll = Nurse::all();
         $nurses = array();
         foreach ($nursesAll as $nurse) {
-            if (($nurse->user->addresses->last()->city) == ($patient->addresses->first()->city)) {
+            if (($nurse->user->addresses->last()->city) == ($patient->addresses->city)) {
                 array_push($nurses, $nurse);
             }
         }
