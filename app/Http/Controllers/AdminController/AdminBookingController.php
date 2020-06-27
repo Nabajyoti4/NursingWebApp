@@ -61,6 +61,10 @@ class AdminBookingController extends Controller
         //fetch user_id from patient
         $patient = Patient::findOrFail($data['patient_id']);
 
+
+        // get the nurse and update the status to working 1
+        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
+
         Booking::create(['user_id' => $patient->user->id,
                         'patient_id' => $data['patient_id'],
                         'nurse_id' => $data['nurse'],
@@ -120,13 +124,41 @@ class AdminBookingController extends Controller
         $data = $request->only(['action']);
 
         $value = $data['action'];
+
         // 0 reject
         if($value == 0){
             $booking->update(['status'=>3]);
         }
-        // 4 takeover
+
+        // 4 takeover action
         elseif ($value == 4){
+            // update the booking status to take over
             $booking->update(['status'=>4]);
+
+            $patient = Patient::findOrFail($booking->patient_id);
+
+            // update the nurse status to not working and set to leave
+            Nurse::findOrfail($booking->nurse_id)->update(['status' => 0,
+                'is_active' => 0]);
+
+
+            // fetch the other nurse who are active
+            $nursesAll = Nurse::select('*')
+                         ->where('is_active', 1)
+                         ->where('status', 0)
+                         ->get();
+
+
+            //  find the nurse same as patient address
+            $nurses = array();
+
+            foreach ($nursesAll as $nurse) {
+                if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
+                    array_push($nurses, $nurse);
+                }
+            }
+
+            return view('admin.bookings.takeover', compact('booking', 'nurses'));
         }
         // 1 complete
         else{
