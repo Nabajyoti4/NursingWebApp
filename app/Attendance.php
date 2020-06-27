@@ -9,11 +9,12 @@ class Attendance extends Model
     protected $fillable = [
         'present',
         'booking_id',
-        'photo'
+        'photo',
+        'nurse_id'
     ];
 
     public function booking(){
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(Booking::class);
     }
 
 

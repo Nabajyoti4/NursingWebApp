@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Nurse;
 
+use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
@@ -23,8 +24,18 @@ class NurseController extends Controller
         // find thw nurse with the id same as user_id
         $nurse = $user->nurse;
         $bookings = Booking::where('nurse_id', $nurse->id)->get();
+        // getting the time and date
         $dateTime = Carbon::now()->format('Y:m:d');
+        // seperating the time na date
         $date = explode(" ",$dateTime)[0];
+        // check if there is attendance for the nurse
+        if (Attendance::all()->where('nurse_id',$nurse->id)->isNotEmpty())
+        {
+            $attendances = Attendance::where('nurse_id',$nurse->id)->get();
+            return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
+
+        }
+
         return view('nurses.index', compact('user', 'nurse','bookings','date'));
 
     }
