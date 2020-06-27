@@ -185,7 +185,6 @@
                                             <div class="card-body">
                                                 <p>UserName : {{$booking->user->name}}</p>
                                                 <p>Patient Name : {{$booking->patient->patient_name}}</p>
-                                                <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
                                                 <p>Status :
                                                     @if($booking->status == 0)
                                                         Rejected

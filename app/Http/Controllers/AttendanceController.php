@@ -66,7 +66,7 @@ class AttendanceController extends Controller
             //storing the image
 //            $image = $img->store('attendance/' . $booking->nurse->user->name, 'public');
             $image = '/attendance/' . $booking->nurse->user->name . '/' . $data['attendance_image']->getClientOriginalName();
-            Storage::put($image, $img);
+            Storage::disk('public')->put($image, $img);
 
             //create the attendance record
             Attendance::create([
