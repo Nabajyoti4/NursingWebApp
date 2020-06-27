@@ -34,7 +34,7 @@ class AttendanceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -75,9 +75,26 @@ class AttendanceController extends Controller
                 'present' => 1,
                 'nurse_id' => $booking->nurse_id,
             ]);
-        }
+            // reduce the remaining days
+            $booking->update([
+                'remaining_days' => $booking->remaining_days - 1
+            ]);
 
-        return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
+            return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
+
+        }
+        //absent wala
+        Attendance::create([
+            'booking_id' => $data['booking_id'],
+            'present' => 2,//absent
+            'nurse_id' => $booking->nurse_id,
+        ]);
+
+        $booking->update([
+            'remaining_days' => $booking->remaining_days - 1
+        ]);
+        return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
+
     }
 
     /**
@@ -125,17 +142,8 @@ class AttendanceController extends Controller
         //
     }
 
-    public function absent(Request $request)
-    {
-        $data = $request->only(['booking_id']);
-        $booking = Booking::findOrFail($data['booking_id']);
-
-        Attendance::create([
-            'booking_id' => $data['booking_id'],
-            'present' => 2,//absent
-            'nurse_id' => $booking->nurse_id,
-        ]);
-        return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
-
+    public function payementAlert($book){
+       
     }
+
 }

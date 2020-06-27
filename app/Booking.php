@@ -43,4 +43,10 @@ class Booking extends Model
     public function attendance(){
         return $this->hasMany(Attendance::class);
     }
+
+    public function getAttendanceHalf()
+    {
+        return (Patient::findOrFail($this->patient_id)->days)/2;
+    }
+
 }

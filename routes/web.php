@@ -137,7 +137,6 @@ Route::resource('/attendance','AttendanceController', ['names' =>[
 ]
 ]);
 
-Route::post('attendance/absent','AttendanceController@absent')->name('attendance.absent');
 Route::get('admin/book/{id}/extend','AdminController\AdminBookingController@extend')->name('admin.book.extend');
 
 

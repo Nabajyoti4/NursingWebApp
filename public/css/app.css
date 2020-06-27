@@ -2916,7 +2916,7 @@ fieldset:disabled a.btn {
 
 .btn-danger {
   color: #fff;
-  background-color: #e3342f;
+  background-color: #e3342f;!important;
   border-color: #e3342f;
 }
 
