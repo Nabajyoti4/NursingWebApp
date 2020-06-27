@@ -10,6 +10,22 @@ use Intervention\Image\Facades\Image;
 
 class AttendanceController extends Controller
 {
+
+    /**
+     * Remaining Days ALERTS
+     */
+    public function payementAlert(Booking $book)
+    {
+        if ($book->due_payment > 0) {
+            if ($book->remaining_days == $book->getAttendanceHalf()) {
+                dd('HALF DAYS');
+            }
+            if ($book->remaining_days == 2) {
+                dd('LAST 2 DAYS REMAINING');
+            }
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +96,8 @@ class AttendanceController extends Controller
                 'remaining_days' => $booking->remaining_days - 1
             ]);
 
+            $this->payementAlert($booking);
+
             return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
 
         }
@@ -93,6 +111,9 @@ class AttendanceController extends Controller
         $booking->update([
             'remaining_days' => $booking->remaining_days - 1
         ]);
+
+        $this->payementAlert($booking);
+
         return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
 
     }
@@ -142,8 +163,5 @@ class AttendanceController extends Controller
         //
     }
 
-    public function payementAlert($book){
-       
-    }
 
 }
