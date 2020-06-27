@@ -43,10 +43,11 @@ class AttendanceController extends Controller
         $data = $request->only(['booking_id', 'attendance_image']);
         $booking = Booking::findOrFail($data['booking_id']);
         // check the data is inserted or not
-        if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
-            $attendance = Attendance::where('booking_id', $booking->id)->get()->first();
-            $serverDateTime = Carbon::now();
 
+//        dd(Attendance::all()->where('booking_id', $booking->id)->isNotEmpty());
+        if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
+            $attendance = Attendance::where('booking_id', $booking->id)->get()->last();
+            $serverDateTime = Carbon::now();
             //checking the date and time
             if (explode(" ", $attendance->created_at)[0] == explode(" ", $serverDateTime)[0]) {
                 return redirect(route('nurse.index'))->with('success', 'Attendance was marked as \'present\' already!');
