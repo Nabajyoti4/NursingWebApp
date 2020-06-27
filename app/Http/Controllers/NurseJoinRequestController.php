@@ -6,6 +6,7 @@ use App\Notifications\NurseJoinDisapprove;
 use App\NurseJoinRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 
@@ -43,36 +44,48 @@ class NurseJoinRequestController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
+        $data = $request->only(['user_id',
+        'name',
+        'email',
+        'phone_no',
+        'age']);
 
-        // search for pending request if email
-        if(NurseJoinRequest::all()->where('user_id',$data['user_id'])->isNotEmpty())
-        {
-            // searching for the candidate request in DB
-            $candidate = NurseJoinRequest::where('user_id',$data['user_id'])->get()->first();
+        $user = Auth::user();
 
-            // searching if the state is pending
-            if ($candidate['Approval'] == 2 ){
-                return redirect()->back()->with('info', 'You have already send the request.Your request is in pending state');
-            }
-            elseif ($candidate['Approval']==0){
-                return redirect()->back()->with('info', 'Your request has been disapproved Check mail for further details.');
+        // check if the address fields are not empty
+        if($user->permanent_address_id){
+            // search for pending request if email
+            if(NurseJoinRequest::all()->where('user_id',$data['user_id'])->isNotEmpty())
+            {
+                // searching for the candidate request in DB
+                $candidate = NurseJoinRequest::where('user_id',$data['user_id'])->get()->first();
+
+                // searching if the state is pending
+                if ($candidate['Approval'] == 2 ){
+                    return redirect()->back()->with('info', 'You have already send the request.Your request is in pending state');
+                }
+                elseif ($candidate['Approval']==0){
+                    return redirect()->back()->with('info', 'Your request has been disapproved Check mail for further details.');
+                }
+                else{
+                    return redirect()->back()->with('info', 'You are already approved Check mail');
+                }
+
             }
             else{
-                return redirect()->back()->with('info', 'You are already approved Check mail');
+                // create if no pending request for particular candidate
+                $nurse = NurseJoinRequest::create($data);
+
+                $admin = User::where('role', 'admin')->get();
+
+                Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
+
+                return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
             }
-
+        }else{
+            return redirect()->back()->with('info', 'Please fill your user profile with address and other informations');
         }
-        else{
-            // create if no pending request for particular candidate
-            $nurse = NurseJoinRequest::create($data);
 
-            $admin = User::where('role', 'admin')->get();
-
-            Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
-
-            return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
-        }
 
 
 

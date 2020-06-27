@@ -33,8 +33,6 @@ class NurseController extends Controller
         return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
 
 
-
-
     }
 
     /**

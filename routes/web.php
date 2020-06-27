@@ -138,8 +138,14 @@ Route::resource('/attendance','AttendanceController', ['names' =>[
 ]);
 
 Route::post('attendance/absent','AttendanceController@absent')->name('attendance.absent');
+
+
+// route to extend the booking
 Route::get('admin/book/{id}/extend','AdminController\AdminBookingController@extend')->name('admin.book.extend');
 
+
+// Route user extend booking
+Route::get('user/book/{id}/show','User\UserController@booking')->name('user.booking.show');
 
 
 //admins

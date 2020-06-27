@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
@@ -89,7 +90,8 @@ class AdminBookingController extends Controller
     {
         //
         $book = Booking::findOrFail($id);
-        return view('admin.bookings.show', compact('book'));
+        $attendances = Attendance::where('booking_id',$book->id)->get();
+        return view('admin.bookings.show', compact('book', 'attendances'));
     }
 
     /**

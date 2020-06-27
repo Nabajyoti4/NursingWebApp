@@ -1,11 +1,19 @@
-@extends('layouts.admin')
+@extends('layouts.home')
 @section('title')
-    Nurse Profile
+    Booking Details
 @endsection
 
 @section('links')
     <link href="{{asset('css/profile.css')}}" rel="stylesheet">
     <link href="{{asset('css/error.css')}}" rel="stylesheet">
+    <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
+    <!--  fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 @endsection
 
 @section('style')
@@ -82,7 +90,19 @@
 @endsection
 
 @section('content')
-    <div class="card-header py-3">
+    <div class="container-fluid profile-bg">
+        @include('partials.navbar')
+        @if ($message = Session::get('success'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '{{$message}}',
+                    showConfirmButton: true,
+                })
+            </script>
+        @endif
+    <div class="card-header py-3 bg-white">
         <h6 class="m-0 font-weight-bold text-primary">Booking Details Of {{$book->patient->patient_name}}</h6>
     </div>
 
@@ -104,17 +124,17 @@
                         <h6>
                             Current Booking status :
                             <strong>
-                            @if($book->status == 0)
-                                Rejected
-                            @elseif($book->status == 1)
-                                Completed
-                            @elseif($book->status == 2)
-                                Pending
-                            @elseif($book->status == 3)
-                                Running
-                            @else
-                                Takeover
-                            @endif
+                                @if($book->status == 0)
+                                    Rejected
+                                @elseif($book->status == 1)
+                                    Completed
+                                @elseif($book->status == 2)
+                                    Pending
+                                @elseif($book->status == 3)
+                                    Running
+                                @else
+                                    Takeover
+                                @endif
                             </strong>
                         </h6>
                         <h6>
@@ -125,13 +145,6 @@
                         </h6>
                         <h6>
                             <p>Remaining Days: <strong>{{$book->remaining_days}}</strong> &nbsp;
-                                @if($book->status == 3)
-{{--                                @if($book->remaining_days == 2)--}}
-                                <a href="{{ route('admin.book.extend', $book->id) }}" style="text-decoration: none">
-                                    <button  class="profile-edit-btn text-center">Extend Booking</button>
-                                </a>
-{{--                                @endif--}}
-                                @endif
                             </p>
                         </h6>
                         <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
@@ -149,27 +162,6 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    @if($book->status == 2)
-                        <a href="{{ route('admin.book.edit', $book->id) }}" style="text-decoration: none">
-                            <div  class="profile-edit-btn text-center">Start Booking</div>
-                        </a>
-                    @else
-                        <form action="{{ route('admin.book.update', $book->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                        <div class="select">
-                            <select name="action" type="number" id="action">
-                                <option selected disabled>Take Action</option>
-                                <option value="0">Reject</option>
-                                <option value="4">Takeover</option>
-                                <option value="1">Completed</option>
-                            </select>
-                        </div>
-                            <button class="go-edit-btn text-center mt-3" type="submit">Go</button>
-                        </form>
-                    @endif
                 </div>
             </div>
             <div class="row">
@@ -210,11 +202,6 @@
                                     <p>{{$book->patient->address_id? $book->patient->getAddress(): "Fill the Permanent Address"}}</p>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                            <a href="{{ route('admin.patient.show', $book->patient->id) }}" style="text-decoration: none">
-                                <div  class="profile-edit-btn text-center">View full deatils</div>
-                            </a>
-                            </div>
                         </div>
 
                         <!--client or User info-->
@@ -251,11 +238,6 @@
                                 <div class="col-md-6">
                                     <p>{{$book->user->addresses->last()? $book->user->addresses->last()->city: "Fill the Permanent Address"}}</p>
                                 </div>
-                            </div>
-                            <div class="row mt-2">
-                                <a href="{{ route('admin.users.show', $book->user->id) }}" style="text-decoration: none">
-                                    <div  class="profile-edit-btn text-center">View full deatils</div>
-                                </a>
                             </div>
                         </div>
 
@@ -299,7 +281,6 @@
                                     <div  class="profile-edit-btn text-center">View full deatils</div>
                                 </a>
                             </div>
-
                         </div>
 
                         <!--Attendence table-->
