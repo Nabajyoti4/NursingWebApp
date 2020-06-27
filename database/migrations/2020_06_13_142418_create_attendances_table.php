@@ -17,7 +17,7 @@ class CreateAttendancesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('nurse_id');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->integer('present')->default(0);
             $table->timestamps();
         });

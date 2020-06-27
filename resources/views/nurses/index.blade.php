@@ -235,13 +235,15 @@
                                                 <p>Booked on : {{$booking->created_at}}</p>
                                                 <!-- Button trigger modal -->
                                                 @if($booking->status == 3)
-                                                <button id="attendance_btn" type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModalCenter{{$booking->id}}">
-                                                    Give Attendance
-                                                </button>
-                                                @endif
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalCenter{{$booking->id}}" tabindex="-1"
+                                                    <button id="attendance_btn" type="button" class="btn btn-primary"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModalCenter{{$booking->id}}">
+                                                        Give Attendance
+                                                    </button>
+                                            @endif
+                                            <!-- Modal -->
+                                                <div class="modal fade" id="exampleModalCenter{{$booking->id}}"
+                                                     tabindex="-1"
                                                      role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -258,18 +260,30 @@
                                                                   method="post" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <div class="modal-body">
-                                                                    <input type="hidden" name="booking_id" id="booking_id" value="{{$booking->id}}">
+                                                                    <input type="hidden" name="booking_id"
+                                                                           id="booking_id" value="{{$booking->id}}">
                                                                     <label for="attendance_image">Upload File</label>
                                                                     <input type="file" name="attendance_image"
-                                                                           class="form-control-file" id="attendance_image">
+                                                                           class="form-control-file"
+                                                                           id="attendance_image">
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close
                                                                     </button>
-                                                                    <button id="selfie_submit" type="submit" class="btn btn-primary">Upload
+                                                                    <button id="selfie_submit" type="submit"
+                                                                            class="btn btn-primary">Upload
                                                                     </button>
                                                                 </div>
+                                                            </form>
+                                                            <form action="{{route('attendance.absent')}}"
+                                                                  method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="booking_id" id="booking_id"
+                                                                       value="{{$booking->id}}">
+                                                                <button id="submit" type="submit"
+                                                                        class="btn btn-primary">Mark Absent
+                                                                </button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -295,9 +309,11 @@
 
                                                 <span style="float: right">
                                                     @if($attendance->present == 0)
-                                                        Absent
-                                                    @else
+                                                        Pending
+                                                    @elseif($attendance->present == 1)
                                                         Present
+                                                    @else
+                                                        Absent
                                                     @endif
                                                 </span>
 

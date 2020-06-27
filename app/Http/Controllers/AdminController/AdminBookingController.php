@@ -39,7 +39,7 @@ class AdminBookingController extends Controller
         $nursesAll = Nurse::all();
         $nurses = array();
         foreach ($nursesAll as $nurse) {
-            if (($nurse->user->addresses->last()->city) == ($patient->addresses->first()->city)) {
+            if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
                 array_push($nurses, $nurse);
             }
         }
@@ -152,7 +152,7 @@ class AdminBookingController extends Controller
      */
     public function extend($id){
         $booking = Booking::findOrFail($id);
-        
+
         return view('admin.bookings.extend', compact('booking'));
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Booking;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -42,6 +41,7 @@ class AttendanceController extends Controller
         // get the data
         $data = $request->only(['booking_id', 'attendance_image']);
         $booking = Booking::findOrFail($data['booking_id']);
+
         // check the data is inserted or not
 
 //        checking the attendance table
@@ -73,7 +73,7 @@ class AttendanceController extends Controller
                 'booking_id' => $data['booking_id'],
                 'photo' => $image,
                 'present' => 1,
-                'nurse_id'=>$booking->nurse_id,
+                'nurse_id' => $booking->nurse_id,
             ]);
         }
 
@@ -123,5 +123,19 @@ class AttendanceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function absent(Request $request)
+    {
+        $data = $request->only(['booking_id']);
+        $booking = Booking::findOrFail($data['booking_id']);
+
+        Attendance::create([
+            'booking_id' => $data['booking_id'],
+            'present' => 2,//absent
+            'nurse_id' => $booking->nurse_id,
+        ]);
+        return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
+
     }
 }
