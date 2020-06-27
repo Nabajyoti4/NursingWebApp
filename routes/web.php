@@ -103,6 +103,8 @@ Route::resource('nurse','Nurse\NurseController', ['names' =>[
 ]
 ]);
 
+// Route nurse  booking
+Route::get('nurse/book/{id}/show','Nurse\NurseController@booking')->name('nurse.booking.show');
 
 // patient for user
 Route::resource('users/patient','Patient\PatientController', ['names' =>[

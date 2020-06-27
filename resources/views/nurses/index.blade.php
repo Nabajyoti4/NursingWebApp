@@ -200,6 +200,14 @@
                                                 <p>Due Payment : {{$booking->due_payment}}</p>
                                                 <p>Total Payment : {{$booking->total_payment}}</p>
                                                 <p>Booked on : {{$booking->created_at}}</p>
+                                                <p>
+                                                <form action="{{route('nurse.booking.show',$booking->id)}}"
+                                                      method="GET">
+                                                    @csrf
+                                                    <button class="btn btn-primary" type="submit">Show
+                                                    </button>
+                                                </form>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

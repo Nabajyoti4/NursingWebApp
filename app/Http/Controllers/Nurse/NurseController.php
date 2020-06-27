@@ -100,4 +100,11 @@ class NurseController extends Controller
     {
         //
     }
+
+
+    public function booking($id){
+        $book = Booking::findOrFail($id);
+        $attendances = Attendance::where('booking_id',$book->id)->get();
+        return view('nurses.bookshow', compact('book', 'attendances'));
+    }
 }
