@@ -352,60 +352,61 @@
         </div>
     </div>
 @endsection
+{{--uncomment the script for image verification--}}
 
-@section('scripts')
-    <script src="{{asset('js/exif.js')}}"></script>
-    <script>
-        const submitBtn = document.getElementById('selfie_submit').style;
-        submitBtn.display='none';
-        document.getElementById("attendance_image").onchange = function (e) {
-            var file = e.target.files[0]
-            if (file && file.name) {
-                EXIF.getData(file, function () {
-                    var exifData = EXIF.pretty(this);
-                    if (exifData) {
-                        exifData = exifData.split('\n');
-                        exifData.forEach(findDateTime);
-                        var DateTime;
-                        function findDateTime(item, index) {
-                            var data = (item.split(' : '));
-                            if (data[0]===("DateTimeOriginal")) {
-                                DateTime = data;
-                            }
-                        }
-                        DateTime = DateTime[1].split(' ')[0];
-                        if(DateTime === "{{$date}}"){
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Verifying Image',
-                                timer: 1500,
-                                showConfirmButton: false,
-                            })
-                            submitBtn.display="inline";
-                        }
-                        else{
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Please, Insert Today\'s Image',
-                                showConfirmButton: false,
-                                timer: 1800
-                            })
-                            submitBtn.display="none";
-                        }
-                    } else {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'Please, Select a valid Image',
-                            showConfirmButton: false,
-                            timer: 1800
-                        })
-                        document.getElementById("attendance_image").value = "";
-                    }
-                });
-            }
-        }
-    </script>
-@endsection
+{{--@section('scripts')--}}
+{{--    <script src="{{asset('js/exif.js')}}"></script>--}}
+{{--    <script>--}}
+{{--        const submitBtn = document.getElementById('selfie_submit').style;--}}
+{{--        submitBtn.display='none';--}}
+{{--        document.getElementById("attendance_image").onchange = function (e) {--}}
+{{--            var file = e.target.files[0]--}}
+{{--            if (file && file.name) {--}}
+{{--                EXIF.getData(file, function () {--}}
+{{--                    var exifData = EXIF.pretty(this);--}}
+{{--                    if (exifData) {--}}
+{{--                        exifData = exifData.split('\n');--}}
+{{--                        exifData.forEach(findDateTime);--}}
+{{--                        var DateTime;--}}
+{{--                        function findDateTime(item, index) {--}}
+{{--                            var data = (item.split(' : '));--}}
+{{--                            if (data[0]===("DateTimeOriginal")) {--}}
+{{--                                DateTime = data;--}}
+{{--                            }--}}
+{{--                        }--}}
+{{--                        DateTime = DateTime[1].split(' ')[0];--}}
+{{--                        if(DateTime === "{{$date}}"){--}}
+{{--                            Swal.fire({--}}
+{{--                                position: 'center',--}}
+{{--                                icon: 'success',--}}
+{{--                                title: 'Verifying Image',--}}
+{{--                                timer: 1500,--}}
+{{--                                showConfirmButton: false,--}}
+{{--                            })--}}
+{{--                            submitBtn.display="inline";--}}
+{{--                        }--}}
+{{--                        else{--}}
+{{--                            Swal.fire({--}}
+{{--                                position: 'center',--}}
+{{--                                icon: 'error',--}}
+{{--                                title: 'Please, Insert Today\'s Image',--}}
+{{--                                showConfirmButton: false,--}}
+{{--                                timer: 1800--}}
+{{--                            })--}}
+{{--                            submitBtn.display="none";--}}
+{{--                        }--}}
+{{--                    } else {--}}
+{{--                        Swal.fire({--}}
+{{--                            position: 'center',--}}
+{{--                            icon: 'error',--}}
+{{--                            title: 'Please, Select a valid Image',--}}
+{{--                            showConfirmButton: false,--}}
+{{--                            timer: 1800--}}
+{{--                        })--}}
+{{--                        document.getElementById("attendance_image").value = "";--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
+{{--@endsection--}}
