@@ -301,6 +301,30 @@
                         <!--Attendence table-->
                         <div class="tab-pane fade" id="attendence" role="tabpanel" aria-labelledby="attendence-tab">
 
+                            <div class="row pt-2">
+                                @forelse($attendances as $attendance)
+                                    <div class="col-sm-12">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
+                                            <div class="card-body">
+                                                <span>Date : {{$attendance->created_at}}</span>
+
+                                                <span style="float: right">
+                                                    @if($attendance->present == 0)
+                                                        Absent
+                                                    @else
+                                                        Present
+                                                    @endif
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No attendance</p>
+                                @endforelse
+                            </div>
 
                         </div>
 
