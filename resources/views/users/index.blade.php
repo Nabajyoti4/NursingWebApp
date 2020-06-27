@@ -112,6 +112,7 @@
                 <div class="row">
                     <div class="col-md-12 p-5">
                         <div class="tab-content profile-tab" id="myTabContent">
+                            <!--user tab-->
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -156,6 +157,7 @@
 
                             </div>
 
+                            <!--patient-->
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
 
@@ -194,6 +196,7 @@
                                 </div>
                             </div>
 
+                            <!--bookings-->
                             <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
                                 <div class="row">
                                 @forelse($bookings as $booking)
@@ -219,6 +222,14 @@
                                                 <p>Due Payment : {{$booking->due_payment}}</p>
                                                 <p>Total Payment : {{$booking->total_payment}}</p>
                                                 <p>Booked on : {{$booking->created_at}}</p>
+                                                <p>
+                                                <form action="{{route('users.patient.show',$patient->id)}}"
+                                                      method="GET">
+                                                    @csrf
+                                                    <button class="btn btn-primary" type="submit">Show
+                                                    </button>
+                                                </form>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

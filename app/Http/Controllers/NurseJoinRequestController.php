@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NurseJoinDisapprove;
 use App\NurseJoinRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class NurseJoinRequestController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -64,9 +65,10 @@ class NurseJoinRequestController extends Controller
         }
         else{
             // create if no pending request for particular candidate
-
             $nurse = NurseJoinRequest::create($data);
+
             $admin = User::where('role', 'admin')->get();
+
             Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
 
             return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
@@ -129,7 +131,7 @@ class NurseJoinRequestController extends Controller
         $user = User::findOrFail($candidate->user_id);
 
 
-        Notification::send($user, new \App\Notifications\NurseJoinDisapprove($request));
+        Notification::send($user, new NurseJoinDisapprove($request));
 
         $candidate->Approval = 0;
         $candidate->save();

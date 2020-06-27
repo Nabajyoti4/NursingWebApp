@@ -65,7 +65,7 @@
             <div class="row bg-light">
                 <div class="col-xs-12 col-lg-4">
                     <img
-                        src="{{ $patient->user->photo?asset("/storage/".$patient->user->photo->photo_location) :'http://placehold.it/64x64'}}"
+                        src="{{ $patient->photo?asset("/storage/".$patient->photo->photo_location) :'http://placehold.it/64x64'}}"
                         width="70%" alt="avatar">
                     <div class="pt-5">
                         <label for="patient_name">Patient Name: </label>
