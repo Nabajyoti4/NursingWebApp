@@ -51,7 +51,7 @@
     </div>
 
     <div class="container p-3">
-        <form action="{{route('admin.book.store')}}" method="POST">
+        <form action="{{route('admin.book.extend')}}" method="POST">
             @csrf
             <input type="hidden" value="{{$booking->patient_id}}" name="patient_id">
             <input type="hidden" value="{{$booking->nurse_id}}" name="nurse">

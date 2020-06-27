@@ -127,7 +127,7 @@
                             <p>Remaining Days: <strong>{{$book->remaining_days}}</strong> &nbsp;
                                 @if($book->status == 3)
 {{--                                @if($book->remaining_days == 2)--}}
-                                <a href="{{ route('admin.book.extend', $book->id) }}" style="text-decoration: none">
+                                <a href="{{ route('admin.book.request', $book->id) }}" style="text-decoration: none">
                                     <button  class="profile-edit-btn text-center">Extend Booking</button>
                                 </a>
 {{--                                @endif--}}

@@ -152,9 +152,51 @@ class AdminBookingController extends Controller
      * @param $id
      * extend the booking for required days
      */
-    public function extend($id){
+    public function request($id){
         $booking = Booking::findOrFail($id);
 
         return view('admin.bookings.extend', compact('booking'));
+    }
+
+
+    public function extend(Request $request){
+        //use request only to fetch the required data
+        $data = $request->only(['patient_id','total_payment','due_payment','nurse', 'days']);
+
+        //fetch user_id from patient
+        $old_patient = Patient::findOrFail($data['patient_id']);
+
+        // create a new patient
+        $patient = Patient::create(['user_id' =>  $old_patient->user->id,
+            'patient_name' => $old_patient->patient_name,
+            'photo_id' => $old_patient->photo_id,
+            'phone_no' => $old_patient->phone_no,
+            'age' => $old_patient->age,
+            'gender' => $old_patient->gender,
+            'address_id' => $old_patient->address_id,
+            'family_members' => $old_patient->family_members,
+            'guardian_name' => $old_patient->guardian_name,
+            'relation_guardian' => $old_patient->relation_guardian,
+            'shift' => $old_patient->shift,
+            'days' => $data['days'],
+            'service_id' => $old_patient->service_id,
+            'patient_history' => $old_patient->patient_history,
+            'patient_doctor' => $old_patient->patient_doctor
+        ]);
+
+
+        Booking::create(['user_id' => $patient->user->id,
+                'patient_id' => $data['patient_id'],
+                'nurse_id' => $data['nurse'],
+                'total_payment' => $data['total_payment'],
+                'due_payment' => $data['due_payment'],
+                'remaining_days' => $patient->days]
+        );
+
+
+        $bookings = Booking::all();
+        return redirect()
+            ->route('admin.book.index', compact('bookings'))
+            ->with('success','Booking done successfully!');
     }
 }
