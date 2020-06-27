@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
@@ -40,7 +39,7 @@ class AdminBookingController extends Controller
         $nursesAll = Nurse::all();
         $nurses = array();
         foreach ($nursesAll as $nurse) {
-            if (($nurse->user->addresses->last()->city) == ($patient->addresses->city)) {
+            if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
                 array_push($nurses, $nurse);
             }
         }
@@ -90,8 +89,7 @@ class AdminBookingController extends Controller
     {
         //
         $book = Booking::findOrFail($id);
-        $attendances = Attendance::where('booking_id',$book->id)->get();
-        return view('admin.bookings.show', compact('book', 'attendances'));
+        return view('admin.bookings.show', compact('book'));
     }
 
     /**
