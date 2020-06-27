@@ -274,16 +274,10 @@
                                                                     <button id="selfie_submit" type="submit"
                                                                             class="btn btn-primary">Upload
                                                                     </button>
+                                                                    <button id="submit" type="submit"
+                                                                            class="btn" style=" color: #fff;background-color: #e3342f;!important;border-color: #e3342f;">Mark Absent
+                                                                    </button>
                                                                 </div>
-                                                            </form>
-                                                            <form action="{{route('attendance.absent')}}"
-                                                                  method="post">
-                                                                @csrf
-                                                                <input type="hidden" name="booking_id" id="booking_id"
-                                                                       value="{{$booking->id}}">
-                                                                <button id="submit" type="submit"
-                                                                        class="btn btn-primary">Mark Absent
-                                                                </button>
                                                             </form>
                                                         </div>
                                                     </div>
