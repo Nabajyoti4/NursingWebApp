@@ -29,7 +29,7 @@ class NurseController extends Controller
         // seperating the time na date
         $date = explode(" ",$dateTime)[0];
         // check if there is attendance for the nurse
-        $attendances = Attendance::where('nurse_id',$nurse->id)->get();
+        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
         return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
 
 
