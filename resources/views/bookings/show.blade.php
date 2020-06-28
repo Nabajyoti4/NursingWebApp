@@ -157,6 +157,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="nurse-tab" data-toggle="tab" href="#nurse" role="tab" aria-controls="nurse" aria-selected="false">Nurse</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" id="attendence-tab" data-toggle="tab" href="#attendence" role="tab" aria-controls="attendence" aria-selected="false">Attendence report</a>
                             </li>
@@ -312,6 +313,7 @@
                             </div>
 
                         </div>
+
 
 
                     </div>

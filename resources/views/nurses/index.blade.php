@@ -89,11 +89,7 @@
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#workHistory" role="tab"
                                aria-controls="workHistory" aria-selected="false">Work History</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="booking-tab" data-toggle="tab" href="#attendance" role="tab"
-                               aria-controls="attendance" aria-selected="false">Mark Attendance</a>
-                        </li>
-                        <li class="nav-item">
+                           <li class="nav-item">
                             <a class="nav-link" id="booking-tab" data-toggle="tab" href="#viewAttendance" role="tab"
                                aria-controls="salary" aria-selected="false">View Attendance</a>
                         </li>
@@ -177,16 +173,17 @@
                         </div>
                         {{--working history--}}
                         <div class="tab-pane fade" id="workHistory" role="tabpanel" aria-labelledby="booking-tab">
-                            <div class="row pt-2">
+                            <div class="row p-2">
                                 @forelse($bookings as $booking)
-                                    <div class="col-sm-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header">Booking ID : {{$booking->id}}</div>
-                                            <div class="card-body">
-                                                <p>UserName : {{$booking->user->name}}</p>
-                                                <p>Patient Name : {{$booking->patient->patient_name}}</p>
-                                                <p>Status :
-                                                    @if($booking->status == 0)
+                                    <div class="col-sm-12 mb-2">
+                                        <div class="row p-2">
+                                            <div class="col-sm-3">
+                                                <div class="col-sm-12"><strong>Booking ID</strong></div>
+                                                <div class="col-sm-12">{{$booking->id}}</div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="col-sm-12"><strong>Status</strong></div>
+                                                <div class="col-sm-12"> @if($booking->status == 0)
                                                         Rejected
                                                     @elseif($booking->status == 1)
                                                         Completed
@@ -196,19 +193,23 @@
                                                         Running
                                                     @else
                                                         Takeover
-                                                    @endif</p>
-                                                <p>Due Payment : {{$booking->due_payment}}</p>
-                                                <p>Total Payment : {{$booking->total_payment}}</p>
-                                                <p>Booked on : {{$booking->created_at}}</p>
-                                                <p>
+                                                    @endif</div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-12"><strong>Booked on</strong></div>
+                                                <div class="col-sm-12">{{$booking->created_at}}</div>
+                                            </div>
+                                            <div class="col-sm-3">
                                                 <form action="{{route('nurse.booking.show',$booking->id)}}"
                                                       method="GET">
                                                     @csrf
                                                     <button class="btn btn-primary" type="submit">Show
                                                     </button>
                                                 </form>
-                                                </p>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr>
                                         </div>
                                     </div>
                                 @empty
@@ -216,90 +217,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        {{--give attendance tab--}}
-                        <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
-                            <div class="row pt-2">
-                                @forelse($bookings as $booking)
-                                    <div class="col-sm-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header">Booking ID : {{$booking->id}}</div>
-                                            <div class="card-body">
-                                                <p>Patient Name : {{$booking->patient->patient_name}}</p>
-                                                <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
-                                                <p>Status :
-                                                    @if($booking->status == 0)
-                                                        Rejected
-                                                    @elseif($booking->status == 1)
-                                                        Completed
-                                                    @elseif($booking->status == 2)
-                                                        Pending
-                                                    @elseif($booking->status == 3)
-                                                        Running
-                                                    @else
-                                                        Takeover
-                                                    @endif</p>
-                                                <p>Due Payment : {{$booking->due_payment}}</p>
-                                                <p>Total Payment : {{$booking->total_payment}}</p>
-                                                <p>Booked on : {{$booking->created_at}}</p>
-                                                <!-- Button trigger modal -->
-                                                @if($booking->status == 3)
-                                                    <button id="attendance_btn" type="button" class="btn btn-primary"
-                                                            data-toggle="modal"
-                                                            data-target="#exampleModalCenter{{$booking->id}}">
-                                                        Give Attendance
-                                                    </button>
-                                            @endif
-                                            <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalCenter{{$booking->id}}"
-                                                     tabindex="-1"
-                                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Upload a photo with a patient.</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="{{route('attendance.store')}}"
-                                                                  method="post" enctype="multipart/form-data">
-                                                                @csrf
-                                                                <div class="modal-body">
-                                                                    <input type="hidden" name="booking_id"
-                                                                           id="booking_id" value="{{$booking->id}}">
-                                                                    <label for="attendance_image">Upload File</label>
-                                                                    <input type="file" name="attendance_image"
-                                                                           class="form-control-file"
-                                                                           id="attendance_image">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">Close
-                                                                    </button>
-                                                                    <button id="selfie_submit" type="submit"
-                                                                            class="btn btn-primary">Upload
-                                                                    </button>
-                                                                    <button id="submit" type="submit"
-                                                                            class="btn" style=" color: #fff;background-color: #e3342f;!important;border-color: #e3342f;">Mark Absent
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                @empty
-                                    <p>No attendance</p>
-                                @endforelse
-                            </div>
-                        </div>
-                        {{--view attendance tab--}}
+                                          {{--view attendance tab--}}
                         <div class="tab-pane fade" id="viewAttendance" role="tabpanel" aria-labelledby="attendance-tab">
                             <div class="row pt-2">
                                 @forelse($attendances as $attendance)
