@@ -29,8 +29,8 @@ class NurseController extends Controller
         // seperating the time na date
         $date = explode(" ",$dateTime)[0];
         // check if there is attendance for the nurse
-        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
-        return view('nurses.index', compact('user', 'nurse','bookings','date','attendances'));
+//        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
+        return view('nurses.index', compact('user', 'nurse','bookings','date'));
 
 
     }
@@ -104,7 +104,7 @@ class NurseController extends Controller
 
     public function booking($id){
         $book = Booking::findOrFail($id);
-        $attendances = Attendance::where('booking_id',$book->id)->get();
+        $attendances = Attendance::where('booking_id',$book->id)->latest()->get();
         return view('nurses.bookshow', compact('book', 'attendances'));
     }
 }

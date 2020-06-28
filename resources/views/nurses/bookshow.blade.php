@@ -23,10 +23,12 @@
             background: #2c3e50;
             background-image: none;
         }
+
         /* Remove IE arrow */
         select::-ms-expand {
             display: none;
         }
+
         /* Custom Select */
         .select {
             position: relative;
@@ -38,12 +40,14 @@
             overflow: hidden;
             border-radius: .25em;
         }
+
         select {
             flex: 1;
             padding: 0 .5em;
             color: #fff;
             cursor: pointer;
         }
+
         /* Arrow */
         .select::after {
             content: '\25BC';
@@ -58,6 +62,7 @@
             -o-transition: .25s all ease;
             transition: .25s all ease;
         }
+
         /* Transition */
         .select:hover::after {
             color: #f39c12;
@@ -75,13 +80,13 @@
             text-transform: capitalize;
         }
 
-        .go-edit-btn{
+        .go-edit-btn {
             border: none;
             border-radius: .5rem;
             padding: .5rem;
             font-weight: 600;
             border-color: transparent;
-            background: linear-gradient(270deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* w3c */
+            background: linear-gradient(270deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%); /* w3c */
             color: #fff;
             cursor: pointer;
         }
@@ -149,16 +154,24 @@
                             </h6>
                             <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patient</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="true">Patient</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">User</a>
+                                    <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab"
+                                       aria-controls="user" aria-selected="false">User</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="nurse-tab" data-toggle="tab" href="#nurse" role="tab" aria-controls="nurse" aria-selected="false">Nurse</a>
+                                    <a class="nav-link" id="nurse-tab" data-toggle="tab" href="#nurse" role="tab"
+                                       aria-controls="nurse" aria-selected="false">Nurse</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="attendence-tab" data-toggle="tab" href="#attendence" role="tab" aria-controls="attendence" aria-selected="false">Attendence report</a>
+                                    <a class="nav-link" id="booking-tab" data-toggle="tab" href="#attendance" role="tab"
+                                       aria-controls="attendance" aria-selected="false">Mark Attendance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="attendence-tab" data-toggle="tab" href="#attendence"
+                                       role="tab" aria-controls="attendence" aria-selected="false">Attendence report</a>
                                 </li>
                             </ul>
                         </div>
@@ -277,33 +290,130 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <a href="{{ route('admin.nurse.show', $book->nurse->id) }}" style="text-decoration: none">
-                                        <div  class="profile-edit-btn text-center">View full deatils</div>
+                                    <a href="{{ route('admin.nurse.show', $book->nurse->id) }}"
+                                       style="text-decoration: none">
+                                        <div class="profile-edit-btn text-center">View full deatils</div>
                                     </a>
                                 </div>
                             </div>
+                            {{--give attendance tab--}}
+                            <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+                                <div class="row pt-2">
+                                    <div class="col-sm-12 mb-2">
+                                        <div class="row p-2">
+                                            <div class="col-sm-3">
+                                                <div class="col-sm-12"><strong>Booking ID</strong></div>
+                                                <div class="col-sm-12">{{$book->id}}</div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="col-sm-12"><strong>Status</strong></div>
+                                                <div class="col-sm-12"> @if($book->status == 0)
+                                                        Rejected
+                                                    @elseif($book->status == 1)
+                                                        Completed
+                                                    @elseif($book->status == 2)
+                                                        Pending
+                                                    @elseif($book->status == 3)
+                                                        Running
+                                                    @else
+                                                        Takeover
+                                                    @endif</div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-12"><strong>Booked on</strong></div>
+                                                <div class="col-sm-12">{{$book->created_at}}</div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @if($book->status == 3)
+                                                    <button id="attendance_btn" type="button" class="btn btn-primary"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModalCenter{{$book->id}}">
+                                                        Give Attendance
+                                                    </button>
+                                            @endif
+                                            <!-- Modal -->
+                                                <div class="modal fade" id="exampleModalCenter{{$book->id}}"
+                                                     tabindex="-1"
+                                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Upload a photo with a patient.</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{route('attendance.store')}}"
+                                                                  method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="booking_id"
+                                                                           id="booking_id" value="{{$book->id}}">
+                                                                    <label for="attendance_image">Upload File</label>
+                                                                    <input type="file" name="attendance_image"
+                                                                           class="form-control-file"
+                                                                           id="attendance_image">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                    <button id="selfie_submit" type="submit"
+                                                                            class="btn btn-primary">Upload
+                                                                    </button>
+                                                                    <button id="submit" type="submit"
+                                                                            class="btn"
+                                                                            style=" color: #fff;background-color: #e3342f;!important;border-color: #e3342f;">
+                                                                        Mark Absent
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
                             <!--Attendence table-->
                             <div class="tab-pane fade" id="attendence" role="tabpanel" aria-labelledby="attendence-tab">
 
                                 <div class="row pt-2">
                                     @forelse($attendances as $attendance)
                                         <div class="col-sm-12">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
-                                                <div class="card-body">
-                                                    <span>Date : {{$attendance->created_at}}</span>
-
-                                                    <span style="float: right">
-                                                    @if($attendance->present == 0)
-                                                            Absent
-                                                        @else
-                                                            Present
-                                                        @endif
-                                                </span>
-
+                                            <div class="row mb-4">
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-12"> Booking ID
+                                                        : {{$attendance->booking->id}}</div>
+                                                    <div class="col-sm-12">Date : {{$attendance->created_at}}</div>
                                                 </div>
 
+
+                                                <div class="col-sm-6">
+                                                    @if($attendance->present == 2)
+                                                        <span class="p-2"
+                                                              style="float: right; background-color: red; color: white; border-radius: 10px">    Absent
+                                                         </span>@elseif($attendance->present == 1)
+                                                        <span class="p-2"
+                                                              style="float: right; background-color: green; color: white; border-radius: 10px"> Present
+                                                        </span>
+                                                    @else
+                                                        <span class="p-2"
+                                                              style="float: right; background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <hr>
+                                                </div>
                                             </div>
                                         </div>
                                     @empty
