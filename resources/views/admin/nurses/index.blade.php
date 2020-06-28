@@ -55,9 +55,9 @@
                                 /></td>
                             <td>{{$nurse->user->name}}</td>
                             <td>@if($nurse->status == 0)
-                                 Booked Button
-                                @else
                                  Not Hired
+                                @else
+                                 Booked
                                 @endif
                             </td>
                             <td>@if($nurse->is_active == 0)

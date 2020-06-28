@@ -51,10 +51,10 @@
     </div>
 
     <div class="container p-3">
-        <form action="{{route('admin.book.extend')}}" method="POST">
+        <form action="{{route('admin.book.takeover')}}" method="POST">
             @csrf
             <input type="hidden" value="{{$booking->patient_id}}" name="patient_id">
-            <input type="hidden" value="{{$booking->nurse_id}}" name="nurse">
+            <input type="hidden" value="{{$booking->id}}" name="booking_id">
 
             <!--deatils of user and patient-->
             <div class="row bg-light">
@@ -111,49 +111,78 @@
             </div>
 
             <!--details of same nurse-->
-            <div  class="row">
-                <div class="col-lg-12">
-                    <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Nurse Details</h5>
-                        <div>
-                            <h5 class="font">Name</h5>
-                            <span>:  {{$booking->nurse->user->name}} </span>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Available Nurses</h6>
                         </div>
-                        <div>
-                            <h5 class="font">Employee ID</h5>
-                            <span>:  {{$booking->nurse->employee_id}} </span>
-                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Profile Image</th>
+                                        <th>Name</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
+                                    @forelse($nurses as $nurse)
+                                        <tr>
+                                            <td>{{$nurse->employee_id}}</td>
+                                            <td><img
+                                                    src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
+                                                    alt="" width="100" height="100"/>
+                                            </td>
+                                            <td>{{$nurse->user->name}}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">No users found</td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--details of payment-->
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="total_payment">Total Payment</label>
+                        <input name="total_payment" class="form-control" type="number" value="{{$booking->total_payment}}">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="due_payment">Due Payment</label>
+                        <input name="due_payment" class="form-control" type="number" value="{{$booking->due_payment}}">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="nurse">Select Nurse</label>
+                        <select name="nurse"  class="form-control">
+                            <option value="">Select</option>
+                            @forelse($nurses as $nurse)
+                                <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
+                            @empty
+                                No Nurse found
+                            @endforelse
+                        </select>
                     </div>
                 </div>
             </div>
 
 
-            <!--details of payment-->
-            <div class="row">
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="total_payment">Total Payment</label>
-                    <input name="total_payment" class="form-control" type="number">
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="due_payment">Due Payment</label>
-                    <input name="due_payment" class="form-control" type="number">
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="days">No of Days</label>
-                    <input name="days" class="form-control" type="number">
-                </div>
-            </div>
-            </div>
+
 
             <div class="row">
                 <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Create a Booking</button>
+                    <button class="btn btn-primary" type="submit">Create a Booking</button>
                 </div>
             </div>
         </form>
