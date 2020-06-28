@@ -132,6 +132,7 @@ class AdminBookingController extends Controller
             $booking->update(['status'=>3]);
 
 
+
         }
 
         // 4 takeover action
@@ -269,6 +270,9 @@ class AdminBookingController extends Controller
                 'due_payment' => $booking->due_payment,
                 'remaining_days' => $booking->remaining_days
             ]);
+
+        // update the new alloted nurse status to working
+        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
 
         $bookings = Booking::all();
