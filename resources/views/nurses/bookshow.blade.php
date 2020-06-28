@@ -389,26 +389,31 @@
                                 <div class="row pt-2">
                                     @forelse($attendances as $attendance)
                                         <div class="col-sm-12">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
-                                                <div class="card-body">
-                                                    <span>Date : {{$attendance->created_at}}</span>
+                                            <div class="row mb-4">
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-12"> Booking ID
+                                                        : {{$attendance->booking->id}}</div>
+                                                    <div class="col-sm-12">Date : {{$attendance->created_at}}</div>
+                                                </div>
 
 
+                                                <div class="col-sm-6">
                                                     @if($attendance->present == 2)
                                                         <span class="p-2"
                                                               style="float: right; background-color: red; color: white; border-radius: 10px">    Absent
-                                                        @elseif($attendance->present == 1)
-                                                                <span class="p-2"
-                                                                      style="float: right; background-color: green; color: white; border-radius: 10px"> Present
-                                                        @else
-                                                               <span class="p-2"
-                                                               style="float: right; background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
-                                                        @endif
-                                                </span>
-
+                                                         </span>@elseif($attendance->present == 1)
+                                                        <span class="p-2"
+                                                              style="float: right; background-color: green; color: white; border-radius: 10px"> Present
+                                                        </span>
+                                                    @else
+                                                        <span class="p-2"
+                                                              style="float: right; background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
+                                                        </span>
+                                                    @endif
                                                 </div>
-
+                                                <div class="col-sm-12">
+                                                    <hr>
+                                                </div>
                                             </div>
                                         </div>
                                     @empty

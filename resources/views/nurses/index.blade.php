@@ -89,10 +89,6 @@
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#workHistory" role="tab"
                                aria-controls="workHistory" aria-selected="false">Work History</a>
                         </li>
-                           <li class="nav-item">
-                            <a class="nav-link" id="booking-tab" data-toggle="tab" href="#viewAttendance" role="tab"
-                               aria-controls="salary" aria-selected="false">View Attendance</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" id="booking-tab" data-toggle="tab" href="#salary" role="tab"
                                aria-controls="salary" aria-selected="false">Salary</a>
@@ -217,36 +213,8 @@
                                 @endforelse
                             </div>
                         </div>
-                                          {{--view attendance tab--}}
-                        <div class="tab-pane fade" id="viewAttendance" role="tabpanel" aria-labelledby="attendance-tab">
-                            <div class="row pt-2">
-                                @forelse($attendances as $attendance)
-                                    <div class="col-sm-12">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
-                                            <div class="card-body">
-                                                <span>Date : {{$attendance->created_at}}</span>
+                        {{--view salary tab--}}
 
-                                                <span style="float: right">
-                                                    @if($attendance->present == 0)
-                                                        Pending
-                                                    @elseif($attendance->present == 1)
-                                                        Present
-                                                    @else
-                                                        Absent
-                                                    @endif
-                                                </span>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p>No attendance</p>
-                                @endforelse
-                            </div>
-                        </div>
-                        {{--salary tab--}}
                         <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="salary-tab">
                             <div class="row pt-2">
                                 @forelse($bookings as $booking)
