@@ -194,7 +194,7 @@
                                                         Pending
                                                     @elseif($booking->status == 3)
                                                         Running
-                                                    @else
+                                                    @elseif($booking->status == 4)
                                                         Takeover
                                                     @endif</p>
                                                 <p>Due Payment : {{$booking->due_payment}}</p>

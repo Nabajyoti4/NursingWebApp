@@ -141,7 +141,7 @@ Route::resource('/attendance','AttendanceController', ['names' =>[
 
 Route::get('admin/book/{id}/request','AdminController\AdminBookingController@request')->name('admin.book.request');
 Route::post('admin/book/extend','AdminController\AdminBookingController@extend')->name('admin.book.extend');
-
+Route::post('admin/book/takeover','AdminController\AdminBookingController@takeover')->name('admin.book.takeover');
 // Route user extend booking
 Route::get('user/book/{id}/show','User\UserController@booking')->name('user.booking.show');
 

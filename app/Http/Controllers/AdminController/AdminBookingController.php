@@ -113,7 +113,9 @@ class AdminBookingController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * update the booking based on the request
+     * reject if no reserve nurse is their
+     * takeover if new nurse is available
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
@@ -128,26 +130,20 @@ class AdminBookingController extends Controller
         // 0 reject
         if($value == 0){
             $booking->update(['status'=>3]);
+
+
         }
 
         // 4 takeover action
         elseif ($value == 4){
-            // update the booking status to take over
-            $booking->update(['status'=>4]);
 
             $patient = Patient::findOrFail($booking->patient_id);
-
-            // update the nurse status to not working and set to leave
-            Nurse::findOrfail($booking->nurse_id)->update(['status' => 0,
-                'is_active' => 0]);
-
 
             // fetch the other nurse who are active
             $nursesAll = Nurse::select('*')
                          ->where('is_active', 1)
                          ->where('status', 0)
                          ->get();
-
 
             //  find the nurse same as patient address
             $nurses = array();
@@ -182,7 +178,8 @@ class AdminBookingController extends Controller
 
     /**
      * @param $id
-     * extend the booking for required days
+     * forward the extend request to the extend create view form
+     * pass the booking details of the old booking
      */
     public function request($id){
         $booking = Booking::findOrFail($id);
@@ -191,6 +188,15 @@ class AdminBookingController extends Controller
     }
 
 
+    /**
+     * Request extend for patient
+     * create new patient record using the old patient details
+     * create new booking record using the old booking details
+     * days is needed for new records
+     * new amount is also added
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function extend(Request $request){
         //use request only to fetch the required data
         $data = $request->only(['patient_id','total_payment','due_payment','nurse', 'days']);
@@ -217,6 +223,7 @@ class AdminBookingController extends Controller
         ]);
 
 
+        // now create a new booking record
         Booking::create(['user_id' => $patient->user->id,
                 'patient_id' => $data['patient_id'],
                 'nurse_id' => $data['nurse'],
@@ -229,6 +236,47 @@ class AdminBookingController extends Controller
         $bookings = Booking::all();
         return redirect()
             ->route('admin.book.index', compact('bookings'))
-            ->with('success','Booking done successfully!');
+            ->with('success','Booking extended successfully!');
     }
+
+
+    /**
+     * takeover the old booking from where it is left
+     * create new booking record with new nurse allotted
+     * new booking record will continue from the remaining days of left over booking
+     * new nurse attendence will be recorded for the left over days only
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function takeover(Request $request){
+        $data = $request->only(['booking_id', 'patient_id', 'nurse']);
+
+        $booking = Booking::findOrFail($data['booking_id']);
+
+        // update the nurse status to not working and set to leave
+        Nurse::findOrfail($booking->nurse_id)->update(['status' => 0,
+            'is_active' => 0]);
+
+        // update the old  booking status to take over
+        $booking->update(['status'=>4]);
+
+
+        // create the new booking using the old records
+        Booking::create(['user_id' => $booking->user_id,
+                'patient_id' => $booking->patient_id,
+                'nurse_id' => $data['nurse'],
+                'total_payment' => $booking->total_payment,
+                'due_payment' => $booking->due_payment,
+                'remaining_days' => $booking->remaining_days
+            ]);
+
+
+        $bookings = Booking::all();
+
+        return redirect()
+            ->route('admin.book.index', compact('bookings'))
+            ->with('success','Booking takeover successfully!');
+    }
+
+
 }

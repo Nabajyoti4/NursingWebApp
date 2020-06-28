@@ -51,10 +51,10 @@
     </div>
 
     <div class="container p-3">
-        <form action="{{route('admin.book.extend')}}" method="POST">
+        <form action="{{route('admin.book.takeover')}}" method="POST">
             @csrf
             <input type="hidden" value="{{$booking->patient_id}}" name="patient_id">
-            <input type="hidden" value="{{$booking->nurse_id}}" name="nurse">
+            <input type="hidden" value="{{$booking->id}}" name="booking_id">
 
             <!--deatils of user and patient-->
             <div class="row bg-light">
@@ -153,13 +153,13 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="total_payment">Total Payment</label>
-                        <input name="total_payment" class="form-control" type="number">
+                        <input name="total_payment" class="form-control" type="number" value="{{$booking->total_payment}}">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="due_payment">Due Payment</label>
-                        <input name="due_payment" class="form-control" type="number">
+                        <input name="due_payment" class="form-control" type="number" value="{{$booking->due_payment}}">
                     </div>
                 </div>
                 <div class="col-4">
@@ -170,7 +170,7 @@
                             @forelse($nurses as $nurse)
                                 <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
                             @empty
-                                No users found
+                                No Nurse found
                             @endforelse
                         </select>
                     </div>
