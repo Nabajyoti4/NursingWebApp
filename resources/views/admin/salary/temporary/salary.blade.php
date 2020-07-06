@@ -39,7 +39,7 @@
                     <tbody id="data">
                        @forelse($salaries as $salary)
                            <tr>
-                               <td>{{ \Carbon\Carbon::parse($salary->created_at)->month}}</td>
+                               <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
                                <td>{{$salary->year}}</td>
 
                            </tr>
