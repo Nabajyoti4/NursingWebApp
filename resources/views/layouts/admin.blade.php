@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.min.css')}}">
 
-@yield('style')
+    @yield('style')
 
 </head>
 <style>
@@ -110,8 +110,26 @@
                 </div>
             </div>
         </li>
-        <hr class="sidebar-divider d-none d-md-block">
 
+        <hr class="sidebar-divider d-none d-md-block">
+  <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSalary"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-user"></i>
+                <span>Salary</span>
+            </a>
+            <div id="collapseSalary" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Salary:</h6>
+                    <a class="collapse-item" href="{{ route('admin.salary.temporary') }}"><i class="fas fa-user-nurse"></i> Temporary Nurse </a>
+                    <a class="collapse-item" href="{{route('admin.patient.index')}}"><i class="fas fa-bed"></i> Patient Requests</a>
+                </div>
+            </div>
+
+
+
+        </li>
         <!-- Heading -->
         <div class="sidebar-heading">
             Addons
@@ -170,7 +188,7 @@
 
             <!-- Topbar -->
          @include('partials.admin_navbar')
-            <!-- End of navbar -->
+        <!-- End of navbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
