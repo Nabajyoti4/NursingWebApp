@@ -1,0 +1,249 @@
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+/* icon */
+.fa{
+    font-size: 60px;
+    padding: 20px;
+    margin-top: 5px;
+    color: rgb(240, 17, 17);
+    vertical-align: middle;
+}
+
+.blue {
+    color: #29b6f6;
+}
+
+.green {
+    color: #9ccc65;
+}
+
+.purple {
+    color: #ba68c8;
+}
+
+.about{
+    font-family: "Work sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: medium;
+}
+
+.cyan {
+    color: #4dd0e1;
+}
+
+.red {
+    color: #ef5350;
+}
+
+
+.content {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    perspective: 150rem;
+    height: 350px;
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+
+
+.card__side {
+    height: 350px;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 300px;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+}
+
+
+.card__side--front {
+    background-color: #6bb5e0be;
+}
+
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    font-weight: 600;
+    border-color: transparent;
+    background: linear-gradient(270deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* w3c */
+    color: #fff;
+    cursor: pointer;
+
+}
+/*.card__side--back {*/
+/*    transform: rotateY(180deg);*/
+/*    background-color: #1c1c1c;*/
+/*}*/
+
+/*.card:hover .card__side--front {*/
+/*    transform: rotateY(-180deg);*/
+/*}*/
+
+/*.card:hover .card__side--back {*/
+/*    transform: rotateY(0deg);*/
+/*}*/
+
+.card__cont {
+    height: 15rem;
+    background-color: #1c1c1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    color: white;
+}
+
+.card__cta p {
+    margin-left: 1rem;
+}
+
+.card__cta p > .space {
+    margin-left: 2rem;
+}
+
+
+
+/*Package */
+.plan {
+    display: inline-block;
+    margin: 10px 1%;
+}
+
+.plan-inner {
+    background: #fff;
+    margin: 0 auto;
+    min-width: 280px;
+    max-width: 100%;
+    position:relative;
+}
+
+.entry-title {
+    background: #53CFE9;
+    height: 140px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.entry-title>h3 {
+    background: #20BADA;
+    font-size: 20px;
+    padding: 5px 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+}
+
+.entry-title .price {
+    position: absolute;
+    bottom: -25px;
+    background: rgb(32, 66, 218);
+    height: 95px;
+    width: 95px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    border-radius: 50px;
+    border: 5px solid #fff;
+    line-height: 80px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.price span {
+    position: absolute;
+    font-size: 9px;
+    bottom: -10px;
+    left: 30px;
+    font-weight: 400;
+}
+
+.entry-content {
+    color: #323232;
+}
+
+.entry-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.entry-content li {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 10px 0;
+}
+
+.entry-content li:last-child {
+    border: none;
+}
+
+.btn {
+    padding: 3em 0;
+    text-align: center;
+}
+
+.btn a {
+    background: #323232;
+    padding: 10px 30px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none
+}
+.hot {
+    position: absolute;
+    top: -7px;
+    background: #F80;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    padding: 2px 5px;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.basic .entry-title {
+    background: #75DDD9;
+}
+
+.basic .entry-title > h3 {
+    background: #44CBC6;
+}
+
+.basic .price {
+    background: #44CBC6;
+}
+
+
+.hero{
+    max-height: 500px;
+}
+
+.service-nav{
+    background: #4d6de5;
+}

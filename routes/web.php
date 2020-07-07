@@ -61,6 +61,18 @@ Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve
 Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove');
 
 
+
+
+Route::resource('user/service' , 'UserServiceController', ['names' =>[
+
+    'index'=>'user.service.index',
+
+]
+]);
+
+
+
+
 //for Admin Nurse
 Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =>[
     'index'=>'admin.nurse.index',
@@ -90,8 +102,6 @@ Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientContr
 Route::get('admin/approvedpatient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
 Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
 
-
-//
 
 
 // nurse routes
