@@ -25,9 +25,9 @@
 </head>
 <style>
     tr:hover {
-        background: lightgrey;
+        background: #ffffff;
         transition: all .1s;
-        color: black;
+        color: #292727;
     }
 
 </style>

@@ -6,7 +6,8 @@
 @section('content')
 
     <!-- Search -->
-    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.users.index')}}" method="GET">
+    <form class="d-sm-inline-block form-inline mr-auto  my-2 my-md-0 mw-100 navbar-search"
+          action="{{route('admin.users.index')}}" method="GET">
         @csrf
         <div class="input-group">
             <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
@@ -21,11 +22,11 @@
 
 
     <hr>
-    <a href="">Create</a>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Nurse Name : {{$nurse->user->name}}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,18 +35,23 @@
                     <tr>
                         <th>Month</th>
                         <th>Year</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody id="data">
-                       @forelse($salaries as $salary)
-                           <tr>
-                               <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
-                               <td>{{$salary->year}}</td>
+                    @forelse($salaries as $salary)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.salary.edit',$salary->id)}}">Edit
+                                </a></td>
+                        </tr>
+                    @empty
 
-                           </tr>
-                       @empty
-                    no data
-                       @endforelse
+                       <tr>
+                           <td colspan="3"> no data</td>
+                       </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -55,8 +61,8 @@
 
 @section('script')
     <script type="text/javascript">
-        setInterval(function() {
-            $("#data").load(location.href+" #data>*","");
+        setInterval(function () {
+            $("#data").load(location.href + " #data>*", "");
         }, 10000);
     </script>
 @endsection

@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Search -->
-    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.users.index')}}" method="GET">
+    <form class="d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.users.index')}}" method="GET">
         @csrf
         <div class="input-group">
             <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
@@ -21,7 +21,8 @@
 
 
     <hr>
-
+    <a href="{{route('admin.salary.create',$permanent=0)}}" class="btn btn-primary">Create Salary for the Nurse</a>
+    <hr>
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
@@ -32,7 +33,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>User ID</th>
+                        <th>Employee ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone No</th>
@@ -43,13 +44,13 @@
                     <tbody id="data">
                     @forelse($nurses as $nurse)
                         <tr>
-                            <td>{{$nurse->id}}</td>
+                            <td>{{$nurse->employee_id}}</td>
                             <td>{{$nurse->user->name}}</td>
                             <td>{{$nurse->user->email}}</td>
                             <td>{{$nurse->user->phone_no}}</td>
                             <td>{{$nurse->created_at}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.salary.salaries')}}">Edit
-                                </a><i class="fa fa-pencil-square" aria-hidden="true"></i></td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.salary.salaries',$nurse->id)}}">View Salary
+                                </a></td>
                         </tr>
                     @empty
                         <tr>
