@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Booking;
+use App\Nurse;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -85,7 +88,7 @@ class AttendanceController extends Controller
             Storage::disk('public')->put($image, $img);
 
             //create the attendance record
-            Attendance::create([
+            $attendance = Attendance::create([
                 'booking_id' => $data['booking_id'],
                 'photo' => $image,
                 'present' => 1,
@@ -96,13 +99,16 @@ class AttendanceController extends Controller
                 'remaining_days' => $booking->remaining_days - 1
             ]);
 
-            $this->payementAlert($booking);
 
+            $this->payementAlert($booking);
+            $admin = User::where('role', 'admin')->get();
+            $nurse = Nurse::findOrFail($attendance['nurse_id']);
+            Notification::send($admin, new \App\Notifications\AttendanceMark($attendance,$nurse));
             return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
 
         }
         //absent wala
-        Attendance::create([
+        $attendance = Attendance::create([
             'booking_id' => $data['booking_id'],
             'present' => 2,//absent
             'nurse_id' => $booking->nurse_id,
@@ -113,7 +119,9 @@ class AttendanceController extends Controller
         ]);
 
         $this->payementAlert($booking);
-
+        $admin = User::where('role', 'admin')->get();
+        $nurse = Nurse::findOrFail($attendance['nurse_id']);
+        Notification::send($admin, new \App\Notifications\AttendanceMark($attendance,$nurse));
         return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
 
     }
