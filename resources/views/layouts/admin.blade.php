@@ -96,6 +96,11 @@
                 <i class="fas fa-book-medical"></i>
                 <span>Bookings</span></a>
         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.services.index')}}">
+                <i class="fas fa-book-medical"></i>
+                <span>Services</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                aria-expanded="true" aria-controls="collapseUtilities">

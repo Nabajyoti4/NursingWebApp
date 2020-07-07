@@ -84,6 +84,16 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
 ]
 ]);
 
+Route::resource('admin/services' , 'AdminController\ServiceController' ,  ['names' =>[
+    'index'=>'admin.services.index',
+    'create'=>'admin.services.create',
+    'store'=>'admin.services.store',
+    'edit'=>'admin.services.edit',
+    'update'=>'admin.services.update',
+    'delete' => 'services.destroy'
+]
+]);
+
 Route::get('admin.nurse.join/{id}', 'AdminController\AdminNurseController@join')->name('admin.nurse.join');
 
 Route::get('admin.patient.bookCreate/{id}', 'AdminController\AdminBookingController@bookCreate')->name('admin.book.bookCreate');
