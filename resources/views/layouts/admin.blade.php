@@ -16,6 +16,7 @@
 <!-- Custom styles for this template-->
     {{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="{{asset('css/dataTables.min.css')}}">
@@ -122,8 +123,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Salary:</h6>
-                    <a class="collapse-item" href="{{ route('admin.salary.temporary') }}"><i class="fas fa-user-nurse"></i> Temporary Nurse </a>
-                    <a class="collapse-item" href="{{route('admin.patient.index')}}"><i class="fas fa-bed"></i> Patient Requests</a>
+                    <a class="collapse-item" href="{{ route('admin.salary.temporary') }}">Temporary Nurse </a>
+                    <a class="collapse-item" href="{{route('admin.salary.permanent')}}">Permanent Nurse</a>
                 </div>
             </div>
 

@@ -27,23 +27,32 @@
                 <label for="basic">Basic Salary</label>
                 <input type="number" name="basic" class="form-control"/>
             </div>
-            <div class="form-group font-weight-bold">
-                <label for="full_day">Total Days of Duty 24hrs</label>
-                <input type="number" name="full_day" class="form-control"/>
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="half_day">Total Days of Duty 12hrs</label>
-                <input type="number" name="half_day" class="form-control"/>
-            </div>
+            @if($permanent == 1)
+                <div class="form-group font-weight-bold">
+                    <label for="full_day">Total Payable Days</label>
+                    <input type="number" name="full_day" class="form-control"/>
+                </div>
+            @else
+                <div class="form-group font-weight-bold">
+                    <label for="full_day">Total Days of Duty 24hrs</label>
+                    <input type="number" name="full_day" class="form-control"/>
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="half_day">Total Days of Duty 12hrs</label>
+                    <input type="number" name="half_day" class="form-control"/>
+                </div>
+            @endif
             <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
                 <input type="number" name="special_allowance" class="form-control"/>
             </div>
 
-            <div class="form-group font-weight-bold">
-                <label for="ta_da">TA & DA</label>
-                <input type="number" name="ta_da" class="form-control"/>
-            </div>
+            @if($permanent == 0)
+                <div class="form-group font-weight-bold">
+                    <label for="ta_da">TA & DA</label>
+                    <input type="number" name="ta_da" class="form-control"/>
+                </div>
+            @endif
 
             <div class="form-group font-weight-bold">
                 <label for="hra">HRA</label>
@@ -56,10 +65,6 @@
             </div>
 
             @if($permanent == 1)
-                <div class="form-group font-weight-bold">
-                    <label for="esic">ESIC (4% of Total Salary)</label>
-                    <input type="number" name="esic" class="form-control"/>
-                </div>
                 <div class="form-group font-weight-bold">
                     <label for="pf">PF</label>
                     <input type="number" name="pf" class="form-control"/>

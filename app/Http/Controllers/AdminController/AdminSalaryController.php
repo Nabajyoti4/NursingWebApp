@@ -54,27 +54,37 @@ class AdminSalaryController extends Controller
             'ta_da' => 'integer',
             'hra' => 'integer',
             'advance' => 'integer',
-            'esic' => 'integer',
             'pf' => 'integer',
         ]);
+
+        //find whether the nurse is permanent or temporary
+        $nurse = Nurse::findOrFail($data['nurse_id']);
         //calculate per day rate
         $total_days = Carbon::now()->daysInMonth;
+
         $data['per_day_rate'] = ($data['basic'] / $total_days);
-        //total payment
-        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
-            + ($data['half_day'] * ($data['per_day_rate'] / 2));
         //calculate the bonus
-        $data['bonus'] = $data['basic'] * (2/100);
+        $data['bonus'] = $data['basic'] * (2 / 100);
+        //total payment for permanent nurse
+        if ($nurse->permanent == 1) {
+            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
+            //ESIC (4% of Total Salary)
+            $data['esic'] = $data['basic'] * (4 / 100);
 
-        //deduction payment
-        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
-        //net payment
-        $data['net'] = $data['total'] - $data['deduction'];
+            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
 
-        //create salary entry for the nurse
+        } else {
+            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
+                + ($data['half_day'] * ($data['per_day_rate'] / 2));
+
+            //deduction payment
+            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
+        }
+        $data['net'] =   $data['total'] -$data['deduction'];
+            //create salary entry for the nurse
         Salary::create($data);
-
-        return redirect()->route('admin.salary.salaries',$data['nurse_id']);
+        session()->flash('success', 'Data Created Successfully');
+        return redirect()->route('admin.salary.salaries', $data['nurse_id']);
     }
 
     /**
@@ -98,9 +108,8 @@ class AdminSalaryController extends Controller
     public function edit($id)
     {
         $salary = Salary::findOrFail($id)->get()->first();
-        $nurse = Nurse::where('id',$salary->nurse_id)->get()->first();
-        $permanent = 0;
-        return view('admin.salary.edit',compact('salary','nurse','permanent'));
+        $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
+        return view('admin.salary.edit', compact('salary', 'nurse'));
     }
 
     /**
@@ -122,29 +131,43 @@ class AdminSalaryController extends Controller
             'ta_da' => 'integer',
             'hra' => 'integer',
             'advance' => 'integer',
-            'esic' => 'integer',
             'pf' => 'integer',
         ]);
+        $nurse = Nurse::findOrFail($data['nurse_id']);
+
         //salary
         $salary = Salary::findOrFail($id);
         //calculate per day rate
         $total_days = Carbon::now()->daysInMonth;
         $data['per_day_rate'] = ($data['basic'] / $total_days);
-        //total payment
-        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
-            + ($data['half_day'] * ($data['per_day_rate'] / 2));
         //calculate the bonus
-        $data['bonus'] = $data['basic'] * (2/100);
+        $data['bonus'] = $data['basic'] * (2 / 100);
+        //total payment for permanent nurse
+        if ($nurse->permanent == 1) {
+            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
+            //ESIC (4% of Total Salary)
+            $data['esic'] = $data['basic'] * (4 / 100);
 
-        //deduction payment
-        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
+            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
+
+        } else {
+            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
+                + ($data['half_day'] * ($data['per_day_rate'] / 2));
+
+            //deduction payment
+            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
+        }
+
+
         //net payment
         $data['net'] = $data['total'] - $data['deduction'];
+
 
         //create salary entry for the nurse
         $salary->update($data);
 
-        return redirect()->route('admin.salary.salaries',$data['nurse_id']);
+        session()->flash('success', 'Data updated successfully');
+        return redirect()->route('admin.salary.salaries', $data['nurse_id']);
     }
 
     /**
@@ -158,7 +181,7 @@ class AdminSalaryController extends Controller
         //
     }
 
-//$days = Carbon::now()->daysInMonth;
+
     public function temporarynurses()
     {
         $nurses = Nurse::where('permanent', 0)->get();
@@ -171,6 +194,14 @@ class AdminSalaryController extends Controller
         $salaries = Salary::where('nurse_id', $id)->get();
         $nurse = Nurse::findOrFail($id);
         return view('admin.salary.temporary.salary', compact('salaries', 'nurse'));
+    }
+
+    public function permanentnurses()
+    {
+        $nurses = Nurse::where('permanent', 1)->get();
+        return view('admin.salary.permanent.index', compact('nurses'));
 
     }
+
+
 }

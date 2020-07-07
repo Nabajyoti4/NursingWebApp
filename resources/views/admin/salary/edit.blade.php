@@ -55,11 +55,7 @@
                 <input type="number" value="{{$salary->advance}}" name="advance" class="form-control"/>
             </div>
 
-            @if($permanent == 1)
-                <div class="form-group font-weight-bold">
-                    <label for="esic">ESIC (4% of Total Salary)</label>
-                    <input type="number" value="{{$salary->esic}}" name="esic" class="form-control"/>
-                </div>
+            @if($nurse->permanent == 1)
                 <div class="form-group font-weight-bold">
                     <label for="pf">PF</label>
                     <input type="number" value="{{$salary->pf}}" name="pf" class="form-control"/>

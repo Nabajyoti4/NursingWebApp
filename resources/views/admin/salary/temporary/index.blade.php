@@ -4,7 +4,16 @@
 @endsection
 
 @section('content')
-
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <!-- Search -->
     <form class="d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.users.index')}}" method="GET">
         @csrf

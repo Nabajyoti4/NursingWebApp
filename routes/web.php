@@ -105,6 +105,8 @@ Route::get('admin/salary/create/{permanent}', 'AdminController\AdminSalaryContro
 Route::get('admin/salary/temporary/nurse', 'AdminController\AdminSalaryController@temporarynurses')->name('admin.salary.temporary');
 Route::get('admin/salary/temporary/salary/{id}', 'AdminController\AdminSalaryController@salaries')->name('admin.salary.salaries');
 
+Route::get('admin/salary/permanent/nurse', 'AdminController\AdminSalaryController@permanentnurses')->name('admin.salary.permanent');
+
 
 
 // nurse routes
