@@ -107,8 +107,8 @@
                 })
             </script>
         @endif
-        <div class="card-header py-3 bg-white">
-            <h6 class="m-0 font-weight-bold text-primary">Booking Details Of {{$book->patient->patient_name}}</h6>
+        <div class="alert alert-success py-3 container" style="border-radius: 10px;">
+            <h6 class="m-0 font-weight-bold text-success">Booking Details Of {{$book->patient->patient_name}}</h6>
         </div>
 
         <div class="p-4">

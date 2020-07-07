@@ -103,6 +103,23 @@ Route::get('admin/approvedpatient','AdminController\AdminPatientController@appro
 Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
 
 
+// Admin salary
+Route::resource('admin/salary','AdminController\AdminSalaryController', ['names' =>[
+    'index'=>'admin.salary.index',
+    'edit'=>'admin.salary.edit',
+    'update'=>'admin.salary.update',
+    'store'=>'admin.salary.store',
+    'show'=>'admin.salary.show',
+]
+]);
+
+Route::get('admin/salary/create/{permanent}', 'AdminController\AdminSalaryController@create')->name('admin.salary.create');
+Route::get('admin/salary/temporary/nurse', 'AdminController\AdminSalaryController@temporarynurses')->name('admin.salary.temporary');
+Route::get('admin/salary/temporary/salary/{id}', 'AdminController\AdminSalaryController@salaries')->name('admin.salary.salaries');
+
+Route::get('admin/salary/permanent/nurse', 'AdminController\AdminSalaryController@permanentnurses')->name('admin.salary.permanent');
+
+
 
 // nurse routes
 //for  Nurse
