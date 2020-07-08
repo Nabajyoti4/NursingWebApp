@@ -66,16 +66,20 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
+        @if(Auth::user()->role == 'super')
         <li class="nav-item ">
-            <a class="nav-link" href="{{route('admin.admins.index')}}">
+            <a class="nav-link" href="">
                 <i class="fas fa-id-card"></i>
+                <span>Super Admins</span></a>
+        </li>
+        @endif
+        @if(Auth::user()->role == 'super')
+            <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.admins.index')}}">
+                <i class="fas fa-id-card-alt"></i>
                 <span>Admins</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="subadmins.html">
-                <i class="fas fa-id-card-alt"></i>
-                <span>Sub Admins</span></a>
-        </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.nurse.index')}}">
                 <i class="fas fa-user-md"></i>

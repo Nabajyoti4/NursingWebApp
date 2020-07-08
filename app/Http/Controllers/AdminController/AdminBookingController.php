@@ -6,8 +6,10 @@ use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
+use App\NurseJoinRequest;
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Comparator\Book;
 
 class AdminBookingController extends Controller
@@ -19,7 +21,25 @@ class AdminBookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
+        $search = request()->get('booking');
+
+
+
+        if ($search){
+            $bookings = Booking::where("id","LIKE","%{$search}%")->get();
+        }
+
+        else{
+            $bookingAll = Booking::latest()->get();
+            $bookings = array();
+
+            foreach ($bookingAll as $booking) {
+                if (($booking->patient->getAddress()->city ) == (Auth::user()->addresses->first()->city)) {
+                    array_push($bookings, $booking);
+                }
+            }
+
+        }
 
         return view('admin.bookings.index', compact('bookings'));
     }

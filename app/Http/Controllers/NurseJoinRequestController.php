@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\NurseJoinDisapprove;
+use App\Nurse;
 use App\NurseJoinRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,9 +21,62 @@ class NurseJoinRequestController extends Controller
     public function index()
     {
         //
-        $candidates = NurseJoinRequest::latest()->get();
+        $search = request()->get('candidate');
+        $admin = Auth::user();
 
-        return view('admin.requests.nurse.index', compact('candidates'));
+        if ($search){
+
+            $candidates = NurseJoinRequest::where("name","LIKE","%{$search}%")->get();
+
+
+            if($admin->role == 'super'){
+                return view('admin.requests.nurse.index', compact('candidates'));
+            }
+            else{
+                // check if the collection have any data
+                if($candidates->isEmpty()){
+                    return view('admin.requests.nurse.index', compact('candidates'));
+                }else{
+                    // get the address of the requested nurse from user
+                    $user = User::where('id', $candidates->first()->user_id)->first();
+
+                    // check if the address of the candidate is same as admin
+                    if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        return view('admin.requests.nurse.index', compact('candidates'));
+                    }else{
+                        $candidates = collect([]);
+                        return view('admin.requests.nurse.index', compact('candidates'));
+                    }
+                }
+            }
+
+
+        }
+
+        else{
+            // if the admin is super admin
+            if($admin->role == 'super'){
+                $candidates = NurseJoinRequest::latest()->get();
+                return view('admin.requests.nurse.index', compact('candidates'));
+
+            }else{
+                $candidateAll = NurseJoinRequest::latest()->get();
+                $candidates = array();
+
+                foreach ($candidateAll as $candidate) {
+                    $user = User::where('id', $candidate->user_id)->first();
+                    if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        array_push($candidates, $candidate);
+                    }
+                }
+
+                return view('admin.requests.nurse.index', compact('candidates'));
+            }
+
+
+        }
+
+
     }
 
     /**

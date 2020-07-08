@@ -21,11 +21,12 @@ class AdminUsersController extends Controller
     public function index()
     {
         /**
-         * Search variable check for serach request in request parameter
+         * Search variable check for search request in request parameter
          * if found return the search results
          * else return all users from db
          */
         $search = request()->get('searchUser');
+
 
 
         if ($search){
@@ -33,7 +34,14 @@ class AdminUsersController extends Controller
 
         }
         else{
-            $users = User::latest()->get();
+            $users = User::where('role', 'user')->latest()->get();
+//            $users = array();
+//
+//            foreach ($usersAll as $user) {
+//                if (($user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+//                    array_push($users, $user);
+//                }
+//            }
 
         }
 
@@ -78,7 +86,7 @@ class AdminUsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function edit($id)
     {

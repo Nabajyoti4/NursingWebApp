@@ -59,10 +59,12 @@
                                 </a>
 
                             @endif
+                            @if(Auth::user()->role === 'admin' or Auth::user()->role === 'super')
                             <a class="dropdown-item" href="{{route('admin.index')}}">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Admin Panel
                             </a>
+                                @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

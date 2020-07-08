@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class AdminPatientController extends Controller
@@ -14,13 +15,61 @@ class AdminPatientController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function index()
     {
         //
-        $patients = Patient::all();
+        $search = request()->get('patient');
+
+        if ($search){
+            $patients = Patient::where("name","LIKE","%{$search}%")->get();
+        }
+
+        else{
+            $patientAll = Patient::all();
+            $patients = array();
+
+            foreach ($patientAll as $patient) {
+                if (($patient->getAddress()->city ) == (Auth::user()->addresses->first()->city)) {
+                    array_push($patients, $patient);
+                }
+            }
+
+        }
+
         return view('admin.requests.patient.index', compact('patients'));
+    }
+
+    /**
+     *  patients that are approved
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function approved()
+    {
+        //
+        $search = request()->get('patient');
+
+        if ($search){
+            $patients = Patient::all()
+                ->where("name","LIKE","%{$search}%")
+                ->where('status',1)
+                ->get();
+        }
+
+        else{
+            $patientAll = Patient::all();
+            $patients = array();
+
+            foreach ($patientAll as $patient) {
+                if (($patient->getAddress()->city ) == (Auth::user()->addresses->first()->city)) {
+                    array_push($patients, $patient);
+                }
+            }
+
+        }
+
+        return view('admin.patients.index', compact('patients'));
     }
 
     /**
@@ -126,11 +175,7 @@ class AdminPatientController extends Controller
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
     }
-    // patients that are approved
-    public function approved()
-    {
-        //
-        $patients = Patient::all()->where('status',1);
-        return view('admin.patients.index', compact('patients'));
-    }
+
+
+
 }
