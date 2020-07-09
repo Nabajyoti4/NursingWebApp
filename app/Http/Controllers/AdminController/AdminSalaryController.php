@@ -4,7 +4,6 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Nurse;
-use App\Patient;
 use App\Salary;
 use App\User;
 use Carbon\Carbon;
@@ -21,61 +20,70 @@ class AdminSalaryController extends Controller
      */
     public function index()
     {
-        $search = request()->get('nurse');
+        $search = request()->get('search');
         $admin = Auth::user();
         $currentMonth = date('m');
 
-
-
-        if ($admin->role == 'super') {
-            //$days = Carbon::now()->daysInMonth;
-
-            $nurses = Nurse::all();
-
-            $pnurses = array();
-            $tnurses = array();
+        if ($search) {
+            $nurses = Nurse::where("employee_id", $search)->get();
+            $nurses_ids = array();
             foreach ($nurses as $nurse) {
-                if ($nurse->permanent == 1) {
-                    array_push($pnurses, $nurse->id);
-                } else {
-                    array_push($tnurses, $nurse->id);
-                }
+                array_push($nurses_ids, $nurse->id);
             }
-            // permanent
-            $psalaries = DB::table("salaries")
-                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
+            $salariess = DB::table("salaries")
+                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $nurses_ids)
                 ->get();
-
-            //temporary
-            $tsalaries = DB::table("salaries")
-                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
-                ->get();
-            return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+            return view('admin.salary.search', compact('salariess'));
         } else {
-            $nurses = Nurse::all();
+            if ($admin->role == 'super') {
+                //$days = Carbon::now()->daysInMonth;
 
-            $pnurses = array();
-            $tnurses = array();
-            foreach ($nurses as $nurse) {
-                if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                $nurses = Nurse::all();
+                $pnurses = array();
+                $tnurses = array();
+                foreach ($nurses as $nurse) {
                     if ($nurse->permanent == 1) {
                         array_push($pnurses, $nurse->id);
                     } else {
                         array_push($tnurses, $nurse->id);
                     }
                 }
+                // permanent
+                $psalaries = DB::table("salaries")
+                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
+                    ->get();
+
+                //temporary
+                $tsalaries = DB::table("salaries")
+                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
+                    ->get();
+                return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+            } else {
+                $nurses = Nurse::all();
+
+                $pnurses = array();
+                $tnurses = array();
+                foreach ($nurses as $nurse) {
+                    if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        if ($nurse->permanent == 1) {
+                            array_push($pnurses, $nurse->id);
+                        } else {
+                            array_push($tnurses, $nurse->id);
+                        }
+                    }
+                }
+                // permanent
+                $psalaries = DB::table("salaries")
+                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
+                    ->get();
+
+                //temporary
+                $tsalaries = DB::table("salaries")
+                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
+                    ->get();
+                return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+
             }
-            // permanent
-            $psalaries = DB::table("salaries")
-                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
-                ->get();
-
-            //temporary
-            $tsalaries = DB::table("salaries")
-                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
-                ->get();
-            return view('admin.salary.index', compact('psalaries', 'tsalaries'));
-
         }
 
 
@@ -86,7 +94,8 @@ class AdminSalaryController extends Controller
      *
      * @return \Illuminate\Http\Response|
      */
-    public function create($permanent)
+    public
+    function create($permanent)
     {
         if ($permanent == 0) {
             $nurses = Nurse::where('permanent', '0')->get();
@@ -102,7 +111,8 @@ class AdminSalaryController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response|
      */
-    public function store(Request $request)
+    public
+    function store(Request $request)
     {
         //get the data
         $data = $request->validate([
@@ -153,7 +163,8 @@ class AdminSalaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         //
     }
@@ -165,7 +176,8 @@ class AdminSalaryController extends Controller
      * @param $timestamp
      * @return \Illuminate\Http\Response|
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         $salary = Salary::findOrFail($id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
@@ -179,7 +191,8 @@ class AdminSalaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //get the data
         $data = $request->validate([
@@ -236,13 +249,15 @@ class AdminSalaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }
 
 
-    public function salaries($id)
+    public
+    function salaries($id)
     {
         $salaries = Salary::where('nurse_id', $id)->get();
         $nurse = Nurse::findOrFail($id);
@@ -253,28 +268,29 @@ class AdminSalaryController extends Controller
      * display temporary nurses
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function temporarynurses()
+    public
+    function temporarynurses()
     {
 
         $search = request()->get('temp');
         $admin = Auth::user();
 
-        if ($search){
+        if ($search) {
             $nurses = Nurse::select('*')
-                ->where("employee_id","LIKE","%{$search}%")
+                ->where("employee_id", "LIKE", "%{$search}%")
                 ->where('permanent', 0)
                 ->get();
-            if($admin->role == 'super'){
+            if ($admin->role == 'super') {
                 return view('admin.nurses.index', compact('nurses'));
-            }else{
-                if($nurses->isEmpty()){
+            } else {
+                if ($nurses->isEmpty()) {
                     return view('admin.salary.temporary.index', compact('nurses'));
-                }else{
+                } else {
                     $user = User::where('id', $nurses->first()->user_id)->first();
 
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         return view('admin.salary.temporary.index', compact('nurses'));
-                    }else{
+                    } else {
                         $nurses = collect([]);
                         return view('admin.salary.temporary.index', compact('nurses'));
                     }
@@ -282,16 +298,16 @@ class AdminSalaryController extends Controller
             }
 
 
-        }else{
-            if($admin->role == 'super'){
+        } else {
+            if ($admin->role == 'super') {
                 $nurses = Nurse::where('permanent', 0)->get();
                 return view('admin.salary.temporary.index', compact('nurses'));
-            }else{
+            } else {
                 $nurseAll = Nurse::where('permanent', 0)->get();
                 $nurses = array();
 
                 foreach ($nurseAll as $nurse) {
-                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                    if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         array_push($nurses, $nurse);
                     }
                 }
@@ -300,36 +316,36 @@ class AdminSalaryController extends Controller
         }
 
 
-
     }
 
     /**
      * display permanent nurses
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function permanentnurses()
+    public
+    function permanentnurses()
     {
         $search = request()->get('perm');
         $admin = Auth::user();
 
-        if ($search){
+        if ($search) {
             $nurses = Nurse::select('*')
-                ->where("employee_id","LIKE","%{$search}%")
+                ->where("employee_id", "LIKE", "%{$search}%")
                 ->where('permanent', 1)
                 ->get();
 
 
-            if($admin->role == 'super'){
+            if ($admin->role == 'super') {
                 return view('admin.salary.permanent.index', compact('nurses'));
-            }else{
-                if($nurses->isEmpty()){
+            } else {
+                if ($nurses->isEmpty()) {
                     return view('admin.salary.permanent.index', compact('nurses'));
-                }else{
+                } else {
                     $user = User::where('id', $nurses->first()->user_id)->first();
 
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         return view('admin.salary.permanent.index', compact('nurses'));
-                    }else{
+                    } else {
                         $nurses = collect([]);
                         return view('admin.salary.permanent.index', compact('nurses'));
                     }
@@ -337,16 +353,16 @@ class AdminSalaryController extends Controller
             }
 
 
-        }else{
-            if($admin->role == 'super'){
+        } else {
+            if ($admin->role == 'super') {
                 $nurses = Nurse::where('permanent', 1)->get();
                 return view('admin.salary.permanent.index', compact('nurses'));
-            }else{
+            } else {
                 $nurseAll = Nurse::where('permanent', 1)->get();
                 $nurses = array();
 
                 foreach ($nurseAll as $nurse) {
-                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                    if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         array_push($nurses, $nurse);
                     }
                 }

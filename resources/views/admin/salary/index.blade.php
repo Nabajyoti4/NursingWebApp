@@ -46,10 +46,10 @@
     @endif
     <!-- Search -->
     <form class="d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search"
-          action="" method="GET">
+          action="{{route('admin.salary.index')}}" method="GET">
         @csrf
         <div class="input-group">
-            <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
+            <input type="text" class="form-control border-2 small" name="search" placeholder="Search for..."
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
