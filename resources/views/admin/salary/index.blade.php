@@ -85,7 +85,7 @@
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
                         <div class="row">
-                            <div class="col-6 "><span class="m-0 font-weight-bold text-white btn btn-primary">Nurses</span></div>
+                            <div class="col-6 "><span class="m-0 font-weight-bold text-primary btn">Nurses</span></div>
                             <div class="col-6 d-flex justify-content-end">
                                 <button class="btn btn-primary"
                                         onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Salary')">
@@ -153,7 +153,7 @@
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
                         <div class="row">
-                            <div class="col-6"><span class="m-0 font-weight-bold text-white btn btn-primary">Nurses</span></div>
+                            <div class="col-6"><span class="m-0 font-weight-bold text-primary btn ">Nurses</span></div>
                             <div class="col-6 d-flex justify-content-end">
                                 <button class="btn btn-primary"
                                         onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">
