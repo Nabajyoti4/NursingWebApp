@@ -4,6 +4,38 @@
 @endsection
 
 @section('content')
+    <script>
+        function exportTableToExcel(tableID, filename = '') {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                // Setting the file name
+                downloadLink.download = filename;
+
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+    </script>
     @if ($message = Session::get('success'))
         <script>
             Swal.fire({
@@ -54,11 +86,16 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
+                        <div class="row">
+                            <div class="col-6"><h6 class="m-0 font-weight-bold text-primary">Nurses</h6></div>
+                            <div class="col-6 d-flex justify-content-end"> <button class="btn btn-primary" onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Salary')">Export Table
+                                    Data To Excel File
+                                </button></div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTablePermanent" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Employee ID</th>
@@ -113,11 +150,16 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
+                        <div class="row">
+                            <div class="col-6"><h6 class="m-0 font-weight-bold text-primary">Nurses</h6></div>
+                            <div class="col-6 d-flex justify-content-end"> <button class="btn btn-primary" onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">Export Table
+                                    Data To Excel File
+                                </button></div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTableTemporary" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Employee ID</th>
@@ -169,4 +211,3 @@
     </div>
 
 @endsection
-
