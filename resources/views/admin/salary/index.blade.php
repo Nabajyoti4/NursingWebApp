@@ -13,10 +13,8 @@
 
             // Specify file name
             filename = filename ? filename + '.xls' : 'excel_data.xls';
-
             // Create download link element
             downloadLink = document.createElement("a");
-
             document.body.appendChild(downloadLink);
 
             if (navigator.msSaveOrOpenBlob) {
@@ -87,10 +85,14 @@
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
                         <div class="row">
-                            <div class="col-6"><h6 class="m-0 font-weight-bold text-primary">Nurses</h6></div>
-                            <div class="col-6 d-flex justify-content-end"> <button class="btn btn-primary" onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Salary')">Export Table
+                            <div class="col-6 "><span class="m-0 font-weight-bold text-white btn btn-primary">Nurses</span></div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <button class="btn btn-primary"
+                                        onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Salary')">
+                                    Export Table
                                     Data To Excel File
-                                </button></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -151,10 +153,14 @@
                 <div class="card shadow mb-4" id="usersTable">
                     <div class="card-header py-3">
                         <div class="row">
-                            <div class="col-6"><h6 class="m-0 font-weight-bold text-primary">Nurses</h6></div>
-                            <div class="col-6 d-flex justify-content-end"> <button class="btn btn-primary" onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">Export Table
+                            <div class="col-6"><span class="m-0 font-weight-bold text-white btn btn-primary">Nurses</span></div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <button class="btn btn-primary"
+                                        onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">
+                                    Export Table
                                     Data To Excel File
-                                </button></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
