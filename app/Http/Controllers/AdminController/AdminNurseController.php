@@ -18,7 +18,7 @@ class AdminNurseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response|
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -31,19 +31,22 @@ class AdminNurseController extends Controller
         if ($search){
             $nurses = Nurse::where("employee_id","LIKE","%{$search}%")->get();
 
-            if($nurses->isEmpty()){
+            if($admin->role == 'super'){
                 return view('admin.nurses.index', compact('nurses'));
             }else{
-                $user = User::where('id', $nurses->first()->user_id)->first();
-
-                if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                if($nurses->isEmpty()){
                     return view('admin.nurses.index', compact('nurses'));
                 }else{
-                    $nurses = collect([]);
-                    return view('admin.nurses.index', compact('nurses'));
+                    $user = User::where('id', $nurses->first()->user_id)->first();
+
+                    if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        return view('admin.nurses.index', compact('nurses'));
+                    }else{
+                        $nurses = collect([]);
+                        return view('admin.nurses.index', compact('nurses'));
+                    }
                 }
             }
-
         }
         else{
             if($admin->role == 'super'){
