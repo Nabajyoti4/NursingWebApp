@@ -13,7 +13,8 @@ class Nurse extends Model
         'age',
         'qualification_id',
         'is_active',
-        'status'];
+        'status',
+        'permanent'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

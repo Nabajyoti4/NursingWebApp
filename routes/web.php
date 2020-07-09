@@ -60,18 +60,12 @@ Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
 Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve')->name('nursejoin.approve');
 Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove');
 
-
-
-
 Route::resource('user/service' , 'UserServiceController', ['names' =>[
 
     'index'=>'user.service.index',
 
 ]
 ]);
-
-
-
 
 //for Admin Nurse
 Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =>[
@@ -83,6 +77,8 @@ Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =
     'show'=>'admin.nurse.show'
 ]
 ]);
+
+Route::get('admin/nurse/makePermanent/{id}','AdminController\AdminNurseController@makePermanent')->name('admin.nurse.makePermanent');
 
 Route::resource('admin/services' , 'AdminController\ServiceController' ,  ['names' =>[
     'index'=>'admin.services.index',

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Salary Nurses
+    Temporary Salary Nurses
 @endsection
 
 @section('content')

@@ -25,19 +25,27 @@
             </div>
             <div class="form-group font-weight-bold">
                 <label for="basic">Basic Salary</label>
-                <input type="number" value="{{$salary->basic}}" name="basic" class="form-control" />
+                <input type="number" value="{{$salary->basic}}" name="basic" class="form-control"/>
             </div>
-            <div class="form-group font-weight-bold">
-                <label for="full_day">Total Days of Duty 24hrs</label>
-                <input type="number"value="{{$salary->full_day}}" name="full_day" class="form-control"/>
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="half_day">Total Days of Duty 12hrs</label>
-                <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
-            </div>
+            @if($nurse->permanent == 1)
+                <div class="form-group font-weight-bold">
+                    <label for="full_day">Total Payable Days</label>
+                    <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
+                </div>
+            @else
+                <div class="form-group font-weight-bold">
+                    <label for="full_day">Total Days of Duty 24hrs</label>
+                    <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
+                </div>
+                <div class="form-group font-weight-bold">
+                    <label for="half_day">Total Days of Duty 12hrs</label>
+                    <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
+                </div>
+            @endif
             <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
-                <input type="number" value="{{$salary->special_allowance}}" name="special_allowance" class="form-control"/>
+                <input type="number" value="{{$salary->special_allowance}}" name="special_allowance"
+                       class="form-control"/>
             </div>
 
             <div class="form-group font-weight-bold">
@@ -61,7 +69,18 @@
                     <input type="number" value="{{$salary->pf}}" name="pf" class="form-control"/>
                 </div>
             @endif
-
+            <div class="form-group font-weight-bold">
+                <label for="advance">Total Salary</label>
+                <input type="number" value="{{$salary->total}}" disabled name="advance" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="advance">Deduction </label>
+                <input type="number" value="{{$salary->deduction}}" disabled name="advance" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="advance">Net Payment</label>
+                <input type="number" value="{{$salary->net}}" disabled name="advance" class="form-control"/>
+            </div>
             <button class="btn btn-primary" type="submit">Update Details</button>
 
         </form>

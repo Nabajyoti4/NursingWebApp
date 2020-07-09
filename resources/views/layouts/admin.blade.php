@@ -28,7 +28,7 @@
     tr:hover {
         background: #ffffff;
         transition: all .1s;
-        color: #292727;
+        color: #5d5656;
     }
 
 </style>

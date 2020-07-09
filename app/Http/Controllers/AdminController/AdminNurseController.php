@@ -298,4 +298,10 @@ class AdminNurseController extends Controller
     {
         //
     }
+
+    public function makePermanent($id){
+        Nurse::findOrFail($id)->update(['permanent'=>1]);
+        session()->flash('success', 'Nurse is permanent Now!');
+        return redirect()->back();
+    }
 }

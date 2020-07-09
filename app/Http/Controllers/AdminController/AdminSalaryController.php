@@ -17,8 +17,9 @@ class AdminSalaryController extends Controller
      */
     public function index()
     {
-        $days = Carbon::now()->daysInMonth;
-        dd($days);
+//        $days = Carbon::now()->daysInMonth;
+        $salaries = Salary::all();
+        return view('admin.salary.index',compact('salaries'));
     }
 
     /**
