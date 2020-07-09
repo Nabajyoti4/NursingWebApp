@@ -6,11 +6,9 @@ use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
-use App\NurseJoinRequest;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\Comparator\Book;
 
 class AdminBookingController extends Controller
 {
@@ -22,26 +20,49 @@ class AdminBookingController extends Controller
     public function index()
     {
         $search = request()->get('booking');
-
+        $admin = Auth::user();
 
 
         if ($search){
             $bookings = Booking::where("id","LIKE","%{$search}%")->get();
+
+            if($admin->role == 'super'){
+                return view('admin.bookings.index', compact('bookings'));
+            }else{
+                if($bookings->isEmpty()) {
+                    return view('admin.bookings.index', compact('bookings'));
+                    // get the address of the requested PATIENT
+                    // check f the address of the candidate is same as admin
+                }else{
+                        if (($bookings->first()->patient->getAddress()) == ($admin->addresses->first()->city)) {
+                            return view('admin.bookings.index', compact('bookings'));
+                        } else {
+                            $bookings = collect([]);
+                            return view('admin.bookings.index', compact('bookings'));
+                        }
+                    }
+                }
         }
 
         else{
-            $bookingAll = Booking::latest()->get();
-            $bookings = array();
+            if($admin->role == 'super'){
+                $patients = Patient::latest()->get();
+                return view('admin.requests.patient.index', compact('patients'));
 
-            foreach ($bookingAll as $booking) {
-                if (($booking->patient->getAddress()->city ) == (Auth::user()->addresses->first()->city)) {
-                    array_push($bookings, $booking);
+            }else {
+                $bookingAll = Booking::latest()->get();
+                $bookings = array();
+
+                foreach ($bookingAll as $booking) {
+                    if (($booking->patient->getAddress()) == ($admin->addresses->first()->city)) {
+                        array_push($bookings, $booking);
+                    }
                 }
+                return view('admin.bookings.index', compact('bookings'));
             }
 
         }
 
-        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
@@ -60,7 +81,7 @@ class AdminBookingController extends Controller
         $nursesAll = Nurse::all();
         $nurses = array();
         foreach ($nursesAll as $nurse) {
-            if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
+            if (($nurse->user->addresses->first()->city) == ($patient->getAddress())) {
                 array_push($nurses, $nurse);
             }
         }
@@ -98,9 +119,6 @@ class AdminBookingController extends Controller
         return redirect()
             ->route('admin.book.index', compact('bookings'))
             ->with('success','Booking done successfully!');
-
-
-
 
     }
 
