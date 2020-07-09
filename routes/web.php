@@ -185,5 +185,7 @@ Route::get('/admin/admins',function (){
 })->name('admin.admins.index');
 
 
-
-
+// dashboard routes
+Route::get('admin/dashboard/mark' , 'AdminController\AdminDashboardController@today_attendance')->name('admin.dashboard.mark');
+Route::get('admin/mark/{id}/present' , 'AdminController\AdminDashboardController@mark_present')->name('admin.mark.present');
+Route::get('admin/mark/{id}/absent' , 'AdminController\AdminDashboardController@mark_absent')->name('admin.mark.absent');

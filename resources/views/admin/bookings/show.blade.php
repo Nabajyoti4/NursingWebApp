@@ -313,10 +313,21 @@
                                             <div class="card-body">
                                                 <span>Date : {{$attendance->created_at}}</span>
 
+                                                <span>
+                                                    @if($attendance->photo == 'null')
+                                                        <img width="100" height="100" src="{{asset("/img/admin_mark.png")}}" alt="">
+                                                    @else
+                                                        <img width="100" height="100" src="{{asset("/storage".$attendance->photo)}}" alt="">
+                                                    @endif
+
+                                                </span>
+
                                                 <span style="float: right">
                                                     @if($attendance->present == 0)
+                                                        Pending
+                                                    @elseif($attendance->present == 3)
                                                         Absent
-                                                    @else
+                                                    @elseif($attendance->present == 1)
                                                         Present
                                                     @endif
                                                 </span>
