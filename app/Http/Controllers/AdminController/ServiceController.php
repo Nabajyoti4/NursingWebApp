@@ -88,7 +88,7 @@ class ServiceController extends Controller
     {
         //
         $data = $request->only(['title', 'details']);
-        
+
         $service = Service::findOrFail($id)->update($data);
         $services = Service::all();
         return redirect()->route('admin.services.index', compact('services'))->with('success', 'Service Updated');

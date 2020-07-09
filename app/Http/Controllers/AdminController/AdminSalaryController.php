@@ -25,7 +25,7 @@ class AdminSalaryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function create($permanent)
     {
@@ -41,7 +41,7 @@ class AdminSalaryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function store(Request $request)
     {
@@ -104,7 +104,7 @@ class AdminSalaryController extends Controller
      *
      * @param int $id
      * @param $timestamp
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function edit($id)
     {
@@ -183,12 +183,7 @@ class AdminSalaryController extends Controller
     }
 
 
-    public function temporarynurses()
-    {
-        $nurses = Nurse::where('permanent', 0)->get();
-        return view('admin.salary.temporary.index', compact('nurses'));
 
-    }
 
     public function salaries($id)
     {
@@ -197,6 +192,21 @@ class AdminSalaryController extends Controller
         return view('admin.salary.temporary.salary', compact('salaries', 'nurse'));
     }
 
+    /**
+     * display temporary nurses
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function temporarynurses()
+    {
+        $nurses = Nurse::where('permanent', 0)->get();
+        return view('admin.salary.temporary.index', compact('nurses'));
+
+    }
+
+    /**
+     * display permanent nurses
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function permanentnurses()
     {
         $nurses = Nurse::where('permanent', 1)->get();

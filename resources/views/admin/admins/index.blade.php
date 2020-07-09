@@ -35,6 +35,7 @@
                         <th>User ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>State</th>
                         <th>Phone No</th>
                         <th>Created at</th>
                         <th>Edit</th>
@@ -46,6 +47,7 @@
                             <td>{{$admin->id}}</td>
                             <td>{{$admin->name}}</td>
                             <td>{{$admin->email}}</td>
+                            <td>{{$admin->addresses->first() ? $admin->addresses->first()->city : "Fill the Permanent Address"}}</td>
                             <td>{{$admin->phone_no}}</td>
                             <td>{{$admin->created_at}}</td>
                             <td><a class="btn btn-primary small" href="">Edit</a></td>

@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\AdminController;
+use App\NurseJoinRequest;
 use App\Patient;
 use App\Reject;
 use App\User;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class AdminPatientController extends Controller
@@ -14,13 +16,115 @@ class AdminPatientController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //
-        $patients = Patient::all();
-        return view('admin.requests.patient.index', compact('patients'));
+        $search = request()->get('patient');
+        $admin = Auth::user();
+
+        if ($search){
+
+            $patients = Patient::where("patient_name","LIKE","%{$search}%")->get();
+
+            if($admin->role == 'super'){
+                return view('admin.requests.patient.index', compact('patients'));
+            }
+            else{
+                // check if the collection have any data
+                if($patients->isEmpty()){
+                    return view('admin.requests.patient.index', compact('patients'));
+                }else{
+                    // get the address of the requested PATIENT
+                    // check if the address of the candidate is same as admin
+                    if (($patients->first()->getAddress()) == ($admin->addresses->first()->city)) {
+                        return view('admin.requests.patient.index', compact('patients'));
+                    }else{
+                        $patients = collect([]);
+                        return view('admin.requests.patient.index', compact('patients'));
+                    }
+                }
+            }
+        }
+
+        else{
+            if($admin->role == 'super'){
+                $patients = Patient::latest()->get();
+                return view('admin.requests.patient.index', compact('patients'));
+
+            }else{
+                $patientAll = Patient::all();
+                $patients = array();
+
+                foreach ($patientAll as $patient) {
+                    if (($patient->getAddress()) == ($admin->addresses->first()->city)) {
+                        array_push($patients, $patient);
+                    }
+                }
+                return view('admin.requests.patient.index', compact('patients'));
+            }
+
+        }
+
+    }
+
+    /**
+     *  patients that are approved
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function approved()
+    {
+        //
+        $search = request()->get('patient');
+        $admin = Auth::user();
+
+        if ($search){
+            $patients = Patient::select('*')
+                ->where("patient_name","LIKE","%{$search}%")
+                ->where('status',1)
+                ->get();
+
+            if($admin->role == 'super'){
+                return view('admin.patients.index', compact('patients'));
+            }else{
+                // check if the collection have any data
+                if($patients->isEmpty()){
+                    return view('admin.patients.index', compact('patients'));
+                }else{
+                    // get the address of the requested PATIENT
+                    // check if the address of the candidate is same as admin
+                    if (($patients->first()->getAddress()) == ($admin->addresses->first()->city)) {
+                        return view('admin.patients.index', compact('patients'));
+                    }else{
+                        $patients = collect([]);
+                        return view('admin.patients.index', compact('patients'));
+                    }
+                }
+            }
+
+        }
+
+        else{
+            if($admin->role == 'super'){
+                $patients = Patient::latest()->get();
+                return view('admin.patients.index', compact('patients'));
+
+            }else{
+                $patientAll = Patient::all();
+                $patients = array();
+
+                foreach ($patientAll as $patient) {
+                    if (($patient->getAddress()) == ($admin->addresses->first()->city)) {
+                        array_push($patients, $patient);
+                    }
+                }
+
+                return view('admin.patients.index', compact('patients'));
+            }
+
+        }
+
     }
 
     /**
@@ -126,11 +230,7 @@ class AdminPatientController extends Controller
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
     }
-    // patients that are approved
-    public function approved()
-    {
-        //
-        $patients = Patient::all()->where('status',1);
-        return view('admin.patients.index', compact('patients'));
-    }
+
+
+
 }

@@ -9,6 +9,7 @@ use App\Photo;
 use App\Qualification;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,14 +18,52 @@ class AdminNurseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function index()
     {
         //
-        $nurses = Nurse::all();
+        $search = request()->get('nurse');
+        $admin = Auth::user();
 
-        return view('admin.nurses.index', compact('nurses'));
+
+
+        if ($search){
+            $nurses = Nurse::where("employee_id","LIKE","%{$search}%")->get();
+
+            if($nurses->isEmpty()){
+                return view('admin.nurses.index', compact('nurses'));
+            }else{
+                $user = User::where('id', $nurses->first()->user_id)->first();
+
+                if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                    return view('admin.nurses.index', compact('nurses'));
+                }else{
+                    $nurses = collect([]);
+                    return view('admin.nurses.index', compact('nurses'));
+                }
+            }
+
+        }
+        else{
+            if($admin->role == 'super'){
+                $nurses = Nurse::all();
+                return view('admin.nurses.index', compact('nurses'));
+            }else{
+                $nurseAll = Nurse::all();
+                $nurses = array();
+
+                foreach ($nurseAll as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($nurses, $nurse);
+                    }
+                }
+                return view('admin.nurses.index', compact('nurses'));
+            }
+
+        }
+
+
     }
 
     /**

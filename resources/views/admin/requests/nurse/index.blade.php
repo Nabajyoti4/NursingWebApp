@@ -30,17 +30,16 @@
 
 @section('content')
 
-    <div id="loading">
-        sending Nitification
-        <img id="loading-image" src="{{asset('img/loader.gif')}}" alt="Loading..." />
-    </div>
+{{--    <div id="loading">--}}
+{{--        <img id="loading-image" src="{{asset('img/loader.gif')}}" alt="Loading..." />--}}
+{{--    </div>--}}
 
     <!-- Search -->
     <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
           method="GET">
         @csrf
         <div class="input-group">
-            <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
+            <input type="text" class="form-control border-2 small" name="candidate" placeholder="Search for..."
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
@@ -169,15 +168,11 @@
     </script>
 
 
-    <script>
-        $(window).on('load', function () {
-            $("#loading").fadeOut("slow");
-        });
-    </script>
-
-
-
-
+{{--    <script>--}}
+{{--        $(window).on('load', function () {--}}
+{{--            $("#loading").fadeOut("slow");--}}
+{{--        });--}}
+{{--    </script>--}}
 
 
 
