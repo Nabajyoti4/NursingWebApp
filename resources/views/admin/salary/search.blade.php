@@ -70,14 +70,8 @@
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header">
             <div class="row">
-                <div class="col-6"><span class="m-0 font-weight-bold text-primary btn ">Nurses</span></div>
-                <div class="col-6 d-flex justify-content-end">
-                    <button class="btn btn-primary"
-                            onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">
-                        Export Table
-                        Data To Excel File
-                    </button>
-                </div>
+                <div class="col-12"><span class="m-0 font-weight-bold text-primary btn ">Nurses</span></div>
+
             </div>
         </div>
         <div class="card-body">
