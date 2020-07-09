@@ -170,10 +170,3 @@
 
 @endsection
 
-@section('script')
-    <script type="text/javascript">
-        setInterval(function () {
-            $("#data").load(location.href + " #data>*", "");
-        }, 10000);
-    </script>
-@endsection

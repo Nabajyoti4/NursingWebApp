@@ -23,6 +23,8 @@ class AdminSalaryController extends Controller
         $admin = Auth::user();
         $currentMonth = date('m');
 
+
+
         if ($admin->role == 'super') {
             //$days = Carbon::now()->daysInMonth;
 
@@ -73,7 +75,6 @@ class AdminSalaryController extends Controller
             return view('admin.salary.index', compact('psalaries', 'tsalaries'));
 
         }
-
 
 
     }
