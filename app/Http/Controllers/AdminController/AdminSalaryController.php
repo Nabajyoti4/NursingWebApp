@@ -7,6 +7,7 @@ use App\Nurse;
 use App\Salary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminSalaryController extends Controller
 {
@@ -17,9 +18,23 @@ class AdminSalaryController extends Controller
      */
     public function index()
     {
-//        $days = Carbon::now()->daysInMonth;
-        $salaries = Salary::all();
-        return view('admin.salary.index',compact('salaries'));
+        // permanent nurses
+        $permanentNurses = Nurse::where('permanent',1)->get();
+        //        nurse
+        $temporaryNurses = Nurse::where('permanent',0)->get();
+
+        //        $days = Carbon::now()->daysInMonth;
+        $currentMonth = date('m');
+
+        $psalaries = DB::table("salaries")
+            ->whereRaw('MONTH(created_at) = ?',[$currentMonth])->whereIn('nurse_id',$permanentNurses)
+            ->get();
+
+        //temporary
+        $tsalaries = DB::table("salaries")
+            ->whereRaw('MONTH(created_at) = ?',[$currentMonth])->whereIn('nurse_id',$temporaryNurses)
+            ->get();
+        return view('admin.salary.index',compact('psalaries','tsalaries'));
     }
 
     /**
