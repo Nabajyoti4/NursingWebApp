@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Nurse extends Model
 {
@@ -35,5 +36,22 @@ class Nurse extends Model
      */
     public function bookings(){
         return $this->hasMany(Booking::class);
+    }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function day_attendance($id){
+        $attendance = DB::table("attendances")
+            ->whereDate('created_at' , '=', date('Y-m-d'))->where('nurse_id', $id)
+            ->get();
+
+        if($attendance->isEmpty()){
+            return "Not Marked";
+        }else{
+            return $attendance->first()->present;
+        }
+
     }
 }
