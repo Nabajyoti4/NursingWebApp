@@ -37,7 +37,7 @@
 
 
         </div>
-        <!-- Salary (Monthly) Card Example -->
+        <!-- salary (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <a href="{{route('admin.salary.index')}}" class="">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -63,7 +63,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Nurse Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\NurseJoinRequest::where('Approval',0)->count()}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\NurseJoinRequest::where('Approval',2)->count()}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>

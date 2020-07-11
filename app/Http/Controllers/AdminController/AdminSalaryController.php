@@ -4,7 +4,8 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Nurse;
-use App\Salary;
+use App\Psalary;
+use App\Tsalary;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,15 +26,19 @@ class AdminSalaryController extends Controller
         $currentMonth = date('m');
 
         if ($search) {
-            $nurses = Nurse::where("employee_id", $search)->get();
-            $nurses_ids = array();
-            foreach ($nurses as $nurse) {
-                array_push($nurses_ids, $nurse->id);
+            if (Nurse::where("employee_id",$search)->get()->isEmpty())
+            {
+                $salariess =collect([]);
+                return view('admin.salary.search', compact('salariess'));
+
             }
-            $salariess = DB::table("salaries")
-                ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $nurses_ids)
-                ->get();
-            return view('admin.salary.search', compact('salariess'));
+            else{
+                $nurse = Nurse::where("employee_id",$search)->get()->first();
+                $salariess = Tsalary::whereMonth('created_at',$currentMonth)->where('nurse_id', $nurse->id)
+                    ->get();
+                return view('admin.salary.search', compact('salariess'));
+            }
+
         } else {
             if ($admin->role == 'super') {
                 //$days = Carbon::now()->daysInMonth;
@@ -73,13 +78,11 @@ class AdminSalaryController extends Controller
                     }
                 }
                 // permanent
-                $psalaries = DB::table("salaries")
-                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
+                $psalaries = Psalary::whereMonth('created_at',$currentMonth)->whereIn('nurse_id', $pnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = DB::table("salaries")
-                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::whereMonth('created_at',$currentMonth)->whereIn('nurse_id', $tnurses)
                     ->get();
                 return view('admin.salary.index', compact('psalaries', 'tsalaries'));
 
@@ -138,21 +141,52 @@ class AdminSalaryController extends Controller
         //total payment for permanent nurse
         if ($nurse->permanent == 1) {
             $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
-            //ESIC (4% of Total Salary)
+            //ESIC (4% of Total Tsalary)
             $data['esic'] = $data['basic'] * (4 / 100);
 
             $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
-
+            $data['net'] = $data['total'] - $data['deduction'];
+            //create salary entry for the nurse
+            Psalary::create([
+                'basic'=>$data['basic'],
+                'nurse_id'=>$data['nurse_id'],
+                'per_day_rate'=>$data['per_day_rate'],
+                'payable_days'=>$data['full_day'],
+                'special_allowance'=>$data['special_allowance'],
+                'hra'=>$data['hra'],
+                'esic'=>$data['esic'],
+                'pf'=>$data['pf'],
+                'bonus'=>$data['bonus'],
+                'advance'=>$data['advance'],
+                'total'=>$data['total'],
+                'deduction'=>$data['deduction'],
+                'net'=>$data['net']
+            ]);
         } else {
             $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
                 + ($data['half_day'] * ($data['per_day_rate'] / 2));
 
             //deduction payment
             $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
+            $data['net'] = $data['total'] - $data['deduction'];
+            //create salary entry for the nurse
+            Tsalary::create([
+                'basic'=>$data['basic'],
+                'nurse_id'=>$data['nurse_id'],
+                'per_day_rate'=>$data['per_day_rate'],
+                'full_day'=>$data['full_day'],
+                'half_day'=>$data['half_day'],
+                'special_allowance'=>$data['special_allowance'],
+                'ta_da'=>$data['ta_da'],
+                'hra'=>$data['hra'],
+                'bonus'=>$data['bonus'],
+                'advance'=>$data['advance'],
+                'total'=>$data['total'],
+                'deduction'=>$data['deduction'],
+                'net'=>$data['net']
+            ]);
         }
-        $data['net'] = $data['total'] - $data['deduction'];
-        //create salary entry for the nurse
-        Salary::create($data);
+
         session()->flash('success', 'Data Created Successfully');
         return redirect()->route('admin.salary.salaries', $data['nurse_id']);
     }
@@ -179,7 +213,7 @@ class AdminSalaryController extends Controller
     public
     function edit($id)
     {
-        $salary = Salary::findOrFail($id)->get()->first();
+        $salary = Tsalary::findOrFail($id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
         return view('admin.salary.edit', compact('salary', 'nurse'));
     }
@@ -209,7 +243,7 @@ class AdminSalaryController extends Controller
         $nurse = Nurse::findOrFail($data['nurse_id']);
 
         //salary
-        $salary = Salary::findOrFail($id);
+        $salary = Tsalary::findOrFail($id);
         //calculate per day rate
         $total_days = Carbon::now()->daysInMonth;
         $data['per_day_rate'] = ($data['basic'] / $total_days);
@@ -218,7 +252,7 @@ class AdminSalaryController extends Controller
         //total payment for permanent nurse
         if ($nurse->permanent == 1) {
             $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
-            //ESIC (4% of Total Salary)
+            //ESIC (4% of Total Tsalary)
             $data['esic'] = $data['basic'] * (4 / 100);
 
             $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
@@ -259,7 +293,7 @@ class AdminSalaryController extends Controller
     public
     function salaries($id)
     {
-        $salaries = Salary::where('nurse_id', $id)->get();
+        $salaries = Tsalary::where('nurse_id', $id)->get();
         $nurse = Nurse::findOrFail($id);
         return view('admin.salary.temporary.salary', compact('salaries', 'nurse'));
     }

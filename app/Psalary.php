@@ -4,17 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Salary extends Model
+class Psalary extends Model
 {
     protected $fillable =
         ['nurse_id',
             'basic',
             'per_day_rate',
-            'full_day',
-            'half_day',
-            'status',
+            'month_days',
+            'payable_days',
             'special_allowance',
-            'ta_da',
             'hra',
             'bonus',
             'advance',
@@ -22,5 +20,9 @@ class Salary extends Model
             'deduction',
             'net',
             'esic',
-            'pf'];
+            'pf',
+            'payment_received_date',
+            'remarks',
+            'status',
+            'area'];
 }
