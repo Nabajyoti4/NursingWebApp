@@ -78,7 +78,7 @@
     </ul>
     <div class="col-md-12 p-0 pt-2">
         <div class="tab-content profile-tab" id="myTabContent">
-            <!--Permanent Nurse Salary-->
+            <!--Permanent Nurse Tsalary-->
             <div class="tab-pane fade show active" id="permanentNurse" role="tabpanel" aria-labelledby="home-tab">
 
                 <!-- DataTales Example -->
@@ -88,7 +88,7 @@
                             <div class="col-6 "><span class="m-0 font-weight-bold text-primary btn">Nurses</span></div>
                             <div class="col-6 d-flex justify-content-end">
                                 <button class="btn btn-primary"
-                                        onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Salary')">
+                                        onclick="exportTableToExcel('dataTablePermanent', 'Permanent Nurses Tsalary')">
                                     Export Table
                                     Data To Excel File
                                 </button>
@@ -122,7 +122,7 @@
                                         <td>{{\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->employee_id}}</td>
                                         <td>{{$salary->basic}}</td>
                                         <td>{{$salary->per_day_rate}}</td>
-                                        <td>{{$salary->full_day}}</td>
+                                        <td>{{$salary->payable_days}}</td>
                                         <td>{{$salary->special_allowance}}</td>
                                         <td>{{$salary->ta_da}}</td>
                                         <td>{{$salary->hra}}</td>
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <!--Temporary Nurse Salary-->
+            <!--Temporary Nurse Tsalary-->
             <div class="tab-pane fade" id="temporaryNurse" role="tabpanel" aria-labelledby="profile-tab">
 
                 <!-- DataTales Example -->
@@ -156,7 +156,7 @@
                             <div class="col-6"><span class="m-0 font-weight-bold text-primary btn ">Nurses</span></div>
                             <div class="col-6 d-flex justify-content-end">
                                 <button class="btn btn-primary"
-                                        onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Salary')">
+                                        onclick="exportTableToExcel('dataTableTemporary', 'Temporary Nurses Tsalary')">
                                     Export Table
                                     Data To Excel File
                                 </button>

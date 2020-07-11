@@ -76,7 +76,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">No Patient Request found</td>
+                            <td colspan="9">No Patient Request found</td>
                         </tr>
                     @endforelse
                     </tbody>
