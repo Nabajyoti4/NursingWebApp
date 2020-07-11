@@ -130,9 +130,19 @@ class NurseJoinRequestController extends Controller
                 // create if no pending request for particular candidate
                 $nurse = NurseJoinRequest::create($data);
 
-                $admin = User::where('role', 'admin')->get();
+                $city = NurseJoinRequest::findOrFail($nurse)->first();
 
-                Notification::send($admin, new \App\Notifications\NurseJoinRequest($nurse));
+                $user = User::findOrFail($city->user_id)->first();
+
+                $adminAll  = User::where('role', 'admin')->get();
+
+                $admins = array();
+                foreach ($adminAll as $admin) {
+                    if($admin->first()->addresses->first()->city == $user->addresses->first()->city)
+                    array_push($admins, $admin);
+                }
+
+                Notification::send($admins, new \App\Notifications\NurseJoinRequest($nurse));
 
                 return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
             }
