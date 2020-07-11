@@ -109,20 +109,24 @@ Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientContro
 // Admin salary
 Route::resource('admin/salary','AdminController\AdminSalaryController', ['names' =>[
     'index'=>'admin.salary.index',
-    'edit'=>'admin.salary.edit',
-    'update'=>'admin.salary.update',
     'store'=>'admin.salary.store',
     'show'=>'admin.salary.show',
 ]]);
+// temporary and permanent nurse salary edit
+Route::get('admin/salary/tedit/{id}', 'AdminController\AdminSalaryController@tedit')->name('admin.salary.tedit');
+Route::get('admin/salary/pedit/{id}', 'AdminController\AdminSalaryController@pedit')->name('admin.salary.pedit');
 
-
+// temporary and permanent nurse salary create
 Route::get('admin/salary/create/{permanent}', 'AdminController\AdminSalaryController@create')->name('admin.salary.create');
-Route::get('admin/salary/temporary/nurse', 'AdminController\AdminSalaryController@temporarynurses')->name('admin.salary.temporary');
 Route::get('admin/salary/temporary/salary/{id}', 'AdminController\AdminSalaryController@salaries')->name('admin.salary.salaries');
 
-
+// temporary and permanent nurse salary index
+Route::get('admin/salary/temporary/nurse', 'AdminController\AdminSalaryController@temporarynurses')->name('admin.salary.temporary');
 Route::get('admin/salary/permanent/nurse', 'AdminController\AdminSalaryController@permanentnurses')->name('admin.salary.permanent');
 
+// temporary and permanent nurse salary update
+Route::patch('admin/salary/permanentUpdate/{id}', 'AdminController\AdminSalaryController@permanentUpdate')->name('admin.salary.permanentUpdate');
+Route::patch('admin/salary/temporaryUpdate/{id}', 'AdminController\AdminSalaryController@temporaryUpdate')->name('admin.salary.temporaryUpdate');
 
 
 // nurse routes

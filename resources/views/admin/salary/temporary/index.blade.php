@@ -32,6 +32,7 @@
     <hr>
     <a href="{{route('admin.salary.create',$permanent=0)}}" class="btn btn-primary">Create Salary for the Nurse</a>
     <hr>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">

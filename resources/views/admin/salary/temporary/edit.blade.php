@@ -13,7 +13,7 @@
 
 
     <div class="container emp-profile mt-3 mb-5">
-        <form action="{{ route('admin.salary.update',$salary->id)}}" method="POST">
+        <form action="{{ route('admin.salary.temporaryUpdate',$salary->id)}}" method="POST">
             @csrf
             @method('PATCH')
 
@@ -27,21 +27,18 @@
                 <label for="basic">Basic Salary</label>
                 <input type="number" value="{{$salary->basic}}" name="basic" class="form-control"/>
             </div>
-            @if($nurse->permanent == 1)
-                <div class="form-group font-weight-bold">
-                    <label for="full_day">Total Payable Days</label>
-                    <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
-                </div>
-            @else
-                <div class="form-group font-weight-bold">
-                    <label for="full_day">Total Days of Duty 24hrs</label>
-                    <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
-                </div>
-                <div class="form-group font-weight-bold">
-                    <label for="half_day">Total Days of Duty 12hrs</label>
-                    <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
-                </div>
-            @endif
+            <div class="form-group font-weight-bold">
+                <label for="per_day_rate">Per Day Rate</label>
+                <input type="number" value="{{$salary->per_day_rate}}" name="per_day_rate" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="full_day">Total Days of Duty 24hrs</label>
+                <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="half_day">Total Days of Duty 12hrs</label>
+                <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
+            </div>
             <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
                 <input type="number" value="{{$salary->special_allowance}}" name="special_allowance"
@@ -59,16 +56,15 @@
             </div>
 
             <div class="form-group font-weight-bold">
+                <label for="bonus">Bonus</label>
+                <input type="number" value="{{$salary->bonus}}" name="bonus" class="form-control"/>
+            </div>
+
+            <div class="form-group font-weight-bold">
                 <label for="advance">Advance Payment</label>
                 <input type="number" value="{{$salary->advance}}" name="advance" class="form-control"/>
             </div>
 
-            @if($nurse->permanent == 1)
-                <div class="form-group font-weight-bold">
-                    <label for="pf">PF</label>
-                    <input type="number" value="{{$salary->pf}}" name="pf" class="form-control"/>
-                </div>
-            @endif
             <div class="form-group font-weight-bold">
                 <label for="advance">Total Salary</label>
                 <input type="number" value="{{$salary->total}}" disabled name="advance" class="form-control"/>
