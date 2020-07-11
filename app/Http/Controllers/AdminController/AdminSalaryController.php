@@ -30,7 +30,6 @@ class AdminSalaryController extends Controller
             {
                 $salariess =collect([]);
                 return view('admin.salary.search', compact('salariess'));
-
             }
             else{
                 $nurse = Nurse::where("employee_id",$search)->get()->first();
