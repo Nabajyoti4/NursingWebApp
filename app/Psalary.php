@@ -25,4 +25,5 @@ class Psalary extends Model
             'remarks',
             'status',
             'area'];
+
 }
