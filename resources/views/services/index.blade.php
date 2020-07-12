@@ -19,8 +19,8 @@
     <div class="container-fluid p-0">
     <div id="demo" class="carousel slide" data-ride="carousel">
         <!-- navbar start -->
-        <div class="service-nav">
-    @include('partials.navbar')
+        <div class="service-nav ">
+        @include('partials.navbar')
         </div>
         <!-- navbar ends -->
         <!-- Indicators -->
