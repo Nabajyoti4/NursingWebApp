@@ -75,6 +75,10 @@ class AdminBookingController extends Controller
         return view('admin.bookings.create', compact('patient'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function bookCreate($id)
     {
         $patient = Patient::findOrFail($id);
@@ -156,7 +160,7 @@ class AdminBookingController extends Controller
      * takeover if new nurse is available
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function update(Request $request, $id)
     {
