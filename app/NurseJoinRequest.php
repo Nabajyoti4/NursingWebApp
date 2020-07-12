@@ -14,6 +14,18 @@ class NurseJoinRequest extends Model
         'age',
         'Approval'];
 
- 
+
+    /**
+     * return user role
+     * @param $id
+     * @return mixed
+     */
+    public function check_role($id){
+        $nurse = NurseJoinRequest::findOrFail($id)->first();
+
+        $user = User::where('id' , $nurse->user_id)->get();
+
+        return $user->first()->role;
+    }
 
 }

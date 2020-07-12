@@ -10,6 +10,7 @@ use App\Qualification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -131,11 +132,14 @@ class AdminNurseController extends Controller
        $nurse_age = $data['age'];
 
        // create the new nurse record
-       Nurse::create(['user_id' => $user_id,
+       $nurse = Nurse::create(['user_id' => $user_id,
            'employee_id' => $emp_id,
            'age' => $nurse_age,
            'qualification_id' => $qualification->id,
            ]);
+
+
+      Notification::send($user, new \App\Notifications\NewNurse($nurse));
 
        $nurses = Nurse::all();
        return redirect()

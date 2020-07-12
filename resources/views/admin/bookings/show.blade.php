@@ -325,7 +325,7 @@
                                                 <span style="float: right">
                                                     @if($attendance->present == 0)
                                                         Pending
-                                                    @elseif($attendance->present == 3)
+                                                    @elseif($attendance->present == 2)
                                                         Absent
                                                     @elseif($attendance->present == 1)
                                                         Present

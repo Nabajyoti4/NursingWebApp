@@ -83,7 +83,7 @@
                                 @if($candidate->Approval == 1)
                                     Approved
                                 @elseif($candidate->Approval == 0)
-                                    Dissapproved
+                                    Disapproved
                                 @else
                                     Pending
                                 @endif
@@ -97,13 +97,25 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="{{route('admin.nurse.join',$candidate->user_id)}}" method="GET">
-                                    @csrf
-                                    <button class="btn btn-primary"  type="submit">Create</button>
-                                </form>
+                                @if($candidate->Approval == 1)
+                                    @if($candidate->check_role($candidate->id) == 'nurse')
+                                        Nurse Created
+                                    @else
+                                        <form action="{{route('admin.nurse.join',$candidate->user_id)}}" method="GET">
+                                            @csrf
+                                            <button class="btn btn-primary"  type="submit">Create</button>
+                                        </form>
+                                    @endif
+                                @else
+                                    Not Approved
+                                @endif
                             </td>
                             <td>
-                                <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
+                                @if($candidate->Approval == 1)
+                                      Nurse Approved
+                                @else
+                                    <button class="btn btn-primary"  onclick="handleDisapprove({{$candidate->id}})">Disapproved</button>
+                                @endif
                             </td>
                         </tr>
                     @empty

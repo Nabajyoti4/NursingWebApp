@@ -29,13 +29,20 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function create()
     {
         //
         $services = Service::all();
-        return view('patientapplication.index', compact('services'));
+        $user = Auth::user();
+        
+        if($user->permanent_address_id > 0){
+            return view('patientapplication.index', compact('services'));
+        }else{
+            return redirect()->back()->with('info', 'Please fill your deatils before hiring');
+        }
+      
     }
 
     /**
