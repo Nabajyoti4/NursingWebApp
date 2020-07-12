@@ -26,4 +26,6 @@ class Tsalary extends Model
             'payment_received_date',
             'remarks',
             'area'];
+
+
 }

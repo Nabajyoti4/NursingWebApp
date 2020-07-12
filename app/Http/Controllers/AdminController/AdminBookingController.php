@@ -173,8 +173,6 @@ class AdminBookingController extends Controller
         if($value == 0){
             $booking->update(['status'=>3]);
 
-
-
         }
 
         // 4 takeover action
@@ -190,7 +188,6 @@ class AdminBookingController extends Controller
 
             //  find the nurse same as patient address
             $nurses = array();
-
             foreach ($nursesAll as $nurse) {
                 if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
                     array_push($nurses, $nurse);
