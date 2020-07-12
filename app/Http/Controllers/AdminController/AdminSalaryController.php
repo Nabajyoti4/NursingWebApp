@@ -51,13 +51,11 @@ class AdminSalaryController extends Controller
                     }
                 }
                 // permanent
-                $psalaries = DB::table("salaries")
-                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $pnurses)
+                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereIn('nurse_id', $pnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = DB::table("salaries")
-                    ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereIn('nurse_id', $tnurses)
                     ->get();
                 return view('admin.salary.index', compact('psalaries', 'tsalaries'));
             } else {
