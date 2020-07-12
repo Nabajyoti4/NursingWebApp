@@ -35,6 +35,8 @@ Route::resource('admin/users','AdminController\AdminUsersController',['names'=> 
     'show'=>'admin.users.show'
 ]]);
 
+Route::get('admin/users/admin/{id}', 'AdminController\AdminUsersController@make_admin')->name('admin.users.admin');
+
 
 
 // User controller
@@ -52,7 +54,7 @@ Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
     'store'=>'nursejoin.store',
     'edit'=>'nursejoin.edit',
     'show'=>'nursejoin.show'
-]]);
+]])->middleware('auth');
 
 
 Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve')->name('nursejoin.approve');
@@ -149,7 +151,7 @@ Route::resource('users/patient','Patient\PatientController', ['names' =>[
     'edit'=>'users.patient.edit',
     'update'=>'users.patient.update',
     'show'=>'users.patient.show'
-]]);
+]])->middleware('auth');
 
 // booking
 Route::resource('admin/book','AdminController\AdminBookingController', ['names' =>[

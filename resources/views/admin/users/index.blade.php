@@ -49,7 +49,11 @@
                             <td>{{$user->phone_no}}</td>
                             <td>{{$user->created_at}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
-                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i></td>
+                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                            </td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
+                                </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                            </td>
                         </tr>
                     @empty
                         <tr>

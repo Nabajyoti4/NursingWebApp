@@ -218,4 +218,14 @@ class AdminUsersController extends Controller
     {
         //
     }
+
+    public function make_admin($id){
+        $user = User::findOrFail($id);
+
+        $user['role'] = 'admin';
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Admin role assigned to user');
+    }
 }
