@@ -93,9 +93,18 @@ class PatientController extends Controller
         ]);
 
 
+
         // select all the admins to send the request to them
-        $admin = User::where('role', 'admin')->get();
-        Notification::send($admin, new \App\Notifications\PatientRequest($patient));
+
+        $adminAll = User::where('role', 'admin')->get();
+
+        $admins = array();
+        foreach ($adminAll as $admin) {
+            if($admin->addresses->first()->city == $patient->getAddress())
+                array_push($admins, $admin);
+        }
+
+        Notification::send($admins, new \App\Notifications\PatientRequest($patient));
 
 
         return redirect()
