@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\This;
 
 class AdminSalaryController extends Controller
 {
@@ -104,6 +105,23 @@ class AdminSalaryController extends Controller
         return view('admin.salary.create', compact('nurses', 'permanent'));
     }
 
+    public function calculateTemporaryTotal($data){
+        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
+            + ($data['half_day'] * ($data['per_day_rate'] / 2));
+        //deduction payment
+        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
+        $data['net'] = $data['total'] - $data['deduction'];
+        return $data;
+    }
+    public function calculatePermanentTotal($data){
+        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
+        //ESIC (4% of Total Tsalary)
+        $data['esic'] = $data['basic'] * (4 / 100);
+
+        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
+        $data['net'] = $data['total'] - $data['deduction'];
+        return $data;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -136,12 +154,7 @@ class AdminSalaryController extends Controller
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
         if ($nurse->permanent == 1) {
-            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
-            //ESIC (4% of Total Tsalary)
-            $data['esic'] = $data['basic'] * (4 / 100);
-
-            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
-            $data['net'] = $data['total'] - $data['deduction'];
+         $data = $this->calculatePermanentTotal($data);
             //create salary entry for the nurse
             Psalary::create([
                 'basic' => $data['basic'],
@@ -160,12 +173,9 @@ class AdminSalaryController extends Controller
                 'month_days' => $total_days
             ]);
         } else {
-            $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
-                + ($data['half_day'] * ($data['per_day_rate'] / 2));
+            $data = $this->calculateTemporaryTotal($data);
 
-            //deduction payment
-            $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
-            $data['net'] = $data['total'] - $data['deduction'];
+
             //create salary entry for the nurse
             Tsalary::create([
                 'basic' => $data['basic'],
@@ -247,12 +257,7 @@ class AdminSalaryController extends Controller
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
-        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
-        //ESIC (4% of Total Tsalary)
-        $data['esic'] = $data['basic'] * (4 / 100);
-
-        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['esic'] + $data['pf'] + $data['advance'];
-
+        $data = $this->calculatePermanentTotal($data);
         //find the perticular addresss
         $psalary = Psalary::findOrFail($id);
 
@@ -295,14 +300,7 @@ class AdminSalaryController extends Controller
 
             'month_days' => 'integer',
         ]);
-        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da']
-            + ($data['half_day'] * ($data['per_day_rate'] / 2));
-
-        //deduction payment
-        $data['deduction'] = $data['hra'] + $data['bonus'] + $data['advance'];
-
-        //net payment
-        $data['net'] = $data['total'] - $data['deduction'];
+        $data = $this->calculateTemporaryTotal($data);
         //salary
         $tsalary = Tsalary::findOrFail($id);
         $tsalary->update([
@@ -455,6 +453,7 @@ class AdminSalaryController extends Controller
         }
 
     }
+
 
 
 }
