@@ -4,6 +4,25 @@
 @endsection
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @elseif ($message = Session::get('info'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <!-- Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="" method="GET">
         @csrf

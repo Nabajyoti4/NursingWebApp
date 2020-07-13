@@ -33,7 +33,18 @@ class AdminDashboardController extends Controller
     public function mark_present($id){
         $serverDateTime = Carbon::now();
         $booking = Booking::where('nurse_id', $id)->get();
-
+        $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
+        if ($nurse->permanent == 1){
+            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }else{
+            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }
         // reduce the remaining days
         $booking->first()->update([
             'remaining_days' => $booking->first()->remaining_days - 1
@@ -109,8 +120,21 @@ class AdminDashboardController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function mark_absent($id){
-        $booking = Booking::where('nurse_id', $id)->get();
 
+        $booking = Booking::where('nurse_id', $id)->get();
+        $serverDateTime = Carbon::now();
+        $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
+        if ($nurse->permanent == 1){
+            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }else{
+            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }
         // reduce the remaining days
         $booking->first()->update([
             'remaining_days' => $booking->first()->remaining_days - 1

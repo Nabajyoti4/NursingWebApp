@@ -59,6 +59,7 @@
                                 @endif
                             </td>
                             <td>
+
                                 <form action="{{route('admin.patient.show',$patient->id)}}" method="GET">
                                     @csrf
                                     <button class="btn btn-primary"  type="submit">Show</button>
@@ -68,10 +69,14 @@
                                 <button class="btn btn-primary"  onclick="handleDisapprove({{$patient->id}})">Disapprove</button>
                             </td>
                             <td>
+                                @if(\App\Booking::where('patient_id',$patient->id)->get()->isEmpty())
                                 <form action="{{route('admin.book.bookCreate',$patient->id)}}" method="get">
                                     @csrf
                                     <button class="btn btn-primary"  type="submit">Book</button>
                                 </form>
+                                @else
+                                    Booked
+                                @endif
                             </td>
                         </tr>
                     @empty
