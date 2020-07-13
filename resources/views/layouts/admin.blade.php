@@ -67,7 +67,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         @if(Auth::user()->role == 'super')
-        <li class="nav-item ">
+            <li class="nav-item ">
             <a class="nav-link" href="">
                 <i class="fas fa-id-card"></i>
                 <span>Super Admins</span></a>
@@ -132,6 +132,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Salary:</h6>
+                     <a class="collapse-item" href="{{route('admin.salary.index')}}">Monthly Salary </a>
                     <a class="collapse-item" href="{{ route('admin.salary.temporary') }}">Temporary Nurse </a>
                     <a class="collapse-item" href="{{route('admin.salary.permanent')}}">Permanent Nurse</a>
                 </div>
