@@ -1,33 +1,33 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Reject;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AttendanceMark extends Notification
+class UserReject extends Notification
 {
     use Queueable;
-
-    public $attendance;
-    public $nurse;
+    public $booking, $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($attendance, $nurse)
+    public function __construct($booking, $user)
     {
-        $this->attendance = $attendance;
-        $this->nurse = $nurse;
+        //
+        $this->booking = $booking;
+        $this->user = $user;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,33 +38,23 @@ class AttendanceMark extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        $mark = $this->attendance->present;
-        if ($mark == 1)
-        {
-            $mark = 'Present';
-        }elseif ($mark == 2){
-            $mark = 'Absent';
-        }else{
-            $mark = 'Pending';
-        }
-
         return (new MailMessage)
-            ->greeting('Hello Admin')
-            ->subject('Nurse Attendance')
-            ->line('Attendance for Employee ID : ' . $this->nurse->employee_id)
-            ->line('Name : ' . $this->nurse->user->name)
-            ->line('Attendance Mark as : ' . $mark );
+            ->greeting('Hello ' . $this->user->first()->name)
+            ->subject('Booking Cancellation')
+            ->line('Booking Id : ' . $this->booking->id)
+            ->line('This is to inform you that your current booking has been cancelled due unavoidable circumstances')
+            ->line('We are very sorry for the inconvenience , we will contact you shortly regarding the issue');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

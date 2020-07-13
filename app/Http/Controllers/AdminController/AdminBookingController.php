@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use SebastianBergmann\Comparator\Book;
 
 class AdminBookingController extends Controller
 {
@@ -48,8 +49,8 @@ class AdminBookingController extends Controller
 
         else{
             if($admin->role == 'super'){
-                $patients = Patient::latest()->get();
-                return view('admin.requests.patient.index', compact('patients'));
+                $bookings = Booking::latest()->get();
+                return view('admin.bookings.index', compact('bookings'));
 
             }else {
                 $bookingAll = Booking::latest()->get();
@@ -188,7 +189,17 @@ class AdminBookingController extends Controller
 
         // 0 reject
         if($value == 0){
-            $booking->update(['status'=>3]);
+            $booking->status = 0;
+            $booking->save();
+
+            $nurse= User::where('id', $booking->nurse_id)->get();
+            Notification::send($nurse, new \App\Notifications\Reject\NurseReject($booking,$nurse));
+
+
+            $user = User::where('id', $booking->user_id)->get();
+            Notification::send($user, new \App\Notifications\Reject\UserReject($booking,$user));
+
+            return redirect()->back()->with('success', 'Booking cancelled');
 
         }
 
@@ -329,6 +340,23 @@ class AdminBookingController extends Controller
 
         // update the new alloted nurse status to working
         Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
+
+
+
+        // send notification to nurse
+        $new_nurse = Nurse::where('id', $data['nurse'])->get();
+        $new = User::where('id', $new_nurse->first()->user_id)->get();
+        Notification::send($new, new \App\Notifications\Takeover\NewNurse($new));
+
+
+        $old_nurse = Nurse::where('id', $booking->nurse_id)->get();
+        $old = User::where('id', $old_nurse->first()->user_id)->get();
+        Notification::send($old, new \App\Notifications\Takeover\OldNurse($old));
+
+
+        $user = User::where('id', $booking->user_id)->get();
+        Notification::send($user, new \App\Notifications\Takeover\Takeover($user));
+
 
 
         $bookings = Booking::all();

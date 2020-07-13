@@ -1,33 +1,32 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Takeover;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AttendanceMark extends Notification
+class NewNurse extends Notification
 {
     use Queueable;
-
-    public $attendance;
-    public $nurse;
+    public  $nurse;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($attendance, $nurse)
+    public function __construct($nurse)
     {
-        $this->attendance = $attendance;
+        //
         $this->nurse = $nurse;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,33 +37,22 @@ class AttendanceMark extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        $mark = $this->attendance->present;
-        if ($mark == 1)
-        {
-            $mark = 'Present';
-        }elseif ($mark == 2){
-            $mark = 'Absent';
-        }else{
-            $mark = 'Pending';
-        }
-
         return (new MailMessage)
-            ->greeting('Hello Admin')
-            ->subject('Nurse Attendance')
-            ->line('Attendance for Employee ID : ' . $this->nurse->employee_id)
-            ->line('Name : ' . $this->nurse->user->name)
-            ->line('Attendance Mark as : ' . $mark );
+            ->greeting('Hello'. $this->nurse->user->name)
+            ->subject('New Takeover Booking Allotted')
+            ->line('New takeover booking has been allotted for you')
+            ->line('Check You Booking Tab for more Details');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

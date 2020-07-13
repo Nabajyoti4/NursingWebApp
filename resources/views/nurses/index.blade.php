@@ -60,6 +60,15 @@
                     showConfirmButton: true,
                 })
             </script>
+           @elseif ($message = Session::get('info'))
+                <script>
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: '{{$message}}',
+                        showConfirmButton: true,
+                    })
+                </script>
         @endif
         <div class="container p-3">
             <div class="row p-5 bg-light">

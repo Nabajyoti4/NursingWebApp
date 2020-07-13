@@ -19,18 +19,47 @@ class AttendanceController extends Controller
 {
 
     /**
-     * Remaining Days ALERTS
+     * @param Booking $book
      */
     public function payementAlert(Booking $book)
     {
-        if ($book->due_payment > 0) {
-            if ($book->remaining_days == $book->getAttendanceHalf()) {
-                dd('HALF DAYS');
-            }
-            if ($book->remaining_days == 2) {
-                dd('LAST 2 DAYS REMAINING');
+        $adminAll  = User::where('role', 'admin')->get();
+        $patient = Patient::where('id', $book->patient_id)->get();
+        $user = User::where('id', $book->user_id)->get();
+
+        $admins = array();
+        foreach ($adminAll as $admin) {
+            if($admin->addresses->first()->city == $patient->first()->getAddress()) {
+                array_push($admins, $admin);
             }
         }
+
+        if($book->remaining_days >= 2){
+            if($book->due_payment > 0) {
+                if ($book->remaining_days == $book->getAttendanceHalf()) {
+                    Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));
+                    Notification::send($user, new \App\Notifications\PaymentAlert\UserAlert($book,$user));
+                }
+                if ($book->remaining_days == 2) {
+                    Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));
+                    Notification::send($user, new \App\Notifications\PaymentAlert\UserAlert($book,$user));
+                }
+            }
+        }elseif($book->remaining_days == 0){
+            $book->status = 1;
+            $book->save();
+
+            Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));
+            Notification::send($user, new \App\Notifications\PaymentAlert\UserAlert($book,$user));
+
+            return redirect(route('nurse.index'))->with('success', 'This booking is completed');
+
+        }
+        else{
+            Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));
+            Notification::send($user, new \App\Notifications\PaymentAlert\UserAlert($book,$user));
+        }
+
     }
 
     /**
@@ -162,7 +191,7 @@ class AttendanceController extends Controller
 
             $admins = array();
             foreach ($adminAll as $admin) {
-                if ($admin->first()->addresses->first()->city == $nurse->first()->user->addresses->first()->city)
+                if ($admin->addresses->first()->city == $nurse->first()->user->addresses->first()->city)
                     array_push($admins, $admin);
             }
 
