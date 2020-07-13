@@ -104,7 +104,7 @@ class AdminSalaryController extends Controller
     public function create($permanent)
     {
         if ($permanent == 0) {
-            $nurses = Nurse::where('permanent', '0')->get();
+            $nurses = Nurse::where('permanent', 0)->get();
         } else {
             $nurses = Nurse::where('permanent', 1)->get();
         }

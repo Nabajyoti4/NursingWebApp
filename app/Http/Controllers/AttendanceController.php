@@ -214,6 +214,7 @@ class AttendanceController extends Controller
             return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
 
         }
+
         //absent wala
         $attendance = Attendance::create([
             'booking_id' => $data['booking_id'],
@@ -231,10 +232,12 @@ class AttendanceController extends Controller
 
         $admins = array();
         foreach ($adminAll as $admin) {
-            if ($admin->first()->addresses->first()->city == $nurse->first()->user->addresses->first()->city)
+            if ($admin->addresses->first()->city == $nurse->first()->user->addresses->first()->city)
                 array_push($admins, $admin);
         }
+
         Notification::send($admins, new \App\Notifications\AttendanceMark($attendance, $nurse));
+
         return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
 
     }
