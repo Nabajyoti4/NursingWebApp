@@ -36,9 +36,11 @@ class AdminSalaryController extends Controller
                 if (Tsalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
                     $salariess = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
-                }if (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
+                }elseif (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
                     $salariess = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
+                }else{
+                    $salariess = collect([]);
                 }
                 return view('admin.salary.search', compact('salariess'));
             }
