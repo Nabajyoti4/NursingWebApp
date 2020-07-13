@@ -61,16 +61,28 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+        $serverDateTime = Carbon::now();
+
         // get the data
         $data = $request->only(['booking_id', 'attendance_image']);
         $booking = Booking::findOrFail($data['booking_id']);
-
+        $nurse = Nurse::where('id',$booking->nurse_id);
+        if ($nurse->permanent == 1){
+            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+             return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }else{
+            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+            }
+        }
         // check the data is inserted or not
 
 //        checking the attendance table
 //        if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
 //            $attendance = Attendance::where('booking_id', $booking->id)->get()->last();
-        $serverDateTime = Carbon::now();
 //            //checking the date and time
 //            if (explode(" ", $attendance->created_at)[0] == explode(" ", $serverDateTime)[0]) {
 //                return redirect(route('nurse.index'))->with('success', 'Attendance was marked as \'present\' already!');
