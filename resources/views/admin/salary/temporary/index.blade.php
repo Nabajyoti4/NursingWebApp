@@ -18,7 +18,7 @@
     <form class="d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.salary.temporary')}}" method="GET">
         @csrf
         <div class="input-group">
-            <input type="text" class="form-control border-2 small" name="temp" placeholder="Search for..."
+            <input type="text" class="form-control border-2 small" name="temp" placeholder="Employee ID..."
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
@@ -30,13 +30,13 @@
 
 
     <hr>
-    <a href="{{route('admin.salary.create',$permanent=0)}}" class="btn btn-primary">Create Salary for the Nurse</a>
+    <a href="{{route('admin.salary.create',$permanent=0)}}" class="btn btn-primary">Create Salary for the Temporary Nurse</a>
     <hr>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Temporary Nurses</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

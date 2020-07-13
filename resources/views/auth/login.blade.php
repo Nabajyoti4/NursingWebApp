@@ -3,15 +3,15 @@
     Login
 @endsection
 @section('content')
-    <img class="wave" src="img/wave.png">
+    <img class="wave" src="{{asset('img/wave.png')}}">
     <div class="container_login">
         <div class="img">
-            <img src="img/bg.png">
+            <img src="{{asset('img/bg.png')}}">
         </div>
         <div class="login-content">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <img src="img/avatar1.png">
+                <img src="{{asset('img/avatar1.png')}}">
                 <h2 class="title">Welcome</h2>
                 <div class="input-div one">
                     <div class="i">

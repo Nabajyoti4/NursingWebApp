@@ -19,7 +19,7 @@
           action="{{route('admin.salary.permanent')}}" method="GET">
         @csrf
         <div class="input-group">
-            <input type="text" class="form-control border-2 small" name="perm" placeholder="Search for..."
+            <input type="text" class="form-control border-2 small" name="perm" placeholder="Employee ID..."
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
@@ -37,7 +37,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Permanent Nurse</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

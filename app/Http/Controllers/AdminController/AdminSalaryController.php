@@ -32,8 +32,14 @@ class AdminSalaryController extends Controller
                 return view('admin.salary.search', compact('salariess'));
             } else {
                 $nurse = Nurse::where("employee_id", $search)->get()->first();
-                $salariess = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
-                    ->get();
+
+                if (Tsalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
+                    $salariess = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
+                        ->get();
+                }if (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
+                    $salariess = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
+                        ->get();
+                }
                 return view('admin.salary.search', compact('salariess'));
             }
 
@@ -74,11 +80,11 @@ class AdminSalaryController extends Controller
                     }
                 }
                 // permanent
-                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereIn('nurse_id', $pnurses)
+                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $pnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
                 return view('admin.salary.index', compact('psalaries', 'tsalaries'));
 
@@ -219,14 +225,14 @@ class AdminSalaryController extends Controller
      */
     public function tedit($id)
     {
-        $salary = Tsalary::findOrFail($id)->get()->first();
+        $salary = Tsalary::where('id',$id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
         return view('admin.salary.temporary.edit', compact('salary', 'nurse'));
     }
 
     public function pedit($id)
     {
-        $salary = Psalary::findOrFail($id)->get()->first();
+        $salary = Psalary::where('id',$id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
         return view('admin.salary.permanent.edit', compact('salary', 'nurse'));
     }

@@ -83,7 +83,7 @@
                             <th>Employee ID</th>
                             <th>Basic Salary</th>
                             <th>Per Day Rate</th>
-                            @if(\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->permanent == 1)
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <th>Total Payable Days </th>
                             @else
                                 <th>Total Days of Duty 24hrs</th>
@@ -91,9 +91,11 @@
                             @endif
                             <th>Special Allowance</th>
                             <th>TA & DA</th>
-                            <th>HRA</th>
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent ==0)
+                                <th>HRA</th>
+                            @endif
                             <th>Bonus</th>
-                            @if(\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->permanent == 1)
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <th>ESIC</th>
                                 <th>PF</th>
                             @endif
@@ -105,21 +107,23 @@
                         </thead>
                         <tbody id="data">
                         <tr>
-                            <td>{{\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->employee_id}}</td>
+                            <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
                             <td>{{$salary->basic}}</td>
                             <td>{{$salary->per_day_rate}}</td>
-                            @if(\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->permanent == 1)
-                                <td>{{$salary->full_day}}</td>
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
+                                <td>{{$salary->payable_days}}</td>
                             @else
                                 <td>{{$salary->full_day}}</td>
                                 <td>{{$salary->half_day}}</td>
                             @endif
 
                             <td>{{$salary->special_allowance}}</td>
-                            <td>{{$salary->ta_da}}</td>
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent ==0)
+                                <td>{{$salary->ta_da}}</td>
+                            @endif
                             <td>{{$salary->hra}}</td>
                             <td>{{$salary->bonus}}</td>
-                            @if(\App\Nurse::findOrFail($salary->nurse_id)->get()->first()->permanent == 1)
+                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <td>{{$salary->esic}}</td>
                                 <td>{{$salary->pf}}</td>
                             @endif
