@@ -246,42 +246,45 @@
                         <div class="tab-pane fade" id="nurse" role="tabpanel" aria-labelledby="nurse-tab">
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Name</label>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{$book->nurse->user->name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{$book->nurse->user->phone_no}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{$book->nurse->user->email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Permanent Address</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{$book->nurse->user->addresses->last()? $book->nurse->user->addresses->last()->city: "Fill the Permanent Address"}}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <p>{{$book->nurse->user->name}}</p>
+                                <div class="col-sm-6">
+                                    <img src="{{$book->nurse->user->photo?asset("/storage/".$book->nurse->user->photo->photo_location) :'No Photo'}}" alt="">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$book->nurse->user->phone_no}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$book->nurse->user->email}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Permanent Address</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{$book->nurse->user->addresses->last()? $book->nurse->user->addresses->last()->city: "Fill the Permanent Address"}}</p>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <a href="{{ route('admin.nurse.show', $book->nurse->id) }}" style="text-decoration: none">
-                                    <div  class="profile-edit-btn text-center">View full deatils</div>
-                                </a>
-                            </div>
+
                         </div>
 
                         <!--Attendence table-->
@@ -296,9 +299,9 @@
                                                 <span>Date : {{$attendance->created_at}}</span>
 
                                                 <span style="float: right">
-                                                    @if($attendance->present == 0)
+                                                    @if($attendance->present == 2)
                                                         Absent
-                                                    @else
+                                                    @elseif($attendance->present == 1)
                                                         Present
                                                     @endif
                                                 </span>

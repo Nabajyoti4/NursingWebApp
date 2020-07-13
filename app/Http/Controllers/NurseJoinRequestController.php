@@ -122,7 +122,7 @@ class NurseJoinRequestController extends Controller
                     return redirect()->back()->with('info', 'Your request has been disapproved Check mail for further details.');
                 }
                 else{
-                    return redirect()->back()->with('info', 'You are already approved Check mail');
+                    return redirect()->back()->with('info', 'You are already approved ');
                 }
 
             }
@@ -130,16 +130,17 @@ class NurseJoinRequestController extends Controller
                 // create if no pending request for particular candidate
                 $nurse = NurseJoinRequest::create($data);
 
-                $city = NurseJoinRequest::findOrFail($nurse)->first();
+                $city = NurseJoinRequest::findOrFail($nurse->id)->first();
 
-                $user = User::findOrFail($city->user_id)->first();
+                $user = User::where('user_id', $city->user_id)->get();
 
                 $adminAll  = User::where('role', 'admin')->get();
 
                 $admins = array();
                 foreach ($adminAll as $admin) {
-                    if($admin->first()->addresses->first()->city == $user->addresses->first()->city)
-                    array_push($admins, $admin);
+                    if($admin->addresses->first()->city == $user->first()->addresses->first()->city) {
+                        array_push($admins, $admin);
+                    }
                 }
 
                 Notification::send($admins, new \App\Notifications\NurseJoinRequest($nurse));

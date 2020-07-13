@@ -45,7 +45,7 @@
                             <td>
                                 @if($nurse->day_attendance($nurse->id) == 1)
                                     Present
-                                @elseif($nurse->day_attendance($nurse->id) == 3)
+                                @elseif($nurse->day_attendance($nurse->id) == 2)
                                     Absent
                                 @else
                                     {{$nurse->day_attendance($nurse->id)}}

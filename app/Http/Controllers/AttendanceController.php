@@ -102,6 +102,7 @@ class AttendanceController extends Controller
             $booking->update([
                 'remaining_days' => $booking->remaining_days - 1
             ]);
+
             //updating the total working days in salary table
             $nurse = Nurse::findOrFail($booking['nurse_id']);
             $patient = Patient::findOrFail($booking['patient_id']);
@@ -152,6 +153,7 @@ class AttendanceController extends Controller
 
                     $data->update([$data]);
             }
+
             $this->payementAlert($booking);
 
 

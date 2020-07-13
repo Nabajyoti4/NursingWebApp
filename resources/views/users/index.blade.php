@@ -178,14 +178,6 @@
                                                             Pending
                                                         @endif</p>
                                                     <p>Request date : {{$patient->created_at}}</p>
-                                                    <p>
-                                                    <form action="{{route('users.patient.show',$patient->id)}}"
-                                                          method="GET">
-                                                        @csrf
-                                                        <button class="btn btn-primary" type="submit">Show
-                                                        </button>
-                                                    </form>
-                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

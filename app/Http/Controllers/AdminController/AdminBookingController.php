@@ -7,8 +7,10 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class AdminBookingController extends Controller
 {
@@ -75,10 +77,18 @@ class AdminBookingController extends Controller
         return view('admin.bookings.create', compact('patient'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function bookCreate($id)
     {
         $patient = Patient::findOrFail($id);
-        $nursesAll = Nurse::all();
+        $nursesAll = Nurse::select('*')
+            ->where('is_active', 1)
+            ->where('status', 0)
+            ->get();
+
         $nurses = array();
         foreach ($nursesAll as $nurse) {
             if (($nurse->user->addresses->first()->city) == ($patient->getAddress())) {
@@ -106,13 +116,24 @@ class AdminBookingController extends Controller
         // get the nurse and update the status to working 1
         Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
-        Booking::create(['user_id' => $patient->user->id,
+        $booking = Booking::create(['user_id' => $patient->user->id,
                         'patient_id' => $data['patient_id'],
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
                         'due_payment' => $data['due_payment'],
                         'remaining_days' => $patient->days]
                         );
+
+
+
+        // send notification to user , nurse for new booking
+        $nurse = Nurse::where('id', $data['nurse'])->get();
+        $user = User::where('id', $nurse->first()->user_id)->get();
+        Notification::send($user, new \App\Notifications\NurseBooked($nurse));
+
+
+        $user = User::where('id', $patient->user->id)->get();
+        Notification::send($user, new \App\Notifications\UserBooked($booking,$patient));
 
 
         $bookings = Booking::all();
@@ -156,7 +177,7 @@ class AdminBookingController extends Controller
      * takeover if new nurse is available
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function update(Request $request, $id)
     {

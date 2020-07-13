@@ -38,6 +38,9 @@
                         <th>Phone No</th>
                         <th>Created at</th>
                         <th>Edit</th>
+                        @if(Auth::user()->role == 'super')
+                        <th>Make Admin</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -51,9 +54,17 @@
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
                                     </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
                             </td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
-                                </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                            <td>
+                                @if(Auth::user()->role == 'super')
+                                @if($user->permanent_address_id > 0)
+                                    <a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
+                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                @else
+                                    No Address Feild
+                                @endif
+                                @endif
                             </td>
+
                         </tr>
                     @empty
                         <tr>
