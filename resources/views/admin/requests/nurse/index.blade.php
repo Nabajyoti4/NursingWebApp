@@ -34,21 +34,7 @@
 {{--        <img id="loading-image" src="{{asset('img/loader.gif')}}" alt="Loading..." />--}}
 {{--    </div>--}}
 
-    <!-- Search -->
-    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=""
-          method="GET">
-        @csrf
-        <div class="input-group">
-            <input type="text" class="form-control border-2 small" name="candidate" placeholder="Search for..."
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-    <hr>
+
 <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pendingRequest" role="tab"
