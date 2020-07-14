@@ -56,21 +56,29 @@ class NurseJoinRequestController extends Controller
         else{
             // if the admin is super admin
             if($admin->role == 'super'){
-                $candidates = NurseJoinRequest::latest()->get();
-                return view('admin.requests.nurse.index', compact('candidates'));
+                $pcandidates = NurseJoinRequest::latest()->get();
+                return view('admin.requests.nurse.index', compact('pcandidates'));
 
             }else{
                 $candidateAll = NurseJoinRequest::latest()->get();
-                $candidates = array();
+                $pcandidates = array();//pending candidates
+                $acandidates = array();//approved candidates
+                $rcandidates = array();//rejected candidates
 
                 foreach ($candidateAll as $candidate) {
                     $user = User::where('id', $candidate->user_id)->first();
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        array_push($candidates, $candidate);
+                        if ($candidate->Approval == 0){
+                            array_push($pcandidates, $candidate);
+                        }elseif ($candidate->Approval == 1){
+                            array_push($acandidates, $candidate);
+                        }else{
+                            array_push($rcandidates, $candidate);
+                        }
                     }
                 }
 
-                return view('admin.requests.nurse.index', compact('candidates'));
+                return view('admin.requests.nurse.index', compact('pcandidates','acandidates','rcandidates'));
             }
 
 

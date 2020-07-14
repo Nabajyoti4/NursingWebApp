@@ -21,6 +21,19 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
 </head>
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light shadow-sm">

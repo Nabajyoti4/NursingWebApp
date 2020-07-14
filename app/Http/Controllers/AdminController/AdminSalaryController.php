@@ -103,10 +103,20 @@ class AdminSalaryController extends Controller
      */
     public function create($permanent)
     {
+        $admin = Auth::user();
+        $nurses = array();
         if ($permanent == 0) {
-            $nurses = Nurse::where('permanent', '0')->get();
+            $nursesAll = Nurse::where('permanent', '0')->get();
+            foreach ($nursesAll as $nurse) {
+                if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        array_push($nurses, $nurse);
+                }}
         } else {
-            $nurses = Nurse::where('permanent', 1)->get();
+            $nursesAll = Nurse::where('permanent', 1)->get();
+            foreach ($nursesAll as $nurse) {
+                if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
+                        array_push($nurses, $nurse);
+                }}
         }
         return view('admin.salary.create', compact('nurses', 'permanent'));
     }
