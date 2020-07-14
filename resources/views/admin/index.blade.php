@@ -17,7 +17,6 @@
 
     <!-- Content Row -->
     <div class="row">
-
         <!-- Attendance (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <a href="{{route('admin.dashboard.attendance')}}" class="">

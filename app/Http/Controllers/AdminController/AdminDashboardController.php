@@ -159,34 +159,51 @@ class AdminDashboardController extends Controller
     public function monthly_attendance(){
         $admin = Auth::user();
 
+
         // get all permanent nurses
-        $permanent_nurse = Nurse::where('permanent' , 1)->get();
-        $permanent_nurses = array();
+        if($admin->role == 'super'){
+            $permanent_nurses = Nurse::where('permanent' , 1)->get();
+            $temporary_nurses = Nurse::where('permanent' , 0)->get();
+            return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
 
-        foreach ($permanent_nurse as $nurse) {
-            if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
-                array_push($permanent_nurses, $nurse);
+        }else{
+            $permanent_nurse = Nurse::where('permanent' , 1)->get();
+            $permanent_nurses = array();
+            if($permanent_nurse->isEmpty()){
+                $permanent_nurses = collect([]);
+            }else{
+
+                foreach ($permanent_nurse as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($permanent_nurses, $nurse);
+                    }
+                }
             }
+
+            //get all temporary nurses
+            $temporary_nurse = Nurse::where('permanent' , 0)->get();
+            $temporary_nurses = array();
+            if($temporary_nurse->isEmpty()){
+                $temporary_nurses = collect([]);
+            }else{
+                foreach ($temporary_nurse as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($temporary_nurses, $nurse);
+                    }
+                }
+            }
+
+
+            return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
         }
 
-
-        //get all temporary nurses
-        $temporary_nurse = Nurse::where('permanent' , 0)->get();
-        $temporary_nurses = array();
-
-        foreach ($temporary_nurse as $nurse) {
-            if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
-                array_push($temporary_nurses, $nurse);
-            }
-        }
-
-
-
-        return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
     }
 
 
-
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function permanent_report($id){
         $nurse = Nurse::where('id', $id)->get();
         $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();
@@ -196,6 +213,10 @@ class AdminDashboardController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function temporary_report($id){
         $nurse = Nurse::where('id', $id)->get();
         $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();

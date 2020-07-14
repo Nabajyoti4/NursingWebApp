@@ -310,17 +310,17 @@
                                     <div class="col-sm-12">
                                         <div class="card shadow mb-4">
                                             <div class="card-header">Booking ID : {{$attendance->booking->id}}</div>
-                                            <div class="card-body">
-                                                <span>Date : {{$attendance->created_at}}</span>
-
+                                            <div class="card-body pl-2 pr-2">
                                                 <span>
                                                     @if($attendance->photo == 'null')
-                                                        <img width="100" height="100" src="{{asset("/img/admin_mark.png")}}" alt="">
-                                                    @else
-                                                        <img width="100" height="100" src="{{asset("/storage".$attendance->photo)}}" alt="">
-                                                    @endif
+                                                            <img width="100" height="100" src="{{asset("/img/admin_mark.png")}}" alt="">
+                                                        @else
+                                                            <img width="150" height="150" src="{{asset("/storage".$attendance->photo)}}" alt="">
+                                                        @endif
 
                                                 </span>
+
+                                                <span>Date : {{$attendance->created_at}}</span>
 
                                                 <span style="float: right">
                                                     @if($attendance->present == 0)

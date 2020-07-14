@@ -390,14 +390,25 @@
                                     @forelse($attendances as $attendance)
                                         <div class="col-sm-12">
                                             <div class="row mb-4">
+
+                                                <div class="col-sm-4">
+                                                       <span>
+                                                    @if($attendance->photo == 'null')
+                                                               <img width="100" height="100" src="{{asset("/img/admin_mark.png")}}" alt="">
+                                                           @else
+                                                               <img width="150" height="150" src="{{asset("/storage".$attendance->photo)}}" alt="">
+                                                           @endif
+
+                                                </span>
+                                                </div>
+
                                                 <div class="col-sm-6">
-                                                    <div class="col-sm-12"> Booking ID
-                                                        : {{$attendance->booking->id}}</div>
+                                                    <div class="col-sm-12"> Booking ID : {{$attendance->booking->id}}</div>
                                                     <div class="col-sm-12">Date : {{$attendance->created_at}}</div>
                                                 </div>
 
 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-2">
                                                     @if($attendance->present == 2)
                                                         <span class="p-2"
                                                               style="float: right; background-color: red; color: white; border-radius: 10px">    Absent
