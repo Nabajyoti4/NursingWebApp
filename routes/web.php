@@ -24,6 +24,14 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+
+
+
+
+
+
+
 // Admin Routes
 Route::group(['middleware' => ['admin', 'auth']], function () {
 
@@ -138,8 +146,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/dashboard/mark' , 'AdminController\AdminDashboardController@today_attendance')->name('admin.dashboard.mark');
     Route::get('admin/mark/{id}/present' , 'AdminController\AdminDashboardController@mark_present')->name('admin.mark.present');
     Route::get('admin/mark/{id}/absent' , 'AdminController\AdminDashboardController@mark_absent')->name('admin.mark.absent');
-
-
+    Route::get('admin/dashboard/attendance' , 'AdminController\AdminDashboardController@monthly_attendance')->name('admin.dashboard.attendance');
+    Route::get('admin/dashboard/report/{id}', 'AdminController\AdminDashboardController@report')->name('admin.dashboard.report');
 
 });
 

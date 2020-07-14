@@ -10,6 +10,7 @@ use App\Patient;
 use App\Psalary;
 use App\Tsalary;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdminDashboardController extends Controller
@@ -149,5 +150,44 @@ class AdminDashboardController extends Controller
         $nurses = Nurse::where('status', 1)->get();
         return redirect()->route('admin.dashboard.mark', compact('nurses'))
             ->with('success', 'Attendance Marked');
+    }
+
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function monthly_attendance(){
+        $admin = Auth::user();
+
+        // get all permanent nurses
+        $permanent_nurse = Nurse::where('permanent' , 1)->get();
+        $permanent_nurses = array();
+
+        foreach ($permanent_nurse as $nurse) {
+            if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                array_push($permanent_nurses, $nurse);
+            }
+        }
+
+
+        //get all temporary nurses
+        $temporary_nurse = Nurse::where('permanent' , 0)->get();
+        $temporary_nurses = array();
+
+        foreach ($temporary_nurse as $nurse) {
+            if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                array_push($temporary_nurses, $nurse);
+            }
+        }
+
+
+
+        return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
+    }
+
+
+
+    public function report($id){
+
     }
 }
