@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>{{$pnurse->employee_id}}</td>
                                         <td>{{$pnurse->user->name}}</td>
-                                        <td><a href="">View</a></td>
+                                        <td><a href="{{route('admin.dashboard.preport', $pnurse->id)}}">View</a></td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -80,7 +80,7 @@
                                     <tr>
                                         <td>{{$tnurse->employee_id}}</td>
                                         <td>{{$tnurse->user->name}}</td>
-                                        <td><a href="">View</a></td>
+                                        <td><a href="{{route('admin.dashboard.treport', $tnurse->id)}}">View</a></td>
                                     </tr>
                                 @empty
                                     <tr>

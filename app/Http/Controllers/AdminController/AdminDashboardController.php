@@ -187,7 +187,19 @@ class AdminDashboardController extends Controller
 
 
 
-    public function report($id){
+    public function permanent_report($id){
+        $nurse = Nurse::where('id', $id)->get();
+        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();
+        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->id)->get();
+        return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
 
+    }
+
+
+    public function temporary_report($id){
+        $nurse = Nurse::where('id', $id)->get();
+        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();
+        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->id)->get();
+        return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
     }
 }
