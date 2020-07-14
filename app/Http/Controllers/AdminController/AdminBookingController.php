@@ -285,6 +285,7 @@ class AdminBookingController extends Controller
             'relation_guardian' => $old_patient->relation_guardian,
             'shift' => $old_patient->shift,
             'days' => $data['days'],
+            'status' => 1,
             'service_id' => $old_patient->service_id,
             'patient_history' => $old_patient->patient_history,
             'patient_doctor' => $old_patient->patient_doctor
@@ -293,7 +294,7 @@ class AdminBookingController extends Controller
 
         // now create a new booking record
         Booking::create(['user_id' => $patient->user->id,
-                'patient_id' => $data['patient_id'],
+                'patient_id' => $patient->id,
                 'nurse_id' => $data['nurse'],
                 'total_payment' => $data['total_payment'],
                 'due_payment' => $data['due_payment'],

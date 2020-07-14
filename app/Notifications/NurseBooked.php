@@ -44,7 +44,7 @@ class NurseBooked extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Hello'. $this->nurse->first()->user->name)
+            ->greeting('Hello '. $this->nurse->first()->user->name)
             ->subject('New Booking Allotted')
             ->line('New booking has been allotted for you')
             ->line('Check You Booking Tab for more Details');
