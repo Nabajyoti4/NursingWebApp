@@ -37,7 +37,7 @@
     </style>
 @endsection
 @section('content')
-    <div style="background-color: #511b72;">
+    <div style="background-color:rgb(72, 55, 97);">
         <!-- navbar start -->
     @include('partials.navbar')
     <!-- navbar ends -->
