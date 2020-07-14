@@ -57,7 +57,7 @@
 
             <div class="form-group font-weight-bold">
                 <label for="bonus">Bonus</label>
-                <input type="number" value="{{$salary->bonus}}" name="bonus" class="form-control"/>
+                <input type="number" value="{{$salary->bonus}}"disabled name="bonus" class="form-control "/>
             </div>
 
             <div class="form-group font-weight-bold">
@@ -66,16 +66,28 @@
             </div>
 
             <div class="form-group font-weight-bold">
-                <label for="advance">Total Salary</label>
-                <input type="number" value="{{$salary->total}}" disabled name="advance" class="form-control"/>
+                <label for="total">Total Salary</label>
+                <input type="number" value="{{$salary->total}}" disabled name="total" class="form-control"/>
             </div>
             <div class="form-group font-weight-bold">
-                <label for="advance">Deduction </label>
-                <input type="number" value="{{$salary->deduction}}" disabled name="advance" class="form-control"/>
+                <label for="deduction">Deduction </label>
+                <input type="number" value="{{$salary->deduction}}" disabled name="deduction" class="form-control"/>
             </div>
             <div class="form-group font-weight-bold">
-                <label for="advance">Net Payment</label>
-                <input type="number" value="{{$salary->net}}" disabled name="advance" class="form-control"/>
+                <label for="net">Net Payment</label>
+                <input type="number" value="{{$salary->net}}" disabled name="net" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="area">Area</label>
+                <input type="text" value="{{$salary->area}}"  name="area" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="remarks">Remarks</label>
+                <input type="text" value="{{$salary->remarks}}"  name="remarks" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="payment_received_date">Payment Received Date</label>
+                <input type="text" value="{{$salary->payment_received_date}}"  name="payment_received_date" class="form-control"/>
             </div>
             <button class="btn btn-primary" type="submit">Update Details</button>
 

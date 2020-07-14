@@ -114,6 +114,66 @@
     </div>
     <div class="row">
 
+        <!-- Bar Chart -->
+        <div class="col-xl-6 col-lg-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Bookings</h6>
+
+                    <span hidden id="reject">{{$rbooking}}</span>
+                    <span hidden id="pending">{{$pbooking}}</span>
+                    <span hidden id="active" >{{$abooking}}</span>
+                    <span hidden id="complete" >{{$cbooking}}</span>
+                    <span hidden id="takeover" >{{$tbooking}}</span>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myAreaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="col-xl-6 col-lg-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">(Users Vs Nurses Vs Patients)Counts</h6>
+
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    <span hidden id="users">{{$users}}</span>
+                    <span hidden id="nurses">{{$nurses}}</span>
+                    <span hidden id="patients" >{{$patients}}</span>
+
+                    <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i>  Users
+                    </span>
+                        <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Nurses
+                    </span>
+                        <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Patients
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+@endsection
+@section('script')
+    <!-- Page level plugins -->
+    <script src="{{asset('js/admin/Chart.min.js')}}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/admin/chart-area-demo.js')}}"></script>
+    <script src="{{asset('js/admin/chart-pie-demo.js')}}"></script>
 @endsection

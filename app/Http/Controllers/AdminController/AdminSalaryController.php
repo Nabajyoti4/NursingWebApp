@@ -160,15 +160,17 @@ class AdminSalaryController extends Controller
             'hra' => 'integer',
             'advance' => 'integer',
             'pf' => 'integer',
-//            'month_days' => 'integer',
+            'month_days' => 'nullable|integer',
         ]);
 
         //find whether the nurse is permanent or temporary
         $nurse = Nurse::findOrFail($data['nurse_id']);
         //calculate per day rate
-        $total_days = Carbon::now()->daysInMonth;
-
-        $data['per_day_rate'] = ($data['basic'] / $total_days);
+        if ($data['month_days'] == null){
+            $total_days = Carbon::now()->daysInMonth;
+            $data['month_days']=$total_days;
+        }
+        $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
@@ -263,16 +265,23 @@ class AdminSalaryController extends Controller
             'nurse_id' => 'required',
             'basic' => 'required',
             'full_day' => 'integer',
-            'special_allowance' => 'integer',
-            'ta_da' => 'integer',
-            'hra' => 'integer',
+            'special_allowance' => 'nullable|integer',
+            'ta_da' => 'nullable|integer',
+            'hra' => 'nullable|integer',
             'advance' => 'integer',
             'pf' => 'integer',
             'month_days' => 'integer',
+            'remarks'=>'nullable|string',
+            'area'=>'nullable|string',
+            'payment_received_date'=>'nullable|string'
         ]);
         //calculate per day rate
-        $total_days = Carbon::now()->daysInMonth;
-        $data['per_day_rate'] = ($data['basic'] / $total_days);
+        if ($data['month_days'] == null){
+            $total_days = Carbon::now()->daysInMonth;
+            $data['month_days']=$total_days;
+        }
+
+        $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
@@ -295,7 +304,11 @@ class AdminSalaryController extends Controller
             'advance' => $data['advance'],
             'total' => $data['total'],
             'deduction' => $data['deduction'],
-            'net' => $data['net']
+            'net' => $data['net'],
+            'area'=>$data['area'],
+            'remarks'=>$data['remarks'],
+            'payment_received_date'=>$data['payment_received_date']
+
         ]);
 
 
@@ -311,14 +324,21 @@ class AdminSalaryController extends Controller
             'per_day_rate' => 'integer',
             'full_day' => 'integer',
             'half_day' => 'integer',
-            'special_allowance' => 'integer',
-            'ta_da' => 'integer',
-            'hra' => 'integer',
-            'advance' => 'integer',
+            'special_allowance' => 'nullable|integer',
+            'ta_da' => 'nullable|integer',
+            'hra' => 'nullable|integer',
+            'advance' => 'nullable|integer',
             'bonus' => 'integer',
-
             'month_days' => 'integer',
+            'remarks'=>'nullable|string',
+            'area'=>'nullable|string',
+            'payment_received_date'=>'nullable|string'
         ]);
+        $total_days = Carbon::now()->daysInMonth;
+        $data['per_day_rate'] = ($data['basic'] / $total_days);
+        //calculate the bonus
+        $data['bonus'] = $data['basic'] * (2 / 100);
+
         $data = $this->calculateTemporaryTotal($data);
         //salary
         $tsalary = Tsalary::findOrFail($id);
@@ -335,7 +355,10 @@ class AdminSalaryController extends Controller
             'advance' => $data['advance'],
             'total' => $data['total'],
             'deduction' => $data['deduction'],
-            'net' => $data['net']
+            'net' => $data['net'],
+            'area'=>$data['area'],
+            'remarks'=>$data['remarks'],
+            'payment_received_date'=>$data['payment_received_date']
         ]);
 
         session()->flash('success', 'Data updated successfully');
