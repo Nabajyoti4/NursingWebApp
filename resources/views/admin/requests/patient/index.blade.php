@@ -5,6 +5,7 @@
 
 @section('content')
 
+
     <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pendingRequest" role="tab"
@@ -246,6 +247,7 @@
                 </div>
             </div>
         </div>
+
         <!--pop up model-->
         <div class="modal fade" id="disapproveModal" tabindex="-1" role="dialog" aria-labelledby="disapproveModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

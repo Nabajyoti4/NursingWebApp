@@ -73,8 +73,12 @@
                             </td>
                             <td>
                                 @if($nurse->day_attendance($nurse->id) == 'Not Marked')
-                                    <a class="btn btn-success" href="{{route('admin.mark.present', $nurse->id)}}">Present</a>
-                                    <a class="btn btn-danger " href="{{route('admin.mark.absent', $nurse->id)}}">Absent</a>
+                                    @if(Auth::user()->role == 'super')
+                                        Not Marked
+                                    @else
+                                        <a class="btn btn-success" href="{{route('admin.mark.present', $nurse->id)}}">Present</a>
+                                        <a class="btn btn-danger " href="{{route('admin.mark.absent', $nurse->id)}}">Absent</a>
+                                    @endif
                                 @else
                                     Attendance Marked
                                 @endif

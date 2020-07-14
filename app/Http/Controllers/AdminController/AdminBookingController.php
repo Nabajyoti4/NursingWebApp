@@ -30,18 +30,18 @@ class AdminBookingController extends Controller
             $bookings = Booking::where("id","LIKE","%{$search}%")->get();
 
             if($admin->role == 'super'){
-                return view('admin.bookings.index', compact('bookings'));
+                return view('admin.bookings.search', compact('bookings'));
             }else{
                 if($bookings->isEmpty()) {
-                    return view('admin.bookings.index', compact('bookings'));
+                    return view('admin.bookings.search', compact('bookings'));
                     // get the address of the requested PATIENT
                     // check f the address of the candidate is same as admin
                 }else{
                         if (($bookings->first()->patient->getAddress()) == ($admin->addresses->first()->city)) {
-                            return view('admin.bookings.index', compact('bookings'));
+                            return view('admin.bookings.search', compact('bookings'));
                         } else {
                             $bookings = collect([]);
-                            return view('admin.bookings.index', compact('bookings'));
+                            return view('admin.bookings.search', compact('bookings'));
                         }
                     }
                 }
@@ -49,19 +49,52 @@ class AdminBookingController extends Controller
 
         else{
             if($admin->role == 'super'){
-                $bookings = Booking::latest()->get();
-                return view('admin.bookings.index', compact('bookings'));
+                $bookingAll = Booking::latest()->get();
+                $pbookings = array();
+                $cbookings = array();
+                $rbookings = array();
+                $tbookings = array();
+                $abookings = array();
+
+                foreach ($bookingAll as $booking) {
+                        if($booking->status == 0){
+                            array_push($rbookings, $booking);
+                        }elseif ($booking->status == 1){
+                            array_push($cbookings, $booking);
+                        }elseif ($booking->status == 2){
+                            array_push($pbookings, $booking);
+                        }elseif ($booking->status == 3){
+                            array_push($abookings, $booking);
+                        }else{
+                            array_push($tbookings, $booking);
+                        }
+                }
+                return view('admin.bookings.index', compact('tbookings','cbookings', 'rbookings','abookings', 'pbookings'));
 
             }else {
                 $bookingAll = Booking::latest()->get();
-                $bookings = array();
+                $pbookings = array();
+                $cbookings = array();
+                $rbookings = array();
+                $tbookings = array();
+                $abookings = array();
 
                 foreach ($bookingAll as $booking) {
                     if (($booking->patient->getAddress()) == ($admin->addresses->first()->city)) {
-                        array_push($bookings, $booking);
+                        if($booking->status == 0){
+                            array_push($rbookings, $booking);
+                        }elseif ($booking->status == 1){
+                            array_push($cbookings, $booking);
+                        }elseif ($booking->status == 2){
+                            array_push($pbookings, $booking);
+                        }elseif ($booking->status == 3){
+                            array_push($abookings, $booking);
+                        }else{
+                            array_push($tbookings, $booking);
+                        }
                     }
                 }
-                return view('admin.bookings.index', compact('bookings'));
+                return view('admin.bookings.index', compact('tbookings','cbookings', 'rbookings','abookings', 'pbookings'));
             }
 
         }
