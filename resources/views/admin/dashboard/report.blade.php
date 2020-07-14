@@ -42,6 +42,8 @@
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($psalary->created_at)->englishMonth}}</td>
                                         <td>{{ \Carbon\Carbon::parse($psalary->created_at)->year}}</td>
+                                        <td>{{ $psalary->payable_days }}</td>
+                                        <td>{{ \Carbon\Carbon::now()->daysInMonth - $psalary->payable_days }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -81,6 +83,8 @@
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($tsalary->created_at)->englishMonth}}</td>
                                         <td>{{ \Carbon\Carbon::parse($tsalary->created_at)->year}}</td>
+                                        <td>{{ $tsalary->full_day + $tsalary->half_day}}</td>
+                                        <td>{{ \Carbon\Carbon::now()->daysInMonth - ($tsalary->full_day + $tsalary->half_day)}}</td>
                                     </tr>
                                 @empty
                                     <tr>
