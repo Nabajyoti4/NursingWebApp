@@ -20,52 +20,35 @@ class AdminPatientController extends Controller
      */
     public function index()
     {
-        //
-        $search = request()->get('patient');
+
         $admin = Auth::user();
 
-        if ($search){
 
-            $patients = Patient::where("patient_name","LIKE","%{$search}%")->get();
-
-            if($admin->role == 'super'){
-                return view('admin.requests.patient.index', compact('patients'));
-            }
-            else{
-                // check if the collection have any data
-                if($patients->isEmpty()){
-                    return view('admin.requests.patient.index', compact('patients'));
-                }else{
-                    // get the address of the requested PATIENT
-                    // check if the address of the candidate is same as admin
-                    if (($patients->first()->getAddress()) == ($admin->addresses->first()->city)) {
-                        return view('admin.requests.patient.index', compact('patients'));
-                    }else{
-                        $patients = collect([]);
-                        return view('admin.requests.patient.index', compact('patients'));
-                    }
-                }
-            }
-        }
-
-        else{
             if($admin->role == 'super'){
                 $patients = Patient::latest()->get();
                 return view('admin.requests.patient.index', compact('patients'));
 
             }else{
                 $patientAll = Patient::all();
-                $patients = array();
-
+                $ppatients = array();//pending
+                $apatients = array();//approved
+                $rpatients = array();//rejected
                 foreach ($patientAll as $patient) {
                     if (($patient->getAddress()) == ($admin->addresses->first()->city)) {
-                        array_push($patients, $patient);
+                        if ($patient->status == 0){
+                            array_push($rpatients, $patient);
+
+                        }elseif ($patient->status == 1){
+                            array_push($apatients, $patient);
+                        }else{
+                            array_push($ppatients, $patient);
+                        }
                     }
                 }
-                return view('admin.requests.patient.index', compact('patients'));
+                return view('admin.requests.patient.index', compact('ppatients','apatients','rpatients'));
             }
 
-        }
+
 
     }
 
