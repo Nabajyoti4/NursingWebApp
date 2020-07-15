@@ -110,7 +110,7 @@ class NurseJoinRequestController extends Controller
 
                 $city = NurseJoinRequest::findOrFail($nurse->id)->first();
 
-                $user = User::where('user_id', $city->user_id)->get();
+                $user = User::where('id', $city->user_id)->get();
 
                 $adminAll  = User::where('role', 'admin')->get();
 
