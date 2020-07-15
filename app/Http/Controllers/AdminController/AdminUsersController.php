@@ -149,6 +149,18 @@ class AdminUsersController extends Controller
 
         }else{
 
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['current_city'],
+                'state' => $data['current_state'],
+                'pin_code' => $data['current_pincode'],
+                'country' => $data['current_country'],
+                'landmark' => $data['current_landmark'],
+                'street' => $data['current_street'],
+                'police_station' => $data['current_police'],
+                'post_office' => $data['current_post']
+
+            ]);
+
             $permanent_address = Address::create(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
                 'state' => $data['permanent_state'],
@@ -161,17 +173,7 @@ class AdminUsersController extends Controller
 
             ]);
 
-            $current_address = Address::create(['user_id' => $user->id,
-                'city' => $data['current_city'],
-                'state' => $data['current_state'],
-                'pin_code' => $data['current_pincode'],
-                'country' => $data['current_country'],
-                'landmark' => $data['current_landmark'],
-                'street' => $data['current_street'],
-                'police_station' => $data['current_police'],
-                'post_office' => $data['current_post']
 
-            ]);
 
 
 

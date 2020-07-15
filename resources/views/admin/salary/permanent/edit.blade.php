@@ -49,14 +49,17 @@
                 <label for="advance">Advance Payment</label>
                 <input type="number" value="{{$salary->advance}}" name="advance" class="form-control"/>
             </div>
-
+            <div class="form-group font-weight-bold">
+                <label for="bonus">Bonus</label>
+                <input type="number" value="{{$salary->bonus}}" disabled name="bonus" class="form-control "/>
+            </div>
             <div class="form-group font-weight-bold">
                 <label for="pf">PF</label>
                 <input type="number" value="{{$salary->pf}}" name="pf" class="form-control"/>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="pf">ESIC</label>
-                <input type="number" value="{{$salary->esic}}" name="pf" class="form-control"/>
+                <input type="number" value="{{$salary->esic}}" name="pf" disabled class="form-control "/>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="advance">Total Salary</label>
@@ -69,6 +72,18 @@
             <div class="form-group font-weight-bold">
                 <label for="advance">Net Payment</label>
                 <input type="number" value="{{$salary->net}}" disabled name="advance" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="area">Area</label>
+                <input type="text" value="{{$salary->area}}"  name="area" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="remarks">Remarks</label>
+                <input type="text" value="{{$salary->remarks}}"  name="remarks" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="payment_received_date">Payment Received Date</label>
+                <input type="text" value="{{$salary->payment_received_date}}"  name="payment_received_date" class="form-control"/>
             </div>
             <button class="btn btn-primary" type="submit">Update Details</button>
 

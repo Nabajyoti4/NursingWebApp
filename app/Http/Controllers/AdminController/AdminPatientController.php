@@ -25,8 +25,21 @@ class AdminPatientController extends Controller
 
 
             if($admin->role == 'super'){
-                $patients = Patient::latest()->get();
-                return view('admin.requests.patient.index', compact('patients'));
+                $patientAll = Patient::latest()->get();
+                $ppatients = array();//pending
+                $apatients = array();//approved
+                $rpatients = array();//rejected
+                foreach ($patientAll as $patient) {
+                        if ($patient->status == 0){
+                            array_push($rpatients, $patient);
+
+                        }elseif ($patient->status == 1){
+                            array_push($apatients, $patient);
+                        }else{
+                            array_push($ppatients, $patient);
+                        }
+                }
+                return view('admin.requests.patient.index', compact('ppatients','apatients','rpatients'));
 
             }else{
                 $patientAll = Patient::all();
