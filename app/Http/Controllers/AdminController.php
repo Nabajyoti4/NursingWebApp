@@ -42,12 +42,13 @@ class AdminController extends Controller
 
         } else {
 
-            $userAll = User::all()->where('role', 'user')->where('permanent_address_id', '>', 0)->where('temporary_address_id', '>', 0);
+            $userAll = User::where('role', 'user')->where('permanent_address_id', '>', 0)->where('current_address_id', '>', 0)->get();
             $userids = array();
             foreach ($userAll as $user) {
                 if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                     array_push($userids, $user->id);
                 }
+
             }
             $nurseRequest = NurseJoinRequest::whereIn('user_id', $userids)->where('Approval', 2)->get()->count();
 

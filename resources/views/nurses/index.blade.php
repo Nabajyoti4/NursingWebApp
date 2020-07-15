@@ -125,54 +125,54 @@
                                 <h5 class="header font-weight-bold bg-light">Current Address</h5>
                                 <div>
                                     <h5 class="font">Street</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->street : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->street : "Fill the current Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Landmark</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->landmark : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->landmark : "Fill the current Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">City</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the current Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">State</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->state : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->state : "Fill the current Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Country</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->country : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->country : "Fill the current Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Pin Code</h5>
-                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->pin_code : "Fill the current Address"}}</span>
+                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->pin_code : "Fill the current Address"}}</span>
                                 </div>
                             </div>
                             <div class="borderdiv">
                                 <h5 class="header font-weight-bold bg-light">Permanent Address</h5>
                                 <div>
                                     <h5 class="font">Street</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->street : "Fill the Permanent Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Landmark</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->landmark : "Fill the Permanent Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">City</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Permanent Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">State</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->state : "Fill the Permanent Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Country</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->country : "Fill the Permanent Address"}}</span>
                                 </div>
                                 <div>
                                     <h5 class="font">Pin Code</h5>
-                                    <span>:{{$user->addresses->first() ? $user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                                    <span>:{{$user->addresses->last() ? $user->addresses->last()->pin_code : "Fill the Permanent Address"}}</span>
                                 </div>
                             </div>
                         </div>

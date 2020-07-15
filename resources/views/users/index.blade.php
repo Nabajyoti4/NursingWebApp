@@ -140,18 +140,18 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Permanent Address</label>
+                                        <label>Current Address</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Permanent Address"}}</p>
+                                        <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Current Address"}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Current Address</label>
+                                        <label>Permanent Address</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Current Address"}}</p>
+                                        <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Permanent Address"}}</p>
                                     </div>
                                 </div>
 

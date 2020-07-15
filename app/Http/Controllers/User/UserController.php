@@ -74,7 +74,6 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail(Auth::user()->id);
-
         return view('users.edit', compact('user'));
     }
 
@@ -128,7 +127,17 @@ class UserController extends Controller
 
 
         }else{
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['current_city'],
+                'state' => $data['current_state'],
+                'pin_code' => $data['current_pincode'],
+                'country' => $data['current_country'],
+                'landmark' => $data['current_landmark'],
+                'street' => $data['current_street'],
+                'police_station' => $data['current_police'],
+                'post_office' => $data['current_post']
 
+            ]);
             $permanent_address = Address::create(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
                 'state' => $data['permanent_state'],
@@ -141,17 +150,7 @@ class UserController extends Controller
 
             ]);
 
-            $current_address = Address::create(['user_id' => $user->id,
-                'city' => $data['current_city'],
-                'state' => $data['current_state'],
-                'pin_code' => $data['current_pincode'],
-                'country' => $data['current_country'],
-                'landmark' => $data['current_landmark'],
-                'street' => $data['current_street'],
-                'police_station' => $data['current_police'],
-                'post_office' => $data['current_post']
 
-            ]);
 
             // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;

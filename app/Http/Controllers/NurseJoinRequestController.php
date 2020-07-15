@@ -31,7 +31,7 @@ class NurseJoinRequestController extends Controller
             $rcandidates = array();//rejected candidates
 
             foreach ($candidates as $candidate) {
-                if ($candidate->Approval == 0) {
+                if ($candidate->Approval == 2) {
                     array_push($pcandidates, $candidate);
                 } elseif ($candidate->Approval == 1) {
                     array_push($acandidates, $candidate);
@@ -51,7 +51,7 @@ class NurseJoinRequestController extends Controller
             foreach ($candidateAll as $candidate) {
                 $user = User::where('id', $candidate->user_id)->first();
                 if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                    if ($candidate->Approval == 0) {
+                    if ($candidate->Approval == 2) {
                         array_push($pcandidates, $candidate);
                     } elseif ($candidate->Approval == 1) {
                         array_push($acandidates, $candidate);
@@ -113,11 +113,8 @@ class NurseJoinRequestController extends Controller
             } else {
                 // create if no pending request for particular candidate
                 $nurse = NurseJoinRequest::create($data);
-
                 $city = NurseJoinRequest::findOrFail($nurse->id)->first();
-
-                $user = User::where('user_id', $city->user_id)->get();
-
+                $user = User::where('id', $city->user_id)->get();
                 $adminAll = User::where('role', 'admin')->get();
 
                 $admins = array();
