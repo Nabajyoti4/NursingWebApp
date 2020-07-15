@@ -159,6 +159,9 @@ a:hover{
 .btn:active{
     outline: none;
 }
+button{
+    outline: none;
+}
 @media screen and (max-width: 1050px){
     .container_login{
         grid-gap: 5rem;
