@@ -46,7 +46,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-2x  fa-money-check-alt"></i>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Nurse Requests</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{\App\NurseJoinRequest::where('Approval',2)->count()}}</div>
+                                {{$nurseRequest}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -81,7 +81,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Patient Requests
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Patient::where('status',2)->count()}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$ppatientRequest}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -100,7 +100,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Attendance Per Day
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -113,59 +113,63 @@
     </div>
     <div class="row">
 
-        <!-- Bar Chart -->
-        <div class="col-xl-6 col-lg-6">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Bookings</h6>
+        @if($admin->role == "super")
 
-                    <span hidden id="reject">{{$rbooking}}</span>
-                    <span hidden id="pending">{{$pbooking}}</span>
-                    <span hidden id="active" >{{$abooking}}</span>
-                    <span hidden id="complete" >{{$cbooking}}</span>
-                    <span hidden id="takeover" >{{$tbooking}}</span>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+            <!-- Bar Chart -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Bookings</h6>
+
+                        <span hidden id="reject">{{$rbooking}}</span>
+                        <span hidden id="pending">{{$pbooking}}</span>
+                        <span hidden id="active" >{{$abooking}}</span>
+                        <span hidden id="complete" >{{$cbooking}}</span>
+                        <span hidden id="takeover" >{{$tbooking}}</span>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="myAreaChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Pie Chart -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">(Users Vs Nurses Vs Patients)Counts</h6>
 
-        <!-- Pie Chart -->
-        <div class="col-xl-6 col-lg-6">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">(Users Vs Nurses Vs Patients)Counts</h6>
-
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
                     </div>
-                    <span hidden id="users">{{$users}}</span>
-                    <span hidden id="nurses">{{$nurses}}</span>
-                    <span hidden id="patients" >{{$patients}}</span>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        <span hidden id="users">{{$users}}</span>
+                        <span hidden id="nurses">{{$nurses}}</span>
+                        <span hidden id="patients" >{{$patients}}</span>
 
-                    <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i>  Users
-                    </span>
+                        <div class="mt-4 text-center small">
                         <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Nurses
-                    </span>
-                        <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Patients
-                    </span>
+                          <i class="fas fa-circle text-primary"></i>  Users
+                        </span>
+                            <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Nurses
+                        </span>
+                            <span class="mr-2">
+                          <i class="fas fa-circle text-info"></i> Patients
+                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            @endif
+
     </div>
 
 @endsection
