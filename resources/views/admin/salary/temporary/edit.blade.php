@@ -40,6 +40,10 @@
                 <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
             </div>
             <div class="form-group font-weight-bold">
+                <label for="month_days">Month Days</label>
+                <input type="number" name="month_days" class="form-control"/>
+            </div>
+            <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
                 <input type="number" value="{{$salary->special_allowance}}" name="special_allowance"
                        class="form-control"/>

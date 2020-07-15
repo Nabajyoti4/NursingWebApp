@@ -50,7 +50,7 @@
                     </a>
                 @endif
                 <input type="submit" class="login_register_btn" value="Login">
-                   
+
             </form>
         </div>
     </div>
