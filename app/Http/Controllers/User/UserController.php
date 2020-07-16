@@ -200,7 +200,7 @@ class UserController extends Controller
 
     public function booking($id){
         $book = Booking::findOrFail($id);
-        $attendances = Attendance::where('booking_id',$book->id)->get();
+        $attendances = Attendance::where('booking_id',$book->id)->latest()->get();
         return view('bookings.show', compact('book', 'attendances'));
     }
 }
