@@ -10,7 +10,6 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class AdminSalaryController extends Controller
 {
@@ -33,13 +32,13 @@ class AdminSalaryController extends Controller
             } else {
                 $nurse = Nurse::where("employee_id", $search)->get()->first();
 
-                if (Tsalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
+                if (Tsalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()) {
                     $salariess = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
-                }elseif (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()){
+                } elseif (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()) {
                     $salariess = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
-                }else{
+                } else {
                     $salariess = collect([]);
                 }
                 return view('admin.salary.search', compact('salariess'));
@@ -109,14 +108,16 @@ class AdminSalaryController extends Controller
             $nursesAll = Nurse::where('permanent', '0')->get();
             foreach ($nursesAll as $nurse) {
                 if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        array_push($nurses, $nurse);
-                }}
+                    array_push($nurses, $nurse);
+                }
+            }
         } else {
             $nursesAll = Nurse::where('permanent', 1)->get();
             foreach ($nursesAll as $nurse) {
                 if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        array_push($nurses, $nurse);
-                }}
+                    array_push($nurses, $nurse);
+                }
+            }
         }
         return view('admin.salary.create', compact('nurses', 'permanent'));
     }
@@ -150,26 +151,27 @@ class AdminSalaryController extends Controller
     public function store(Request $request)
     {
         //get the data
-        $data = $request->validate([
-            'nurse_id' => 'required',
-            'basic' => 'required',
-            'full_day' => 'integer',
-            'half_day' => 'integer',
-            'special_allowance' => 'integer',
-            'ta_da' => 'integer',
-            'hra' => 'integer',
-            'advance' => 'integer',
-            'pf' => 'integer',
-            'month_days' => 'nullable|integer',
+        $data = $request->only([
+            'nurse_id',
+            'basic',
+            'full_day' ,
+            'half_day' ,
+            'special_allowance',
+            'ta_da',
+            'hra' ,
+            'advance',
+            'pf',
+            'month_days'
         ]);
+        dd($data);
 
         //find whether the nurse is permanent or temporary
         $nurse = Nurse::findOrFail($data['nurse_id']);
         //calculate per day rate
-        if ($data['month_days'] == null){
-            $total_days = Carbon::now()->daysInMonth;
-            $data['month_days']=$total_days;
-        }
+
+        $total_days = Carbon::now()->daysInMonth;
+        $data['month_days'] = $total_days;
+
         $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
@@ -191,7 +193,7 @@ class AdminSalaryController extends Controller
                 'total' => $data['total'],
                 'deduction' => $data['deduction'],
                 'net' => $data['net'],
-                'month_days' => $total_days
+                'month_days' => $data['month_days'],
             ]);
         } else {
             $data = $this->calculateTemporaryTotal($data);
@@ -201,6 +203,7 @@ class AdminSalaryController extends Controller
             Tsalary::create([
                 'basic' => $data['basic'],
                 'nurse_id' => $data['nurse_id'],
+                'month_days' => $data['month_days'],
                 'per_day_rate' => $data['per_day_rate'],
                 'full_day' => $data['full_day'],
                 'half_day' => $data['half_day'],
@@ -239,14 +242,14 @@ class AdminSalaryController extends Controller
      */
     public function tedit($id)
     {
-        $salary = Tsalary::where('id',$id)->get()->first();
+        $salary = Tsalary::where('id', $id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
         return view('admin.salary.temporary.edit', compact('salary', 'nurse'));
     }
 
     public function pedit($id)
     {
-        $salary = Psalary::where('id',$id)->get()->first();
+        $salary = Psalary::where('id', $id)->get()->first();
         $nurse = Nurse::where('id', $salary->nurse_id)->get()->first();
         return view('admin.salary.permanent.edit', compact('salary', 'nurse'));
     }
@@ -271,15 +274,13 @@ class AdminSalaryController extends Controller
             'advance' => 'integer',
             'pf' => 'integer',
             'month_days' => 'integer',
-            'remarks'=>'nullable|string',
-            'area'=>'nullable|string',
-            'payment_received_date'=>'nullable|string'
+            'remarks' => 'nullable|string',
+            'area' => 'nullable|string',
+            'payment_received_date' => 'nullable|string'
         ]);
         //calculate per day rate
-        if ($data['month_days'] == null){
-            $total_days = Carbon::now()->daysInMonth;
-            $data['month_days']=$total_days;
-        }
+        $total_days = Carbon::now()->daysInMonth;
+        $data['month_days'] = $total_days;
 
         $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
         //calculate the bonus
@@ -305,9 +306,9 @@ class AdminSalaryController extends Controller
             'total' => $data['total'],
             'deduction' => $data['deduction'],
             'net' => $data['net'],
-            'area'=>$data['area'],
-            'remarks'=>$data['remarks'],
-            'payment_received_date'=>$data['payment_received_date']
+            'area' => $data['area'],
+            'remarks' => $data['remarks'],
+            'payment_received_date' => $data['payment_received_date']
 
         ]);
 
@@ -330,9 +331,9 @@ class AdminSalaryController extends Controller
             'advance' => 'nullable|integer',
             'bonus' => 'integer',
             'month_days' => 'integer',
-            'remarks'=>'nullable|string',
-            'area'=>'nullable|string',
-            'payment_received_date'=>'nullable|string'
+            'remarks' => 'nullable|string',
+            'area' => 'nullable|string',
+            'payment_received_date' => 'nullable|string'
         ]);
         $total_days = Carbon::now()->daysInMonth;
         $data['per_day_rate'] = ($data['basic'] / $total_days);
@@ -356,9 +357,9 @@ class AdminSalaryController extends Controller
             'total' => $data['total'],
             'deduction' => $data['deduction'],
             'net' => $data['net'],
-            'area'=>$data['area'],
-            'remarks'=>$data['remarks'],
-            'payment_received_date'=>$data['payment_received_date']
+            'area' => $data['area'],
+            'remarks' => $data['remarks'],
+            'payment_received_date' => $data['payment_received_date']
         ]);
 
         session()->flash('success', 'Data updated successfully');

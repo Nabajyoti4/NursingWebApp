@@ -44,7 +44,7 @@
             @endif
             <div class="form-group font-weight-bold">
                 <label for="month_days">Month Days</label>
-                <input type="number" name="month_days" class="form-control"/>
+                <input type="month" name="month_days" class="form-control"/>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
