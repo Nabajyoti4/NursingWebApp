@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Create Nurse
+    Create Nurse Salary
 @endsection
 
 @section('links')
