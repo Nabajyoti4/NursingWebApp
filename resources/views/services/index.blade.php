@@ -35,7 +35,7 @@
                 <img src="{{asset('img/slider-1.jpg')}}" alt="Chicago" >
             </div>
             <div class="carousel-item">
-                <img src="{{asset('img/team.jpg')}}" alt="New York">
+                <img src="{{asset('img/team.webp')}}" alt="New York">
             </div>
         </div>
 
@@ -55,7 +55,7 @@
         <div class="container-fluid text-center">
             <div class="row text-center">
                 <div class="col-md-6">
-                    <img src="{{asset('img/nurse-1.jpg')}}" alt="" width="100%">
+                    <img src="{{asset('img/nurse-1.webp')}}" alt="" width="100%">
                 </div>
                 <div class="col-md-6 pt-5 pb-2  about">
                     <h3 class="font-weight-bold">NURSING</h3>

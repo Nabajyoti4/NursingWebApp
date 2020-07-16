@@ -227,7 +227,7 @@
         <div class="container text-center">
             <div class="row text-center">
                 <div class="col-md-6">
-                    <img src="{{asset('img/nurse-1.jpg')}}" alt="" width="100%">
+                    <img src="{{asset('img/nurse-1.webp')}}" alt="" width="100%">
                 </div>
                 <div class="col-md-6 pt-5 pb-5">
                     <h3>“A Nurse dispense comfort, compassion, and caring without even a prescription.”</h3>
@@ -263,7 +263,7 @@
                         <div class="container item-center">
 
                             <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.png')}}">
+                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
                             </div>
 
                             <div class="text-center text-white  p-3">
@@ -291,7 +291,7 @@
                         <div class="container">
 
                             <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.png')}}">
+                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
                             </div>
 
                             <div class="text-center text-white  p-3">
@@ -319,7 +319,7 @@
                         <div class="container">
 
                             <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.png')}}">
+                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
                             </div>
 
                             <div class="text-center text-white  p-3">
@@ -356,16 +356,16 @@
     <!--NURSE RATING SLIDER END-->
 
     <!--Business partners section-->
-    <div class="block app-ribbon pt-3">
-        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>
-        <div class="container text-xs-center p-5">
-            {{--            <img src="assets/img/startup-4.svg">--}}
-            {{--            <img src="assets/img/startup-5.svg">--}}
-            {{--            <img src="assets/img/startup-6.svg">--}}
-            {{--            <img src="assets/img/startup-7.svg">--}}
-            {{--            <img src="assets/img/startup-8.svg">--}}
-        </div>
-    </div>
+{{--    <div class="block app-ribbon pt-3">--}}
+{{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
+{{--        <div class="container text-xs-center p-5">--}}
+{{--                        <img src="assets/img/startup-4.svg">--}}
+{{--                        <img src="assets/img/startup-5.svg">--}}
+{{--                        <img src="assets/img/startup-6.svg">--}}
+{{--                        <img src="assets/img/startup-7.svg">--}}
+{{--                        <img src="assets/img/startup-8.svg">--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!--Business partners section end-->
 
     <!-- address section start -->
@@ -467,7 +467,7 @@
 
                 <div class="col-sm-12 col-lg-4 p-5">
                     <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top " src="{{asset('img/a2.png')}}" alt="Card image" style="width:100%">
+                        <img class="card-img-top " src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
 
                         <div class="card-body ">
                             <h4 class="card-title text-dark">John Doe</h4>
@@ -484,7 +484,7 @@
 
                 <div class="col-sm-12 col-lg-4 p-5">
                     <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top" src="{{asset('img/a2.png')}}" alt="Card image" style="width:100%">
+                        <img class="card-img-top" src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
                         <div class="card-body ">
                             <h4 class="card-title text-dark">John Doe</h4>
                             <h5 class="card-title text-dark">Designation</h5>
@@ -500,7 +500,7 @@
 
                 <div class="col-sm-12 col-lg-4 p-5">
                     <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top" src="{{asset('img/a2.png')}}" alt="Card image" style="width:100%">
+                        <img class="card-img-top" src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
                         <div class="card-body ">
                             <h4 class="card-title text-dark">John Doe</h4>
                             <h5 class="card-title text-dark">Designation</h5>

@@ -9,6 +9,7 @@ class Tsalary extends Model
     protected $fillable =
         ['nurse_id',
             'basic',
+            'month_days',
             'per_day_rate',
             'full_day',
             'half_day',

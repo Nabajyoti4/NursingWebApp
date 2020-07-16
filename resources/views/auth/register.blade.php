@@ -6,7 +6,7 @@
     <img class="wave" src="{{asset('img/wave.png')}}">
     <div class="container_login">
         <div class="img">
-            <img src="{{asset('img/bg.png')}}">
+            <img src="{{asset('img/bg.webp')}}">
         </div>
         <div class="login-content">
             <form method="POST" action="{{ route('register') }}">
