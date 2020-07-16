@@ -21,7 +21,7 @@
 @section('content')
     <!-- header section starts -->
     <div class="p-1"
-         style="background-image: url({{asset('img/navbar-back-1.jpg')}});background-repeat: no-repeat; background-size: cover">
+         style="background-image: url({{asset('img/navbar-back-1.webp')}});background-repeat: no-repeat; background-size: cover">
         <!-- navbar start -->
     @include('partials.navbar')
     <!-- navbar ends -->
