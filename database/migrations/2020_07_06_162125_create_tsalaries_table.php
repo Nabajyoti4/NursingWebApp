@@ -17,6 +17,7 @@ class CreateTsalariesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('nurse_id')->index();
             $table->bigInteger('basic');
+            $table->bigInteger('month_days')->nullable();
             $table->bigInteger('per_day_rate');
             $table->integer('full_day')->default(0);
             $table->integer('half_day')->default(0);

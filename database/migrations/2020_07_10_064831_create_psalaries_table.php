@@ -16,7 +16,7 @@ class CreatePsalariesTable extends Migration
         Schema::create('psalaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('nurse_id')->index();
-            $table->bigInteger('month_days');
+            $table->bigInteger('month_days')->nullable();
             $table->bigInteger('basic');
             $table->bigInteger('per_day_rate');
             $table->integer('payable_days')->default(0);

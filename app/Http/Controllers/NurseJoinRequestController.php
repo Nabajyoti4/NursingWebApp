@@ -187,7 +187,6 @@ class NurseJoinRequestController extends Controller
         $candidate = NurseJoinRequest::findOrFail($id);
         $user = User::findOrFail($candidate->user_id);
 
-
         Notification::send($user, new NurseJoinDisapprove($request));
 
         $candidate->Approval = 0;

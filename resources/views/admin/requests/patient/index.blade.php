@@ -188,8 +188,7 @@
                                     <th>Age</th>
                                     <th>Status</th>
                                     <th>View</th>
-                                    <th>Disapprove</th>
-                                    <th>Book</th>
+                                    <th>Reason</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -216,19 +215,10 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary"  onclick="handleDisapprove({{$patient->id}})">Disapprove</button>
-                                        </td>
-                                        <td>@if($patient->status == 1)
-                                                @if(\App\Booking::where('patient_id',$patient->id)->get()->isEmpty())
-                                                    <form action="{{route('admin.book.bookCreate',$patient->id)}}" method="get">
-                                                        @csrf
-                                                        <button class="btn btn-primary"  type="submit">Book</button>
-                                                    </form>
-                                                @else
-                                                    Booked
-                                                @endif
+                                            @if(\App\Reject::where('patient_id', $patient->id)->get()->first()->tag == 'nurse')
+                                                Nurse Not available
                                             @else
-                                                Not Approved
+                                                Area Not Covered
                                             @endif
                                         </td>
                                     </tr>

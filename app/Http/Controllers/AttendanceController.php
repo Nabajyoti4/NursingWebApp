@@ -95,7 +95,7 @@ class AttendanceController extends Controller
         // get the data
         $data = $request->only(['booking_id', 'attendance_image']);
         $booking = Booking::findOrFail($data['booking_id']);
-        $nurse = Nurse::where('id',$booking->nurse_id);
+        $nurse = Nurse::where('id',$booking->nurse_id)->get()->first();
         if ($nurse->permanent == 1){
             if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
@@ -211,7 +211,7 @@ class AttendanceController extends Controller
             Notification::send($admins, new \App\Notifications\AttendanceMark($attendance, $nurse));
 
 
-            return redirect(route('nurse.index'))->with('success', 'Attendance marked as Present!');
+            return redirect()->back()->with('success', 'Attendance marked as Present!');
 
         }
 
@@ -238,7 +238,7 @@ class AttendanceController extends Controller
 
         Notification::send($admins, new \App\Notifications\AttendanceMark($attendance, $nurse));
 
-        return redirect(route('nurse.index'))->with('success', 'Attendance marked as Absent!');
+        return redirect()->back()->with('success', 'Attendance marked as Absent!');
 
     }
 

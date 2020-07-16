@@ -21,7 +21,7 @@ class NurseJoinRequest extends Model
      * @return mixed
      */
     public function check_role($id){
-        $nurse = NurseJoinRequest::findOrFail($id)->first();
+        $nurse = NurseJoinRequest::findOrFail($id);
 
         $user = User::where('id' , $nurse->user_id)->get();
 

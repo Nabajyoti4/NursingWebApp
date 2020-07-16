@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class NurseJoinDisapprove extends Notification
 {
@@ -43,11 +44,15 @@ class NurseJoinDisapprove extends Notification
      */
     public function toMail($notifiable)
     {
+        $admin = Auth::user();
+
         return (new MailMessage)
             ->greeting('Hello ' . $this->data->recipient)
             ->subject('Request denial For Nurse Job Request')
             ->line('Your request for Nurse Job is denied due to : '. $this->data->message)
-            ->line('you can contact admin for more information');
+            ->line('You can contact admin for more information')
+            ->line('Email : '. $admin->email)
+            ->line('Contact : '. $admin->phone_no);
     }
 
     /**
