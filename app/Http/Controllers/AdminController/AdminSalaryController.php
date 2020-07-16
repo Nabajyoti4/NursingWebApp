@@ -151,28 +151,27 @@ class AdminSalaryController extends Controller
     public function store(Request $request)
     {
         //get the data
-        $data = $request->only([
-            'nurse_id',
-            'basic',
-            'full_day' ,
-            'half_day' ,
-            'special_allowance',
-            'ta_da',
-            'hra' ,
-            'advance',
-            'pf',
-            'month_days'
-        ]);
-        dd($data);
+        $data = $request->validate([
+            'nurse_id' => 'required',
+            'basic' => 'required',
+            'full_day' => 'nullable|integer',
+            'half_day' => 'nullable|integer',
+            'special_allowance' => 'nullable|integer',
+            'ta_da' => 'nullable|integer',
+            'hra' => 'nullable|integer',
+            'advance' => 'nullable|integer',
+            'pf' => 'integer',
+            'month_days' => 'required',
 
+        ]);
         //find whether the nurse is permanent or temporary
         $nurse = Nurse::findOrFail($data['nurse_id']);
         //calculate per day rate
 
-        $total_days = Carbon::now()->daysInMonth;
-        $data['month_days'] = $total_days;
+        $total_days = Carbon::create($data['month_days'])->daysInMonth;
 
-        $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
+
+        $data['per_day_rate'] = ($data['basic'] / $total_days);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
@@ -182,6 +181,7 @@ class AdminSalaryController extends Controller
             Psalary::create([
                 'basic' => $data['basic'],
                 'nurse_id' => $data['nurse_id'],
+                'month_days' => $data['month_days'],
                 'per_day_rate' => $data['per_day_rate'],
                 'payable_days' => $data['full_day'],
                 'special_allowance' => $data['special_allowance'],
@@ -193,11 +193,10 @@ class AdminSalaryController extends Controller
                 'total' => $data['total'],
                 'deduction' => $data['deduction'],
                 'net' => $data['net'],
-                'month_days' => $data['month_days'],
+
             ]);
         } else {
             $data = $this->calculateTemporaryTotal($data);
-
 
             //create salary entry for the nurse
             Tsalary::create([
@@ -273,16 +272,16 @@ class AdminSalaryController extends Controller
             'hra' => 'nullable|integer',
             'advance' => 'integer',
             'pf' => 'integer',
-            'month_days' => 'integer',
+            'month_days' => 'date',
             'remarks' => 'nullable|string',
             'area' => 'nullable|string',
             'payment_received_date' => 'nullable|string'
         ]);
         //calculate per day rate
-        $total_days = Carbon::now()->daysInMonth;
-        $data['month_days'] = $total_days;
 
-        $data['per_day_rate'] = ($data['basic'] / $data['month_days']);
+        $total_days = Carbon::create($data['month_days'])->daysInMonth;
+
+        $data['per_day_rate'] = ($data['basic'] / $total_days);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
@@ -292,9 +291,11 @@ class AdminSalaryController extends Controller
 
         //net payment
         $data['net'] = $data['total'] - $data['deduction'];
+
         $psalary->update([
             'basic' => $data['basic'],
             'nurse_id' => $data['nurse_id'],
+            'month_days'=>$data['month_days'],
             'per_day_rate' => $data['per_day_rate'],
             'payable_days' => $data['full_day'],
             'special_allowance' => $data['special_allowance'],
@@ -308,7 +309,8 @@ class AdminSalaryController extends Controller
             'net' => $data['net'],
             'area' => $data['area'],
             'remarks' => $data['remarks'],
-            'payment_received_date' => $data['payment_received_date']
+            'payment_received_date' => $data['payment_received_date'],
+
 
         ]);
 
@@ -322,6 +324,7 @@ class AdminSalaryController extends Controller
         $data = $request->validate([
             'nurse_id' => 'required',
             'basic' => 'required',
+            'month_days' => 'date',
             'per_day_rate' => 'integer',
             'full_day' => 'integer',
             'half_day' => 'integer',
@@ -330,12 +333,14 @@ class AdminSalaryController extends Controller
             'hra' => 'nullable|integer',
             'advance' => 'nullable|integer',
             'bonus' => 'integer',
-            'month_days' => 'integer',
             'remarks' => 'nullable|string',
             'area' => 'nullable|string',
             'payment_received_date' => 'nullable|string'
         ]);
-        $total_days = Carbon::now()->daysInMonth;
+
+        $total_days = Carbon::create($data['month_days'])->daysInMonth;
+
+
         $data['per_day_rate'] = ($data['basic'] / $total_days);
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
@@ -346,6 +351,7 @@ class AdminSalaryController extends Controller
         $tsalary->update([
             'basic' => $data['basic'],
             'nurse_id' => $data['nurse_id'],
+            'month_days'=>$data['month_days'],
             'per_day_rate' => $data['per_day_rate'],
             'full_day' => $data['full_day'],
             'half_day' => $data['half_day'],
@@ -359,7 +365,8 @@ class AdminSalaryController extends Controller
             'net' => $data['net'],
             'area' => $data['area'],
             'remarks' => $data['remarks'],
-            'payment_received_date' => $data['payment_received_date']
+            'payment_received_date' => $data['payment_received_date'],
+
         ]);
 
         session()->flash('success', 'Data updated successfully');

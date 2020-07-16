@@ -19,63 +19,93 @@
 
             <div class="form-group font-weight-bold">
                 <label for="nurse_id">Nurse Employee ID</label>
-                <select name="nurse_id" class="form-control">
+                <select name="nurse_id" class="form-control @error('nurse_id') is-invalid @enderror">
                     <option class="form-control" value="{{$nurse->id}}" selected>{{$nurse->employee_id}}</option>
                 </select>
+                @error('nurse_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="basic">Basic Salary</label>
-                <input type="number" value="{{$salary->basic}}" name="basic" class="form-control"/>
+                <input type="number" value="{{$salary->basic}}" name="basic" class="form-control @error('basic') is-invalid @enderror"/>
+                @error('basic')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="per_day_rate">Per Day Rate</label>
-                <input type="number" value="{{$salary->per_day_rate}}" name="per_day_rate" class="form-control"/>
+                <input type="number" value="{{$salary->per_day_rate}}" disabled name="per_day_rate" class="form-control"/>
+
             </div>
             <div class="form-group font-weight-bold">
                 <label for="full_day">Total Days of Duty 24hrs</label>
-                <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control"/>
+                <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control @error('full_day') is-invalid @enderror"/>
+                @error('full_day')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="half_day">Total Days of Duty 12hrs</label>
-                <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control"/>
+                <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control @error('half_day') is-invalid @enderror"/>
+                @error('half_day')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="month_days">Month Days</label>
-                <input type="number" name="month_days" class="form-control"/>
+                <input type="month" name="month_days" value="{{$salary->month_days}}" class="form-control @error('month_days') is-invalid @enderror"/>
+                @error('month_days')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="special_allowance">Special Allowance</label>
                 <input type="number" value="{{$salary->special_allowance}}" name="special_allowance"
-                       class="form-control"/>
+                       class="form-control @error('special_allowance') is-invalid @enderror"/>
+                @error('special_allowance')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="ta_da">TA & DA</label>
-                <input type="number" value="{{$salary->ta_da}}" name="ta_da" class="form-control"/>
+                <input type="number" value="{{$salary->ta_da}}" name="ta_da" class="form-control @error('ta_da') is-invalid @enderror"/>
+                @error('ta_da')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="hra">HRA</label>
-                <input type="number" value="{{$salary->hra}}" name="hra" class="form-control"/>
+                <input type="number" value="{{$salary->hra}}" name="hra" class="form-control @error('hra') is-invalid @enderror"/>
+                @error('hra')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="bonus">Bonus</label>
-                <input type="number" value="{{$salary->bonus}}"disabled name="bonus" class="form-control "/>
+                <input type="number" value="{{$salary->bonus}}"disabled name="bonus" class="form-control"/>
+
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="advance">Advance Payment</label>
-                <input type="number" value="{{$salary->advance}}" name="advance" class="form-control"/>
+                <input type="number" value="{{$salary->advance}}" name="advance" class="form-control @error('advance') is-invalid @enderror"/>
+                @error('advance')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group font-weight-bold">
                 <label for="total">Total Salary</label>
-                <input type="number" value="{{$salary->total}}" disabled name="total" class="form-control"/>
+                <input type="number" value="{{$salary->total}}" disabled name="total" class="form-control "/>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="deduction">Deduction </label>
                 <input type="number" value="{{$salary->deduction}}" disabled name="deduction" class="form-control"/>
+
             </div>
             <div class="form-group font-weight-bold">
                 <label for="net">Net Payment</label>
@@ -83,15 +113,24 @@
             </div>
             <div class="form-group font-weight-bold">
                 <label for="area">Area</label>
-                <input type="text" value="{{$salary->area}}"  name="area" class="form-control"/>
+                <input type="text" value="{{$salary->area}}"  name="area" class="form-control @error('area') is-invalid @enderror"/>
+                @error('area')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="remarks">Remarks</label>
-                <input type="text" value="{{$salary->remarks}}"  name="remarks" class="form-control"/>
+                <input type="text" value="{{$salary->remarks}}"  name="remarks" class="form-control @error('remarks') is-invalid @enderror"/>
+                @error('remarks')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group font-weight-bold">
                 <label for="payment_received_date">Payment Received Date</label>
-                <input type="text" value="{{$salary->payment_received_date}}"  name="payment_received_date" class="form-control"/>
+                <input type="text" value="{{$salary->payment_received_date}}"  name="payment_received_date" class="form-control @error('payment_received_date') is-invalid @enderror"/>
+                @error('payment_received_date')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <button class="btn btn-primary" type="submit">Update Details</button>
 
