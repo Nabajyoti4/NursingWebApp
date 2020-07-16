@@ -36,6 +36,11 @@
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
+                <label for="per_day_rate">Per Day Rate</label>
+                <input type="number" value="{{$salary->per_day_rate}}" disabled name="per_day_rate" class="form-control"/>
+
+            </div>
+            <div class="form-group font-weight-bold">
                 <label for="full_day">Total Payable Days</label>
                 <input type="number" value="{{$salary->payable_days}}" name="full_day" class="form-control  @error('full_day') is-invalid @enderror"/>
                 @error('full_day')
