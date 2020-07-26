@@ -118,7 +118,7 @@
                     <div class="col-xl-6 col-lg-6">
                         <div class="welcome_text">
                             <h3>Welcome To
-                                <span>Sewa Caretaking Services</span></h3>
+                                <span>AAROGYA HOME CARE NURSING SERVICE</span></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, sed
                                 do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -257,90 +257,35 @@
             </div>
 
             <div class="carousel-inner" role="listbox">
+                @foreach($ratings as $rating)
+                    <div class="carousel-item" >
+                        <div class="block  background-transparent">
+                            <div class="container item-center">
 
-                <div class="carousel-item active ">
-                    <div class="block  background-transparent">
-                        <div class="container item-center">
-
-                            <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
-                            </div>
-
-                            <div class="text-center text-white  p-3">
-                                <p class="mb-4 lead "><strong>Cindy Smith</strong>, Caretaker</p>
-                                <i class="fa fa-star " aria-hidden="true"></i>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-8 offset-sm-2">
-                                    <h5 class="mx-auto text-center text-white"> “<em>
-                                            Go Analytics is amazing. Decisions that used to take weeks, now only takes
-                                            minutes and is
-                                            available to everyone on my team.
-                                        </em>”</h5>
+                                <div class="text-center p-3">
+                                    <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset("/storage/".$rating->photo)}}">
                                 </div>
-                            </div>
 
+                                <div class="text-center text-white  p-3">
+                                    <p class="mb-4 lead text-white"><strong>{{$rating->name}}</strong>, Caretaker</p>
+                                    @for($i = 1 ; $i <= $rating->star ; $i++)
+                                        <i class="fa fa-star " aria-hidden="true"></i>
+                                    @endfor
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-8 offset-sm-2">
+                                        <h5 class="mx-auto text-center text-white"> “<em>
+                                                {{$rating->remark}}
+                                            </em>”</h5>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="block background-transparent">
-                        <div class="container">
-
-                            <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
-                            </div>
-
-                            <div class="text-center text-white  p-3">
-                                <p class="mb-4 lead "><strong>Cindy Smith</strong>, Caretaker</p>
-                                <i class="fa fa-star " aria-hidden="true"></i>
-                                <i class="fa fa-star " aria-hidden="true"></i>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-8 offset-sm-2">
-                                    <h5 class="mx-auto text-center text-white"> “<em>
-                                            Go Analytics is amazing. Decisions that used to take weeks, now only takes
-                                            minutes and is
-                                            available to everyone on my team.
-                                        </em>”</h5>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="block background-transparent">
-                        <div class="container">
-
-                            <div class="text-center p-3">
-                                <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset('img/a2.webp')}}">
-                            </div>
-
-                            <div class="text-center text-white  p-3">
-                                <p class="mb-4 lead "><strong>Cindy Smith</strong>, Caretaker</p>
-                                <i class="fa fa-star " aria-hidden="true"></i>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-8 offset-sm-2">
-                                    <h5 class="mx-auto text-center text-white"> “<em>
-                                            Go Analytics is amazing. Decisions that used to take weeks, now only takes
-                                            minutes and is
-                                            available to everyone on my team.
-                                        </em>”</h5>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
 
             <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">

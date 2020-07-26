@@ -80,6 +80,13 @@
                 <span>Admins</span></a>
         </li>
         @endif
+        @if(Auth::user()->role == 'super')
+            <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.rating.index')}}">
+                <i class="fas fa-id-card-alt"></i>
+                <span>Rating</span></a>
+        </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.nurse.index')}}">
                 <i class="fas fa-user-md"></i>
@@ -100,6 +107,7 @@
                 <i class="fas fa-book-medical"></i>
                 <span>Bookings</span></a>
         </li>
+
          <li class="nav-item">
             <a class="nav-link" href="{{route('admin.services.index')}}">
                 <i class="fas fa-book-medical"></i>
