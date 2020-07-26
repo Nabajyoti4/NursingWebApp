@@ -38,7 +38,7 @@
                 <img src="{{asset('img/team.webp')}}" alt="New York">
             </div>
         </div>
-        
+
     </div>
 
 

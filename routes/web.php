@@ -244,5 +244,6 @@ Route::get('user/book/{id}/show','User\UserController@booking')->name('user.book
 
 //about us
 Route::get('about_us',function (){
-    return view('about_us.index');
+    $members = \App\Team::all();
+    return view('about_us.index',compact('members'));
 })->name('about_us');
