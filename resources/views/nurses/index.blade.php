@@ -233,33 +233,35 @@
                                         <div class="card shadow mb-4">
                                             <div class="card-header">Year-Month : {{$salary->month_days}}</div>
                                             <div class="card-body">
-                                              <div class="row">
-                                                  <div class="col-sm-12 col-md-4">Advance Payment : {{$salary->advance}}</div>
-                                                  <div class="col-sm-12 col-md-4">Total Payment : {{$salary->total}}</div>
-                                                  <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
-                                              </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">Advance Payment
+                                                        : {{$salary->advance}}</div>
+                                                    <div class="col-sm-12 col-md-4">Total Payment
+                                                        : {{$salary->total}}</div>
+                                                    <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
-                                    <p>No Salary</p>
                                 @endforelse
-                                    @forelse($psalaries as $salary)
-                                        <div class="col-sm-12">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header">Year-Month : {{$salary->month_days}}</div>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-md-4">Advance Payment : {{$salary->advance}}</div>
-                                                        <div class="col-sm-12 col-md-4">Total Payment : {{$salary->total}}</div>
-                                                        <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
-                                                    </div>
+                                @forelse($psalaries as $salary)
+                                    <div class="col-sm-12">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header">Year-Month : {{$salary->month_days}}</div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">Advance Payment
+                                                        : {{$salary->advance}}</div>
+                                                    <div class="col-sm-12 col-md-4">Total Payment
+                                                        : {{$salary->total}}</div>
+                                                    <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @empty
-                                        <p>No Salary</p>
-                                    @endforelse
+                                    </div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                     </div>
