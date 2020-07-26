@@ -60,22 +60,24 @@
                     showConfirmButton: true,
                 })
             </script>
-           @elseif ($message = Session::get('info'))
-                <script>
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'info',
-                        title: '{{$message}}',
-                        showConfirmButton: true,
-                    })
-                </script>
+        @elseif ($message = Session::get('info'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: '{{$message}}',
+                    showConfirmButton: true,
+                })
+            </script>
         @endif
         <div class="container p-3">
             <div class="row p-5 bg-light">
                 <div class="col-xs-12 col-lg-4">
-                    <img src="{{asset($nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64')}}" class="avatar img-thumbnail"
-                         width="250px"
-                         alt="avatar">
+                    <img
+                        src="{{asset($nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64')}}"
+                        class="avatar img-thumbnail"
+                        width="250px"
+                        alt="avatar">
                     <div class="pt-5">
                         <h3>{{$user->name}}</h3>
                         <hr>
@@ -226,34 +228,39 @@
 
                         <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="salary-tab">
                             <div class="row pt-2">
-                                @forelse($bookings as $booking)
-                                    <div class="col-sm-8">
+                                @forelse($tsalaries as $salary)
+                                    <div class="col-sm-12">
                                         <div class="card shadow mb-4">
-                                            <div class="card-header">Booking ID : {{$booking->id}}</div>
+                                            <div class="card-header">Year-Month : {{$salary->month_days}}</div>
                                             <div class="card-body">
-                                                <p>UserName : {{$booking->user->name}}</p>
-                                                <p>Patient Name : {{$booking->patient->patient_name}}</p>
-                                                <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
-                                                <p>Status :
-                                                    @if($booking->status == 0)
-                                                        Rejected
-                                                    @elseif($booking->status == 1)
-                                                        Completed
-                                                    @elseif($booking->status == 2)
-                                                        Pending
-                                                    @elseif($booking->status == 3)
-                                                        Running
-                                                    @else
-                                                        Takeover
-                                                    @endif</p>
-                                                <p>Due Payment : {{$booking->due_payment}}</p>
-                                                <p>Total Payment : {{$booking->total_payment}}</p>
-                                                <p>Booked on : {{$booking->created_at}}</p>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">Advance Payment
+                                                        : {{$salary->advance}}</div>
+                                                    <div class="col-sm-12 col-md-4">Total Payment
+                                                        : {{$salary->total}}</div>
+                                                    <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
-                                    <p>No Salary</p>
+                                @endforelse
+                                @forelse($psalaries as $salary)
+                                    <div class="col-sm-12">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header">Year-Month : {{$salary->month_days}}</div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">Advance Payment
+                                                        : {{$salary->advance}}</div>
+                                                    <div class="col-sm-12 col-md-4">Total Payment
+                                                        : {{$salary->total}}</div>
+                                                    <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
                                 @endforelse
                             </div>
                         </div>
@@ -265,61 +272,4 @@
         </div>
     </div>
 @endsection
-{{--uncomment the script for image verification--}}
 
-{{--@section('scripts')--}}
-{{--    <script src="{{asset('js/exif.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        const submitBtn = document.getElementById('selfie_submit').style;--}}
-{{--        submitBtn.display='none';--}}
-{{--        document.getElementById("attendance_image").onchange = function (e) {--}}
-{{--            var file = e.target.files[0]--}}
-{{--            if (file && file.name) {--}}
-{{--                EXIF.getData(file, function () {--}}
-{{--                    var exifData = EXIF.pretty(this);--}}
-{{--                    if (exifData) {--}}
-{{--                        exifData = exifData.split('\n');--}}
-{{--                        exifData.forEach(findDateTime);--}}
-{{--                        var DateTime;--}}
-{{--                        function findDateTime(item, index) {--}}
-{{--                            var data = (item.split(' : '));--}}
-{{--                            if (data[0]===("DateTimeOriginal")) {--}}
-{{--                                DateTime = data;--}}
-{{--                            }--}}
-{{--                        }--}}
-{{--                        DateTime = DateTime[1].split(' ')[0];--}}
-{{--                        if(DateTime === "{{$date}}"){--}}
-{{--                            Swal.fire({--}}
-{{--                                position: 'center',--}}
-{{--                                icon: 'success',--}}
-{{--                                title: 'Verifying Image',--}}
-{{--                                timer: 1500,--}}
-{{--                                showConfirmButton: false,--}}
-{{--                            })--}}
-{{--                            submitBtn.display="inline";--}}
-{{--                        }--}}
-{{--                        else{--}}
-{{--                            Swal.fire({--}}
-{{--                                position: 'center',--}}
-{{--                                icon: 'error',--}}
-{{--                                title: 'Please, Insert Today\'s Image',--}}
-{{--                                showConfirmButton: false,--}}
-{{--                                timer: 1800--}}
-{{--                            })--}}
-{{--                            submitBtn.display="none";--}}
-{{--                        }--}}
-{{--                    } else {--}}
-{{--                        Swal.fire({--}}
-{{--                            position: 'center',--}}
-{{--                            icon: 'error',--}}
-{{--                            title: 'Please, Select a valid Image',--}}
-{{--                            showConfirmButton: false,--}}
-{{--                            timer: 1800--}}
-{{--                        })--}}
-{{--                        document.getElementById("attendance_image").value = "";--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </script>--}}
-{{--@endsection--}}

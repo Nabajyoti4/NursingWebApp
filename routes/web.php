@@ -145,6 +145,16 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/dashboard/preport/{id}', 'AdminController\AdminDashboardController@permanent_report')->name('admin.dashboard.preport');
     Route::get('admin/dashboard/treport/{id}', 'AdminController\AdminDashboardController@temporary_report')->name('admin.dashboard.treport');
 
+    // Team
+    Route::resource('admin/teams','AdminController\AdminTeamController', ['names' =>[
+        'index'=>'admin.teams.index',
+        'create'=>'admin.teams.create',
+        'store'=>'admin.teams.store',
+        'edit'=>'admin.teams.edit',
+        'update'=>'admin.teams.update',
+        'show'=>'admin.teams.show',
+        'destroy'=>'teams.destroy'
+    ]]);
 
     // Add featured nurse
 

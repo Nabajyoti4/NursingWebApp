@@ -110,13 +110,13 @@ class AttendanceController extends Controller
         // check the data is inserted or not
 
 //        checking the attendance table
-//        if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
-//            $attendance = Attendance::where('booking_id', $booking->id)->get()->last();
-//            //checking the date and time
-//            if (explode(" ", $attendance->created_at)[0] == explode(" ", $serverDateTime)[0]) {
-//                return redirect(route('nurse.index'))->with('success', 'Attendance was marked as \'present\' already!');
-//            }
-//        }
+        if (Attendance::all()->where('booking_id', $booking->id)->isNotEmpty()) {
+            $attendance = Attendance::where('booking_id', $booking->id)->get()->last();
+            //checking the date and time
+            if (explode(" ", $attendance->created_at)[0] == explode(" ", $serverDateTime)[0]) {
+                return redirect(route('nurse.index'))->with('success', 'Attendance was marked as \'present\' already!');
+            }
+        }
 
         // checking the image is there or not
         if ($request->hasFile('attendance_image')) {

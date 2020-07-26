@@ -88,10 +88,10 @@
         <li class="nav-header">Menu</li>
 
         <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="{{url('/')}}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="{{route('user.service.index')}}">Services</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Contact Us</a>

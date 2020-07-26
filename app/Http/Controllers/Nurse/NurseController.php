@@ -6,6 +6,8 @@ use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
+use App\Psalary;
+use App\Tsalary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,13 +26,12 @@ class NurseController extends Controller
         // find thw nurse with the id same as user_id
         $nurse = $user->nurse;
         $bookings = Booking::where('nurse_id', $nurse->id)->get();
-        // getting the time and date
-        $dateTime = Carbon::now()->format('Y:m:d');
-        // seperating the time na date
-        $date = explode(" ",$dateTime)[0];
+        $tsalaries = Tsalary::where('nurse_id', $nurse->id)->latest()->get();
+        $psalaries = Psalary::where('nurse_id', $nurse->id)->latest()->get();
+
         // check if there is attendance for the nurse
 //        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
-        return view('nurses.index', compact('user', 'nurse','bookings','date'));
+        return view('nurses.index', compact('user', 'nurse','bookings','tsalaries','psalaries'));
 
 
     }
@@ -105,6 +106,10 @@ class NurseController extends Controller
     public function booking($id){
         $book = Booking::findOrFail($id);
         $attendances = Attendance::where('booking_id',$book->id)->latest()->get();
-        return view('nurses.bookshow', compact('book', 'attendances'));
+        // getting the time and date
+        $dateTime = Carbon::now()->format('Y:m:d');
+        // separating the time na date
+        $date = explode(" ",$dateTime)[0];
+        return view('nurses.bookshow', compact('book', 'attendances','date'));
     }
 }
