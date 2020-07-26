@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $ratings = Rating::all();
-        return view('index', compact('ratings'));
+        $services = \App\Service::all();
+        return view('index', compact('ratings', 'services'));
     }
 }

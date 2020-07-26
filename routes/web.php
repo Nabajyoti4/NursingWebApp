@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $ratings = \App\Rating::all();
-    return view('index', compact('ratings'));
+    $services = \App\Service::all();
+    return view('index', compact('ratings', 'services'));
 });
 
 Auth::routes(['verify' => true]);

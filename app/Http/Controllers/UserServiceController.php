@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use Illuminate\Http\Request;
 
 class UserServiceController extends Controller
@@ -14,7 +15,8 @@ class UserServiceController extends Controller
     public function index()
     {
         //
-        return view('services.index');
+        $services = Service::all();
+        return view('services.index', compact('services'));
     }
 
     /**

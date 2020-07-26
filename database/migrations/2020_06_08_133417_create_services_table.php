@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateServicesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -17,7 +18,8 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('details');
-            //more fields needed to be added
+            $table->mediumText('list')->nullable();
+            $table->string('cover');
             $table->timestamps();
         });
     }

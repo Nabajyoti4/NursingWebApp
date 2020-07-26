@@ -53,28 +53,23 @@
         <!--Nursing about-->
     <div class="block block-secondary app-iphone-block p-0  ">
         <div class="container-fluid text-center">
-            <div class="row text-center">
-                <div class="col-md-6">
-                    <img src="{{asset('img/nurse-1.webp')}}" alt="" width="100%">
+            @foreach($services as $service)
+                <div class="row p-4 text-center">
+                    <div class="col-md-6">
+                        <img src="{{asset("/storage/".$service->cover)}}" alt="" width="80%">
+                    </div>
+                    <div class="col-md-6 pt-5 pb-2  about">
+                        <h3 class="font-weight-bold">{{$service->title}}</h3>
+                        <p> {{$service->details}}</p>
+                        <p><strong>{{$service->list}}</strong></p>
+                        <a  href="{{route('users.patient.create')}}" class="btn profile-edit-btn p-3">
+                            Send Request
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-6 pt-5 pb-2  about">
-                    <h3 class="font-weight-bold">NURSING</h3>
-                    <p>We render nursing service to the elderly home bound, post operative,
-                        partiality chronic and terminally ill patient in their home environment.
-                        ​This is targeted at patients who require 24x7 assistance with personal care.
-                        Our nursing care takers will hep with the client’s hygienic requirement,
-                        assist with mobilization, and help with feeding. they will also play a role
-                        in promoting the mental health of the client by occupying them with various activities when they are awake and up to it.</p>
-                    <p><strong>We specialize in: Enema, IV line, Dressings,
-                            Bed Sore Care, Ryles Tube Feeding, Tracheostomy,
-                            Suture Removal, Injections (IV, IM, SC), IV Infusion,
-                            Post Surgical Care, Home Ventillatory Care, Urine
-                            catheterization, Wound Care</strong></p>
-                      <a  href="" class="btn profile-edit-btn p-3">
-                        Send Request
-                    </a>
-                </div>
-            </div>
+                <hr>
+            @endforeach
+
         </div>
     </div>
     <!--Nursing end-->

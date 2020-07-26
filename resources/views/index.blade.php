@@ -168,54 +168,34 @@
     <div class="services">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="services-wrap">
-                        <h2>Our services</h2>
 
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-12 box-service">
-                                <div class="services-cont">
-                                    <center>
-                                        <header class="headings d-flex flex-wrap align-items-center">
-                                            <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
-                                            <h3>Nurse Service</h3>
-                                        </header>
-                                    </center>
+                    <div class="col-12">
+                        <div class="services-wrap">
+                            <h2>Our services</h2>
 
-                                    <div class="entry-content"><em>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada
-                                                lorem maximus mauris.</p>
-                                        </em>
+                            <div class="row ">
+                                @foreach($services as $service)
+                                <div class="col-6 col-md-6 col-lg-6 box-service ">
+                                    <div class="services-cont">
+                                        <center>
+                                            <header class="headings d-flex flex-wrap align-items-center">
+                                                <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
+                                                <h3>{{$service->title}}</h3>
+                                            </header>
+                                        </center>
+
+                                        <div class="entry-content"><em>
+                                                <p>{{$service->details}}</p>
+                                            </em>
+                                        </div>
                                     </div>
-
-                                    <footer class="more">
-                                        <a href="#">read more</a>
-                                    </footer>
                                 </div>
+                                @endforeach
                             </div>
 
-                            <!-- <div class="col-12 col-md-6 col-lg-6 box-service">
-                                <div class="services-cont">
-                                    <header class="headings d-flex flex-wrap align-items-center">
-                                      <i class="fa fa-wheelchair text-white mr-2" aria-hidden="true"></i>
-
-                                        <h3>Caretakers</h3>
-                                    </header>
-
-                                    <div class="entry-content">
-                                        <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
-                                    </div>
-
-                                    <footer class="more">
-                                        <a href="#">read more</a>
-                                    </footer>
-                                </div>
-                            </div> -->
-
                         </div>
-
                     </div>
-                </div>
+
             </div>
 
         </div>

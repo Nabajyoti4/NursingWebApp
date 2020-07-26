@@ -41,13 +41,23 @@
 
             <div class="form-group font-weight-bold">
                 <label for="title">Service:</label>
-                <input type="text" class="form-control" name="title"  placeholder="Enter service">
+                <input required type="text" class="form-control" name="title"  placeholder="Enter service">
             </div>
 
 
             <div class="form-group font-weight-bold">
                 <label for="details">Description:</label>
-                <textarea type="text" class="form-control" name="details"  placeholder="Enter details"></textarea>
+                <textarea required rows="5" cols="200" type="text" class="form-control" name="details"  placeholder="Enter details"></textarea>
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="list">Services:</label>
+                <textarea rows="3" cols="200"  type="text" class="form-control" name="list"  placeholder="Enter services"></textarea>
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="cover">Upload Cover Pic: </label>
+                <input required type="file" class="form-control" name="cover">
             </div>
 
             <br>
