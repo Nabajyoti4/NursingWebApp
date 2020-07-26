@@ -106,6 +106,11 @@
                 <span>Services</span></a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.teams.index')}}">
+                <i class="fas fa-procedures fa-4x"></i>
+                <span>Team</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-user"></i>
