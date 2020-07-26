@@ -6,6 +6,8 @@ use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Nurse;
+use App\Psalary;
+use App\Tsalary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,10 +26,12 @@ class NurseController extends Controller
         // find thw nurse with the id same as user_id
         $nurse = $user->nurse;
         $bookings = Booking::where('nurse_id', $nurse->id)->get();
+        $tsalaries = Tsalary::where('nurse_id', $nurse->id)->latest()->get();
+        $psalaries = Psalary::where('nurse_id', $nurse->id)->latest()->get();
 
         // check if there is attendance for the nurse
 //        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
-        return view('nurses.index', compact('user', 'nurse','bookings','date'));
+        return view('nurses.index', compact('user', 'nurse','bookings','tsalaries','psalaries'));
 
 
     }

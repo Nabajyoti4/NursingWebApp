@@ -60,22 +60,24 @@
                     showConfirmButton: true,
                 })
             </script>
-           @elseif ($message = Session::get('info'))
-                <script>
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'info',
-                        title: '{{$message}}',
-                        showConfirmButton: true,
-                    })
-                </script>
+        @elseif ($message = Session::get('info'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: '{{$message}}',
+                    showConfirmButton: true,
+                })
+            </script>
         @endif
         <div class="container p-3">
             <div class="row p-5 bg-light">
                 <div class="col-xs-12 col-lg-4">
-                    <img src="{{asset($nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64')}}" class="avatar img-thumbnail"
-                         width="250px"
-                         alt="avatar">
+                    <img
+                        src="{{asset($nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64')}}"
+                        class="avatar img-thumbnail"
+                        width="250px"
+                        alt="avatar">
                     <div class="pt-5">
                         <h3>{{$user->name}}</h3>
                         <hr>
@@ -226,35 +228,38 @@
 
                         <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="salary-tab">
                             <div class="row pt-2">
-                                @forelse($bookings as $booking)
-                                    <div class="col-sm-8">
+                                @forelse($tsalaries as $salary)
+                                    <div class="col-sm-12">
                                         <div class="card shadow mb-4">
-                                            <div class="card-header">Booking ID : {{$booking->id}}</div>
+                                            <div class="card-header">Year-Month : {{$salary->month_days}}</div>
                                             <div class="card-body">
-                                                <p>UserName : {{$booking->user->name}}</p>
-                                                <p>Patient Name : {{$booking->patient->patient_name}}</p>
-                                                <p>Nurse Assigned : {{$booking->nurse->user->name}}</p>
-                                                <p>Status :
-                                                    @if($booking->status == 0)
-                                                        Rejected
-                                                    @elseif($booking->status == 1)
-                                                        Completed
-                                                    @elseif($booking->status == 2)
-                                                        Pending
-                                                    @elseif($booking->status == 3)
-                                                        Running
-                                                    @else
-                                                        Takeover
-                                                    @endif</p>
-                                                <p>Due Payment : {{$booking->due_payment}}</p>
-                                                <p>Total Payment : {{$booking->total_payment}}</p>
-                                                <p>Booked on : {{$booking->created_at}}</p>
+                                              <div class="row">
+                                                  <div class="col-sm-12 col-md-4">Advance Payment : {{$salary->advance}}</div>
+                                                  <div class="col-sm-12 col-md-4">Total Payment : {{$salary->total}}</div>
+                                                  <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
                                     <p>No Salary</p>
                                 @endforelse
+                                    @forelse($psalaries as $salary)
+                                        <div class="col-sm-12">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header">Year-Month : {{$salary->month_days}}</div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-4">Advance Payment : {{$salary->advance}}</div>
+                                                        <div class="col-sm-12 col-md-4">Total Payment : {{$salary->total}}</div>
+                                                        <div class="col-sm-12 col-md-4">Net Payment : {{$salary->net}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <p>No Salary</p>
+                                    @endforelse
                             </div>
                         </div>
                     </div>
