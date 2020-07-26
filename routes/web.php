@@ -231,3 +231,7 @@ Route::resource('/attendance','AttendanceController', ['names' =>[
 // Route user extend booking
 Route::get('user/book/{id}/show','User\UserController@booking')->name('user.booking.show')->middleware('auth');
 
+//about us
+Route::get('about_us',function (){
+    return view('about_us.index');
+})->name('about_us');
