@@ -28,7 +28,7 @@
                     <a class="nav-link navbar-fonts" href="{{route('user.service.index')}}">Services</a>
                 </li>
                 <li class="nav-item px-1 ">
-                    <a class="nav-link navbar-fonts" href="#">Contact Us</a>
+                    <a class="nav-link navbar-fonts" href="{{route('contact_us')}}">Contact Us</a>
                 </li>
                 <li class="nav-item px-1 ">
                     <a class="nav-link navbar-fonts" href="{{route('about_us')}}">About Us</a>

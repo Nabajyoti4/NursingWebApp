@@ -80,7 +80,7 @@ class AdminTeamController extends Controller
     public function update(Request $request, $id)
     {
         $member = Team::findOrFail($id);
-        $data = $request->only(['name','designation','photo']);
+        $data = $request->only(['name','designation']);
         if ($request->hasFile('photo')) {
 
             //        delete old image

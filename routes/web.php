@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $ratings = \App\Rating::all();
-    return view('index', compact('ratings'));
+    $members = \App\Team::all();
+    return view('index', compact('ratings','members'));
 });
 
 Auth::routes(['verify' => true]);
@@ -247,3 +248,9 @@ Route::get('about_us',function (){
     $members = \App\Team::all();
     return view('about_us.index',compact('members'));
 })->name('about_us');
+
+//about us
+Route::get('contact_us',function (){
+    $members = \App\Team::all();
+    return view('contact_us.index',compact('members'));
+})->name('contact_us');
