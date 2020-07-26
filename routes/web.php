@@ -16,20 +16,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    $ratings = \App\Rating::all();
+    return view('index', compact('ratings'));
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-
-
-
-
-
 
 
 // Admin Routes
@@ -99,9 +92,11 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'store'=>'admin.salary.store',
         'show'=>'admin.salary.show',
     ]]);
+
 // temporary and permanent nurse salary edit
     Route::get('admin/salary/tedit/{id}', 'AdminController\AdminSalaryController@tedit')->name('admin.salary.tedit');
     Route::get('admin/salary/pedit/{id}', 'AdminController\AdminSalaryController@pedit')->name('admin.salary.pedit');
+
 
 // temporary and permanent nurse salary create
     Route::get('admin/salary/create/{permanent}', 'AdminController\AdminSalaryController@create')->name('admin.salary.create');
@@ -160,8 +155,24 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'show'=>'admin.teams.show',
         'destroy'=>'teams.destroy'
     ]]);
+
+    // Add featured nurse
+
+    Route::resource('admin/rating','AdminController\AdminRatingController', ['names' =>[
+        'index'=>'admin.rating.index',
+        'create'=>'admin.rating.create',
+        'store'=>'admin.rating.store',
+        'edit'=>'admin.rating.edit',
+        'update'=>'admin.rating.update',
+        'show'=>'admin.rating.show',
+        'delete' => 'rating.destroy'
+    ]]);
+
+
+
 });
 
+// Admin Routes End
 
 
 
@@ -187,7 +198,7 @@ Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve
 Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove')->middleware('auth');
 Route::resource('user/service' , 'UserServiceController', ['names' =>[
     'index'=>'user.service.index',
-]])->middleware('auth');
+]]);
 
 
 
