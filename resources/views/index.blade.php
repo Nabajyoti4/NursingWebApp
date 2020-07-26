@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
 @endsection
-
+@section('style')
+    <style>
+        .justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}
+    </style>
+@endsection
 @section('content')
     <!-- header section starts -->
     <div class="p-1"
@@ -45,7 +49,8 @@
                                     <p class="lead mb-4 text-muted text-center">We’re always here for you no matter what
                                         time of day.
                                     </p>
-                                    <a href="{{route('users.patient.create')}}" class="btn btn-outline-primary btn-lg text-center">Hire now</a>
+                                    <a href="{{route('users.patient.create')}}"
+                                       class="btn btn-outline-primary btn-lg text-center">Hire now</a>
                                 </div>
                             </div>
                         </div>
@@ -238,12 +243,13 @@
 
             <div class="carousel-inner" role="listbox">
                 @foreach($ratings as $rating)
-                    <div class="carousel-item" >
+                    <div class="carousel-item">
                         <div class="block  background-transparent">
                             <div class="container item-center">
 
                                 <div class="text-center p-3">
-                                    <img class="img-fluid rounded-circle img-thumbnail w-25 " src="{{asset("/storage/".$rating->photo)}}">
+                                    <img class="img-fluid rounded-circle img-thumbnail w-25 "
+                                         src="{{asset("/storage/".$rating->photo)}}">
                                 </div>
 
                                 <div class="text-center text-white  p-3">
@@ -281,16 +287,16 @@
     <!--NURSE RATING SLIDER END-->
 
     <!--Business partners section-->
-{{--    <div class="block app-ribbon pt-3">--}}
-{{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
-{{--        <div class="container text-xs-center p-5">--}}
-{{--                        <img src="assets/img/startup-4.svg">--}}
-{{--                        <img src="assets/img/startup-5.svg">--}}
-{{--                        <img src="assets/img/startup-6.svg">--}}
-{{--                        <img src="assets/img/startup-7.svg">--}}
-{{--                        <img src="assets/img/startup-8.svg">--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="block app-ribbon pt-3">--}}
+    {{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
+    {{--        <div class="container text-xs-center p-5">--}}
+    {{--                        <img src="assets/img/startup-4.svg">--}}
+    {{--                        <img src="assets/img/startup-5.svg">--}}
+    {{--                        <img src="assets/img/startup-6.svg">--}}
+    {{--                        <img src="assets/img/startup-7.svg">--}}
+    {{--                        <img src="assets/img/startup-8.svg">--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!--Business partners section end-->
 
     <!-- address section start -->
@@ -353,8 +359,9 @@
                 @elseauth''@endauth" required>
 
                 <div class="wrap-input100">
-                    <input class="input100" type="text" name="name" placeholder="Full Name" value="@auth{{Auth::user()->name}}
-                    @elseauth''@endauth"required>
+                    <input class="input100" type="text" name="name" placeholder="Full Name"
+                           value="@auth{{Auth::user()->name}}
+                           @elseauth''@endauth" required>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -385,69 +392,37 @@
 
     <!-- Card our team -->
     <div class="container-fluid team-background pr-0 pl-0">
-        <div class="container-fluid text-center card team-background-transparent">
+        <div class="container-fluid text-center card team-background-transparent ">
             <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
 
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
+                @foreach($members as $member)
+                    <div class="col-sm-12 col-lg-4 p-5">
+                        <div class="car card w-75 ml-5 border-0 box">
+                            <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
+                                 style="width:100%">
 
-                <div class="col-sm-12 col-lg-4 p-5">
-                    <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top " src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
-
-                        <div class="card-body ">
-                            <h4 class="card-title text-dark">John Doe</h4>
-                            <h5 class="card-title text-dark">Designation</h5>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                        <div>
-                            <a href=""><i class="fab fa-facebook"></i></a>
-                            <i class="fab fa-instagram"></i>
-                            <i class="fab fa-google-plus-g"></i>
+                            <div class="card-body ">
+                                <h4 class="card-title text-dark"
+                                    style="text-transform: capitalize">{{$member->name}}</h4>
+                                <h5 class="card-title text-dark"
+                                    style="text-transform: capitalize">{{$member->designation}}</h5>
+                            </div>
+                            <div>
+                                <a href=""><i class="fab fa-facebook"></i></a>
+                                <i class="fab fa-instagram"></i>
+                                <i class="fab fa-google-plus-g"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-sm-12 col-lg-4 p-5">
-                    <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top" src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
-                        <div class="card-body ">
-                            <h4 class="card-title text-dark">John Doe</h4>
-                            <h5 class="card-title text-dark">Designation</h5>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                        <div>
-                            <a href=""><i class="fab fa-facebook"></i></a>
-                            <i class="fab fa-instagram"></i>
-                            <i class="fab fa-google-plus-g"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-lg-4 p-5">
-                    <div class="car card w-75 ml-5 border-0 box">
-                        <img class="card-img-top" src="{{asset('img/a2.webp')}}" alt="Card image" style="width:100%">
-                        <div class="card-body ">
-                            <h4 class="card-title text-dark">John Doe</h4>
-                            <h5 class="card-title text-dark">Designation</h5>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                        <div>
-                            <a href=""><i class="fab fa-facebook"></i></a>
-                            <i class="fab fa-instagram"></i>
-                            <i class="fab fa-google-plus-g"></i>
-                        </div>
-                    </div>
-                </div>
 
                 <div>
                 </div>
             </div>
-            <div class="p-3">
-                <button type="button" class=" btn btn-primary">SELL ALL</button>
-            </div>
         </div>
-    </div>
-    <!--card end-->
+        <!--card end-->
 
 
 @endsection

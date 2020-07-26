@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $ratings = \App\Rating::all();
     $services = \App\Service::all();
-    return view('index', compact('ratings', 'services'));
+    $members = \App\Team::all();
+    return view('index', compact('ratings','services','members'));
 });
 
 Auth::routes(['verify' => true]);
@@ -243,3 +244,14 @@ Route::resource('/attendance','AttendanceController', ['names' =>[
 // Route user extend booking
 Route::get('user/book/{id}/show','User\UserController@booking')->name('user.booking.show')->middleware('auth');
 
+//about us
+Route::get('about_us',function (){
+    $members = \App\Team::all();
+    return view('about_us.index',compact('members'));
+})->name('about_us');
+
+//about us
+Route::get('contact_us',function (){
+    $members = \App\Team::all();
+    return view('contact_us.index',compact('members'));
+})->name('contact_us');
