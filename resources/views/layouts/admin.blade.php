@@ -66,6 +66,30 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
+         @if(Auth::user()->role == 'super')
+             <!-- Nav Item - Pages Collapse Menu -->
+                 <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true"
+               aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">HomePage Sections:</h6>
+                    <a class="collapse-item" href="{{route('admin.services.index')}}">Services</a>
+                    <div class="collapse-divider"></div>
+                    <a class="collapse-item" href="{{route('admin.teams.index')}}">Team</a>
+                    <div class="collapse-divider"></div>
+                    <a class="collapse-item" href="{{route('admin.price.index')}}">Packs</a>
+                    <div class="collapse-divider"></div>
+                    <a class="collapse-item" href="{{route('admin.rating.index')}}">Rating</a>
+                    <div class="collapse-divider"></div>
+                </div>
+            </div>
+        </li>
+             @endif
         @if(Auth::user()->role == 'super')
             <li class="nav-item ">
             <a class="nav-link" href="">
@@ -80,25 +104,13 @@
                 <span>Admins</span></a>
         </li>
         @endif
-        @if(Auth::user()->role == 'super')
-            <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.rating.index')}}">
-                <i class="fas fa-id-card-alt"></i>
-                <span>Rating</span></a>
-        </li>
-        @endif
+
        <li class="nav-item">
             <a class="nav-link" href="{{route('admin.query.index')}}">
                 <i class="fas fa-id-card-alt"></i>
                 <span>Query</span></a>
         </li>
-        @if(Auth::user()->role == 'super')
-            <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.price.index')}}">
-                <i class="fas fa-id-card-alt"></i>
-                <span>Price</span></a>
-        </li>
-        @endif
+
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.nurse.index')}}">
                 <i class="fas fa-user-md"></i>
@@ -120,16 +132,8 @@
                 <span>Bookings</span></a>
         </li>
 
-         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.services.index')}}">
-                <i class="fas fa-book-medical"></i>
-                <span>Services</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.teams.index')}}">
-                <i class="fas fa-procedures fa-4x"></i>
-                <span>Team</span></a>
-        </li>
+
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRequest"
                aria-expanded="true" aria-controls="collapseUtilities">
@@ -172,41 +176,9 @@
             Addons
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true"
-               aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">HomePage Sections:</h6>
-                    <a class="collapse-item" href="login.html">Services</a>
-                    <a class="collapse-item" href="register.html">Office Addresses</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                </div>
-            </div>
-        </li>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-
-        <!-- Divider -->
+    <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->

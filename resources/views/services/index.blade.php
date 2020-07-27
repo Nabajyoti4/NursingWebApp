@@ -83,27 +83,23 @@
     </div>
     <!--Nursing end-->
 
-
-
-
-
     <div class="block block-inverse block-secondary app-code-block p-3 bg-dark container-fluid">
         <div class="container counters-container text-center">
             <h4 class="text-white">IN YOUR PLACE</h4>
             <div class="row">
                 <div class="col-md-4 p-2">
                     <i class="fas fa-user-nurse fa-4x fa "></i>
-                    <h4 class="counter font-weight-bold p-2 text-white" data-target="2000">200</h4>
+                    <h4 class="counter font-weight-bold p-2 text-white" >{{$patients_count}}</h4>
                     <h5 class="text-white">Total Nurse</h5>
                 </div>
                 <div class="col-md-4 p-2">
                     <i class="fas fa-user-nurse fa-4x fa"></i>
-                    <h4 class="counter font-weight-bold p-2 text-white" data-target="300">120</h4>
+                    <h4 class="counter font-weight-bold p-2 text-white">{{$nurses_count}}</h4>
                     <h5 class="text-white">Available Nurse</h5>
                 </div>
                 <div class="col-md-4 p-2">
                     <i class="fas fa-user-nurse fa-4x fa"></i>
-                    <h4 class="counter font-weight-bold p-2 text-white" data-target="1000">80</h4>
+                    <h4 class="counter font-weight-bold p-2 text-white">{{$nurses_active_count}}</h4>
                     <h5 class="text-white">In Work</h5>
                 </div>
             </div>

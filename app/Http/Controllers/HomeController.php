@@ -28,6 +28,10 @@ class HomeController extends Controller
         $ratings = Rating::all();
         $services = \App\Service::all();
         $members = Team::all();
-        return view('index', compact('ratings', 'services', 'members'));
+
+        $patients_count = \App\Patient::all()->count();
+        $nurses_count = \App\Nurse::all()->count();
+        $nurses_active_count = \App\Nurse::all()->where('is_active',1)->count();
+        return view('index', compact('ratings','services','members','nurses_count','nurses_active_count','patients_count'));
     }
 }
