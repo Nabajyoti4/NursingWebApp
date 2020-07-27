@@ -145,27 +145,26 @@
 
     <!-- counters -->
     <div class="block block-inverse block-secondary app-code-block p-4">
-        <div class="container counters-container text-center">
+        <div class="container counters-container text-center justify-content-center">
             <div class="row">
-                <div class="col-md-3 p-2">
+                <div class="col-md-4 p-2" data-aos="fade-up"
+                     data-aos-duration="900">
                     <i class="fas fa-medkit fa-4x border rounded p-3"></i>
-                    <h4 class="counter font-weight-bold p-2" data-target="3000">0</h4>
+                    <h4 class="counter font-weight-bold p-2">{{$patients_count}}</h4>
                     <h4>Clients Served</h4>
                 </div>
-                <div class="col-md-3 p-2">
+                <div class="col-md-4 p-2" data-aos="fade-down"
+                     data-aos-easing="linear"
+                     data-aos-duration="900">
                     <i class="fas fa-user-md fa-4x border rounded p-3"></i>
-                    <h4 class="counter font-weight-bold p-2" data-target="2000">0</h4>
+                    <h4 class="counter font-weight-bold p-2">{{$nurses_count}}</h4>
                     <h4>Caregivers Employed</h4>
                 </div>
-                <div class="col-md-3 p-2">
+                <div class="col-md-4 p-2" data-aos="fade-up"
+                     data-aos-duration="900">
                     <i class="fas fa-user-nurse fa-4x border rounded p-3"></i>
-                    <h4 class="counter font-weight-bold p-2" data-target="300">0</h4>
+                    <h4 class="counter font-weight-bold p-2">{{$nurses_active_count}}</h4>
                     <h4>Active Caregivers</h4>
-                </div>
-                <div class="col-md-3 p-2">
-                    <i class="fas fa-user-nurse fa-4x border rounded p-3"></i>
-                    <h4 class="counter font-weight-bold p-2" data-target="1000">0</h4>
-                    <h4>Caregivers Employed</h4>
                 </div>
             </div>
         </div>
@@ -181,22 +180,26 @@
                     <div class="services-wrap">
                         <h2>Our services</h2>
 
-                        <div class="row ">
+                        <div class="row justify-content-center ">
                             @foreach($services as $service)
-                                <div class="col-6 col-md-6 col-lg-6 box-service ">
-                                    <div class="services-cont">
-                                        <center>
-                                            <header class="headings d-flex flex-wrap align-items-center">
-                                                <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
-                                                <h3>{{$service->title}}</h3>
-                                            </header>
-                                        </center>
+                                <div class="col-6 col-md-5 col-lg-5 box-service "
+                                     style="border: 1px solid white; border-radius:6px;margin-right: 10px;">
+                                    <a href="{{route('user.service.index')}}">
+                                        <div class="services-cont">
+                                            <center>
+                                                <header class="headings d-flex flex-wrap align-items-center">
+                                                    <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
+                                                    <h3>{{$service->title}}</h3>
+                                                </header>
+                                            </center>
 
-                                        <div class="entry-content"><em>
-                                                <p>{{$service->details}}</p>
-                                            </em>
+                                            <div class="entry-content"><em>
+                                                    <p>{{$service->details}}</p>
+
+                                                </em>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -227,24 +230,17 @@
 
 
     <!--NURSE RATING SLIDER-->
-    <div class="block block-bordered-lg pl-0 pt-0 pr-0 rating-background">
+    <div class="block block-bordered-lg pl-0 pt-0 pr-0 rating-background" >
 
         <div id="carousel-example-generic" class="carousel carousel-light carousel-fade" data-ride="carousel">
-            <?php $index = 0;?>
-{{--            <ol class="carousel-indicators">--}}
-{{--                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>--}}
-{{--                <li data-target="#carousel-example-generic" data-slide-to="1"></li>--}}
-{{--                <li data-target="#carousel-example-generic" data-slide-to="2"></li>--}}
-{{--            </ol>--}}
-
-            <div class="main-text  background-transparent">
+            <div class="main-text  background-transparent" >
                 <div class="col-md-12 text-center">
-                    <h1 class=" text-white mb-0 p-4 text-uppercase"> Our Top Service Providers</h1>
+                    <h1 class=" text-white mb-0 p-4 text-uppercase"> Our Top Caretakers</h1>
                 </div>
             </div>
 
             <div class="carousel-inner" role="listbox">
-
+                <?php $index = 0;?>
                 @foreach($ratings as $rating)
                     @if($index == 0)
                         <div class="carousel-item active">
@@ -255,12 +251,14 @@
                                         <div class="container item-center">
 
                                             <div class="text-center p-3">
-                                                <img class="img-fluid rounded-circle img-thumbnail w-25 "
-                                                     src="{{asset("/storage/".$rating->photo)}}">
+                                                <img class="img-fluid rounded-circle img-thumbnail "
+                                                     src="{{asset("/storage/".$rating->photo)}}"
+                                                     style="width: 200px; height: 200px;">
                                             </div>
 
                                             <div class="text-center text-white  p-3">
-                                                <p class="mb-4 lead text-white " style="text-transform: capitalize;"><strong>{{$rating->name}}</strong>,
+                                                <p class="mb-4 lead text-white " style="text-transform: capitalize;">
+                                                    <strong>{{$rating->name}}</strong>,
                                                     Caretaker</p>
                                                 @for($i = 1 ; $i <= $rating->star ; $i++)
                                                     <i class="fa fa-star " aria-hidden="true"></i>
@@ -270,7 +268,8 @@
 
                                             <div class="row">
                                                 <div class="col-sm-8 offset-sm-2">
-                                                    <h5 class="mx-auto text-center text-white" style="text-transform: capitalize;"> “<em>
+                                                    <h5 class="mx-auto text-center text-white"
+                                                        style="text-transform: capitalize;"> “<em>
                                                             {{$rating->remark}}
                                                         </em>”</h5>
                                                 </div>
@@ -285,12 +284,12 @@
 
                         <a class="carousel-control-prev" href="#carousel-example-generic" role="button"
                            data-slide="prev">
-                            <span class="icon icon-chevron-thin-left" aria-hidden="true"></span>
+                            <span class="icon icon-chevron-thin-left text-white" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carousel-example-generic" role="button"
                            data-slide="next">
-                            <span class="icon icon-chevron-thin-right" aria-hidden="true"></span>
+                            <span class="icon icon-chevron-thin-right text-white" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
             </div>
@@ -322,7 +321,7 @@
                         <div class="address-location h-100">
                             <h2 class="d-flex align-items-center">Head Office</h2>
                             <ul class="p-0 m-0">
-                                <li>Mandakini Bibah Bhawan complex, Bye Pass Tini Ali, Jorhat- 785006, Assam.</li>
+                                <li>Mandakini Bibah Bhawan complex, By Pass Tini Ali, Jorhat- 785006, Assam.</li>
                                 <li>Call: 9435960652, 9101786597, ​9531339627</li>
                             </ul>
                         </div>

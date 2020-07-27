@@ -18,7 +18,10 @@ class UserServiceController extends Controller
         //
         $services = Service::all();
         $prices = Price::all();
-        return view('services.index', compact('services', 'prices'));
+        $patients_count = \App\Patient::all()->count();
+        $nurses_count = \App\Nurse::all()->count();
+        $nurses_active_count = \App\Nurse::all()->where('is_active',1)->count();
+        return view('services.index', compact('services', 'prices','patients_count','nurses_count','nurses_active_count'));
     }
 
     /**

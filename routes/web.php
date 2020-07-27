@@ -19,7 +19,10 @@ Route::get('/', function () {
     $ratings = \App\Rating::all();
     $services = \App\Service::all();
     $members = \App\Team::all();
-    return view('index', compact('ratings','services','members'));
+    $patients_count = \App\Patient::all()->count();
+    $nurses_count = \App\Nurse::all()->count();
+    $nurses_active_count = \App\Nurse::all()->where('is_active',1)->count();
+    return view('index', compact('ratings','services','members','nurses_count','nurses_active_count','patients_count'));
 });
 
 Auth::routes(['verify' => true]);
