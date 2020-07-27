@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\Return_;
 
 class ServiceController extends Controller
@@ -42,7 +43,14 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->only(['title', 'details']);
+        $data = $request->only(['title', 'details', 'list', 'cover']);
+
+        if ($request->hasFile('cover')) {
+//        update if
+            $image = $request->cover->store('services', 'public');
+            $data['cover'] = $image;
+
+        }
 
         Service::create($data);
 
@@ -82,14 +90,24 @@ class ServiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|
      */
     public function update(Request $request, $id)
     {
         //
-        $data = $request->only(['title', 'details']);
+        $data = $request->only(['title', 'details','list', 'cover']);
 
-        $service = Service::findOrFail($id)->update($data);
+        $service = Service::findOrFail($id);
+
+        if ($request->hasFile('cover')) {
+//        update if
+            Storage::disk('public')->delete($service->cover);
+            $image = $request->cover->store('services', 'public');
+            $data['cover'] = $image;
+
+        }
+
+        $service->update($data);
         $services = Service::all();
         return redirect()->route('admin.services.index', compact('services'))->with('success', 'Service Updated');
 

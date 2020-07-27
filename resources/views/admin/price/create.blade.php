@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Create Service
+    Create New Service Price
 @endsection
 
 @section('links')
@@ -18,7 +18,7 @@
             left: 1%;
             padding: 0% 2px;
             margin: 0%;
-            background: white !important;
+            background: white!important;
         }
 
         .borderdiv {
@@ -33,34 +33,36 @@
 
 @section('content')
 
-    <div class="container emp-profile mt-3 mb-5">
+    <div class="container emp-profile mt-3">
         @include('partials.errors')
-        <form action="{{ route('admin.services.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.price.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
-
             <div class="form-group font-weight-bold">
-                <label for="title">Service:</label>
-                <input required type="text" class="form-control" name="title"  placeholder="Enter service">
-            </div>
-
-
-            <div class="form-group font-weight-bold">
-                <label for="details">Description:</label>
-                <textarea required rows="5" cols="200" type="text" class="form-control" name="details"  placeholder="Enter details"></textarea>
+                <label for="name">Service Type:</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter Name">
             </div>
 
             <div class="form-group font-weight-bold">
-                <label for="list">Services:</label>
-                <textarea rows="3" cols="200"  type="text" class="form-control" name="list"  placeholder="Enter services"></textarea>
+                <label for="days">No Of Days : </label>
+                <input type="number" class="form-control" name="days" placeholder="Enter days">
             </div>
 
             <div class="form-group font-weight-bold">
-                <label for="cover">Upload Cover Pic: </label>
-                <input required type="file" class="form-control" name="cover">
+                <label for="timing">Timings:</label>
+                <input type="text" class="form-control" name="timing" placeholder="Enter timing eg : 6 AM to 7 PM">
             </div>
 
-            <br>
+            <div class="form-group font-weight-bold">
+                <label for="price">Price Per month:</label>
+                <input type="number" class="form-control" name="price" placeholder="Enter price">
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="period">Period (Day/night/full):</label>
+                <input type="text"  class="form-control" name="period" placeholder="enter period">
+            </div>
+
+
             <button class="btn btn-primary" type="submit">Create</button>
 
         </form>

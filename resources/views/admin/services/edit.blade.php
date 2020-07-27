@@ -15,7 +15,7 @@
 
     <div class="container emp-profile mt-3">
         @include('partials.errors')
-        <form action="{{ route('admin.services.update', $service->id) }}" method="POST">
+        <form action="{{ route('admin.services.update', $service->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group font-weight-bold">
@@ -26,7 +26,17 @@
 
             <div class="form-group font-weight-bold">
                 <label for="details">Description:</label>
-                <textarea type="text" class="form-control" name="details"  placeholder="Enter details">{{$service->details}}</textarea>
+                <textarea rows="5" cols="200" type="text" class="form-control" name="details"  placeholder="Enter details">{{$service->details}}</textarea>
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="list">Services:</label>
+                <textarea rows="3" cols="200"  type="text" class="form-control" name="list"  placeholder="Enter services">{{$service->list}}</textarea>
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="cover">Upload Cover Pic: </label>
+                <input type="file" class="form-control" name="cover">
             </div>
 
             <br>

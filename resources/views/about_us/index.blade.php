@@ -145,7 +145,7 @@
 
                 <div class="row align-items-center justify-content-center">
                     @foreach($members as $member)
-                        <div class="col-sm-12 col-lg-4 p-5">
+                        <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
                             <div class="car card w-75 ml-5 border-0 box">
                                 <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
                                      style="width:100%">

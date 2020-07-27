@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Rating;
+use App\Team;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $ratings = Rating::all();
-        return view('index', compact('ratings'));
+        $services = \App\Service::all();
+        $members = Team::all();
+        return view('index', compact('ratings', 'services', 'members'));
     }
 }

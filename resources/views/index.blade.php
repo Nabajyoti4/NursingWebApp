@@ -114,7 +114,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6">
-                        <div class="welcome_pic">
+                        <div class="welcome_pic" data-aos="fade-right"   data-aos-delay="200">
                             <div class="pic_first">
                                 <img src="{{asset('img/1.jpg')}}" alt="">
                             </div>
@@ -171,56 +171,36 @@
 
     <!--Services section-->
     <div class="services">
-        <div class="container">
+        <div class="container" data-aos="zoom-in" data-aos-delay="200">
             <div class="row">
-                <div class="col-12">
-                    <div class="services-wrap">
-                        <h2>Our services</h2>
 
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-12 box-service">
-                                <div class="services-cont">
-                                    <center>
-                                        <header class="headings d-flex flex-wrap align-items-center">
-                                            <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
-                                            <h3>Nurse Service</h3>
-                                        </header>
-                                    </center>
+                    <div class="col-12">
+                        <div class="services-wrap">
+                            <h2>Our services</h2>
 
-                                    <div class="entry-content"><em>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada
-                                                lorem maximus mauris.</p>
-                                        </em>
+                            <div class="row ">
+                                @foreach($services as $service)
+                                <div class="col-6 col-md-6 col-lg-6 box-service ">
+                                    <div class="services-cont">
+                                        <center>
+                                            <header class="headings d-flex flex-wrap align-items-center">
+                                                <i class="fa fa-user-md text-white mr-2 " aria-hidden="true"></i>
+                                                <h3>{{$service->title}}</h3>
+                                            </header>
+                                        </center>
+
+                                        <div class="entry-content"><em>
+                                                <p>{{$service->details}}</p>
+                                            </em>
+                                        </div>
                                     </div>
-
-                                    <footer class="more">
-                                        <a href="#">read more</a>
-                                    </footer>
                                 </div>
+                                @endforeach
                             </div>
 
-                            <!-- <div class="col-12 col-md-6 col-lg-6 box-service">
-                                <div class="services-cont">
-                                    <header class="headings d-flex flex-wrap align-items-center">
-                                      <i class="fa fa-wheelchair text-white mr-2" aria-hidden="true"></i>
-
-                                        <h3>Caretakers</h3>
-                                    </header>
-
-                                    <div class="entry-content">
-                                        <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
-                                    </div>
-
-                                    <footer class="more">
-                                        <a href="#">read more</a>
-                                    </footer>
-                                </div>
-                            </div> -->
-
                         </div>
-
                     </div>
-                </div>
+
             </div>
 
         </div>
@@ -327,7 +307,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-left" data-aos-delay="200">
                     <div class="address-location h-100">
                         <h2 class="d-flex align-items-center">Head Office</h2>
                         <ul class="p-0 m-0">
@@ -337,7 +317,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-up" data-aos-delay="200">
                     <div class="address-location h-100">
                         <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
 
@@ -346,9 +326,9 @@
                             <li>Call: 9435960652, 9101786597, 8876243001</li>
                         </ul>
                     </div>
-                </div>
+                </div >
 
-                <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-right" data-aos-delay="200">
                     <div class="address-location h-100">
                         <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
 
@@ -367,8 +347,8 @@
 
 
     <!--Nurse request form-->
-    <div class="container-nurserequest" id="joinForm">
-        <div class="wrap-nurserequest">
+    <div class="container-nurserequest" id="joinForm" >
+        <div class="wrap-nurserequest" data-aos="zoom-out-up" data-aos-delay="400">
             <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
                 @csrf
                 <span class="nurserequest-form-title">
@@ -417,7 +397,7 @@
 
             <div class="row align-items-center justify-content-center">
                 @foreach($members as $member)
-                    <div class="col-sm-12 col-lg-4 p-5">
+                    <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
                         <div class="car card w-75 ml-5 border-0 box">
                             <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
                                  style="width:100%">

@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $ratings = \App\Rating::all();
+    $services = \App\Service::all();
     $members = \App\Team::all();
-    return view('index', compact('ratings','members'));
+    return view('index', compact('ratings','services','members'));
 });
 
 Auth::routes(['verify' => true]);
@@ -167,6 +168,16 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'update'=>'admin.rating.update',
         'show'=>'admin.rating.show',
         'delete' => 'rating.destroy'
+    ]]);
+
+    Route::resource('admin/price','AdminController\AdminPriceController', ['names' =>[
+        'index'=>'admin.price.index',
+        'create'=>'admin.price.create',
+        'store'=>'admin.price.store',
+        'edit'=>'admin.price.edit',
+        'update'=>'admin.price.update',
+        'show'=>'admin.price.show',
+        'delete' => 'price.destroy'
     ]]);
 
 

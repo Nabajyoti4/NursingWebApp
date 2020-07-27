@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Price;
-use App\Service;
 use Illuminate\Http\Request;
 
-class UserServiceController extends Controller
+class PriceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,6 @@ class UserServiceController extends Controller
     public function index()
     {
         //
-        $services = Service::all();
-        $prices = Price::all();
-        return view('services.index', compact('services', 'prices'));
     }
 
     /**

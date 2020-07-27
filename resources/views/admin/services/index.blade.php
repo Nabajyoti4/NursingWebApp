@@ -36,6 +36,8 @@
                     <tr>
                         <th>Service ID</th>
                         <th>Service</th>
+                        <th>Service list</th>
+                        <th>Cover image</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -46,6 +48,11 @@
                         <tr>
                             <td>{{$service->title}}</td>
                             <td>{{$service->details}}</td>
+                            <td>{{$service->list}}</td>
+                            <td><img
+                                    src="{{asset("/storage/".$service->cover)}}"
+                                    alt="" width="100" height="100"
+                                /></td>
                             <td>
                                 <form action="{{route('services.destroy', $service->id)}}" method="POST">
                                  @csrf

@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicesTable extends Migration
+class CreatePricesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,12 +13,13 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('details');
-            $table->mediumText('list')->nullable();
-            $table->string('cover');
+            $table->string('name');
+            $table->bigInteger('price');
+            $table->integer('days');
+            $table->string('timing');
+            $table->string('period');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('prices');
     }
 }
