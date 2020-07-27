@@ -41,6 +41,7 @@
                     <div class="row" >
                         <div class="col-sm-12 text-center" >
                             <h1 class="text-white font-weight-bold border p-3">CONTACT US</h1>
+                            <h3>Feel free to contact us any time for any Queries</h3>
                         </div>
                     </div>
                 </div>

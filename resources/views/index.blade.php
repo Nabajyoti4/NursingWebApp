@@ -19,7 +19,10 @@
 @endsection
 @section('style')
     <style>
-        .justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}
+        .justify-content-center {
+            -ms-flex-pack: center !important;
+            justify-content: center !important
+        }
     </style>
 @endsection
 @section('content')
@@ -114,7 +117,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6">
-                        <div class="welcome_pic" data-aos="fade-right"   data-aos-delay="200">
+                        <div class="welcome_pic" data-aos="fade-right" data-aos-delay="200">
                             <div class="pic_first">
                                 <img src="{{asset('img/1.jpg')}}" alt="">
                             </div>
@@ -174,12 +177,12 @@
         <div class="container" data-aos="zoom-in" data-aos-delay="200">
             <div class="row">
 
-                    <div class="col-12">
-                        <div class="services-wrap">
-                            <h2>Our services</h2>
+                <div class="col-12">
+                    <div class="services-wrap">
+                        <h2>Our services</h2>
 
-                            <div class="row ">
-                                @foreach($services as $service)
+                        <div class="row ">
+                            @foreach($services as $service)
                                 <div class="col-6 col-md-6 col-lg-6 box-service ">
                                     <div class="services-cont">
                                         <center>
@@ -195,11 +198,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                            </div>
-
+                            @endforeach
                         </div>
+
                     </div>
+                </div>
 
             </div>
 
@@ -226,14 +229,13 @@
     <!--NURSE RATING SLIDER-->
     <div class="block block-bordered-lg pl-0 pt-0 pr-0 rating-background">
 
-        <div id="carousel-example-generic" class="carousel carousel-light slide" data-ride="carousel">
-
-
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
+        <div id="carousel-example-generic" class="carousel carousel-light carousel-fade" data-ride="carousel">
+            <?php $index = 0;?>
+{{--            <ol class="carousel-indicators">--}}
+{{--                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>--}}
+{{--                <li data-target="#carousel-example-generic" data-slide-to="1"></li>--}}
+{{--                <li data-target="#carousel-example-generic" data-slide-to="2"></li>--}}
+{{--            </ol>--}}
 
             <div class="main-text  background-transparent">
                 <div class="col-md-12 text-center">
@@ -242,51 +244,60 @@
             </div>
 
             <div class="carousel-inner" role="listbox">
+
                 @foreach($ratings as $rating)
-                    <div class="carousel-item">
-                        <div class="block  background-transparent">
-                            <div class="container item-center">
+                    @if($index == 0)
+                        <div class="carousel-item active">
+                            @else
+                                <div class="carousel-item">
+                                    @endif
+                                    <div class="block  background-transparent">
+                                        <div class="container item-center">
 
-                                <div class="text-center p-3">
-                                    <img class="img-fluid rounded-circle img-thumbnail w-25 "
-                                         src="{{asset("/storage/".$rating->photo)}}">
-                                </div>
+                                            <div class="text-center p-3">
+                                                <img class="img-fluid rounded-circle img-thumbnail w-25 "
+                                                     src="{{asset("/storage/".$rating->photo)}}">
+                                            </div>
 
-                                <div class="text-center text-white  p-3">
-                                    <p class="mb-4 lead text-white"><strong>{{$rating->name}}</strong>, Caretaker</p>
-                                    @for($i = 1 ; $i <= $rating->star ; $i++)
-                                        <i class="fa fa-star " aria-hidden="true"></i>
-                                    @endfor
-                                </div>
+                                            <div class="text-center text-white  p-3">
+                                                <p class="mb-4 lead text-white " style="text-transform: capitalize;"><strong>{{$rating->name}}</strong>,
+                                                    Caretaker</p>
+                                                @for($i = 1 ; $i <= $rating->star ; $i++)
+                                                    <i class="fa fa-star " aria-hidden="true"></i>
+                                                @endfor
+                                            </div>
 
 
-                                <div class="row">
-                                    <div class="col-sm-8 offset-sm-2">
-                                        <h5 class="mx-auto text-center text-white"> “<em>
-                                                {{$rating->remark}}
-                                            </em>”</h5>
+                                            <div class="row">
+                                                <div class="col-sm-8 offset-sm-2">
+                                                    <h5 class="mx-auto text-center text-white" style="text-transform: capitalize;"> “<em>
+                                                            {{$rating->remark}}
+                                                        </em>”</h5>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-
-                            </div>
+                                <?php $index++;?>
+                                @endforeach
                         </div>
-                    </div>
-                @endforeach
+
+                        <a class="carousel-control-prev" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="icon icon-chevron-thin-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="icon icon-chevron-thin-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
             </div>
-
-            <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="icon icon-chevron-thin-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="icon icon-chevron-thin-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-    </div>
-    <!--NURSE RATING SLIDER END-->
+        <!--NURSE RATING SLIDER END-->
 
-    <!--Business partners section-->
+        <!--Business partners section-->
     {{--    <div class="block app-ribbon pt-3">--}}
     {{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
     {{--        <div class="container text-xs-center p-5">--}}
@@ -299,130 +310,130 @@
     {{--    </div>--}}
     <!--Business partners section end-->
 
-    <!-- address section start -->
-    <div class="address-page-short-boxes">
-        <div class="col-md-12 text-center">
-            <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
-        </div>
+        <!-- address section start -->
+        <div class="address-page-short-boxes">
+            <div class="col-md-12 text-center">
+                <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
+            </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-left" data-aos-delay="200">
-                    <div class="address-location h-100">
-                        <h2 class="d-flex align-items-center">Head Office</h2>
-                        <ul class="p-0 m-0">
-                            <li>Mandakini Bibah Bhawan complex, Bye Pass Tini Ali, Jorhat- 785006, Assam.</li>
-                            <li>Call: 9435960652, 9101786597, ​9531339627</li>
-                        </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-left" data-aos-delay="200">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Head Office</h2>
+                            <ul class="p-0 m-0">
+                                <li>Mandakini Bibah Bhawan complex, Bye Pass Tini Ali, Jorhat- 785006, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, ​9531339627</li>
+                            </ul>
+                        </div>
                     </div>
+
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-up" data-aos-delay="200">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
+
+                            <ul class="p-0 m-0">
+                                <li>Old Amulapatty, Ganak Patty, By Lane No. 6, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, 8876243001</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-right" data-aos-delay="200">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
+
+                            <ul class="p-0 m-0">
+                                <li>Sashanpara Road, Near Sankar Dev Hospital, Mancotta Road.</li>
+                                <li>Call: 9435960652, 8753955565</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
                 </div>
-
-                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-up" data-aos-delay="200">
-                    <div class="address-location h-100">
-                        <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
-
-                        <ul class="p-0 m-0">
-                            <li>Old Amulapatty, Ganak Patty, By Lane No. 6, Assam.</li>
-                            <li>Call: 9435960652, 9101786597, 8876243001</li>
-                        </ul>
-                    </div>
-                </div >
-
-                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-right" data-aos-delay="200">
-                    <div class="address-location h-100">
-                        <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
-
-                        <ul class="p-0 m-0">
-                            <li>Sashanpara Road, Near Sankar Dev Hospital, Mancotta Road.</li>
-                            <li>Call: 9435960652, 8753955565</li>
-                        </ul>
-                    </div>
-                </div>
-
-
             </div>
         </div>
-    </div>
-    <!-- address section end  -->
+        <!-- address section end  -->
 
 
-    <!--Nurse request form-->
-    <div class="container-nurserequest" id="joinForm" >
-        <div class="wrap-nurserequest" data-aos="zoom-out-up" data-aos-delay="400">
-            <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
-                @csrf
-                <span class="nurserequest-form-title">
+        <!--Nurse request form-->
+        <div class="container-nurserequest" id="joinForm">
+            <div class="wrap-nurserequest" data-aos="zoom-out-up" data-aos-delay="400">
+                <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
+                    @csrf
+                    <span class="nurserequest-form-title">
 					To Join As A Nurse  Send Your Request
 				</span>
 
-                <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
-                @elseauth''@endauth" required>
+                    <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
+                    @elseauth''@endauth" required>
 
-                <div class="wrap-input100">
-                    <input class="input100" type="text" name="name" placeholder="Full Name"
-                           value="@auth{{Auth::user()->name}}
-                           @elseauth''@endauth" required>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="email" value="@auth{{Auth::user()->email}}
-                    @elseauth''@endauth" placeholder="Email" required readonly>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="phone_no" placeholder="Contact number" required>
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="age" placeholder="Age">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="container-nurserequest-form-btn">
-                    <button type="submit" class="btn profile-edit-btn ">
-                        Send Request
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Card our team -->
-    <div class="container-fluid team-background pr-0 pl-0">
-        <div class="container-fluid text-center card team-background-transparent ">
-            <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
-
-            <div class="row align-items-center justify-content-center">
-                @foreach($members as $member)
-                    <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
-                        <div class="car card w-75 ml-5 border-0 box">
-                            <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
-                                 style="width:100%">
-
-                            <div class="card-body ">
-                                <h4 class="card-title text-dark"
-                                    style="text-transform: capitalize">{{$member->name}}</h4>
-                                <h5 class="card-title text-dark"
-                                    style="text-transform: capitalize">{{$member->designation}}</h5>
-                            </div>
-                            <div>
-                                <a href=""><i class="fab fa-facebook"></i></a>
-                                <i class="fab fa-instagram"></i>
-                                <i class="fab fa-google-plus-g"></i>
-                            </div>
-                        </div>
+                    <div class="wrap-input100">
+                        <input class="input100" type="text" name="name" placeholder="Full Name"
+                               value="@auth{{Auth::user()->name}}
+                               @elseauth''@endauth" required>
+                        <span class="focus-input100"></span>
                     </div>
-                @endforeach
 
+                    <div class="wrap-input100 ">
+                        <input class="input100" type="text" name="email" value="@auth{{Auth::user()->email}}
+                        @elseauth''@endauth" placeholder="Email" required readonly>
+                        <span class="focus-input100"></span>
+                    </div>
 
-                <div>
-                </div>
+                    <div class="wrap-input100 ">
+                        <input class="input100" type="text" name="phone_no" placeholder="Contact number" required>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 ">
+                        <input class="input100" type="text" name="age" placeholder="Age">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-nurserequest-form-btn">
+                        <button type="submit" class="btn profile-edit-btn ">
+                            Send Request
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!--card end-->
+
+        <!-- Card our team -->
+        <div class="container-fluid team-background pr-0 pl-0">
+            <div class="container-fluid text-center card team-background-transparent ">
+                <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
+
+                <div class="row align-items-center justify-content-center">
+                    @foreach($members as $member)
+                        <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
+                            <div class="car card w-75 ml-5 border-0 box">
+                                <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
+                                     style="width:100%">
+
+                                <div class="card-body ">
+                                    <h4 class="card-title text-dark"
+                                        style="text-transform: capitalize">{{$member->name}}</h4>
+                                    <h5 class="card-title text-dark"
+                                        style="text-transform: capitalize">{{$member->designation}}</h5>
+                                </div>
+                                <div>
+                                    <a href=""><i class="fab fa-facebook"></i></a>
+                                    <i class="fab fa-instagram"></i>
+                                    <i class="fab fa-google-plus-g"></i>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <!--card end-->
 
 
 @endsection
