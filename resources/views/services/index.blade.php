@@ -13,7 +13,13 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 @endsection
-
+@section('style')
+    <style>
+        * {
+            font-size: 14px;
+        }
+    </style>
+@endsection
 @section('content')
 
     <div class="container-fluid p-0">

@@ -118,47 +118,44 @@
                         <h6 class="text-uppercase">About</h6>
                     </li>
                     <li class="text-muted">
-                        We’ve been working on Go Analytics for the better part of a decade and are super proud of
-                        what
-                        we’ve
-                        created. If you’d like to learn more, or are interested in a job, address us anytime at <a
-                            href="mailto: themes@getbootstrap.com">themes@getbootstrap.com</a>.
-                    </li>
+                        About AarogyaHomeCare.
+                        We provide high quality Nursing Support and Aide 24x7 on demand.
+                        <a href="{{route('about_us')}}">Read more...</a>
+                    </li><li class="text-muted">© aarogyahomecare.com 2020</li>
                 </ul>
             </div>
             <div class="col-md-2 offset-md-1 mb-5">
                 <ul class="list-unstyled list-spaced">
                     <li class="mb-2">
-                        <h6 class="text-uppercase">Product</h6>
+                        <h6 class="text-uppercase">Quick links</h6>
                     </li>
-                    <li class="text-muted">Features</li>
-                    <li class="text-muted">Examples</li>
-                    <li class="text-muted">Tour</li>
-                    <li class="text-muted">Gallery</li>
+                    <li class="text-muted"><a href="/">Home</a></li>
+                    <li class="text-muted"><a href="{{route('about_us')}}">Our Services</a></li>
+                    <li class="text-muted"><a href="{{route('contact_us')}}">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="col-md-2 mb-5">
-                <ul class="list-unstyled list-spaced">
-                    <li class="mb-2">
-                        <h6 class="text-uppercase">Apis</h6>
-                    </li>
-                    <li class="text-muted">Rich data</li>
-                    <li class="text-muted">Simple data</li>
-                    <li class="text-muted">Real time</li>
-                    <li class="text-muted">Social</li>
-                </ul>
-            </div>
-            <div class="col-md-2 mb-5">
-                <ul class="list-unstyled list-spaced">
-                    <li class="mb-2">
-                        <h6 class="text-uppercase">Legal</h6>
-                    </li>
-                    <li class="text-muted">Terms</li>
-                    <li class="text-muted">Legal</li>
-                    <li class="text-muted">Privacy</li>
-                    <li class="text-muted">License</li>
-                </ul>
-            </div>
+{{--            <div class="col-md-2 mb-5">--}}
+{{--                <ul class="list-unstyled list-spaced">--}}
+{{--                    <li class="mb-2">--}}
+{{--                        <h6 class="text-uppercase">Apis</h6>--}}
+{{--                    </li>--}}
+{{--                    <li class="text-muted">Rich data</li>--}}
+{{--                    <li class="text-muted">Simple data</li>--}}
+{{--                    <li class="text-muted">Real time</li>--}}
+{{--                    <li class="text-muted">Social</li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 mb-5">--}}
+{{--                <ul class="list-unstyled list-spaced">--}}
+{{--                    <li class="mb-2">--}}
+{{--                        <h6 class="text-uppercase">Legal</h6>--}}
+{{--                    </li>--}}
+{{--                    <li class="text-muted">Terms</li>--}}
+{{--                    <li class="text-muted">Legal</li>--}}
+{{--                    <li class="text-muted">Privacy</li>--}}
+{{--                    <li class="text-muted">License</li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
         </div>
     </div>
 </div>

@@ -9,12 +9,14 @@
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <!-- Theme CSS and custom css -->
+    <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 @endsection
 @section('style')
     <style>
         * {
-            font-size: 18px;
+            font-size: 15px;
         }
     </style>
 @endsection
@@ -34,129 +36,103 @@
             </ul>
 
             <!-- The slideshow -->
-            <div class="carousel-inner hero">
-                <div class="carousel-item active">
-                    <img src="{{asset('img/slider-1.jpg')}}" alt="Chicago">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('img/team.webp')}}" alt="New York">
-                </div>
-            </div>
-
-
-        </div>
-
-
-        <!--Nursing about-->
-        <div class="block block-secondary app-iphone-block p-0  ">
-            <div class="container ">
-                <div class="row ">
-
-                    <div class="col-md-12 pt-5 pb-2  about">
-                        <div class="row pb-4">
-                            <h3 class="font-weight-bold">​Home Care Nursing Service :</h3>
-                            <p>
-                                We render nursing service to the elderly home bound, post operative, partiality chronic
-                                and
-                                terminally ill patient in their home environment.​This is targeted at patients who
-                                require
-                                24x7 assistance with personal care. Our nursing care takers will hep with the client’s
-                                hygienic requirement, assist with mobilization, and help with feeding. they will also
-                                play a
-                                role in promoting the mental health of the client by occupying them with various
-                                activities
-                                when they are awake and up to it.
-                            </p>
-                        </div>
-                        <div class="row pb-4">
-                            <h3 class="font-weight-bold">Offer :</h3>
-                            <ul>
-                                <li>
-                                    We specialize in: Enema, IV line, Dressings, Bed Sore Care, Ryles Tube Feeding,
-                                    Tracheostomy, Suture Removal, Injections (IV, IM, SC), IV Infusion, Post Surgical
-                                    Care,
-                                    Home Ventillatory Care, Urine catheterization, Wound Care ​
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="row pb-4">
-                            <div class="col-12 p-0"><h3 class="font-weight-bold">Our Mission :</h3></div>
-                            <div class="col-12">
-
-                                <ul>
-                                    <li>To provide high quality services to home bound patients in a responsible,
-                                        compassionate
-                                        manner.
-                                    </li>
-                                    <li>To provide patient education when indicated to promote maintain and restore
-                                        health.
-                                    </li>
-                                    <li>To be advocates for patients right, respect and confidentiality.</li>
-                                    <li>To deliver service without regard, religion or national origin.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="row pb-4">
-                            <h3 class="font-weight-bold">​Home Care Nursing Service :</h3>
-                            <p>We render nursing service to the elderly home bound, post operative, partiality chronic
-                                and
-                                terminally ill patient in their home environment.​This is targeted at patients who
-                                require
-                                24x7 assistance with personal care. Our nursing care takers will hep with the client’s
-                                hygienic requirement, assist with mobilization, and help with feeding. they will also
-                                play a
-                                role in promoting the mental health of the client by occupying them with various
-                                activities
-                                when they are awake and up to it.
-                            </p>
-                        </div>
-                        <div class="row pb-4">
-                            <h3 class="font-weight-bold"> ​Offer:</h3>
-                            <ul>
-                                <li>We specialize in: Enema, IV line, Dressings, Bed Sore Care, Ryles Tube Feeding,
-                                    Tracheostomy, Suture Removal, Injections (IV, IM, SC), IV Infusion, Post Surgical
-                                    Care,
-                                    Home
-                                    Ventillatory Care, Urine catheterization, Wound Care ​
-                                </li>
-                            </ul>
+            <div class="carousel-inner item-centered" >
+                <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center" style="background-image: url({{asset('img/team.webp')}}); background-size: cover; height: 500px">
+                    <div class="row" >
+                        <div class="col-sm-12 text-center" >
+                            <h1 class="text-white font-weight-bold border p-3">CONTACT US</h1>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        <!--Nursing end-->
-        <!-- Card our team -->
-        <div class="container-fluid pr-0 pl-0" style="background-color: #4a4949;!important;">
-            <div class="container-fluid text-center card bg-transparent">
-                <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
 
-                <div class="row align-items-center justify-content-center">
-                    @foreach($members as $member)
-                        <div class="col-sm-12 col-lg-4 p-5">
-                            <div class="car card w-75 ml-5 border-0 box">
-                                <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
-                                     style="width:100%">
+        <!-- address section start -->
+        <div class="address-page-short-boxes">
+            <div class="col-md-12 text-center">
+                <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
+            </div>
+            <!--Nurse request form-->
+            <div class="container-nurserequest mb-5" id="joinForm">
+                <div class="wrap-nurserequest">
+                    <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
+                        @csrf
+                        <span class="nurserequest-form-title">
+					To Join As A Nurse  Send Your Request
+				</span>
 
-                                <div class="card-body ">
-                                    <h4 class="card-title text-dark" style="text-transform: capitalize">{{$member->name}}</h4>
-                                    <h5 class="card-title text-dark" style="text-transform: capitalize">{{$member->designation}}</h5>
-                                </div>
-                                <div>
-                                    <a href=""><i class="fab fa-facebook"></i></a>
-                                    <i class="fab fa-instagram"></i>
-                                    <i class="fab fa-google-plus-g"></i>
-                                </div>
-                            </div>
+                        <div class="wrap-input100">
+                            <input class="input100" type="text" name="name" placeholder="Full Name"
+                                    required>
+                            <span class="focus-input100"></span>
                         </div>
-                    @endforeach
-                    <div>
+
+                        <div class="wrap-input100 ">
+                            <input class="input100" type="text" name="email"  placeholder="Email" required readonly>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 ">
+                            <textarea class="input100" type="text" name="message" placeholder="Message" required></textarea>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="container-nurserequest-form-btn">
+                            <button type="submit" class="btn profile-edit-btn ">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Head Office</h2>
+                            <ul class="p-0 m-0">
+                                <li>Mandakini Bibah Bhawan complex, By Pass Tini Ali, Jorhat- 785006, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, ​9531339627</li>
+                            </ul>
+                        </div>
                     </div>
+
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
+
+                            <ul class="p-0 m-0">
+                                <li>Old Amulapatty, Ganak Patty, By Lane No. 6, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, 8876243001</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0">
+                        <div class="address-location h-100">
+                            <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
+
+                            <ul class="p-0 m-0">
+                                <li>Sashanpara Road, Near Sankar Dev Hospital, Mancotta Road.</li>
+                                <li>Call: 9435960652, 8753955565</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
-        <!--card end-->
+        <!-- address section end  -->
+       <div class="col-12 probootstrap-animate" align="center">
+            <div id="map" class=" container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.767342342199!2d94.18186801447968!3d26.751799583197204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3746c3ceb2bc28f7%3A0x8ad690dd9028fe34!2sAAROGYA%20HOME%20CARE%20SERVICE!5e0!3m2!1sen!2sin!4v1580747838248!5m2!1sen!2sin"
+                        width="1200" height="400" frameborder="0" style="border:0;" allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
 
 
     </div>
