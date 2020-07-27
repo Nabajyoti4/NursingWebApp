@@ -48,10 +48,10 @@
         <div class="container-fluid text-center">
             @foreach($services as $service)
                 <div class="row p-4 text-center">
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-aos="fade-right"  data-aos-delay="300" >
                         <img src="{{asset("/storage/".$service->cover)}}" alt="" width="80%">
                     </div>
-                    <div class="col-md-6 pt-5 pb-2  about">
+                    <div class="col-md-6 pt-5 pb-2  about"  data-aos="fade-left"  data-aos-delay="300">
                         <h3 class="font-weight-bold">{{$service->title}}</h3>
                         <p> {{$service->details}}</p>
                         <p><strong>{{$service->list}}</strong></p>
@@ -106,22 +106,22 @@
 
     <div class="container">
         <div class="row text-center">
-            <div class="col-lg-6 ">
+            <div class="col-lg-6 " data-aos="zoom-in" data-aos-delay="400" >
                 <i class="fa fa-stethoscope" aria-hidden="true"></i>
                 <h4>24 Hour Support</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <div class="col-lg-6 ">
+            <div class="col-lg-6 "  data-aos="zoom-in" data-aos-delay="400">
                 <i class="fa fa-user-md" aria-hidden="true"></i>
                 <h4>Medical Counseling</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <div class="col-lg-6 ">
+            <div class="col-lg-6 "  data-aos="zoom-in" data-aos-delay="400">
                 <i class="fa fa-ambulance" aria-hidden="true"></i>
                 <h4>Emergency Services</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <div class="col-lg-6 ">
+            <div class="col-lg-6 "  data-aos="zoom-in" data-aos-delay="400">
                 <i class="fa fa-medkit" aria-hidden="true"></i>
                 <h4>Premium Healthcare</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -140,7 +140,7 @@
             <div class="row align-items-center justify-content-center">
 
                 @foreach($prices as $price)
-                <div class="col-sm-12 col-lg-4 p-5">
+                <div class="col-sm-12 col-lg-4 p-5"  data-aos="flip-up" data-aos-delay="400" >
                     <div class="card">
 
                         <div class="card__side card__side--front">

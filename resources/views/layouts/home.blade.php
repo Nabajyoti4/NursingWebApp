@@ -13,7 +13,8 @@
     </title>
 
     @yield('links')
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -197,5 +198,12 @@
 <script src="{{asset('js/toolkit.js')}}"></script>
 
 @yield('scripts')
+
+<script>
+    AOS.init({
+        delay: 40,
+        duration: 900,
+    });
+</script>
 </body>
 </html>
