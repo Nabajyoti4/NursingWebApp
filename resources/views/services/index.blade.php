@@ -18,6 +18,14 @@
         * {
             font-size: 14px;
         }
+        .contact{
+            color: white;
+            transition: all .6s;
+        }
+        .contact:hover{
+            background-color: white;
+            color: black;
+        }
     </style>
 @endsection
 @section('content')
@@ -36,12 +44,14 @@
         </ul>
 
         <!-- The slideshow -->
-        <div class="carousel-inner hero">
-            <div class="carousel-item active">
-                <img src="{{asset('img/slider-1.jpg')}}" alt="Chicago" >
-            </div>
-            <div class="carousel-item">
-                <img src="{{asset('img/team.webp')}}" alt="New York">
+        <div class="carousel-inner item-centered" >
+            <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center" style="background-image: linear-gradient(to bottom, rgba(50,50,53,0.52), rgba(47,43,47,0.73)), url({{asset('img/moto1.jpg')}}); background-size: cover; height: 500px">
+                <div class="row" >
+                    <div class="col-sm-12 text-center" >
+                        <h1 class="font-weight-bold border p-3 contact">Services</h1>
+                        <h3 class="text-white">Our Valuable Services</h3>
+                    </div>
+                </div>
             </div>
         </div>
 
