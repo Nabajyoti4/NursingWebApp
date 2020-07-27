@@ -87,6 +87,11 @@
                 <span>Rating</span></a>
         </li>
         @endif
+       <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.query.index')}}">
+                <i class="fas fa-id-card-alt"></i>
+                <span>Query</span></a>
+        </li>
         @if(Auth::user()->role == 'super')
             <li class="nav-item">
             <a class="nav-link" href="{{route('admin.price.index')}}">
