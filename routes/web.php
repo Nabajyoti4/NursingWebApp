@@ -170,6 +170,16 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'delete' => 'rating.destroy'
     ]]);
 
+    Route::resource('admin/price','AdminController\AdminPriceController', ['names' =>[
+        'index'=>'admin.price.index',
+        'create'=>'admin.price.create',
+        'store'=>'admin.price.store',
+        'edit'=>'admin.price.edit',
+        'update'=>'admin.price.update',
+        'show'=>'admin.price.show',
+        'delete' => 'price.destroy'
+    ]]);
+
 
 
 });

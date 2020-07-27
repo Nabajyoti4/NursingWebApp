@@ -137,8 +137,9 @@
         <div class="container-fluid text-center">
             <h1 class=" mb-0 p-4 text-uppercase">Available Packages</h1>
 
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
 
+                @foreach($prices as $price)
                 <div class="col-sm-12 col-lg-4 p-5">
                     <div class="card">
 
@@ -147,16 +148,15 @@
                             <div class="plan">
                                 <div class="plan-inner">
                                     <div class="entry-title">
-                                        <h3 class="text-white">Day / Night</h3>
-                                        <div class="price">30<span>Days</span>
+                                        <h3 class="text-white">{{$price->name}}</h3>
+                                        <div class="price">{{$price->days}}<span>Days</span>
                                         </div>
                                     </div>
                                     <div class="entry-content">
                                         <ul>
-                                            <li><strong>1x</strong> option 1</li>
-                                            <li><strong>2x</strong> option 2</li>
-                                            <li><strong>3x</strong> option 3</li>
-                                            <li><strong>Free</strong> option 4</li>
+                                            <li><strong><h2>{{$price->timing}}</h2></strong></li>
+                                            <li><strong><h2>₹ {{$price->price}}</h2></strong></li>
+                                            <li><strong><h2>{{$price->period}}</h2></strong></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -166,56 +166,8 @@
 
                     </div>
                 </div>
+                @endforeach
 
-                <div class="col-sm-12 col-lg-4 p-5">
-                    <div class="card">
-                        <div class="card__side card__side--front">
-                            <!-- Front Content -->
-                            <div class="plan">
-                                <div class="plan-inner">
-                                    <div class="entry-title">
-                                        <h3 class="text-white">Day / Night</h3>
-                                        <div class="price">60<span>Days</span>
-                                        </div>
-                                    </div>
-                                    <div class="entry-content">
-                                        <ul>
-                                            <li><strong>1x</strong> option 1</li>
-                                            <li><strong>2x</strong> option 2</li>
-                                            <li><strong>3x</strong> option 3</li>
-                                            <li><strong>Free</strong> option 4</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-lg-4 p-5">
-                    <div class="card">
-                        <div class="card__side card__side--front">
-                            <!-- Front Content -->
-                            <div class="plan">
-                                <div class="plan-inner">
-                                    <div class="entry-title">
-                                        <h3 class="text-white">Full Day</h3>
-                                        <div class="price">30/60<span>Days</span>
-                                        </div>
-                                    </div>
-                                    <div class="entry-content">
-                                        <ul>
-                                            <li><strong>1x</strong> option 1</li>
-                                            <li><strong>2x</strong> option 2</li>
-                                            <li><strong>3x</strong> option 3</li>
-                                            <li><strong>Free</strong> option 4</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
