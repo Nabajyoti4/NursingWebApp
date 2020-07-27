@@ -5,6 +5,7 @@
 @endsection
 
 @section('links')
+    <script src="{{asset('js/sweetalert2.min.js')}}"></script>
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
@@ -18,9 +19,28 @@
         * {
             font-size: 15px;
         }
+        .contact{
+            color: white;
+            transition: all .6s;
+        }
+        .contact:hover{
+            background-color: white;
+            color: black;
+        }
     </style>
 @endsection
 @section('content')
+
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
 
     <div class="container-fluid p-0">
         <div id="demo" class="carousel slide" data-ride="carousel" style="height: 700px">
@@ -40,7 +60,7 @@
                 <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center" style="background-image: url({{asset('img/team.webp')}}); background-size: cover; height: 500px">
                     <div class="row" >
                         <div class="col-sm-12 text-center" >
-                            <h1 class="text-white font-weight-bold border p-3">CONTACT US</h1>
+                            <h1 class="font-weight-bold border p-3 contact">CONTACT US</h1>
                             <h3>Feel free to contact us any time for any Queries</h3>
                         </div>
                     </div>
@@ -51,16 +71,13 @@
 
         <!-- address section start -->
         <div class="address-page-short-boxes">
-            <div class="col-md-12 text-center">
-                <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
-            </div>
             <!--Nurse request form-->
             <div class="container-nurserequest mb-5" id="joinForm">
-                <div class="wrap-nurserequest">
-                    <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
+                <div class="wrap-nurserequest ">
+                    <form class="nurserequest-form" action="{{route('user.query.store')}}" method="POST">
                         @csrf
                         <span class="nurserequest-form-title">
-					To Join As A Nurse  Send Your Request
+					Send Any Queries , We will Respond You soon
 				</span>
 
                         <div class="wrap-input100">
@@ -70,12 +87,23 @@
                         </div>
 
                         <div class="wrap-input100 ">
-                            <input class="input100" type="text" name="email"  placeholder="Email" required readonly>
+                            <input class="input100" type="email" name="email"  placeholder="Email" required >
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 ">
-                            <textarea class="input100" type="text" name="message" placeholder="Message" required></textarea>
+                            <input class="input100" type="text" name="city"  placeholder="city name" required>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 ">
+                            <input class="input100" type="number" name="phone"  placeholder="contact number" required>
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                        <div class="wrap-input100 ">
+                            <textarea class="input100" type="text" name="query" placeholder="Message" required></textarea>
                             <span class="focus-input100"></span>
                         </div>
 

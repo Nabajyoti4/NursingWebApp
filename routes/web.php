@@ -184,6 +184,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     ]]);
 
 
+    Route::get('admin/query', 'QueryController@index')->name('admin.query.index');
+    Route::get('admin/query/{id}', 'QueryController@update')->name('admin.query.update');
 
 });
 
@@ -241,7 +243,8 @@ Route::resource('users/patient','Patient\PatientController', ['names' =>[
 ]])->middleware('auth');
 
 
-
+// user query
+Route::post('user/query', 'QueryController@store')->name('user.query.store');
 
 //attendance
 Route::resource('/attendance','AttendanceController', ['names' =>[
