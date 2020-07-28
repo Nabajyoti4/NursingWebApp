@@ -73,20 +73,21 @@
         <div class="p-4">
             <div class="container emp-profile mt-3">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" >
                         <div class="profile-img">
                             <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}"
-                                 alt=""/>
+                                 alt=""  />
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
+                    <div class="col-md-6 align-items-center">
+                        <div class="profile-head pt-5">
                             <h5>
                                 {{$user->name}}
                             </h5>
                             <h6>
                                 {{$user->role}}
                             </h6>
+                            <br>
                             <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
@@ -183,7 +184,7 @@
                                         </div>
 
                                     @empty
-                                        <p>No Patient Request found</p>
+                                           <h2 class="pl-5">No Patient Request found</h2>
                                     @endforelse
                                 </div>
                             </div>
@@ -226,7 +227,7 @@
                                         </div>
                                     </div>
                                 @empty
-                                    <p>No Patient Request found</p>
+                                    <h2 class="pl-5">No Booking found</h2>
                                 @endforelse
                                 </div>
                             </div>

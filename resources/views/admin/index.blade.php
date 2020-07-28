@@ -46,7 +46,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-2x  fa-money-check-alt"></i>
+                            <i class="fas fa-2x fa-rupee-sign"></i>
                         </div>
                     </div>
                 </div>

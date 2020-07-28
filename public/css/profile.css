@@ -635,8 +635,8 @@ button.bg-light:focus {
     text-align: center;
 }
 .profile-img img{
-    width: 70%;
-    height: 100%;
+    width: auto;
+    max-height: 280px;
 }
 .profile-img .file {
     position: relative;

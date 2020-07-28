@@ -129,7 +129,7 @@ class NurseJoinRequestController extends Controller
                 return redirect()->back()->with('success', 'Your request has been send, We will get back to you shortly!');
             }
         } else {
-            return redirect()->back()->with('info', 'Please fill your user profile with address and other informations');
+            return redirect()->back()->with('info_fill', 'Please fill your user profile with address and other information');
         }
 
 

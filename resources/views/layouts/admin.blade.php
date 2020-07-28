@@ -67,8 +67,11 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
          @if(Auth::user()->role == 'super')
-             <!-- Nav Item - Pages Collapse Menu -->
-                 <li class="nav-item">
+            <div class="sidebar-heading">
+            Addons
+        </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                aria-expanded="true"
                aria-controls="collapsePages">
@@ -89,7 +92,9 @@
                 </div>
             </div>
         </li>
-             @endif
+        @endif
+                <hr class="sidebar-divider">
+
         @if(Auth::user()->role == 'super')
             <li class="nav-item ">
             <a class="nav-link" href="">
@@ -170,16 +175,6 @@
 
 
         </li>
-        <hr class="sidebar-divider d-none d-md-block">
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
-
-
-
-    <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
