@@ -109,6 +109,16 @@
                 showConfirmButton: true,
             })
         </script>
+    @elseif($message = Session::get('info_fill'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: '{{$message}}',
+                showConfirmButton: false,
+                html:'<a class="btn btn-primary text-white" href="{{route('users.edit',Auth::user()->id)}}">Go To Edit Page</a>'
+            })
+        </script>
     @endif
 
     <!--Welcome section-->
@@ -230,10 +240,10 @@
 
 
     <!--NURSE RATING SLIDER-->
-    <div class="block block-bordered-lg pl-0 pt-0 pr-0 rating-background" >
+    <div class="block block-bordered-lg pl-0 pt-0 pr-0 rating-background">
 
         <div id="carousel-example-generic" class="carousel carousel-light carousel-fade" data-ride="carousel">
-            <div class="main-text  background-transparent" >
+            <div class="main-text  background-transparent">
                 <div class="col-md-12 text-center">
                     <h1 class=" text-white mb-0 p-4 text-uppercase"> Our Top Caretakers</h1>
                 </div>
@@ -295,7 +305,7 @@
             </div>
         </div>
         <!--NURSE RATING SLIDER END-->
-
+    </div>
         <!--Business partners section-->
     {{--    <div class="block app-ribbon pt-3">--}}
     {{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
@@ -397,6 +407,7 @@
                         </button>
                     </div>
                 </form>
+              <div class="text-center">  <strong>Note: </strong>Please Register and Login to send request</div>
             </div>
         </div>
 
@@ -432,6 +443,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <!--card end-->
 
 
