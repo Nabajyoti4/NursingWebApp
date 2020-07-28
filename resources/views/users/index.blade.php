@@ -73,14 +73,15 @@
         <div class="p-4">
             <div class="container emp-profile mt-3">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" >
                         <div class="profile-img">
                             <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}"
-                                 alt=""/>
+                                 alt=""  />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
+                            <br>
                             <h5>
                                 {{$user->name}}
                             </h5>
