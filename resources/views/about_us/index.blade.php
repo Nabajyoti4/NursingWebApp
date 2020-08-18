@@ -10,6 +10,7 @@
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="{{asset('css/team.css')}}"/>
 @endsection
 @section('style')
     <style>
@@ -48,9 +49,9 @@
             <div class="carousel-inner item-centered" >
                 <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center" style="background-image: url({{asset('img/team.webp')}}); background-size: cover; height: 500px">
                     <div class="row" >
-                          <div class="col-sm-12 text-center" >
-                              <h1 class="text-white font-weight-bold border p-3">ABOUT US</h1>
-                          </div>
+                        <div class="col-sm-12 text-center" >
+                            <h1 class="text-white font-weight-bold border p-3">ABOUT US</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,29 +144,26 @@
             <div class="container-fluid text-center card bg-transparent">
                 <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
 
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-center p-5">
                     @foreach($members as $member)
-                        <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
-                            <div class="car card w-75 ml-5 border-0 box">
-                                <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
-                                     style="width:100%">
-
-                                <div class="card-body ">
-                                    <h4 class="card-title text-dark"
-                                        style="text-transform: capitalize">{{$member->name}}</h4>
-                                    <h5 class="card-title text-dark"
-                                        style="text-transform: capitalize">{{$member->designation}}</h5>
+                        <div class="col-sm-12 col-lg-4 "style="margin-bottom:20px;" data-aos="flip-right" data-aos-delay="300">
+                            <div class="themeioan_course">
+                                <div class="blog-photo">
+                                    <img style="width:100%;object-fit: cover;" height="250"
+                                         class="card-img-top embed-responsive-item"
+                                         src="{{asset('storage/'.$member->photo)}}" alt="Card image">
                                 </div>
-                                <div>
-                                    <a href=""><i class="fab fa-facebook"></i></a>
-                                    <i class="fab fa-instagram"></i>
-                                    <i class="fab fa-google-plus-g"></i>
+                                <div class="blog-content">
+                                    <h5 class="title" style="text-transform: capitalize">{{$member->name}}
+                                    </h5>
+                                    <div class="small" style="text-transform: capitalize">{{$member->designation}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     @endforeach
-                    <div>
-                    </div>
+
                 </div>
             </div>
         </div>

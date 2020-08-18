@@ -58,7 +58,20 @@
             </div>
         </div>
     </form>
-
+    <!-- Search -->
+    <form class="d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search"
+          action="{{route('admin.salary.index')}}" method="GET">
+        @csrf
+        <div class="input-group">
+            <input type="month" class="form-control border-2 small" name="searchMonth" placeholder="Search Month..."
+                   aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                   Filter
+                </button>
+            </div>
+        </div>
+    </form>
 
     <hr>
     <a href="{{route('admin.salary.create',$permanent=1)}}" class="btn btn-primary">Create Salary for the Permanent

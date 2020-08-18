@@ -25,8 +25,8 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name'=>'max:255',
-            'phone_no'=>'integer|digits:10',
-            'image'=>'image|mimes:jpeg,png',
+            'phone_no'=>'integer',
+            'image'=>'mimes:jpeg,png',
             'permanent_street'=>'required',
             'permanent_landmark'=>'required',
             'permanent_state'=>'required',
