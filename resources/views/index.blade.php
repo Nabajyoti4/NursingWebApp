@@ -428,7 +428,7 @@
                             <div class="blog-content">
                                 <h5 class="title" style="text-transform: capitalize">{{$member->name}}
                                 </h5>
-                                <div class="small" style="text-transform: capitalize">{{$member->designation}}
+                                <div class="title" style="text-transform: capitalize; color:grey;">{{$member->designation}}
                                 </div>
                             </div>
                         </div>
