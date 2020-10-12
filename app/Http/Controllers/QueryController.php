@@ -26,11 +26,15 @@ class QueryController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
-        $querieAll = Query::all();
+        $querieAll = Query::latest()->get();
         $admin = Auth::user();
 
         $queries = array();
 
+if(Auth::user()->role === 'super'){
+    $queries=Query::latest()->get();
+   return view('admin.query.index', compact('queries'));
+}
         foreach ($querieAll as $query) {
             if ($query->city == ($admin->addresses->first()->city)) {
                 array_push($queries, $query);
