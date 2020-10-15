@@ -187,6 +187,14 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/query', 'QueryController@index')->name('admin.query.index');
     Route::get('admin/query/{id}', 'QueryController@update')->name('admin.query.update');
 
+    //Role
+    Route::get('admin/role', 'AdminController\RoleController@index')->name('admin.role.index');
+    Route::get('admin/role/create', 'AdminController\RoleController@create')->name('admin.role.create');
+    Route::post('admin/role/store', 'AdminController\RoleController@store')->name('admin.role.store');
+    Route::get('admin/role/edit/{id}', 'AdminController\RoleController@edit')->name('admin.role.edit');
+    Route::patch('admin/role/update/{id}', 'AdminController\RoleController@update')->name('admin.role.update');
+    Route::delete('admin/role/delete/{id}', 'AdminController\RoleController@delete')->name('admin.role.delete');
+
 });
 
 // Admin Routes End

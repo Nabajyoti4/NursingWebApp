@@ -126,9 +126,7 @@
     }
 }
 
-.welcome_sewa .welcome_text {
-    padding-left: 40px;
-}
+
 
 @media (max-width: 767px) {
     .welcome_sewa .welcome_text {
@@ -186,7 +184,6 @@
     font-size: 16px;
     line-height: 44px;
     position: relative;
-    padding-left: 40px;
 }
 
 @media (max-width: 767px) {

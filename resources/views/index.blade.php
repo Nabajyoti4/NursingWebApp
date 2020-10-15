@@ -125,25 +125,26 @@
     <div class="block block-secondary app-iphone-block">
         <div class="welcome_sewa">
             <div class="container">
+                <div class="col-md-12 text-center">
+                    <h1 class="mb-0 p-2 text-uppercase font-weight-bold">Welcome To
+                            <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
+                </div>
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6">
+                    <div class="col-xl-6 col-lg-6  col-sm-12">
                         <div class="welcome_pic" data-aos="fade-right" data-aos-delay="200">
                             <div class="pic_first">
                                 <img src="{{asset('img/1.jpg')}}" alt="">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6">
+                    <div class="col-xl-6 col-lg-6 col-sm-12">
                         <div class="welcome_text">
-                            <h3>Welcome To
-                                <span>AAROGYA HOME CARE NURSING SERVICE</span></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veni.</p>
-                            <ul>
-                                <li><i class="flaticon-verified"></i> Nursing Services</li>
-                                <li><i class="flaticon-verified"></i> Caretakers</li>
+                            <h4 class="font-weight-bold">Our Missions</h4>
+                            <ul style="list-style-type: circle !important;">
+                                <li>• To provide high quality services to home bound patients in a responsible, compassionate manner.</li>
+                                <li>• To provide patient education when indicated to promote maintain and restore health.</li>
+                                <li>• To be advocates for patients right, respect and confidentiality.</li>
+                                <li>• To deliver service without regard, religion or national origin..</li>
                             </ul>
                         </div>
                     </div>

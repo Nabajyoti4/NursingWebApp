@@ -227,6 +227,44 @@
                                         @endif
                                     </td>
                                 </tr>
+                                <!--pop up model-->
+                                <div class="modal fade"
+                                     id="disapproveModal"
+                                     tabindex="-1"
+                                     role="dialog"
+                                     aria-labelledby="disapproveModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <form action="" method="post" id="disapproveRequestMessage">
+                                            @csrf
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="disapproveModalLabel">Reason For Rejection</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                        <input type="text" class="form-control" name="recipient" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <textarea class="form-control" name="message" ></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button  class="btn btn-primary" type="submit">Send message</button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--pop up model end-->
                             @empty
                                 <tr>
                                     <td colspan="9">No Candidate found</td>
@@ -234,39 +272,7 @@
                             @endforelse
                             </tbody>
                         </table>
-                        <!--pop up model-->
-                        <div class="modal fade" id="disapproveModal" tabindex="-1" role="dialog" aria-labelledby="disapproveModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <form action="" method="post" id="disapproveRequestMessage">
-                                    @csrf
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="disapproveModalLabel">Reason For Rejection</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                <input type="text" class="form-control" name="recipient" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Message:</label>
-                                                <textarea class="form-control" name="message" ></textarea>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button  class="btn btn-primary" type="submit">Send message</button>
-                                            </div>
 
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--pop up model end-->
                     </div>
                 </div>
             </div>
@@ -336,6 +342,8 @@
 
 </div>
 
+
+
 @endsection
 
 @section('script')
@@ -343,7 +351,7 @@
     <script>
         function handleDisapprove(id){
 
-            var message = document.getElementById('disapproveRequestMessage')
+            const message = document.getElementById('disapproveRequestMessage');
 
             message.action = "/nursejoin/" + id + "/disapprove"
 
