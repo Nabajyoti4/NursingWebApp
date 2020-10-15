@@ -1,0 +1,442 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title h2,
+.section-title h3,
+.tbl-pricing .tbl-prc-col .tbl-prc-price,
+.tbl-pricing .tbl-prc-col .tbl-prc-list,
+#header .nav>li>a,
+#header .nav>li>a:hover {
+    color: #242424;
+}
+
+.wrap-bg-primary,
+.course-price,
+.carousel-slider.gallery-slider .slick-dots li.slick-active button,
+#testimonials .slick-dots li.slick-active button,
+.themeioan_event .date,
+.color-two,
+.tbl-pricing .tbl-prc-col .tbl-prc-wrap .featured-price {
+    background: #fb770c;
+}
+
+.bar1,
+.bar2,
+.bar3,
+.wrap-bg.wrap-bg-grey,
+#teachers .item,
+.color-three,
+.color-three:hover,
+.btn-1c:after,
+.themeioan_blog .blog-content,
+.footer-subscribe,
+.tbl-pricing .tbl-prc-col .tbl-prc-wrap,
+.themeioan_event .event-content,
+.themeioan_course .blog-content,
+.themeioan_blog .blog-content,
+#header .navbar-default .navbar-toggle .icon-bar,
+.video-btn:hover,
+.color-three,
+.themeioan_testimonial {
+    background-color: #ffffff;
+}
+
+.wrap-bg-primary .section-title span,
+.wrap-bg-primary .section-title h2,
+.wrap-bg-primary .section-title p,
+.course-price,
+.header-content .header-text,
+.header-content .header-text h1,
+.header-content .header-text p,
+.tbl-pricing .tbl-prc-col .tbl-prc-wrap .featured-price,
+#footer,
+#footer a,
+.footer-text p,
+.f-widget-title h4,
+.f-widget-link ul li a,
+.sigle-address p,
+.copyright p,
+.themeioan_event .date h4,
+.text-white,
+.text-white h2,
+.section-title.text-white p,
+.call-to-action-content h3,
+.call-to-action-btn a,
+.header-area .header-area-inner .subtitle,
+.header-area .header-area-inner .title,
+#header .navbar-default .navbar-nav a,
+.header-content.page-header-content .page-header-text p,
+.video-btn,
+.wrap-bg.wrap-bg-parallax,
+.color-one:hover,
+.color-two,
+.color-two:hover,
+.btn-1c,
+.header-cta .btn.btn-1c,
+.footer-social a,
+.header-area .header-area-inner p {
+    color: #ffffff;
+}
+
+a:hover,
+#header .navbar-nav>li>a:hover,
+#header .navbar-default .navbar-nav>li>a:hover,
+.secondary-color,
+.section-title span,
+.base-color,
+#header .navbar-nav a.active,
+#header .active,
+#header a:hover,
+.header-content.page-header-content .page-header-text h1,
+.header-content.page-header-content .page-header-text h2,
+.header-content.page-header-content .page-header-text h3,
+.header-content.page-header-content .page-header-text h4,
+.header-content.page-header-content .page-header-text h5,
+.header-content.page-header-content .page-header-text h6,
+.video-btn:hover,
+.themeioan_counter i,
+.btn-1c:hover,
+.btn-1c:active,
+.tbl-pricing .tbl-prc-col .tbl-prc-heading h4,
+.tbl-pricing .tbl-prc-col .tbl-prc-list i,
+#footer .copyright a,
+.address-icon i,
+.tbl-pricing .tbl-prc-col .tbl-prc-wrap:hover .tbl-prc-price h5,
+.single-features-light .feature_link a,
+.readmore,
+.themeioan_event ul li i,
+#why-us i,
+.themeioan_ul_icon i,
+.course-viewer ul li i{
+    color: #fb770c;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    list-style: none
+}
+
+figure {
+    margin: 0px;
+}
+
+figure img {
+    width: 100%;
+}
+
+figure iframe {
+    overflow: hidden;
+    width: 100% !important;
+    background-color: #f4f4f4;
+    border: 2px solid #e9e9e9;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.center-column {
+    margin: 70px auto 0px auto;
+}
+
+.content-button {
+    margin: 60px auto 0px auto;
+    max-width: 250px;
+}
+
+.themeioan_ul_icon {
+    margin-top:15px;
+}
+.themeioan_ul_icon li {
+    line-height: 33px;
+    font-size: 16px;
+    color: #777777;
+}
+
+.themeioan_ul_icon i,
+.course-viewer ul li i {
+    padding-right: 3px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.section-text-left p {
+    margin-left:0px!important;
+    margin-bottom:25px!important;
+}
+.section-text-left h3 {
+    margin-bottom:15px!important;
+}
+.call-to-action-content h3 {
+    font-weight: 700;
+    margin: 73px 0 25px;
+    font-size: 36px;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+.call-to-action-area img {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.call-to-action-btn a {
+    display: inline-block;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 19px;
+    margin-bottom: 80px;
+}
+.call-to-action-btn a:hover {
+    background:#fff;
+}
+.cta-center {
+    text-align:center;
+    margin:0px auto;
+}
+.cta-center p {
+    font-size: 18px;
+}
+
+.bg-cta {
+    background: url(../images/content/breadcrumb/university.jpg);
+    background-position:center;
+    background-size:cover;
+
+}
+
+/*tags course*/
+
+.wrap-bg-secondary {
+    background-image: linear-gradient(to right, #121a2f, rgba(20, 41, 65, 0.81));
+}
+
+.themeioan_course {
+    transition: transform .3s cubic-bezier(.68, -.55, .265, 1.55);
+}
+
+
+/*shadow hover all*/
+
+.themeioan_course:active,
+.themeioan_course:focus,
+.themeioan_course:hover,
+.single-features-light:hover,
+.tbl-pricing .tbl-prc-col .tbl-prc-wrap:hover,
+#teachers .item:hover {
+    -webkit-box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+/*end shadow*/
+
+.themeioan_course {
+    -webkit-box-shadow: 0 0 20px 0 #f2f2f2;
+    box-shadow: 0 0 20px 0 #f2f2f2;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.themeioan_course .blog-content,
+.themeioan_blog .blog-content,
+.themeioan_event .event-content {
+    padding: 20px;
+}
+
+.themeioan_course.course-area .blog-content p {
+    margin-bottom: 5px;
+}
+
+
+.themeioan_course .blog-content .title,
+.themeioan_blog .blog-content .title,
+.themeioan_event .event-content .title {
+    font-size: 18px;
+    line-height: 28px!important;
+    font-weight: 600;
+}
+
+.course-single-content p {
+    margin-top: 12px;
+}
+
+.mb20 {
+    margin-bottom: 30px!important;
+}
+
+.course-bottom {
+    margin-top: 25px;
+}
+
+.course-bottom-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 20px;
+}
+
+.course-avatar {
+    width: 30px;
+    height: 30px;
+    display: inline;
+    margin-right: 8px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    overflow: hidden;
+}
+
+.course-avatar img {
+    border-radius: 100%;
+}
+
+.course-bottom-list li {
+    width: 50%;
+}
+
+.course-duration {
+    margin-top: 3px;
+    text-align: right;
+}
+
+.course-price {
+    padding: 0 5px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.themeioan_course .blog-meta li:last-child {
+    margin-right: 0;
+}
+
+.themeioan_course .read-more {
+    font-size: 12px;
+}
+
+.course-photo img {
+    width: 100%;
+    height: auto;
+}
+
+.course-title {
+    margin-top: 7px;
+}
+
+.course-statistic {
+    margin-bottom: 10px;
+}
+
+.course-star {
+    float: left;
+}
+
+.course-star i {
+    color: #ffb606;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-top: 8px;
+}
+
+.course-viewer {
+    text-align: right;
+}
+
+.course-viewer li {
+    color: #989898;
+    font-size: 14px;
+    padding: 5px 0px 5px 15px;
+    border-radius: 3px;
+}
+
+.course-viewer ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.course-single:nth-last-of-type(2n+2) .tags a {
+    background-color: rgb(253, 239, 219);
+    color: #ffb606;
+}
+
+.course-single:nth-last-of-type(3n+3) .tags a {
+    background-color: rgb(227, 248, 255);
+    color: #29a1c1;
+}
+
+.required {
+    color: #f9331e;
+}
+
+.animation {
+    visibility: hidden;
+}
+
+.animated {
+    visibility: visible;
+}
+
+.small {
+    font-size: 20px;
+    display:inline-block;
+    width:300px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
+
+.event-heading{
+    font-size: 20px;
+}
+.event-title{
+    font-family: New Century Schoolbook, serif;
+    font-size: 30px;
+}
+
+.event-content-description{
+    font-family: New Century Schoolbook, serif;
+    font-size: 20px;
+}
+
+.event-content-heading{
+    font-family: Gill Sans, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 20px;
+}

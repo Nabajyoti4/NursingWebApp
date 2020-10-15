@@ -5,14 +5,14 @@
 @section('links')
 
     <script src="{{asset('js/sweetalert2.min.js')}}"></script>
-
-
     <!-- Theme CSS -->
     <link href="{{asset('css/navbar.css')}}" rel="stylesheet">
     <link href="{{asset('css/toolkit-startup.css')}}" rel="stylesheet">
     <link href="{{asset('css/application-startup.css')}}" rel="stylesheet">
     <!-- Theme CSS and custom css -->
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/team.css')}}"/>
+
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
@@ -321,7 +321,7 @@
     <!--Business partners section end-->
 
         <!-- address section start -->
-        <div class="address-page-short-boxes">
+        <div class="address-page-short-boxes" data-aos="flip-up" data-aos-delay="200">
             <div class="col-md-12 text-center">
                 <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
             </div>
@@ -332,8 +332,8 @@
                         <div class="address-location h-100">
                             <h2 class="d-flex align-items-center">Head Office</h2>
                             <ul class="p-0 m-0">
-                                <li>Mandakini Bibah Bhawan complex, By Pass Tini Ali, Jorhat- 785006, Assam.</li>
-                                <li>Call: 9435960652, 9101786597, ​9531339627</li>
+                                <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, 6002281528</li>
                             </ul>
                         </div>
                     </div>
@@ -343,19 +343,19 @@
                             <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
 
                             <ul class="p-0 m-0">
-                                <li>Old Amulapatty, Ganak Patty, By Lane No. 6, Assam.</li>
-                                <li>Call: 9435960652, 9101786597, 8876243001</li>
+                                <li>Old Amalapatty, Ganak Patty, By Lane,  Harakanta Nazir Path Sivasagar-785640, Assam.</li>
+                                <li>Call: 9435960652, 9101786597, 6002450239</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-right" data-aos-delay="200">
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-right" data-aos-delay="200">
                         <div class="address-location h-100">
                             <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
 
                             <ul class="p-0 m-0">
-                                <li>Sashanpara Road, Near Sankar Dev Hospital, Mancotta Road.</li>
-                                <li>Call: 9435960652, 8753955565</li>
+                                <li>Sashan Para Road, Near Sankar Dev Hospital, Mancotta Road, Dibrugarh-786003 Assam.</li>
+                                <li>Call: 9435960652, 8753955565, 9101786597</li>
                             </ul>
                         </div>
                     </div>
@@ -412,41 +412,35 @@
             </div>
         </div>
 
-        <!-- Card our team -->
-        <div class="container-fluid team-background pr-0 pl-0">
-            <div class="container-fluid text-center card team-background-transparent ">
-                <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
+    <!-- Card our team -->
+    <div class="container-fluid team-background pr-0 pl-0">
+        <div class="container-fluid text-center card team-background-transparent ">
+            <h1 class=" mb-0 p-4 text-uppercase text-white"> Our Team</h1>
 
-                <div class="row align-items-center justify-content-center">
-                    @foreach($members as $member)
-                        <div class="col-sm-12 col-lg-4 p-5" data-aos="flip-right" data-aos-delay="300">
-                            <div class="car card w-75 ml-5 border-0 box">
-                                <img class="card-img-top " src="{{asset('storage/'.$member->photo)}}" alt="Card image"
-                                     style="width:100%">
-
-                                <div class="card-body ">
-                                    <h4 class="card-title text-dark"
-                                        style="text-transform: capitalize">{{$member->name}}</h4>
-                                    <h5 class="card-title text-dark"
-                                        style="text-transform: capitalize">{{$member->designation}}</h5>
-                                </div>
-                                <div>
-                                    <a href=""><i class="fab fa-facebook"></i></a>
-                                    <i class="fab fa-instagram"></i>
-                                    <i class="fab fa-google-plus-g"></i>
+            <div class="row align-items-center justify-content-center p-5">
+                @foreach($members as $member)
+                    <div class="col-sm-12 col-lg-4 "style="margin-bottom:20px;" data-aos="flip-right" data-aos-delay="300">
+                        <div class="themeioan_course">
+                            <div class="blog-photo">
+                                <img style="width:100%;object-fit: cover;" height="250"
+                                     class="card-img-top embed-responsive-item"
+                                     src="{{asset('storage/'.$member->photo)}}" alt="Card image">
+                            </div>
+                            <div class="blog-content">
+                                <h5 class="title" style="text-transform: capitalize">{{$member->name}}
+                                </h5>
+                                <div class="title" style="text-transform: capitalize; color:grey;">{{$member->designation}}
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-
-
-                    <div>
                     </div>
-                </div>
+
+                @endforeach
+
             </div>
         </div>
-            <!--card end-->
-
+    </div>
+    <!--card end-->
 
 @endsection
 

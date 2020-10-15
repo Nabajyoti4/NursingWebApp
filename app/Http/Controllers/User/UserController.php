@@ -12,6 +12,7 @@ use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
