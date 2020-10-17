@@ -187,6 +187,22 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/query', 'QueryController@index')->name('admin.query.index');
     Route::get('admin/query/{id}', 'QueryController@update')->name('admin.query.update');
 
+    //Role
+    Route::get('admin/role', 'AdminController\RoleController@index')->name('admin.role.index');
+    Route::get('admin/role/create', 'AdminController\RoleController@create')->name('admin.role.create');
+    Route::post('admin/role/store', 'AdminController\RoleController@store')->name('admin.role.store');
+    Route::get('admin/role/edit/{id}', 'AdminController\RoleController@edit')->name('admin.role.edit');
+    Route::patch('admin/role/update/{id}', 'AdminController\RoleController@update')->name('admin.role.update');
+    Route::delete('admin/role/delete/{id}', 'AdminController\RoleController@delete')->name('admin.role.delete');
+
+    //state
+    Route::get('admin/state', 'AdminController\StateController@index')->name('admin.state.index');
+    Route::get('admin/state/create', 'AdminController\StateController@create')->name('admin.state.create');
+    Route::post('admin/state/store', 'AdminController\StateController@store')->name('admin.state.store');
+    Route::get('admin/state/edit/{id}', 'AdminController\StateController@edit')->name('admin.state.edit');
+    Route::patch('admin/state/update/{id}', 'AdminController\StateController@update')->name('admin.state.update');
+    Route::delete('admin/state/delete/{id}', 'AdminController\StateController@delete')->name('admin.state.delete');
+
 });
 
 // Admin Routes End
