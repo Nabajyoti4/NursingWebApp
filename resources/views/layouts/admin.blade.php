@@ -99,13 +99,11 @@
         @endif
                 <hr class="sidebar-divider">
 
-        @if(Auth::user()->role == 'super')
-            <li class="nav-item ">
-            <a class="nav-link" href="">
+        <li class="nav-item ">
+            <a class="nav-link" href="{{route('admin.employee.index')}}">
                 <i class="fas fa-id-card"></i>
-                <span>Super Admins</span></a>
+                <span>Employees</span></a>
         </li>
-        @endif
         @if(Auth::user()->role == 'super')
             <li class="nav-item">
             <a class="nav-link" href="{{route('admin.admins.index')}}">

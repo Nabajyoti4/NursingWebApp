@@ -222,6 +222,7 @@ class AdminPatientController extends Controller
     public function approve(Patient $patient)
     {
         $patient->status=1;
+
         $patient->save();
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
