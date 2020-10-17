@@ -196,12 +196,12 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::delete('admin/role/delete/{id}', 'AdminController\RoleController@delete')->name('admin.role.delete');
 
     //state
-    Route::get('admin/state', 'AdminController\StateController@index')->name('admin.state.index');
-    Route::get('admin/state/create', 'AdminController\StateController@create')->name('admin.state.create');
-    Route::post('admin/state/store', 'AdminController\StateController@store')->name('admin.state.store');
-    Route::get('admin/state/edit/{id}', 'AdminController\StateController@edit')->name('admin.state.edit');
-    Route::patch('admin/state/update/{id}', 'AdminController\StateController@update')->name('admin.state.update');
-    Route::delete('admin/state/delete/{id}', 'AdminController\StateController@delete')->name('admin.state.delete');
+    Route::get('admin/city', 'AdminController\AdminCityController@index')->name('admin.city.index');
+    Route::get('admin/city/create', 'AdminController\AdminCityController@create')->name('admin.city.create');
+    Route::post('admin/city/store', 'AdminController\AdminCityController@store')->name('admin.city.store');
+    Route::get('admin/city/edit/{id}', 'AdminController\AdminCityController@edit')->name('admin.city.edit');
+    Route::patch('admin/city/update/{id}', 'AdminController\AdminCityController@update')->name('admin.city.update');
+    Route::delete('admin/city/delete/{id}', 'AdminController\AdminCityController@delete')->name('admin.city.delete');
 
 });
 

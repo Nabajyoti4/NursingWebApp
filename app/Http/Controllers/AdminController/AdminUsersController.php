@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Address;
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Photo;
+use App\Role;
+use App\State;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,27 +29,21 @@ class AdminUsersController extends Controller
          * else return all users from db
          */
         $search = request()->get('searchUser');
-
+        $roles = Role::all();
 
 
         if ($search){
             $users = User::where("name","LIKE","%{$search}%")->get();
 
+
         }
         else{
             $users = User::where('role', 'user')->latest()->get();
-//            $users = array();
-//
-//            foreach ($usersAll as $user) {
-//                if (($user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
-//                    array_push($users, $user);
-//                }
-//            }
 
         }
 
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users','roles'));
     }
 
     /**
@@ -93,7 +90,8 @@ class AdminUsersController extends Controller
         //
 
         $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        $cities = City::all();
+        return view('admin.users.edit', compact('user', 'cities'));
     }
 
     /**
@@ -206,7 +204,7 @@ class AdminUsersController extends Controller
         $user->update($data);
 
 
-        return redirect(route('admin.users.index'));
+        return redirect()->back()->with('success', 'User updated');
 
     }
 

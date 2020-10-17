@@ -16,7 +16,7 @@
     @endif
 
     <div class="d-sm-inline-block justify-content-end">
-        <a class="btn btn-primary" href="{{route('admin.state.create')}}">
+        <a class="btn btn-primary" href="{{route('admin.city.create')}}">
             create
             <i class="fa fa-user-plus" aria-hidden="true"></i>
         </a>
@@ -41,15 +41,15 @@
                     </thead>
                     <tbody>
 
-                    @forelse($states as $state)
+                    @forelse($cities as $city)
                         <tr>
-                            <td>{{$state->id}}</td>
-                            <td>{{$state->state}}</td>
+                            <td>{{$city->id}}</td>
+                            <td>{{$city->city}}</td>
                             <td><a class="btn btn-primary small"
-                                   href="{{route('admin.state.edit',$state->id)}}">Edit</a>
+                                   href="{{route('admin.city.edit',$city->id)}}">Edit</a>
                             </td>
                             <td>
-                                <form action="{{route('admin.state.delete', $state->id)}}" method="POST">
+                                <form action="{{route('admin.city.delete', $city->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"  class="btn btn-danger">Delete</button>

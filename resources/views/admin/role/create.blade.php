@@ -39,7 +39,7 @@
             @csrf
             <div class="form-group font-weight-bold">
                 <label for="name">Role:</label>
-                <input type="text" class="form-control" name="role" value="{{old('role')}}" placeholder="Enter Role">
+                <input type="text" required class="form-control" name="role" value="{{old('role')}}" placeholder="Enter Role">
             </div>
 
             <button class="btn btn-primary" type="submit">Create</button>

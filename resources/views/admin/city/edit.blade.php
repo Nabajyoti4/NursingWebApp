@@ -17,14 +17,15 @@
 
     <div class="container emp-profile mt-3">
         @include('partials.errors')
-        <form action="{{ route('admin.state.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.city.update', $state->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('patch')
             <div class="form-group font-weight-bold">
-                <label for="state">District:</label>
-                <input type="text" required class="form-control" name="state" value="{{old('state')}}" placeholder="Enter District">
+                <label for="city">District:</label>
+                <input type="text" required class="form-control" name="city" value="{{$state->city}}" placeholder="Enter district">
             </div>
 
-            <button class="btn btn-primary" type="submit">Create</button>
+            <button class="btn btn-primary" type="submit">Edit</button>
 
         </form>
     </div>
