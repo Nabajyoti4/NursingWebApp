@@ -32,38 +32,55 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>User ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>City</th>
                         <th>Phone No</th>
-                        <th>Created at</th>
                         <th>Edit</th>
                         @if(Auth::user()->role == 'super')
-                        <th>Make Admin</th>
+                        <th>Role</th>
+                        <th>Employee</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody id="data">
                     @forelse($users as $user)
                         <tr>
-                            <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>{{$user->addresses()->first()->city ?? "No city"}}</td>
                             <td>{{$user->phone_no}}</td>
-                            <td>{{$user->created_at}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
                                     </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
                             </td>
+                            @if(Auth::user()->role == 'super')
                             <td>
-                                @if(Auth::user()->role == 'super')
+
                                 @if($user->permanent_address_id > 0)
                                     <a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
                                     </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
                                 @else
-                                    No Address Feild
+                                    No Address
                                 @endif
-                                @endif
+
                             </td>
+                                <td>
+                                    @if($user->permanent_address_id > 0)
+                                        <form action="">
+                                            @csrf
+                                            <select id="cars" name="cars">
+                                                <option value="volvo">Volvo</option>
+                                                <option value="saab">Saab</option>
+                                                <option value="fiat">Fiat</option>
+                                                <option value="audi">Audi</option>
+                                            </select>
+                                        </form>
+                                    @else
+                                        No Address
+                                    @endif
+
+                                </td>
+                            @endif
 
                         </tr>
                     @empty

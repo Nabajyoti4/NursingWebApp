@@ -32,6 +32,16 @@
 @endsection
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <div class="py-3">
         <h6 class="m-0 font-weight-bold text-primary">Updating User</h6>
     </div>
@@ -72,8 +82,16 @@
                                value="{{$user->addresses->first() ? $user->addresses->first()->landmark : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_city" placeholder="city"
-                               value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
+                        <select class="form-control" name="permanent_city">
+                            @if($user->addresses->first())
+                                <option selected disabled value="{{$user->addresses->first()->city}}">{{$user->addresses->first()->city}}</option>
+                            @else
+                                <option value="">Select City</option>
+                            @endif
+                            @foreach($cities as $city)
+                            <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_state" placeholder="State"
@@ -110,8 +128,16 @@
                                value="{{$user->addresses->last() ? $user->addresses->last()->landmark : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_city" placeholder="City"
-                               value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
+                        <select class="form-control" name="current_city">
+                            @if($user->addresses->last())
+                                <option selected disabled value="{{$user->addresses->last()->city}}">{{$user->addresses->last()->city}}</option>
+                            @else
+                                <option value="">Select City</option>
+                            @endif
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_state" placeholder="State"

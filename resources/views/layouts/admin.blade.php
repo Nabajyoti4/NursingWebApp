@@ -91,7 +91,7 @@
                       <div class="collapse-divider"></div>
                     <a class="collapse-item" href="{{route('admin.role.index')}}">Role</a>
                       <div class="collapse-divider"></div>
-                    <a class="collapse-item" href="{{route('admin.state.index')}}">State</a>
+                    <a class="collapse-item" href="{{route('admin.city.index')}}">City</a>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
