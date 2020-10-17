@@ -15,7 +15,7 @@ class AdminEmployeeController extends Controller
      */
     public function index()
     {
-        
+
         $employees = Employee::latest()->paginate();
         return view('employees.index', compact('employees'));
     }
