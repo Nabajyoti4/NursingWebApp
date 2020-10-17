@@ -15,6 +15,7 @@ class AdminEmployeeController extends Controller
      */
     public function index()
     {
+        
         $employees = Employee::latest()->paginate();
         return view('employees.index', compact('employees'));
     }
@@ -51,7 +52,7 @@ class AdminEmployeeController extends Controller
         Employee::create(['user_id' => $user_id,
             'employee_id' => $emp_id
         ]);
-        
+
         $employees = Employee::latest()->paginate();
         return redirect()
             ->route('admin.employee.index', compact('employees'))
