@@ -81,4 +81,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Booking::class);
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function employee(){
+        return $this->hasOne(Employee::class);
+    }
+
 }

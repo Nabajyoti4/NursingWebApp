@@ -203,6 +203,17 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::patch('admin/state/update/{id}', 'AdminController\StateController@update')->name('admin.state.update');
     Route::delete('admin/state/delete/{id}', 'AdminController\StateController@delete')->name('admin.state.delete');
 
+    //employees
+    Route::resource('admin/employee','AdminController\AdminEmployeeController', ['names' =>[
+        'index'=>'admin.employee.index',
+        'create'=>'admin.employee.create',
+        'store'=>'admin.employee.store',
+        'edit'=>'admin.employee.edit',
+        'update'=>'admin.employee.update',
+        'show'=>'admin.employee.show',
+        'delete' => 'employee.destroy'
+    ]]);
+
 });
 
 // Admin Routes End

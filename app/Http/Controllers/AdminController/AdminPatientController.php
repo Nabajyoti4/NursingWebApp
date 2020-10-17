@@ -222,9 +222,7 @@ class AdminPatientController extends Controller
     public function approve(Patient $patient)
     {
         $patient->status=1;
-        if($patient->patient_id != null){
-            $patient->patient_id = $patient->patient_id_+1;
-        }
+
         $patient->save();
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
