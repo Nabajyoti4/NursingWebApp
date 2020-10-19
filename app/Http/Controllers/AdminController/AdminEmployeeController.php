@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Employee;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminEmployeeController extends Controller
@@ -16,8 +17,9 @@ class AdminEmployeeController extends Controller
     public function index()
     {
 
+//        $search=User::where('role','');
         $employees = Employee::latest()->paginate();
-        return view('employees.index', compact('employees'));
+        return view('admin.employees.index', compact('employees'));
     }
 
     /**
