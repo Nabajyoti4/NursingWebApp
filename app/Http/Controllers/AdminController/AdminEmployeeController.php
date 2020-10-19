@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\City;
 use App\Employee;
 use App\Http\Controllers\Controller;
+use App\Role;
 use Illuminate\Http\Request;
 
 class AdminEmployeeController extends Controller
@@ -16,7 +18,20 @@ class AdminEmployeeController extends Controller
     public function index()
     {
         $employees = Employee::latest()->paginate();
-        return view('employees.index', compact('employees'));
+        $roles = Role::all();
+        $cities = City::all();
+        return view('admin.employees.index', compact('employees', 'roles', 'cities'));
+    }
+
+
+    public function filter(Request $request){
+        $data = $request->only('city', 'role');
+        $employees = Employee::where('role', $data['role'])
+            ->where('city', $data['city'])
+            ->get();
+        $roles = Role::all();
+        $cities = City::all();
+        return view('admin.employees.index', compact('employees', 'roles', 'cities'));
     }
 
     /**
@@ -51,7 +66,7 @@ class AdminEmployeeController extends Controller
         Employee::create(['user_id' => $user_id,
             'employee_id' => $emp_id
         ]);
-        
+
         $employees = Employee::latest()->paginate();
         return redirect()
             ->route('admin.employee.index', compact('employees'))

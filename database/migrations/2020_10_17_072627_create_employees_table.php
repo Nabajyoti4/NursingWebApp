@@ -17,7 +17,9 @@ class CreateEmployeesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('employee_id')->unique()->index();
-            $table->string('is_active');
+            $table->unsignedBigInteger('role')->index();
+            $table->string('city');
+            $table->string('is_active')->default(0);
             $table->timestamps();
         });
     }

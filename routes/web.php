@@ -214,6 +214,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'delete' => 'employee.destroy'
     ]]);
 
+    Route::post('admin/employee/filter', 'AdminController\AdminEmployeeController@filter')->name('admin.employee.filter');
+
 });
 
 // Admin Routes End

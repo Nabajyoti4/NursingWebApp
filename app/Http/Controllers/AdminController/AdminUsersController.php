@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Address;
 use App\City;
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Photo;
@@ -146,6 +147,22 @@ class AdminUsersController extends Controller
                 'post_office' => $data['current_post']
             ]);
 
+            if($user->role == 'user'){
+                if (Employee::all()->last()) {
+                    $last = Employee::all()->last();
+                    $emp_id = 'E' . (1001 + $last->id);
+                } else {
+                    $emp_id = 'E' . (1001);
+                }
+                // create the new employee record
+                Employee::create(['user_id' => $user->id,
+                    'employee_id' => $emp_id,
+                    'role' => $data['role'],
+                    'city' => $data['current_city']
+                ]);
+            }
+
+
             $user['role'] = $data['role'];
             $user->save();
 
@@ -179,6 +196,23 @@ class AdminUsersController extends Controller
             // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;
             $user['permanent_address_id'] = $permanent_address->id;
+
+
+            if($user->role == 'user') {
+                if (Employee::all()->last()) {
+                    $last = Employee::all()->last();
+                    $emp_id = 'E' . (1001 + $last->id);
+                } else {
+                    $emp_id = 'E' . (1001);
+                }
+                // create the new employee record
+                Employee::create(['user_id' => $user->id,
+                    'employee_id' => $emp_id,
+                    'role' => $data['role'],
+                    'city' => $data['current_city']
+                ]);
+            }
+
             $user['role'] = $data['role'];
 
             $user->save();
@@ -206,7 +240,7 @@ class AdminUsersController extends Controller
 
 
 
-        return redirect()->back()->with('success', 'User updated');
+        return redirect()->route('admin.employee.index')->with('success', 'User updated');
 
     }
 

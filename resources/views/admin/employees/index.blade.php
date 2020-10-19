@@ -26,7 +26,28 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+            <hr>
+            <form action="{{route('admin.employee.filter')}}" method="POST">
+                @csrf
+                <label class="form-group font-weight-bold"> Role
+                    <select class="form-control" name="role">
+                    @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{$role->role}}</option>
+                    @endforeach
+                    </select>
+                </label>
+                <label class="form-group font-weight-bold"> City
+                    <select class="form-control" name="city">
+                        @foreach($cities as $city)
+                            <option value="{{$city->city}}">{{$city->city}}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <label>
+                    <button class="btn btn-primary" type="submit">Filter</button>
+                </label>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -36,8 +57,9 @@
                         <th>Employee ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>City</th>
                         <th>Phone No</th>
-
+                        <th>Role</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -45,7 +67,10 @@
                         <tr>
                             <td>{{$employee->employee_id}}</td>
                             <td>{{$employee->user->name}}</td>
+                            <td>{{$employee->user->email}}</td>
+                            <td>{{$employee->city}}</td>
                             <td>{{$employee->user->phone_no}}</td>
+                            <td>{{$employee->role($employee->role)}}</td>
                         </tr>
                     @empty
                         <tr>
@@ -59,10 +84,3 @@
     </div>
 @endsection
 
-@section('script')
-    <script type="text/javascript">
-        setInterval(function () {
-            $("#data").load(location.href + " #data>*", "");
-        }, 10000);
-    </script>
-@endsection

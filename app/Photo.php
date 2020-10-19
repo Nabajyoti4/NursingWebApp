@@ -11,7 +11,7 @@ class Photo extends Model
 
     /**
      * Every photo belongs to a user
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user(){
         return $this->hasOne(User::class);

@@ -11,7 +11,7 @@ class Employee extends Model
      *
      * @var array
      */
-    protected $fillable = ['employee_id',
+    protected $fillable = ['user_id','employee_id','role', 'city',
         'is_active',
     ];
     /**
@@ -19,5 +19,14 @@ class Employee extends Model
      */
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function role($id){
+        return Role::where('id', $id)->get()->first()->role;
     }
 }
