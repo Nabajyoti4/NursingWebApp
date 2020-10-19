@@ -29,7 +29,8 @@ class AdminUsersController extends Controller
          * else return all users from db
          */
         $search = request()->get('searchUser');
-        $roles = Role::all();
+
+
 
 
         if ($search){
@@ -43,7 +44,7 @@ class AdminUsersController extends Controller
         }
 
 
-        return view('admin.users.index', compact('users','roles'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -83,7 +84,7 @@ class AdminUsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response|
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -91,7 +92,8 @@ class AdminUsersController extends Controller
 
         $user = User::findOrFail($id);
         $cities = City::all();
-        return view('admin.users.edit', compact('user', 'cities'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'cities', 'roles'));
     }
 
     /**
@@ -99,24 +101,25 @@ class AdminUsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileRequest $request, $id)
     {
         //
-        $data = $request->only(['name','phone_no', 'image','current_city',
+        $data = $request->only(['name','role','phone_no', 'image','current_city',
             'current_landmark','current_street','current_post','current_country',
             'current_pincode','current_police','current_state','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
             'permanent_pincode','permanent_police','permanent_state']);
 
-        $user = User::findOrfail($id);
+
+        $user = User::findOrFail($id);
 
         /**
          * check if user have a current and permanent address
          */
         if($user->permanent_address_id){
-            $permanent_address = Address::findOrfail($user->permanent_address_id);
+            $permanent_address = Address::findOrFail($user->permanent_address_id);
 
             $permanent_address->update(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
@@ -130,7 +133,7 @@ class AdminUsersController extends Controller
 
             ]);
 
-            $current_address = Address::findOrfail($user->current_address_id);
+            $current_address = Address::findOrFail($user->current_address_id);
 
             $current_address->update(['user_id' => $user->id,
                 'city' => $data['current_city'],
@@ -141,8 +144,11 @@ class AdminUsersController extends Controller
                 'street' => $data['current_street'],
                 'police_station' => $data['current_police'],
                 'post_office' => $data['current_post']
-
             ]);
+
+            $user['role'] = $data['role'];
+            $user->save();
+
 
 
         }else{
@@ -156,7 +162,6 @@ class AdminUsersController extends Controller
                 'street' => $data['current_street'],
                 'police_station' => $data['current_police'],
                 'post_office' => $data['current_post']
-
             ]);
 
             $permanent_address = Address::create(['user_id' => $user->id,
@@ -171,14 +176,12 @@ class AdminUsersController extends Controller
 
             ]);
 
-
-
-
-
-
             // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;
             $user['permanent_address_id'] = $permanent_address->id;
+            $user['role'] = $data['role'];
+
+            $user->save();
         }
 
 
@@ -195,13 +198,12 @@ class AdminUsersController extends Controller
             } else {
                 $photo = Photo::create(['photo_location' => $image]);
                 $user['photo_id'] = $photo->id;
+                $user->save();
 
             }
         }
 
 
-
-        $user->update($data);
 
 
         return redirect()->back()->with('success', 'User updated');
@@ -219,6 +221,10 @@ class AdminUsersController extends Controller
         //
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function make_admin($id){
         $user = User::findOrFail($id);
 
@@ -228,4 +234,5 @@ class AdminUsersController extends Controller
 
         return redirect()->back()->with('success', 'Admin role assigned to user');
     }
+
 }

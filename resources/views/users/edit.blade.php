@@ -32,6 +32,9 @@
             border: 2px solid #75b3e2;
             margin-top: 2rem;
         }
+        .required {
+            color: red;
+        }
     </style>
 @endsection
 @section('content')
@@ -82,7 +85,7 @@
                             Please insert the Current Address Correctly As this address will be used in Booking
                             purposes</h4></div>
                     <div class="borderdiv">
-                        <label class="header font-weight-bold bg-light">Current Address</label>
+                        <label class="header font-weight-bold bg-light">Current Address<span class="required">*</span></label>
                         <div class="row">
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_street') is-invalid @enderror" name="current_street" placeholder="Street name"
@@ -102,8 +105,16 @@
                                 @enderror
                             </div>
                             <div class="col-lg-4 p-2">
-                                <input type="text" class="form-control @error('current_city') is-invalid @enderror" name="current_city" placeholder="City"
-                                       value="{{$user->addresses->first() ? $user->addresses->first()->city : ""}}">
+                                <select class="form-control @error('current_city') is-invalid @enderror" name="current_city" >
+                                    @if($user->addresses->last())
+                                        <option selected value="{{$user->addresses->last()->city}}">{{$user->addresses->last()->city}}</option>
+                                    @else
+                                        <option value="">Select City</option>
+                                    @endif
+                                    @foreach($cities as $city)
+                                        <option value="{{$city->city}}">{{$city->city}}</option>
+                                    @endforeach
+                                </select>
                                 @error('current_city')
                                 <div class="invalid-feedback mt-2 alert-danger" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>
@@ -160,7 +171,7 @@
                     </div>
 
                     <div class="borderdiv">
-                        <label class="header font-weight-bold bg-light">Permanent Address</label>
+                        <label class="header font-weight-bold bg-light">Permanent Address<span class="required">*</span></label>
                         <div class="row">
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_street') is-invalid @enderror" name="permanent_street"
@@ -182,8 +193,16 @@
                                 @enderror
                             </div>
                             <div class="col-lg-4 p-2">
-                                <input type="text" class="form-control @error('permanent_city') is-invalid @enderror" name="permanent_city" placeholder="city"
-                                       value="{{$user->addresses->last() ? $user->addresses->last()->city : ""}}">
+                                <select class="form-control @error('permanent_city') is-invalid @enderror" name="permanent_city">
+                                    @if($user->addresses->first())
+                                        <option selected value="{{$user->addresses->first()->city}}">{{$user->addresses->first()->city}}</option>
+                                    @else
+                                        <option value="">Select City</option>
+                                    @endif
+                                    @foreach($cities as $city)
+                                        <option value="{{$city->city}}">{{$city->city}}</option>
+                                    @endforeach
+                                </select>
                                 @error('permanent_city')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -239,7 +258,9 @@
                         </div>
                     </div>
                     <br>
-                    <button class="btn profile-edit-btn" type="submit">Update</button>
+                    <div class="text-center">
+                    <button class="btn profile-edit-btn w-25" type="submit">Update</button>
+                    </div>
 
                 </form>
             </div>

@@ -110,7 +110,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row border p-2 mt-2 rounded">
                     <div class="col-md-12 p-5">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <!--user tab-->
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Current Address</label>
+                                        <label>Current City</label>
                                     </div>
                                     <div class="col-md-6">
                                         <p>{{$user->addresses->first() ? $user->addresses->first()->city : "Fill the Current Address"}}</p>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Permanent Address</label>
+                                        <label>Permanent City</label>
                                     </div>
                                     <div class="col-md-6">
                                         <p>{{$user->addresses->last() ? $user->addresses->last()->city : "Fill the Permanent Address"}}</p>

@@ -57,16 +57,32 @@
                        value="{{$user->name}}">
             </div>
 
+
+            <div class="form-group font-weight-bold">
+                <label for="name">Employee Role:</label>
+                <select class="form-control" name="role">
+                    <option>Select Role</option>
+                    @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{$role->role}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group font-weight-bold">
                 <label for="phone_no">Phone Number:</label>
                 <input type="number" class="form-control" name="phone_no" placeholder="Enter Phone number"
                        value="{{$user->phone_no}}">
             </div>
 
+            <div >
+                <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'http://placehold.it/64x64'}}" width="20%" height="30%" />
+            </div>
+
+
 
             <div class="form-group font-weight-bold">
-                <label for="image">Upload Profile Pic: </label>
                 <input type="file" class="form-control" name="image">
+                <label for="image">Upload Profile Pic: </label>
             </div>
 
 
@@ -84,7 +100,7 @@
                     <div class="col-lg-4 p-2">
                         <select class="form-control" name="permanent_city">
                             @if($user->addresses->first())
-                                <option selected disabled value="{{$user->addresses->first()->city}}">{{$user->addresses->first()->city}}</option>
+                                <option selected value="{{$user->addresses->first()->city}}">{{$user->addresses->first()->city}}</option>
                             @else
                                 <option value="">Select City</option>
                             @endif
@@ -130,7 +146,7 @@
                     <div class="col-lg-4 p-2">
                         <select class="form-control" name="current_city">
                             @if($user->addresses->last())
-                                <option selected disabled value="{{$user->addresses->last()->city}}">{{$user->addresses->last()->city}}</option>
+                                <option selected value="{{$user->addresses->last()->city}}">{{$user->addresses->last()->city}}</option>
                             @else
                                 <option value="">Select City</option>
                             @endif
@@ -162,7 +178,9 @@
                 </div>
             </div>
             <br>
+            <div class="text-center">
             <button class="btn btn-primary" type="submit">Update</button>
+            </div>
 
         </form>
     </div>

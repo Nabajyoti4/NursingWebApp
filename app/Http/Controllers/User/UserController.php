@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Address;
 use App\Attendance;
 use App\Booking;
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Patient;
@@ -20,7 +21,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
@@ -69,13 +70,14 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
         //
         $user = User::findOrFail(Auth::user()->id);
-        return view('users.edit', compact('user'));
+        $cities = City::all();
+        return view('users.edit', compact('user', 'cities'));
     }
 
     /**
@@ -83,7 +85,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(UpdateProfileRequest $request, $id)
     {
@@ -100,7 +102,7 @@ class UserController extends Controller
          * check if user have a current and permanent address
          */
         if($user->permanent_address_id){
-            $permanent_address = Address::findOrfail($user->permanent_address_id);
+            $permanent_address = Address::findOrFail($user->permanent_address_id);
 
             $permanent_address->update(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
@@ -113,7 +115,7 @@ class UserController extends Controller
                 'post_office' => $data['permanent_post']
             ]);
 
-            $current_address = Address::findOrfail($user->current_address_id);
+            $current_address = Address::findOrFail($user->current_address_id);
             $current_address->update(['user_id' => $user->id,
                 'city' => $data['current_city'],
                 'state' => $data['current_state'],
@@ -125,6 +127,7 @@ class UserController extends Controller
                 'post_office' => $data['current_post']
 
             ]);
+
 
 
         }else{
@@ -156,6 +159,8 @@ class UserController extends Controller
             // get the currently created addresses id and store in user model
             $user['current_address_id'] = $current_address->id;
             $user['permanent_address_id'] = $permanent_address->id;
+
+            $user->save();
         }
 
 
@@ -172,13 +177,14 @@ class UserController extends Controller
             } else {
                 $photo = Photo::create(['photo_location' => $image]);
                 $user['photo_id'] = $photo->id;
+                $user->save();
 
             }
         }
 
 
 
-        $user->update($data);
+
 
         if ($user->role === "nurse"){
             return redirect(route('nurse.index'))->with('success','Details Updated successfully!');

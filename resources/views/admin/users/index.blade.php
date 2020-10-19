@@ -39,7 +39,6 @@
                         <th>Edit</th>
                         @if(Auth::user()->role == 'super')
                         <th>Role</th>
-                        <th>Employee</th>
                         @endif
                     </tr>
                     </thead>
@@ -64,22 +63,6 @@
                                 @endif
 
                             </td>
-                                <td>
-                                    @if($user->permanent_address_id > 0)
-                                        <form action="">
-                                            @csrf
-                                            <select id="cars" name="cars">
-                                                <option value="volvo">Volvo</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="fiat">Fiat</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
-                                        </form>
-                                    @else
-                                        No Address
-                                    @endif
-
-                                </td>
                             @endif
 
                         </tr>
