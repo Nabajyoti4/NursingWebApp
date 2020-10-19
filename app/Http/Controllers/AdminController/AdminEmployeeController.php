@@ -6,6 +6,7 @@ use App\City;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminEmployeeController extends Controller
