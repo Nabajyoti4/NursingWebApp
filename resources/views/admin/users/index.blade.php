@@ -54,14 +54,12 @@
                             </td>
                             @if(Auth::user()->role == 'super')
                             <td>
-
                                 @if($user->permanent_address_id > 0)
                                     <a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
                                     </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
                                 @else
                                     No Address
                                 @endif
-
                             </td>
                             @endif
 

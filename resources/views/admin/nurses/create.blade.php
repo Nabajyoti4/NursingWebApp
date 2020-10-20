@@ -51,7 +51,7 @@
 
           <div class="form-group font-weight-bold">
              <label for="age">Age</label>
-             <input type="number" class="form-control" name="age"  placeholder="Enter Age">
+             <input required type="number" class="form-control" name="age"  placeholder="Enter Age">
          </div>
 
          <div >
