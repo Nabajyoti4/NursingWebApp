@@ -29,4 +29,28 @@ class Employee extends Model
     public function role($id){
         return Role::where('id', $id)->get()->first()->role;
     }
+
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function filter($data){
+        if($data['city'] == null && $data['role'] == null){
+            $employees = Employee::latest()->paginate();
+        }
+        elseif($data['role'] == null){
+            $employees = Employee::where('city', $data['city'])
+                ->get();
+        }elseif ($data['city'] == null){
+            $employees = Employee::where('role', $data['role'])
+                ->get();
+        }else{
+            $employees = Employee::where('role', $data['role'])
+                ->where('city', $data['city'])
+                ->get();
+        }
+
+        return $employees;
+    }
 }

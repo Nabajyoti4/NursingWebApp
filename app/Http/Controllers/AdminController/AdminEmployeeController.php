@@ -25,11 +25,16 @@ class AdminEmployeeController extends Controller
     }
 
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function filter(Request $request){
         $data = $request->only('city', 'role');
-        $employees = Employee::where('role', $data['role'])
-            ->where('city', $data['city'])
-            ->get();
+
+        $employees = (new \App\Employee)->filter($data);
+
         $roles = Role::all();
         $cities = City::all();
         return view('admin.employees.index', compact('employees', 'roles', 'cities'));

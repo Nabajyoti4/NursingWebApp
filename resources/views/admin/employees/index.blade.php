@@ -32,6 +32,7 @@
                 @csrf
                 <label class="form-group font-weight-bold"> Role
                     <select class="form-control" name="role">
+                        <option value="">Select Role</option>
                     @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->role}}</option>
                     @endforeach
@@ -39,6 +40,7 @@
                 </label>
                 <label class="form-group font-weight-bold"> City
                     <select class="form-control" name="city">
+                        <option value="">Select City</option>
                         @foreach($cities as $city)
                             <option value="{{$city->city}}">{{$city->city}}</option>
                         @endforeach
@@ -74,7 +76,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">No Employee found</td>
+                            <td colspan="6">No Search found <a class="btn btn-primary" href="{{route('admin.employee.index')}}">Show All</a></td>
                         </tr>
                     @endforelse
                     </tbody>
