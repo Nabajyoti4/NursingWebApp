@@ -76,7 +76,7 @@
                     <div class="col-md-4" >
                         <div class="profile-img">
                             <img src="{{ $user->photo?asset("/storage/".$user->photo->photo_location) :'No Photo'}}"
-                                 alt=""  style="width: 300px; height: 300px; object-fit: cover;"/>
+                                 alt=""  style="width: 280px; height: 300px; object-fit: cover;"/>
                         </div>
                     </div>
                     <div class="col-md-6 align-items-center">

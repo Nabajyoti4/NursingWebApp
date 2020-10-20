@@ -79,6 +79,8 @@
                         width="250px"
                         alt="avatar">
                     <div class="pt-5">
+                        <h3><strong>{{$nurse->employee_id}}</strong></h3>
+                        <hr>
                         <h3>{{$user->name}}</h3>
                         <hr>
                         <h4><i class="fas fa-mobile-alt"></i> {{$user->phone_no}}</h4>
@@ -109,19 +111,15 @@
                         {{--info tab--}}
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="borderdiv">
-                                <h5 class="header font-weight-bold bg-light">Qualification</h5>
+                                <h5 class="header font-weight-bold bg-light">Identification</h5>
                                 <div>
-                                    <h5>HSLC</h5>
+                                    <h5><a target="_blank" href="{{asset('/storage/'.$nurse->qualification->identification)}}">Voter/Pan Card</a></h5>
                                 </div>
                                 <hr>
                                 <div>
-                                    <h5>HS</h5>
+                                    <h5><a target="_blank" href="{{asset('/storage/'.$nurse->qualification->address)}}">Adhar/License</a></h5>
                                 </div>
                                 <hr>
-                                <div>
-                                    <h5>NURSING</h5>
-                                </div>
-
                             </div>
                             <div class="borderdiv">
                                 <h5 class="header font-weight-bold bg-light">Current Address</h5>
@@ -271,5 +269,6 @@
             </div>
         </div>
     </div>
+
 @endsection
 
