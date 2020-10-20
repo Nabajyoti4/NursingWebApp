@@ -31,6 +31,7 @@ class RoleController extends Controller
      */
     public function store(Request $request){
         $data = $request->only('role');
+        $data['role']=strtolower($data['role']);
         Role::create($data);
         return redirect()->route('admin.role.index')->with('success', 'Role Created');
     }

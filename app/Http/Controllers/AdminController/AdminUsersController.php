@@ -94,7 +94,10 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
         $cities = City::all();
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'cities', 'roles'));
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
+
+        return view('admin.users.edit', compact('user', 'cities', 'roles','permanent_add','current_add'));
     }
 
     /**
