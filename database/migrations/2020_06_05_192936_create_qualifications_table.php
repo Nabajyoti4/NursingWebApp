@@ -15,12 +15,8 @@ class CreateQualificationsTable extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('pan_card');
-            $table->string('adhar_card');
-            $table->string('voter_card');
-            $table->string('license_card');
-            $table->string('qualification');
-            $table->string('other_qualification');
+            $table->string('identification')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
