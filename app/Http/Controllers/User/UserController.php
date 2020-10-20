@@ -77,7 +77,9 @@ class UserController extends Controller
         //
         $user = User::findOrFail(Auth::user()->id);
         $cities = City::all();
-        return view('users.edit', compact('user', 'cities'));
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
+        return view('users.edit', compact('user', 'cities','permanent_add','current_add'));
     }
 
     /**
