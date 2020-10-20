@@ -6,18 +6,19 @@
 @section('content')
 
     <!-- Search -->
-        <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.users.index')}}" method="GET">
-            @csrf
-            <div class="input-group">
-                <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
-                       aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+          action="{{route('admin.users.index')}}" method="GET">
+        @csrf
+        <div class="input-group">
+            <input type="text" class="form-control border-2 small" name="searchUser" placeholder="Search for..."
+                   aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
             </div>
-        </form>
+        </div>
+    </form>
 
 
     <hr>
@@ -38,7 +39,7 @@
                         <th>Phone No</th>
                         <th>Edit</th>
                         @if(Auth::user()->role == 'super')
-                        <th>Role</th>
+                            <th>Role</th>
                         @endif
                     </tr>
                     </thead>
@@ -50,17 +51,39 @@
                             <td>{{$user->addresses()->first()->city ?? "No city"}}</td>
                             <td>{{$user->phone_no}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
-                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
                             </td>
                             @if(Auth::user()->role == 'super')
-                            <td>
-                                @if($user->permanent_address_id > 0)
-                                    <a class="btn btn-primary small" href="{{route('admin.users.admin',$user->id)}}">Make Admin
-                                    </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
-                                @else
-                                    No Address
-                                @endif
-                            </td>
+                                <td>
+                                    @if($user->permanent_address_id > 0)
+                                        <a class="btn btn-primary small text-white" onclick="confirmAdmin{{$user->id}}()">Make
+                                            Admin
+                                            <script>
+                                                function confirmAdmin{{$user->id}}() {
+                                                    Swal.fire({
+                                                        title: 'Are you sure?',
+                                                        text: "You won't be able to revert this!",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Yes, Make Admin!'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            Swal.fire({
+                                                                title: "Are you sure?",
+                                                                html: '<a class="btn btn-primary" href="{{route('admin.users.admin',$user->id)}}">Yes</a>',
+                                                                showConfirmButton: false,
+                                                            })
+                                                        }
+                                                    })
+                                                }
+                                            </script>
+                                        </a><i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                    @else
+                                        No Address
+                                    @endif
+                                </td>
                             @endif
 
                         </tr>
@@ -78,8 +101,8 @@
 
 @section('script')
     <script type="text/javascript">
-        setInterval(function() {
-            $("#data").load(location.href+" #data>*","");
+        setInterval(function () {
+            $("#data").load(location.href + " #data>*", "");
         }, 10000);
     </script>
 @endsection
