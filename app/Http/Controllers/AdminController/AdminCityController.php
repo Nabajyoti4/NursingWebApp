@@ -32,6 +32,7 @@ class AdminCityController extends Controller
      */
     public function store(Request $request){
         $data = $request->only('city');
+        $data['city']=strtolower($data['city']);
         City::create($data);
         return redirect()->route('admin.city.index')->with('success', 'District Created');
     }
