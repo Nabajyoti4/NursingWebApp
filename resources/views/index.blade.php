@@ -402,11 +402,21 @@
                         <span class="focus-input100"></span>
                     </div>
 
+                    @auth
+                    @if(Auth::user()->role == 'user')
                     <div class="container-nurserequest-form-btn">
                         <button type="submit" class="btn profile-edit-btn ">
                             Send Request
                         </button>
                     </div>
+                        @else
+                            <div class="container-nurserequest-form-btn">
+                                Employee Are not authorized to Send Request
+                            </div>
+                        @endif
+                        @elseauth
+                        @endauth
+
                 </form>
               <div class="text-center">  <strong>Note: </strong>Please Register and Login to send request</div>
             </div>
