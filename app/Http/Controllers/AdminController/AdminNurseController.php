@@ -73,7 +73,7 @@ class AdminNurseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -99,7 +99,10 @@ class AdminNurseController extends Controller
         $user->update(['role' => 'nurse']);
 
         // reteive the values from request
-        $data = $request->only(['age','pan_image', 'voter_image', 'adhar_image', 'license_image','qualification', 'other_qualification']);
+        $data = $request->only(['age',
+            'pan_image', 'voter_image',
+            'adhar_image', 'license_image',
+            'qualification', 'other_qualification']);
 
         // create a employee id for nurse
         $last = Nurse::all()->last();

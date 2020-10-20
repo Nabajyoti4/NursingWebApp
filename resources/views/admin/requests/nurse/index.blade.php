@@ -71,7 +71,6 @@
                                 <th>Age</th>
                                 <th>Status</th>
                                 <th>Approve</th>
-                                <th>Create</th>
                                 <th>Disapprove</th>
                             </tr>
                             </thead>
@@ -94,26 +93,12 @@
 
                                     </td>
                                     <td>
-
                                         <form action="{{route('nursejoin.approve',$candidate->id)}}" method="post">
                                             @csrf
                                             <button class="btn btn-primary"  type="submit">Approved</button>
                                         </form>
                                     </td>
-                                    <td>
-                                        @if($candidate->Approval == 1)
-                                            @if($candidate->check_role($candidate->id) == 'nurse')
-                                                Nurse Created
-                                            @else
-                                                <form action="{{route('admin.nurse.join',$candidate->user_id)}}" method="GET">
-                                                    @csrf
-                                                    <button class="btn btn-primary"  type="submit">Create</button>
-                                                </form>
-                                            @endif
-                                        @else
-                                            Not Approved
-                                        @endif
-                                    </td>
+
                                     <td>
                                         @if($candidate->Approval == 1)
                                             Nurse Approved

@@ -171,6 +171,10 @@ class NurseJoinRequestController extends Controller
     }
 
 
+    /**
+     * @param NurseJoinRequest $candidate
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function approve(NurseJoinRequest $candidate)
     {
         $candidate->Approval = 1;
@@ -180,9 +184,13 @@ class NurseJoinRequestController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function disapprove(Request $request, $id)
     {
-
 
         $candidate = NurseJoinRequest::findOrFail($id);
         $user = User::findOrFail($candidate->user_id);

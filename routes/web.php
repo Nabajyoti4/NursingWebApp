@@ -240,8 +240,8 @@ Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[
 ]])->middleware('auth');
 
 
-Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve')->name('nursejoin.approve')->middleware('auth');
-Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove')->middleware('auth');
+Route::post('nursejoin/{candidate}/approve', 'NurseJoinRequestController@approve')->name('nursejoin.approve')->middleware('auth', 'admin');
+Route::post('nursejoin/{id}/disapprove', 'NurseJoinRequestController@disapprove')->middleware('auth', 'admin');
 Route::resource('user/service' , 'UserServiceController', ['names' =>[
     'index'=>'user.service.index',
 ]]);
