@@ -382,7 +382,7 @@
                     <div class="wrap-input100">
                         <input class="input100" type="text" name="name" placeholder="Full Name"
                                value="@auth{{Auth::user()->name}}
-                               @elseauth''@endauth" required>
+                               @elseauth''@endauth" required readonly>
                         <span class="focus-input100"></span>
                     </div>
 
@@ -418,7 +418,7 @@
                         @endauth
 
                 </form>
-              <div class="text-center">  <strong>Note: </strong>Please Register and Login to send request</div>
+              <div class="text-center"><strong>Note:</strong>Please Register and Login to send request</div>
             </div>
         </div>
 
