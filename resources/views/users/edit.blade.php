@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_street') is-invalid @enderror" name="current_street" placeholder="Street name"
-                                       value="{{ $current_add->street }}">
+                                       value="{{ $current_add->street ?? ""}}">
                                 @error('current_street')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -97,7 +97,7 @@
                                 @enderror </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_landmark') is-invalid @enderror" name="current_landmark" placeholder="Landmark"
-                                       value="{{$current_add->landmark}}">
+                                       value="{{$current_add->landmark ?? ""}}">
                                 @error('current_landmark')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_state') is-invalid @enderror" name="current_state" placeholder="State"
-                                       value="{{$current_add->state }}">
+                                       value="{{$current_add->state ?? ""}}">
                                 @error('current_state')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_country') is-invalid @enderror" name="current_country" placeholder="Country"
-                                       value="{{$current_add->country}}">
+                                       value="{{$current_add->country ?? ""}}">
                                 @error('current_country')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -142,7 +142,7 @@
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_police') is-invalid @enderror" name="current_police"
                                        placeholder="Police station"
-                                       value="{{$current_add->police_station}}">
+                                       value="{{$current_add->police_station ?? ""}}">
                                 @error('current_police')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_post') is-invalid @enderror" name="current_post" placeholder="Post office"
-                                       value="{{$current_add->post_office}}">
+                                       value="{{$current_add->post_office ?? ""}}">
                                 @error('current_post')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -160,7 +160,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('current_pincode') is-invalid @enderror" name="current_pincode" placeholder="Pin Code"
-                                       value="{{$current_add->pin_code }}">
+                                       value="{{$current_add->pin_code ?? ""}}">
                                 @error('current_pincode')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -176,7 +176,7 @@
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_street') is-invalid @enderror" name="permanent_street"
                                        placeholder="Street name"
-                                       value="{{$permanent_add->street }}">
+                                       value="{{$permanent_add->street ?? ""}}">
                                 @error('permanent_street')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -185,7 +185,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_landmark') is-invalid @enderror" name="permanent_landmark" placeholder="Landmark"
-                                       value="{{$permanent_add->landmark }}">
+                                       value="{{$permanent_add->landmark ?? ""}}">
                                 @error('permanent_landmark')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
@@ -211,7 +211,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_state') is-invalid @enderror" name="permanent_state" placeholder="State"
-                                       value="{{$permanent_add->state}}">
+                                       value="{{$permanent_add->state ?? ""}}">
                                 @error('permanent_state')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>
@@ -220,7 +220,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_country') is-invalid @enderror" name="permanent_country" placeholder="Country"
-                                       value="{{$permanent_add->country}}">
+                                       value="{{$permanent_add->country ?? ""}}">
                                 @error('permanent_country')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>
@@ -230,7 +230,7 @@
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_police') is-invalid @enderror" name="permanent_police"
                                        placeholder="Police station"
-                                       value="{{$permanent_add->police_station }}">
+                                       value="{{$permanent_add->police_station ?? ""}}">
                                 @error('permanent_police')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>
@@ -239,7 +239,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control @error('permanent_post') is-invalid @enderror" name="permanent_post" placeholder="Post office"
-                                       value="{{$permanent_add->post_office}}">
+                                       value="{{$permanent_add->post_office ?? ""}}">
                                 @error('permanent_post')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>
@@ -248,7 +248,7 @@
                             </div>
                             <div class="col-lg-4 p-2">
                                 <input type="text" class="form-control  @error('permanent_pincode') is-invalid @enderror" name="permanent_pincode" placeholder="Pin Code"
-                                       value="{{$permanent_add->pin_code}}">
+                                       value="{{$permanent_add->pin_code ?? ""}}">
                                 @error('permanent_pincode')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger">{{ $message }}</strong>

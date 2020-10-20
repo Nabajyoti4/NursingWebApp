@@ -28,4 +28,8 @@ class NurseJoinRequest extends Model
         return $user->first()->role;
     }
 
+    public function check($id){
+
+    }
+
 }

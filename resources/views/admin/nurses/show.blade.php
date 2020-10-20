@@ -61,11 +61,12 @@
                     src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
                     width="100%" alt="avatar">
                 <div class="pt-5">
+                    <h4><strong>{{$nurse->employee_id}}</strong></h4>
                     <h3>{{$nurse->user->name}}</h3>
                     <hr>
                     <h4><i class="fas fa-mobile-alt"></i> {{$nurse->user->phone_no}}</h4>
                     <hr>
-                    <h4><i class="fas fa-envelope"></i> {{$nurse->user->email}}</h4>
+                    <h4><i class="fas fa-envelope"></i>{{$nurse->user->email}}</h4>
 
                 </div>
                 <br>
@@ -76,26 +77,8 @@
                     </div>
                     <hr>
                     <div>
-                        <h5 class="font">Pan Card</h5>
-                        <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">pan card</a>
-                    </div>
-                    <hr>
-                    <div>
-                        <h5 class="font">Aadhar Card</h5>
-                        <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">Aadhar
-                            card</a>
-                    </div>
-                    <hr>
-                    <div>
-                        <h5 class="font">Voter Card</h5>
-                        <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">Voter
-                            card</a>
-                    </div>
-                    <hr>
-                    <div>
-                        <h5 class="font">License Card</h5>
-                        <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">License
-                            card</a>
+                        <h5 class="font">Voter/Pan Card</h5>
+                        <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">Voter/Pan Card</a>
                     </div>
                 </div>
             </div>
@@ -157,17 +140,12 @@
                         </div>
                     </div>
                     <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Qualification Details</h5>
+                        <h5 class="header font-weight-bold bg-light">Address Proof</h5>
                         <div>
-                            <h5 class="font">Nursing</h5>
-                            <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">pan card</a>
+                            <h5 class="font">Adhar / License</h5>
+                            <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">Adhar / License</a>
                         </div>
                         <hr>
-                        <div>
-                            <h5 class="font">Aadhar Card</h5>
-                            <a class="documentData" href="#pdfLoad" data-toggle="modal" data-target="#pdfLoad">Aadhar
-                                card</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -196,23 +174,11 @@
     <script>
         const doc = document.getElementsByClassName('documentData');
         doc[0].addEventListener('click', function () {
-            PDFObject.embed('{{asset('/storage/'.$nurse->qualification->pan_card)}}', "#pdfLoadData");
+            PDFObject.embed('{{asset('/storage/'.$nurse->qualification->identification)}}', "#pdfLoadData");
             console.log('working');
         });
         doc[1].addEventListener('click',function () {
-        PDFObject.embed('{{asset('/storage/'.$nurse->qualification->adhar_card)}}', "#pdfLoadData");
-        });
-        doc[2].addEventListener('click', function () {
-            PDFObject.embed('{{asset('/storage/'.$nurse->qualification->voter_card)}}', "#pdfLoadData");
-        });
-        doc[3].addEventListener('click',function () {
-        PDFObject.embed('{{asset('/storage/'.$nurse->qualification->license_card)}}', "#pdfLoadData");
-        });
-        doc[4].addEventListener('click',function () {
-            PDFObject.embed('{{asset('/storage/'.$nurse->qualification->qualification)}}', "#pdfLoadData");
-        });
-        doc[5].addEventListener('click',function () {
-            PDFObject.embed('{{asset('/storage/'.$nurse->qualification->other_qualification)}}', "#pdfLoadData");
+        PDFObject.embed('{{asset('/storage/'.$nurse->qualification->address)}}', "#pdfLoadData");
         });
     </script>
 @endsection

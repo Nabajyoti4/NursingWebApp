@@ -61,7 +61,7 @@
                                             <script>
                                                 function confirmAdmin{{$user->id}}() {
                                                     Swal.fire({
-                                                        title: 'Are you sure?',
+                                                        title: '<b>Are you sure? You want to make <h2>{{$user->name}}</h2> Admin</b>',
                                                         text: "You won't be able to revert this!",
                                                         icon: 'warning',
                                                         showCancelButton: true,

@@ -69,6 +69,7 @@
                 <div class="form-group font-weight-bold">
                     <label for="active">Active</label>
                     <select  name="active">
+                        <option value="{{$nurse->is_active == 1 ? 1 : 0}}">{{$nurse->is_active == 1 ? "active" : "On leave"}}</option>
                         <option value="1">active</option>
                         <option value="0">on leave</option>
                     </select>
@@ -87,9 +88,18 @@
                         <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark"
                                value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->landmark : ""}}">
                     </div>
+
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_city" placeholder="city"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->city : ""}}">
+                        <select class="form-control" name="permanent_city">
+                            @if($nurse->user->addresses->first())
+                                <option selected value="{{$nurse->user->addresses->first()->city}}">{{$nurse->user->addresses->first()->city}}</option>
+                            @else
+                                <option value="">Select City</option>
+                            @endif
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="permanent_state" placeholder="State"
@@ -126,8 +136,16 @@
                                value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->landmark : ""}}">
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_city" placeholder="City"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->city : ""}}">
+                        <select class="form-control" name="current_city">
+                            @if($nurse->user->addresses->last())
+                                <option selected value="{{$nurse->user->addresses->last()->city}}">{{$nurse->user->addresses->last()->city}}</option>
+                            @else
+                                <option value="">Select City</option>
+                            @endif
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control" name="current_state" placeholder="State"
@@ -155,29 +173,13 @@
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light text-dark ">Identification And Qualification Details</label>
                 <div class="form-group font-weight-bold">
-                    <label for="pan_image">Pan card: </label>
-                    <input type="file" class="form-control-file" name="pan_image">
-                </div>
-                <div class="form-group font-weight-bold">
-                    <label for="aadhar_image">Aadhar card: </label>
-                    <input type="file" class="form-control-file" name="adhar_image">
-                </div>
-                <div class="form-group font-weight-bold">
-                    <label for="voter_image">Voter ID card: </label>
-                    <input type="file" class="form-control-file" name="voter_image">
+                    <label for="identification">Pan card/Voter Id ( Identification ) </label>
+                    <input type="file" class="form-control-file" name="identification">
                 </div>
 
                 <div class="form-group font-weight-bold">
-                    <label for="license_image">License: </label>
-                    <input type="file" class="form-control-file" name="license_image">
-                </div>
-                <div class="form-group font-weight-bold">
-                    <label for="qualification">Highest Qualification Certificate: </label>
-                    <input type="file" class="form-control-file" name="qualification">
-                </div>
-                <div class="form-group font-weight-bold">
-                    <label for="qualification">Other Qualification Certificate: </label>
-                    <input type="file" class="form-control-file" name="other_qualification">
+                    <label for="address">Aadhar card/ License ( Address Proof )</label>
+                    <input type="file" class="form-control-file" name="address">
                 </div>
             </div>
             <br>

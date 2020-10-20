@@ -138,31 +138,19 @@
 
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light text-dark ">Identification And Qualification Details</label>
+
+
             <div class="form-group font-weight-bold">
-                <label for="pan_image">Pan card: </label>
-                <input type="file" class="form-control-file" name="pan_image">
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="aadhar_image">Aadhar card: </label>
-                <input type="file" class="form-control-file" name="adhar_image">
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="voter_image">Voter ID card: </label>
-                <input type="file" class="form-control-file" name="voter_image">
+                <label for="identification">Pan card/Voter Id ( Identification ) </label>
+                <input type="file" class="form-control-file" name="identification">
             </div>
 
             <div class="form-group font-weight-bold">
-                <label for="license_image">License: </label>
-                <input type="file" class="form-control-file" name="license_image">
+                <label for="address">Aadhar card/ License ( Address Proof )</label>
+                <input type="file" class="form-control-file" name="address">
             </div>
-            <div class="form-group font-weight-bold">
-                <label for="qualification">Highest Qualification Certificate: </label>
-                <input type="file" class="form-control-file" name="qualification">
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="qualification">Other Qualification Certificate: </label>
-                <input type="file" class="form-control-file" name="other_qualification">
-            </div>
+
+
             </div>
 
             <br>

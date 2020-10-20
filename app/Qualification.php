@@ -9,12 +9,8 @@ class Qualification extends Model
     //
 
     protected $fillable = ['nurse_id',
-        'pan_card',
-        'voter_card',
-        'adhar_card',
-        'license_card',
-        'qualification',
-        'other_qualification'];
+        'identification',
+        'address'];
 
 
     /**

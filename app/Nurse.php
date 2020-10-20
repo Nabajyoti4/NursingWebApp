@@ -55,4 +55,23 @@ class Nurse extends Model
 
     }
 
+
+    /**
+     * @param $city
+     * @return array
+     */
+    public function filter($city){
+        $nurses = Nurse::all();
+        $nurseAll = array();
+
+        foreach ($nurses as $nurse){
+          if($nurse->user->addresses->first()->city == $city){
+              array_push($nurseAll, $nurse);
+          }
+        }
+
+        return $nurseAll;
+
+    }
+
 }

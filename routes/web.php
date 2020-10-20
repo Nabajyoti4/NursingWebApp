@@ -57,6 +57,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'show'=>'admin.nurse.show'
     ]]);
 
+    Route::post('admin/nurse/filter', 'AdminController\AdminNurseController@filter')->name('admin.nurse.filter');
+
 
     Route::get('admin/nurse/makePermanent/{id}','AdminController\AdminNurseController@makePermanent')->name('admin.nurse.makePermanent');
 

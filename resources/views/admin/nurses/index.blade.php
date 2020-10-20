@@ -27,19 +27,27 @@
             </div>
         </div>
     </form>
-
-    <div class="d-sm-inline-block justify-content-end">
-        <a class="btn btn-primary" href="{{route('admin.nurse.create')}}">
-            create
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
-        </a>
-    </div>
     <hr>
+
 
     <!-- Nurse table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Nurses</h6>
+            <h3 class="m-0 font-weight-bold text-primary">Nurses</h3>
+            <form action="{{route('admin.nurse.filter')}}" method="POST">
+                @csrf
+                <label class="form-group font-weight-bold">
+                    <select class="form-control" name="city">
+                        <option value="">Select City</option>
+                        @foreach($cities as $city)
+                            <option value="{{$city->city}}">{{$city->city}}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <label>
+                    <button class="btn btn-primary" type="submit">Filter</button>
+                </label>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -49,6 +57,7 @@
                         <th>Employee ID</th>
                         <th>Profile Image</th>
                         <th>Name</th>
+                        <th>City</th>
                         <th>Status</th>
                         <th>Active</th>
                         <th>View Profile</th>
@@ -66,6 +75,7 @@
                                     alt="" width="100" height="100"
                                 /></td>
                             <td>{{$nurse->user->name}}</td>
+                            <td>{{$nurse->user->addresses->first()->city}}</td>
                             <td>@if($nurse->status == 0)
                                     Not Hired
                                 @else
@@ -91,7 +101,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">No users found</td>
+                            <td colspan="6">No users found <a class="btn btn-primary" href="{{route('admin.nurse.index')}}">Show all</a></td>
                         </tr>
                     @endforelse
                     </tbody>

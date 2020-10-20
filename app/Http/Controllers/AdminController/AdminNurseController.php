@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Address;
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Photo;
@@ -26,6 +27,7 @@ class AdminNurseController extends Controller
         //
         $search = request()->get('nurse');
         $admin = Auth::user();
+        $cities = City::all();
 
 
 
@@ -33,18 +35,18 @@ class AdminNurseController extends Controller
             $nurses = Nurse::where("employee_id","LIKE","%{$search}%")->get();
 
             if($admin->role == 'super'){
-                return view('admin.nurses.index', compact('nurses'));
+                return view('admin.nurses.index', compact('nurses', 'cities'));
             }else{
                 if($nurses->isEmpty()){
-                    return view('admin.nurses.index', compact('nurses'));
+                    return view('admin.nurses.index', compact('nurses', 'cities'));
                 }else{
                     $user = User::where('id', $nurses->first()->user_id)->first();
 
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        return view('admin.nurses.index', compact('nurses'));
+                        return view('admin.nurses.index', compact('nurses', 'cities'));
                     }else{
                         $nurses = collect([]);
-                        return view('admin.nurses.index', compact('nurses'));
+                        return view('admin.nurses.index', compact('nurses', 'cities'));
                     }
                 }
             }
@@ -52,7 +54,7 @@ class AdminNurseController extends Controller
         else{
             if($admin->role == 'super'){
                 $nurses = Nurse::all();
-                return view('admin.nurses.index', compact('nurses'));
+                return view('admin.nurses.index', compact('nurses', 'cities'));
             }else{
                 $nurseAll = Nurse::all();
                 $nurses = array();
@@ -62,10 +64,30 @@ class AdminNurseController extends Controller
                         array_push($nurses, $nurse);
                     }
                 }
-                return view('admin.nurses.index', compact('nurses'));
+                return view('admin.nurses.index', compact('nurses', 'cities'));
             }
 
         }
+
+
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filter(Request $request){
+        $data = $request->only('city');
+        $cities = City::all();
+
+        if($data['city'] == null){
+            $nurses = Nurse::all();
+            return view('admin.nurses.index', compact('nurses', 'cities'));
+        }
+
+        $nurses = (new \App\Nurse)->filter($data['city']);
+        return view('admin.nurses.index', compact('nurses', 'cities'));
 
 
     }
@@ -99,10 +121,7 @@ class AdminNurseController extends Controller
         $user->update(['role' => 'nurse']);
 
         // reteive the values from request
-        $data = $request->only(['age',
-            'pan_image', 'voter_image',
-            'adhar_image', 'license_image',
-            'qualification', 'other_qualification']);
+        $data = $request->only(['age','identification', 'address']);
 
         // create a employee id for nurse
         $last = Nurse::all()->last();
@@ -116,21 +135,12 @@ class AdminNurseController extends Controller
         $directoy = (string) Str::uuid();
 
         // store the image in storage
-        $pan = $data['pan_image']->store($directoy, 'public');
-        $voter = $data['voter_image']->store($directoy, 'public');
-        $adhar = $data['adhar_image']->store($directoy, 'public');
-        $license = $data['license_image']->store($directoy, 'public');
-        $qualification= $data['qualification']->store($directoy, 'public');
-        $other_qualification = $data['other_qualification']->store($directoy, 'public');
-
+        $identification = $data['identification']->store($directoy, 'public');
+        $address = $data['address']->store($directoy, 'public');
 
        // create a qualification details record for the new nurse in qualification table
-       $qualification = Qualification::create(['pan_card' => $pan,
-           'voter_card' => $voter,
-           'adhar_card' => $adhar,
-           'license_card' => $license,
-           'qualification' => $qualification,
-           'other_qualification' => $other_qualification]);
+       $qualification = Qualification::create(['identification' => $identification,
+           'address' => $address]);
 
        $nurse_age = $data['age'];
 
@@ -148,10 +158,6 @@ class AdminNurseController extends Controller
        return redirect()
            ->route('admin.nurse.index', compact('nurses'))
            ->with('success','Nurse Created  successfully!');
-
-
-
-
 
     }
 
@@ -177,7 +183,8 @@ class AdminNurseController extends Controller
     {
         //
         $nurse = Nurse::findOrFail($id);
-        return view('admin.nurses.edit', compact('nurse'));
+        $cities = City::all();
+        return view('admin.nurses.edit', compact('nurse', 'cities'));
     }
 
 
@@ -208,7 +215,7 @@ class AdminNurseController extends Controller
             'current_pincode','current_police','current_state','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
             'permanent_pincode','permanent_police','permanent_state',
-            'pan_image', 'voter_image', 'adhar_image', 'license_image','qualification', 'other_qualification']);
+            'identification', 'address']);
 
 
         // find the nurse using the id
@@ -268,58 +275,27 @@ class AdminNurseController extends Controller
 
         // find the qualification details of nurse
         $qualification = Qualification::findOrFail($nurse->qualification_id);
-        $path = $qualification->pan_card;
+        $path = $qualification->identification;
         $directory = explode("/", $path);
 
 
         // now check for documents change
-        if ($request->hasFile('pan_image')) {
+        if ($request->hasFile('identification')) {
                 //find the all document
-                $pan_image = $data['pan_image']->store($directory[0], 'public');
+                $identification = $data['identification']->store($directory[0], 'public');
 
-                Storage::disk('public')->delete($nurse->qualification->pan_card);
-                $qualification->update(['pan_card'=>$pan_image]);
+                Storage::disk('public')->delete($nurse->qualification->identification);
+                $qualification->update(['identification'=>$identification]);
         }
 
-        if ($request->hasFile('voter_image')) {
+        if ($request->hasFile('address')) {
             //find the all document
-            $voter_image = $data['voter_image']->store($directory[0], 'public');
+            $address = $data['address']->store($directory[0], 'public');
 
-            Storage::disk('public')->delete($nurse->qualification->voter_card);
-            $qualification->update(['voter_card'=>$voter_image]);
+            Storage::disk('public')->delete($nurse->qualification->address);
+            $qualification->update(['address'=>$address]);
         }
 
-        if ($request->hasFile('adhar_image')) {
-            //find the all document
-            $adhar_image = $data['adhar_image']->store($directory[0], 'public');
-
-            Storage::disk('public')->delete($nurse->qualification->adhar_card);
-            $qualification->update(['adhar_card'=>$adhar_image]);
-        }
-
-        if ($request->hasFile('license_image')) {
-            //find the all document
-            $license_image = $data['license_image']->store($directory[0], 'public');
-
-            Storage::disk('public')->delete($nurse->qualification->license_card);
-            $qualification->update(['license_card'=>$license_image]);
-        }
-
-        if ($request->hasFile('qualification')) {
-            //find the all document
-            $qual = $data['qualification']->store($directory[0], 'public');
-
-            Storage::disk('public')->delete($nurse->qualification->qualification);
-            $qualification->update(['qualification'=>$qual]);
-        }
-
-        if ($request->hasFile('other_qualification')) {
-            //find the all document
-            $other_qual = $data['other_qualification']->store($directory[0], 'public');
-
-            Storage::disk('public')->delete($nurse->qualification->other_qualification);
-            $qualification->update(['other_qualification'=>$other_qual]);
-        }
 
 
         $user->update(['name' => $data['name'],
@@ -348,6 +324,10 @@ class AdminNurseController extends Controller
         //
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function makePermanent($id){
         Nurse::findOrFail($id)->update(['permanent'=>1]);
         session()->flash('success', 'Nurse is permanent Now!');
