@@ -27,7 +27,12 @@
         .hero {
             max-height: 500px;
         }
-        .align-items-center{-ms-flex-align:center!important;align-items:center!important}
+
+        .align-items-center {
+            -ms-flex-align: center !important;
+            align-items: center !important
+        }
+
         .item-centered {
             justify-content: center;
             align-content: center;
@@ -46,10 +51,11 @@
             <!-- navbar ends -->
 
             <!-- The slideshow -->
-            <div class="carousel-inner item-centered" >
-                <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center" style="background-image: url({{asset('img/team.webp')}}); background-size: cover; height: 500px">
-                    <div class="row" >
-                        <div class="col-sm-12 text-center" >
+            <div class="carousel-inner item-centered">
+                <div class="carousel-item active d-flex justify-content-center align-content-center align-items-center"
+                     style="background-image: url({{asset('img/team.webp')}}); background-size: cover; height: 500px">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
                             <h1 class="text-white font-weight-bold border p-3">ABOUT US</h1>
                         </div>
                     </div>
@@ -90,50 +96,42 @@
                                 </li>
                             </ul>
                         </div>
+
                         <div class="row pb-4">
-                            <div class="col-12 p-0"><h2 class="font-weight-bold">Our Mission :</h2></div>
+                            <h2 class="font-weight-bold ">Caregivers/attendant :</h2>
+                            <p>
+                                Caregivers offer reliable assistance and support with activities of daily living on
+                                shift basis. Our assertive staff is trained to follow an individualized plan of care for
+                                each client.
+                            </p>
+                        </div>
+                        <div class="row pb-4">
+                            <div class="col-12 p-0"><h2 class="font-weight-bold">Caregivers/Attendant Offer :</h2></div>
                             <div class="col-12">
 
                                 <ul class="f">
-                                    <li class="f">To provide high quality services to home bound patients in a
-                                        responsible,
-                                        compassionate
-                                        manner.
-                                    </li>
-                                    <li class="f">To provide patient education when indicated to promote maintain and
-                                        restore
-                                        health.
-                                    </li>
-                                    <li class="f">To be advocates for patients right, respect and confidentiality.</li>
-                                    <li class="f">To deliver service without regard, religion or national origin.</li>
+                                    <li class="f">Medicationders.</li>
+                                    <li class="f">.Bathing : bed baths, tub baths or showers</li>
+                                    <li class="f"> Dressing, grooming & toileting.</li>
+                                    <li class="f">Dressing, grooming & toileting.</li>
+                                    <li class="f">Escorting clients to appointment & outing.</li>
+                                    <li class="f">Mobility/Ambulation stair, wheel chairs & walkers.</li>
+                                    <li class="f">Nutrition assistance with eating.</li>
+                                    <li class="f">Physical exercises: Active or passive range of motion.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row pb-4">
-                            <h2 class="font-weight-bold">​Home Care Nursing Service :</h2>
-                            <p>We render nursing service to the elderly home bound, post operative, partiality chronic
-                                and
-                                terminally ill patient in their home environment.​This is targeted at patients who
-                                require
-                                24x7 assistance with personal care. Our nursing care takers will hep with the client’s
-                                hygienic requirement, assist with mobilization, and help with feeding. they will also
-                                play a
-                                role in promoting the mental health of the client by occupying them with various
-                                activities
-                                when they are awake and up to it.
-                            </p>
-                        </div>
-                        <div class="row pb-4">
-                            <h2 class="font-weight-bold"> ​Offer:</h2>
-                            <ul class="f">
-                                <li class="f">
-                                    We specialize in: Enema, IV line, Dressings, Bed Sore Care, Ryles Tube Feeding,
-                                    Tracheostomy, Suture Removal, Injections (IV, IM, SC), IV Infusion, Post Surgical
-                                    Care, Home Ventillatory Care, Urine catheterization, Wound Care ​
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="col-12 p-0"><h2 class="font-weight-bold">Benefits  :</h2></div>
+                            <div class="col-12">
 
+                                <ul class="f">
+                                    <li class="f">Time benefit.</li>
+                                    <li class="f">Save money</li>
+                                    <li class="f">Easy for patient with limited mobility.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,7 +144,8 @@
 
                 <div class="row align-items-center justify-content-center p-5">
                     @foreach($members as $member)
-                        <div class="col-sm-12 col-lg-4 "style="margin-bottom:20px;" data-aos="flip-right" data-aos-delay="300">
+                        <div class="col-sm-12 col-lg-4 " style="margin-bottom:20px;" data-aos="flip-right"
+                             data-aos-delay="300">
                             <div class="themeioan_course">
                                 <div class="blog-photo">
                                     <img style="width:100%;object-fit: cover;" height="250"
@@ -156,7 +155,8 @@
                                 <div class="blog-content">
                                     <h5 class="title" style="text-transform: capitalize">{{$member->name}}
                                     </h5>
-                                    <div class="title" style="text-transform: capitalize; color:grey;">{{$member->designation}}
+                                    <div class="title"
+                                         style="text-transform: capitalize; color:grey;">{{$member->designation}}
                                     </div>
                                 </div>
                             </div>
