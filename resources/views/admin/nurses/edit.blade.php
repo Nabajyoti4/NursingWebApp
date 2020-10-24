@@ -52,7 +52,7 @@
 
             <div class="form-group font-weight-bold">
                 <label for="age">Age</label>
-                <input type="number" class="form-control" name="age"   value="{{$nurse->age}}" placeholder="Enter Age">
+                <input type="number" class="form-control" name="age" value="{{$nurse->age}}" placeholder="Enter Age">
             </div>
 
             <div >
@@ -173,13 +173,23 @@
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light text-dark ">Identification And Qualification Details</label>
                 <div class="form-group font-weight-bold">
-                    <label for="identification">Pan card/Voter Id ( Identification ) </label>
-                    <input type="file" class="form-control-file" name="identification">
+                    <label for="identification">Pan card/Passport/Aadhar card/Driving License ( Identification ) </label>
+                    <input required type="file" class="form-control-file w-25" name="identification">
                 </div>
 
                 <div class="form-group font-weight-bold">
-                    <label for="address">Aadhar card/ License ( Address Proof )</label>
-                    <input type="file" class="form-control-file" name="address">
+                    <label for="address">Aadhar card/Driving License/Voter ( Address Proof )</label>
+                    <input required type="file" class="form-control-file w-25" name="address">
+                </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="education">Education Qualification</label>
+                    <input required type="text" value="{{$nurse->qualification->education}}" class="form-control-file w-25" name="education" placeholder="eg : 10th pass">
+                </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="other">Other Qualification</label>
+                    <input required type="text" value="{{$nurse->qualification->other}}" class="form-control-file w-25" name="other">
                 </div>
             </div>
             <br>

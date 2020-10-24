@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -64,7 +65,15 @@ class RoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id){
-        Role::findOrFail($id)->delete();
+        $role = Role::findOrFail($id);
+
+        $user = User::where('role', $role->id)->get();
+
+        if($user->isNotEmpty()){
+            return redirect()->back()->with('warning', 'Role Assigned to users , cannot delete');
+        }
+
+        $role->delete();
         return redirect()->back()->with('success', 'Role deleted');
     }
 }

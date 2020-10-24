@@ -17,6 +17,8 @@ class CreateQualificationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('identification')->nullable();
             $table->string('address')->nullable();
+            $table->string('education')->nullable();
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }

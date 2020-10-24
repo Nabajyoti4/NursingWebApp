@@ -121,7 +121,7 @@ class AdminNurseController extends Controller
         $user->update(['role' => 'nurse']);
 
         // reteive the values from request
-        $data = $request->only(['age','identification', 'address']);
+        $data = $request->only(['age','identification', 'address', 'education', 'other']);
 
         // create a employee id for nurse
         $last = Nurse::all()->last();
@@ -140,7 +140,9 @@ class AdminNurseController extends Controller
 
        // create a qualification details record for the new nurse in qualification table
        $qualification = Qualification::create(['identification' => $identification,
-           'address' => $address]);
+           'address' => $address,
+           'education' => $data['education'],
+           'other' => $data['other']]);
 
        $nurse_age = $data['age'];
 
@@ -165,7 +167,7 @@ class AdminNurseController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -177,7 +179,7 @@ class AdminNurseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -215,7 +217,7 @@ class AdminNurseController extends Controller
             'current_pincode','current_police','current_state','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
             'permanent_pincode','permanent_police','permanent_state',
-            'identification', 'address']);
+            'identification', 'address', 'education', 'other']);
 
 
         // find the nurse using the id

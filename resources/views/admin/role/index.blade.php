@@ -14,6 +14,16 @@
             })
         </script>
     @endif
+    @if ($message = Session::get('warning'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
 
     <div class="d-sm-inline-block justify-content-end">
         <a class="btn btn-primary" href="{{route('admin.role.create')}}">

@@ -10,7 +10,7 @@ class Qualification extends Model
 
     protected $fillable = ['nurse_id',
         'identification',
-        'address'];
+        'address', 'education','other'];
 
 
     /**
