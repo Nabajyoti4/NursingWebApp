@@ -126,9 +126,9 @@ class AdminNurseController extends Controller
         // create a employee id for nurse
         $last = Nurse::all()->last();
        if($last){
-           $emp_id = 'E' . (1001 + $last->id);
+           $emp_id = 'N' . (1001 + $last->id);
         }else{
-           $emp_id = 'E' . (1001);
+           $emp_id = 'N' . (1001);
        }
 
        // genrate a unique id to store the image of each user

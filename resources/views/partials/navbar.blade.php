@@ -41,7 +41,7 @@
                            role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <img class="rounded-circle" style="object-fit: fill" width="40px" height="38px"
+                            <img class="rounded-circle" style="object-fit: cover;" width="40px" height="38px"
                                  src="{{Auth::user()->photo?asset("/storage/".Auth::user()->photo->photo_location):asset('img/avatar1.png')}}">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
