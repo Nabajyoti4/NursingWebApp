@@ -193,16 +193,9 @@
                                 @enderror
                             </div>
                             <div class="col-lg-4 p-2">
-                                <select class="form-control @error('permanent_city') is-invalid @enderror" name="permanent_city">
-                                    @if($permanent_add)
-                                        <option selected value="{{$permanent_add->city}}"> {{$permanent_add->city}}</option>
-                                    @else
-                                        <option value="" >Select City</option>
-                                    @endif
-                                    @foreach($cities as $city)
-                                        <option value="{{$city->city}}">{{$city->city}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control @error('permanent_city') is-invalid @enderror"
+                                       name="permanent_city" placeholder="City"
+                                       value="{{$permanent_add->city ?? ""}}">
                                 @error('permanent_city')
                                 <div class="invalid-feedback mt-2" role="alert">
                                     <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>

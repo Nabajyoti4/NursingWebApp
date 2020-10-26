@@ -12,7 +12,6 @@
     <!-- Theme CSS and custom css -->
     <link href="{{asset('css/index.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/team.css')}}"/>
-
     <!--  fontawesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
@@ -307,7 +306,7 @@
         </div>
         <!--NURSE RATING SLIDER END-->
     </div>
-        <!--Business partners section-->
+    <!--Business partners section-->
     {{--    <div class="block app-ribbon pt-3">--}}
     {{--        <h1 class=" mb-0 text-center text-white text-uppercase"> Business partners</h1>--}}
     {{--        <div class="container text-xs-center p-5">--}}
@@ -321,16 +320,16 @@
     <!--Business partners section end-->
 
         <!-- address section start -->
-        <div class="address-page-short-boxes" data-aos="flip-up" data-aos-delay="200">
+        <div class="address-page-short-boxes">
             <div class="col-md-12 text-center">
                 <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
             </div>
 
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-left" data-aos-delay="200">
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-bottom" data-aos-delay="200">
                         <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Head Office</h2>
+                            <h2 class="d-flex align-items-center">Head Office (Jorhat)</h2>
                             <ul class="p-0 m-0">
                                 <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
                                 <li>Call: 9435960652, 9101786597, 6002281528</li>
@@ -349,9 +348,9 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-right" data-aos-delay="200">
+                    <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-bottom" data-aos-delay="200">
                         <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Branch Office(Dibrugarh)</h2>
+                            <h2 class="d-flex align-items-center">Branch Office (Dibrugarh)</h2>
 
                             <ul class="p-0 m-0">
                                 <li>Sashan Para Road, Near Sankar Dev Hospital, Mancotta Road, Dibrugarh-786003 Assam.</li>

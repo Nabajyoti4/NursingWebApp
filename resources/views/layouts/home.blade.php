@@ -58,14 +58,24 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                      aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="{{ route('users.index') }}">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    <a class="dropdown-item" href="{{route('admin.index')}}">
-                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Admin Panel
-                    </a>
+                    @if(Auth::user()->role==="nurse")
+                        <a class="dropdown-item" href="{{ route('nurse.index') }}">
+                            <i class="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                    @else
+                        <a class="dropdown-item" href="{{ route('users.index') }}">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+
+                    @endif
+                    @if(Auth::user()->role === 'admin' or Auth::user()->role === 'super')
+                        <a class="dropdown-item" href="{{route('admin.index')}}">
+                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Admin Panel
+                        </a>
+                    @endif
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

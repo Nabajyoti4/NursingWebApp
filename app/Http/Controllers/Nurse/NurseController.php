@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Nurse;
 
+use App\Address;
 use App\Attendance;
 use App\Booking;
 use App\Http\Controllers\Controller;
@@ -28,10 +29,11 @@ class NurseController extends Controller
         $bookings = Booking::where('nurse_id', $nurse->id)->get();
         $tsalaries = Tsalary::where('nurse_id', $nurse->id)->latest()->get();
         $psalaries = Psalary::where('nurse_id', $nurse->id)->latest()->get();
-
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
         // check if there is attendance for the nurse
 //        $attendances = Attendance::where('nurse_id',$nurse->id)->latest()->get();
-        return view('nurses.index', compact('user', 'nurse','bookings','tsalaries','psalaries'));
+        return view('nurses.index', compact('user', 'nurse','bookings','tsalaries','psalaries','permanent_add','current_add'));
 
 
     }

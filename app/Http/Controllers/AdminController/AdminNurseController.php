@@ -99,7 +99,6 @@ class AdminNurseController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.nurses.create');
     }
 
@@ -185,8 +184,11 @@ class AdminNurseController extends Controller
     {
         //
         $nurse = Nurse::findOrFail($id);
+        $user =User::findOrFail($nurse->user_id);
         $cities = City::all();
-        return view('admin.nurses.edit', compact('nurse', 'cities'));
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
+        return view('admin.nurses.edit', compact('nurse', 'cities','permanent_add','current_add'));
     }
 
 
@@ -199,7 +201,10 @@ class AdminNurseController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        return view('admin.nurses.create', compact('user'));
+        $cities = City::all();
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
+        return view('admin.nurses.create', compact('user','current_add','permanent_add','cities'));
     }
 
     /**

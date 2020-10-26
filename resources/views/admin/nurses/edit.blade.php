@@ -78,96 +78,120 @@
 
 
             <div class="borderdiv">
-                <label class="header font-weight-bold bg-light">Permanent Address</label>
+                <label class="header font-weight-bold bg-light">Permanent Address<span class="required">*</span></label>
                 <div class="row">
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_street" placeholder="Street name"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->street : ""}}">
+                        <input type="text" class="form-control @error('permanent_street') is-invalid @enderror"
+                               name="permanent_street"
+                               placeholder="Street name"
+                               value="{{$permanent_add->street ?? ""}}">
+                        @error('permanent_street')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_landmark" placeholder="Landmark"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->landmark : ""}}">
-                    </div>
-
-                    <div class="col-lg-4 p-2">
-                        <select class="form-control" name="permanent_city">
-                            @if($nurse->user->addresses->first())
-                                <option selected value="{{$nurse->user->addresses->first()->city}}">{{$nurse->user->addresses->first()->city}}</option>
-                            @else
-                                <option value="">Select City</option>
-                            @endif
-                            @foreach($cities as $city)
-                                <option value="{{$city->city}}">{{$city->city}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control @error('permanent_landmark') is-invalid @enderror"
+                               name="permanent_landmark" placeholder="Landmark"
+                               value="{{$permanent_add->landmark ?? ""}}">
+                        @error('permanent_landmark')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_state" placeholder="State"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->state : ""}}">
+                        <input type="text" class="form-control @error('permanent_city') is-invalid @enderror"
+                               name="permanent_city" placeholder="City"
+                               value="{{$permanent_add->city ?? ""}}">
+                        @error('permanent_city')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger" class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_country" placeholder="Country"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->country : ""}}">
+                        <input type="text" class="form-control @error('permanent_state') is-invalid @enderror"
+                               name="permanent_state" placeholder="State"
+                               value="{{$permanent_add->state ?? ""}}">
+                        @error('permanent_state')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_police" placeholder="Police station"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->police_station : ""}}">
+                        <input type="text" class="form-control @error('permanent_country') is-invalid @enderror"
+                               name="permanent_country" placeholder="Country"
+                               value="{{$permanent_add->country ?? ""}}">
+                        @error('permanent_country')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_post" placeholder="Post office"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->post_office : ""}}">
+                        <input type="text" class="form-control @error('permanent_police') is-invalid @enderror"
+                               name="permanent_police"
+                               placeholder="Police station"
+                               value="{{$permanent_add->police_station ?? ""}}">
+                        @error('permanent_police')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="permanent_pincode" placeholder="Pin Code"
-                               value="{{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->pin_code : ""}}">
+                        <input type="text" class="form-control @error('permanent_post') is-invalid @enderror"
+                               name="permanent_post" placeholder="Post office"
+                               value="{{$permanent_add->post_office ?? ""}}">
+                        @error('permanent_post')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-4 p-2">
+                        <input type="text" class="form-control  @error('permanent_pincode') is-invalid @enderror"
+                               name="permanent_pincode" placeholder="Pin Code"
+                               value="{{$permanent_add->pin_code ?? ""}}">
+                        @error('permanent_pincode')
+                        <div class="invalid-feedback mt-2" role="alert">
+                            <strong class="alert-danger">{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                 </div>
             </div>
 
             <div class="borderdiv">
-                <label class="header font-weight-bold bg-light">Current Address</label>
-                <div class="row">
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_street" placeholder="Street name"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->street : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_landmark" placeholder="Landmark"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->landmark : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <select class="form-control" name="current_city">
-                            @if($nurse->user->addresses->last())
-                                <option selected value="{{$nurse->user->addresses->last()->city}}">{{$nurse->user->addresses->last()->city}}</option>
-                            @else
-                                <option value="">Select City</option>
-                            @endif
-                            @foreach($cities as $city)
-                                <option value="{{$city->city}}">{{$city->city}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_state" placeholder="State"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->state : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_country" placeholder="Country"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->country : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_police" placeholder="Police station"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->police_station : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_post" placeholder="Post office"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->post_office : ""}}">
-                    </div>
-                    <div class="col-lg-4 p-2">
-                        <input type="text" class="form-control" name="current_pincode" placeholder="Pin Code"
-                               value="{{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->pin_code : ""}}">
-                    </div>
+                <label class="header font-weight-bold bg-light text-dark">Identification And Qualification
+                    Details</label>
+
+
+                <div class="form-group font-weight-bold">
+                    <label for="identification">Pan card/Passport/Aadhar card/Driving License ( Identification
+                        ) </label>
+                    <input required type="file" class="form-control-file w-25" name="identification">
                 </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="address">Aadhar card/Driving License/Voter ( Address Proof )</label>
+                    <input required type="file" class="form-control-file w-25" name="address">
+                </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="education">Education Qualification</label>
+                    <input required type="text" class="form-control-file w-25" name="education"
+                           placeholder="eg : 10th pass">
+                </div>
+
+                <div class="form-group font-weight-bold">
+                    <label for="other">Other Qualification</label>
+                    <input required type="text" class="form-control-file w-25" name="other">
+                </div>
+
             </div>
 
             <div class="borderdiv">
