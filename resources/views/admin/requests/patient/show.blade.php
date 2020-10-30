@@ -65,9 +65,13 @@
                     src="{{ $patient->photo?asset("/storage/".$patient->photo->photo_location) :'http://placehold.it/64x64'}}"
                     width="70%" alt="avatar">
                 <div class="pt-5">
+                    <h3>{{$patient->patient_id}}</h3>
+                    <hr>
                     <h3>{{$patient->patient_name}}</h3>
                     <hr>
                     <h4><i class="fas fa-mobile-alt"></i> {{$patient->phone_no}}</h4>
+                    <hr>
+                    <h4><a href="{{route('admin.patient.receipt', $patient->id)}}" class="btn btn-primary">Receipt</a></h4>
                 </div>
                 <br>
             </div>

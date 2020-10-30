@@ -123,6 +123,12 @@ class AdminPatientController extends Controller
 
     }
 
+
+    public function receipt($id){
+        $patient = Patient::findOrFail($id);
+        return view('admin.requests.patient.receipt', compact('patient'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

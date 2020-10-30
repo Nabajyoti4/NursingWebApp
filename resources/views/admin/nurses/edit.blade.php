@@ -165,45 +165,17 @@
                 </div>
             </div>
 
-            <div class="borderdiv">
-                <label class="header font-weight-bold bg-light text-dark">Identification And Qualification
-                    Details</label>
-
-
-                <div class="form-group font-weight-bold">
-                    <label for="identification">Pan card/Passport/Aadhar card/Driving License ( Identification
-                        ) </label>
-                    <input required type="file" class="form-control-file w-25" name="identification">
-                </div>
-
-                <div class="form-group font-weight-bold">
-                    <label for="address">Aadhar card/Driving License/Voter ( Address Proof )</label>
-                    <input required type="file" class="form-control-file w-25" name="address">
-                </div>
-
-                <div class="form-group font-weight-bold">
-                    <label for="education">Education Qualification</label>
-                    <input required type="text" class="form-control-file w-25" name="education"
-                           placeholder="eg : 10th pass">
-                </div>
-
-                <div class="form-group font-weight-bold">
-                    <label for="other">Other Qualification</label>
-                    <input required type="text" class="form-control-file w-25" name="other">
-                </div>
-
-            </div>
 
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light text-dark ">Identification And Qualification Details</label>
                 <div class="form-group font-weight-bold">
                     <label for="identification">Pan card/Passport/Aadhar card/Driving License ( Identification ) </label>
-                    <input required type="file" class="form-control-file w-25" name="identification">
+                    <input type="file" class="form-control-file w-25" name="identification">
                 </div>
 
                 <div class="form-group font-weight-bold">
                     <label for="address">Aadhar card/Driving License/Voter ( Address Proof )</label>
-                    <input required type="file" class="form-control-file w-25" name="address">
+                    <input type="file" class="form-control-file w-25" name="address">
                 </div>
 
                 <div class="form-group font-weight-bold">
