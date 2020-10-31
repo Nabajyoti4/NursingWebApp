@@ -150,7 +150,7 @@ class AdminSalaryController extends Controller
 
     public function calculatePermanentTotal($data)
     {
-        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'];
+        $data['total'] = $data['per_day_rate'] * $data['full_day'] + $data['special_allowance'] + $data['ta_da'] + ($data['half_day'] * ($data['per_day_rate'] / 2));
         //ESIC (4% of Total Tsalary)
         $data['esic'] = $data['basic'] * (4 / 100);
 
@@ -200,7 +200,8 @@ class AdminSalaryController extends Controller
                 'nurse_id' => $data['nurse_id'],
                 'month_days' => $data['month_days'],
                 'per_day_rate' => $data['per_day_rate'],
-                'payable_days' => $data['full_day'],
+                'full_day' => $data['full_day'],
+                'half_day' => $data['half_day'],
                 'special_allowance' => $data['special_allowance'],
                 'hra' => $data['hra'],
                 'esic' => $data['esic'],
@@ -284,6 +285,7 @@ class AdminSalaryController extends Controller
             'nurse_id' => 'required',
             'basic' => 'required',
             'full_day' => 'integer',
+            'half_day'=>'integer',
             'special_allowance' => 'nullable|integer',
             'ta_da' => 'nullable|integer',
             'hra' => 'nullable|integer',
@@ -314,7 +316,8 @@ class AdminSalaryController extends Controller
             'nurse_id' => $data['nurse_id'],
             'month_days' => $data['month_days'],
             'per_day_rate' => $data['per_day_rate'],
-            'payable_days' => $data['full_day'],
+            'full_day' => $data['full_day'],
+            'half_day' => $data['half_day'],
             'special_allowance' => $data['special_allowance'],
             'hra' => $data['hra'],
             'esic' => $data['esic'],
