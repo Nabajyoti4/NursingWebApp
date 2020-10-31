@@ -30,6 +30,7 @@
                         <th>Month</th>
                         <th>Year</th>
                         <th>Action</th>
+                        <th>Receipt</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -44,7 +45,7 @@
                     @empty
 
                        <tr>
-                           <td colspan="3"> no data</td>
+                           <td colspan="4"> no data</td>
                        </tr>
                     @endforelse
                     </tbody>

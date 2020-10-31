@@ -129,12 +129,16 @@ class AdminSalaryController extends Controller
         if ($permanent == 0) {
             $nursesAll = Nurse::where('permanent', '0')->get();
             foreach ($nursesAll as $nurse) {
-                    array_push($nurses, $nurse);
+                array_push($nurses, $nurse);
             }
         } else {
             $nursesAll = Nurse::where('permanent', 1)->get();
+            $employeeAll = Employee::all();
             foreach ($nursesAll as $nurse) {
-                    array_push($nurses, $nurse);
+                array_push($nurses, $nurse);
+            }
+            foreach ($employeeAll as $emp) {
+                array_push($nurses, $emp);
             }
         }
         return view('admin.salary.create', compact('nurses', 'permanent'));
@@ -182,8 +186,15 @@ class AdminSalaryController extends Controller
             'month_days' => 'required',
 
         ]);
-        //find whether the nurse is permanent or temporary
-        $nurse = Nurse::where('employee_id',$data['nurse_id'])->get()->first();
+        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')) {
+            $permanent = 1;
+
+        } else {
+            //find whether the nurse is permanent or temporary
+            $nurse = Nurse::where('employee_id', $data['nurse_id'])->get()->first();
+            $permanent = $nurse->permanent;
+        }
+
         //calculate per day rate
 
         $total_days = Carbon::create($data['month_days'])->daysInMonth;
@@ -193,7 +204,7 @@ class AdminSalaryController extends Controller
         //calculate the bonus
         $data['bonus'] = $data['basic'] * (2 / 100);
         //total payment for permanent nurse
-        if ($nurse->permanent == 1) {
+        if ($permanent == 1) {
             $data = $this->calculatePermanentTotal($data);
             //create salary entry for the nurse
             Psalary::create([
@@ -286,7 +297,7 @@ class AdminSalaryController extends Controller
             'nurse_id' => 'required',
             'basic' => 'required',
             'full_day' => 'integer',
-            'half_day'=>'integer',
+            'half_day' => 'integer',
             'special_allowance' => 'nullable|integer',
             'ta_da' => 'nullable|integer',
             'hra' => 'nullable|integer',
@@ -412,8 +423,16 @@ class AdminSalaryController extends Controller
     {
         $psalaries = Psalary::where('nurse_id', $employee_id)->get();
         $tsalaries = Tsalary::where('nurse_id', $employee_id)->get();
-        $nurse = Nurse::where('employee_id',$employee_id)->get()->first();
-        if ($nurse->permanent == 1) {
+        if (Nurse::where('employee_id', $employee_id)->get()->first()) {
+            $nurse = Nurse::where('employee_id', $employee_id)->get()->first();
+            $permanent = $nurse->permenant;
+        }
+        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')) {
+            $nurse=Employee::where('employee_id', $employee_id)->get()->first();
+            $permanent = 1;
+        }
+
+        if ($permanent == 1) {
             return view('admin.salary.permanent.salary', compact('psalaries', 'tsalaries', 'nurse'));
         } else {
             return view('admin.salary.temporary.salary', compact('psalaries', 'tsalaries', 'nurse'));
@@ -525,13 +544,17 @@ class AdminSalaryController extends Controller
         }
 
     }
-    public function Tinovice($employee_id){
+
+    public function Tinovice($employee_id)
+    {
         $salary = Tsalary::findOrFail($employee_id);
-        return view('admin.salary.temporary.invoice',compact('salary'));
+        return view('admin.salary.temporary.invoice', compact('salary'));
     }
-    public function Pinovice($employee_id){
+
+    public function Pinovice($employee_id)
+    {
         $salary = Psalary::findOrFail($employee_id);
-        return view('admin.salary.temporary.invoice',compact('salary'));
+        return view('admin.salary.temporary.invoice', compact('salary'));
     }
 
 
