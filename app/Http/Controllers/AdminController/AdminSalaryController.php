@@ -54,18 +54,18 @@ class AdminSalaryController extends Controller
                 $tnurses = array();
                 foreach ($nurses as $nurse) {
                     if ($nurse->permanent == 1) {
-                        array_push($pnurses, $nurse->id);
+                        array_push($pnurses, $nurse->employee_id);
                     } else {
-                        array_push($tnurses, $nurse->id);
+                        array_push($tnurses, $nurse->employee_id);
                     }
                 }
                 if ($searchMonth) {
                     // permanent
-                    $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)->whereIn('nurse_id', $pnurses)
+                    $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)
                         ->get();
 
                     //temporary
-                    $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)->whereIn('nurse_id', $tnurses)
+                    $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)
                         ->get();
                     return view('admin.salary.index', compact('psalaries', 'tsalaries'));
                 }
@@ -86,9 +86,9 @@ class AdminSalaryController extends Controller
                 foreach ($nurses as $nurse) {
                     if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         if ($nurse->permanent == 1) {
-                            array_push($pnurses, $nurse->id);
+                            array_push($pnurses, $nurse->employee_id);
                         } else {
-                            array_push($tnurses, $nurse->id);
+                            array_push($tnurses, $nurse->employee_id);
                         }
                     }
                 }
@@ -103,12 +103,13 @@ class AdminSalaryController extends Controller
                     return view('admin.salary.index', compact('psalaries', 'tsalaries'));
                 }
                 // permanent
-                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $pnurses)
+                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
 
                 //temporary
                 $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
+
                 return view('admin.salary.index', compact('psalaries', 'tsalaries'));
 
             }
@@ -186,14 +187,14 @@ class AdminSalaryController extends Controller
             'month_days' => 'required',
 
         ]);
-        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')) {
+        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')->get()->first()) {
             $permanent = 1;
 
-        } else {
-            //find whether the nurse is permanent or temporary
-            $nurse = Nurse::where('employee_id', $data['nurse_id'])->get()->first();
-            $permanent = $nurse->permanent;
-        }
+        }  if (Nurse::where('employee_id', $data["nurse_id"])->get()->first())  {
+        //find whether the nurse is permanent or temporary
+        $nurse = Nurse::where('employee_id', $data['nurse_id'])->get()->first();
+        $permanent = $nurse->permanent;
+    }
 
         //calculate per day rate
 
@@ -427,7 +428,7 @@ class AdminSalaryController extends Controller
             $nurse = Nurse::where('employee_id', $employee_id)->get()->first();
             $permanent = $nurse->permenant;
         }
-        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')) {
+        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')->get()->first()) {
             $nurse=Employee::where('employee_id', $employee_id)->get()->first();
             $permanent = 1;
         }
