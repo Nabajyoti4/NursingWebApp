@@ -39,6 +39,7 @@
                             <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
+                            <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
                         </tr>
                     @empty
 

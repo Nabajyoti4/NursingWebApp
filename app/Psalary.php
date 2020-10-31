@@ -13,6 +13,7 @@ class Psalary extends Model
             'month_days',
             'full_day',
             'half_day',
+            'ta_da',
             'special_allowance',
             'hra',
             'bonus',

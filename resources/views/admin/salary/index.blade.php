@@ -116,9 +116,11 @@
                                     <th>Employee ID</th>
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
-                                    <th>Total Payable Days</th>
+                                    <th>Total Days of Duty 24hrs</th>
+                                    <th>Total Days of Duty 12hrs</th>
                                     <th>Special Allowance</th>
                                     <th>HRA</th>
+                                    <th>TA & DA</th>
                                     <th>Bonus</th>
                                     <th>Advance Payment</th>
                                     <th>ESIC</th>
@@ -134,9 +136,11 @@
                                         <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
                                         <td>{{$salary->basic}}</td>
                                         <td>{{$salary->per_day_rate}}</td>
-                                        <td>{{$salary->payable_days}}</td>
+                                        <td>{{$salary->full_day}}</td>
+                                        <td>{{$salary->half_day}}</td>
                                         <td>{{$salary->special_allowance}}</td>
                                         <td>{{$salary->hra}}</td>
+                                        <td>{{$salary->ta_da}}</td>
                                         <td>{{$salary->bonus}}</td>
                                         <td>{{$salary->advance}}</td>
                                         <td>{{$salary->esic}}</td>

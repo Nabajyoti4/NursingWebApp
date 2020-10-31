@@ -20,8 +20,10 @@
                 <select name="nurse_id" class="form-control @error('nurse_id') is-invalid @enderror">
                     <option class="form-control" value="" selected>Select Nurse</option>
                     @foreach($nurses as $nurse)
-                        <option class="form-control" value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
-                    @endforeach</select>
+                        <option class="form-control" value="{{$nurse->employee_id}}">{{$nurse->employee_id}}</option>
+                    @endforeach
+
+                </select>
                 @error('nurse_id')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -34,21 +36,21 @@
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
-                <label for="month_days">Month</label>
+                <label for="month_days">Month-Year</label>
                 <input type="month" name="month_days" class="form-control @error('month_days') is-invalid @enderror"/>
                 @error('month_days')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
-                <label for="full_day">Total Days of Duty 24hrs</label>
+                <label for="full_day">Total Days of Duty 24hrs/Day/Night</label>
                 <input type="number" name="full_day" class="form-control @error('full_day') is-invalid @enderror"/>
                 @error('full_day')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
-                <label for="half_day">Total Days of Duty 12hrs</label>
+                <label for="half_day">Total Days of Duty 12hrs/Day/Night</label>
                 <input type="number" name="half_day" class="form-control @error('half_day') is-invalid @enderror"/>
                 @error('half_day')
                 <div class="alert alert-danger">{{ $message }}</div>

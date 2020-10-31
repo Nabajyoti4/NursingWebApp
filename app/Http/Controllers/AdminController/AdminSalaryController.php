@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Psalary;
@@ -182,7 +183,7 @@ class AdminSalaryController extends Controller
 
         ]);
         //find whether the nurse is permanent or temporary
-        $nurse = Nurse::findOrFail($data['nurse_id']);
+        $nurse = Nurse::where('employee_id',$data['nurse_id'])->get()->first();
         //calculate per day rate
 
         $total_days = Carbon::create($data['month_days'])->daysInMonth;
@@ -320,6 +321,7 @@ class AdminSalaryController extends Controller
             'half_day' => $data['half_day'],
             'special_allowance' => $data['special_allowance'],
             'hra' => $data['hra'],
+            'ta_da' => $data['ta_da'],
             'esic' => $data['esic'],
             'pf' => $data['pf'],
             'bonus' => $data['bonus'],
@@ -406,11 +408,11 @@ class AdminSalaryController extends Controller
     }
 
 
-    public function salaries($id)
+    public function salaries($employee_id)
     {
-        $psalaries = Psalary::where('nurse_id', $id)->get();
-        $tsalaries = Tsalary::where('nurse_id', $id)->get();
-        $nurse = Nurse::findOrFail($id);
+        $psalaries = Psalary::where('nurse_id', $employee_id)->get();
+        $tsalaries = Tsalary::where('nurse_id', $employee_id)->get();
+        $nurse = Nurse::where('employee_id',$employee_id)->get()->first();
         if ($nurse->permanent == 1) {
             return view('admin.salary.permanent.salary', compact('psalaries', 'tsalaries', 'nurse'));
         } else {
@@ -522,6 +524,14 @@ class AdminSalaryController extends Controller
             }
         }
 
+    }
+    public function Tinovice($employee_id){
+        $salary = Tsalary::findOrFail($employee_id);
+        return view('admin.salary.temporary.invoice',compact('salary'));
+    }
+    public function Pinovice($employee_id){
+        $salary = Psalary::findOrFail($employee_id);
+        return view('admin.salary.temporary.invoice',compact('salary'));
     }
 
 

@@ -60,7 +60,7 @@
                             <td>{{$nurse->user->email}}</td>
                             <td>{{$nurse->user->phone_no}}</td>
                             <td>{{$nurse->created_at}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.salary.salaries',$nurse->id)}}">View
+                            <td><a class="btn btn-primary small" href="{{route('admin.salary.salaries',$nurse->employee_id)}}">View
                                     Salary
                                 </a></td>
                         </tr>
