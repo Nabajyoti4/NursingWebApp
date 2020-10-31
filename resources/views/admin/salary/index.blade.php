@@ -67,7 +67,7 @@
                    aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
-                   Filter
+                    Filter
                 </button>
             </div>
         </div>
@@ -116,9 +116,11 @@
                                     <th>Employee ID</th>
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
-                                    <th>Total Payable Days</th>
+                                    <th>Total Days of Duty 24hrs/Day/Night</th>
+                                    <th>TTotal Days of Duty 12hrs/Day/Night</th>
                                     <th>Special Allowance</th>
                                     <th>HRA</th>
+                                    <th>TA & DA</th>
                                     <th>Bonus</th>
                                     <th>Advance Payment</th>
                                     <th>ESIC</th>
@@ -131,12 +133,14 @@
                                 <tbody id="data">
                                 @forelse($psalaries as $salary)
                                     <tr>
-                                        <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
+                                        <td>{{$salary->nurse_id}}</td>
                                         <td>{{$salary->basic}}</td>
                                         <td>{{$salary->per_day_rate}}</td>
-                                        <td>{{$salary->payable_days}}</td>
+                                        <td>{{$salary->full_day}}</td>
+                                        <td>{{$salary->half_day}}</td>
                                         <td>{{$salary->special_allowance}}</td>
                                         <td>{{$salary->hra}}</td>
+                                        <td>{{$salary->ta_da}}</td>
                                         <td>{{$salary->bonus}}</td>
                                         <td>{{$salary->advance}}</td>
                                         <td>{{$salary->esic}}</td>
@@ -182,8 +186,8 @@
                                     <th>Employee ID</th>
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
-                                    <th>Total Days of Duty 24hrs</th>
-                                    <th>Total Days of Duty 12hrs</th>
+                                    <th>Total Days of Duty 24hrs/Day/Night</th>
+                                    <th>TTotal Days of Duty 12hrs/Day/Night</th>
                                     <th>Special Allowance</th>
                                     <th>TA & DA</th>
                                     <th>HRA</th>
@@ -197,7 +201,7 @@
                                 <tbody id="data">
                                 @forelse($tsalaries as $salary)
                                     <tr>
-                                        <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
+                                        <td>{{$salary->nurse_id}}</td>
                                         <td>{{$salary->basic}}</td>
                                         <td>{{$salary->per_day_rate}}</td>
                                         <td>{{$salary->full_day}}</td>

@@ -48,6 +48,19 @@
                 <form action="{{ route('users.patient.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h1>Custom Application Form</h1>
+                    <hr>
+                    <div>
+                        <strong>Terms and Conditions:</strong> ( Registration Fees : 500/-, Advance Payment Requested: Cash/ Cheque/ Online
+                        Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate for one
+                        Nurse for 24 Hours Duty per month is 450x30=13,500 (Rs) only, Customers should refrain from misbehavior
+                        to avoid complain against themselves, Customers should be responsible for overtime service. The
+                        authority of the sisters is not responsible for it; Service does not include work like Washing,
+                        Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the
+                        sisters; A sister is available till the patient is there only. She is not appointed for serving or
+                        helping the patient’s guardian or other relatives; Holiday: Our Service is not available on Bohag Bihu,
+                        Magh Bihu, Durga Puja and other Traditional Occasion.)
+                    </div>
+                    <hr>
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab">
                         <div class="form-group font-weight-bold">
@@ -195,17 +208,7 @@
                         <span class="step"></span>
                     </div>
                 </form>
-            <div>
-                <strong>Terms and Conditions:</strong> ( Registration Fees : 500/-, Advance Payment Requested: Cash/ Cheque/ Online
-                Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate for one
-                Nurse for 24 Hours Duty per month is 450x30=13,500 (Rs) only, Customers should refrain from misbehavior
-                to avoid complain against themselves, Customers should be responsible for overtime service. The
-                authority of the sisters is not responsible for it; Service does not include work like Washing,
-                Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the
-                sisters; A sister is available till the patient is there only. She is not appointed for serving or
-                helping the patient’s guardian or other relatives; Holiday: Our Service is not available on Bohag Bihu,
-                Magh Bihu, Durga Puja and other Traditional Occasion.)
-            </div>
+
         </div>
     </div>
 

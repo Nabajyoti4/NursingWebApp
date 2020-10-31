@@ -20,8 +20,8 @@
             <div class="form-group font-weight-bold">
                 <label for="nurse_id">Nurse Employee ID</label>
                 <select name="nurse_id" class="form-control">
-                    <option class="form-control @error('nurse_id') is-invalid @enderror" value="{{$nurse->id}}"
-                            selected>{{$nurse->employee_id}}</option>
+                    <option class="form-control @error('nurse_id') is-invalid @enderror" value="{{$salary->nurse_id}}"
+                            selected>{{$salary->nurse_id}}</option>
                 </select>
                 @error('nurse_id')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -41,9 +41,16 @@
 
             </div>
             <div class="form-group font-weight-bold">
-                <label for="full_day">Total Payable Days</label>
-                <input type="number" value="{{$salary->payable_days}}" name="full_day" class="form-control  @error('full_day') is-invalid @enderror"/>
+                <label for="full_day">Total Days of Duty 24hrs</label>
+                <input type="number" value="{{$salary->full_day}}" name="full_day" class="form-control @error('full_day') is-invalid @enderror"/>
                 @error('full_day')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="half_day">Total Days of Duty 12hrs</label>
+                <input type="number" value="{{$salary->half_day}}" name="half_day" class="form-control @error('half_day') is-invalid @enderror"/>
+                @error('half_day')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -59,6 +66,14 @@
                 <input type="number" value="{{$salary->special_allowance}}" name="special_allowance"
                        class="form-control  @error('nurse_id') is-invalid @enderror"/>
                 @error('special_allowance')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="ta_da">TA & DA</label>
+                <input type="number" value="{{$salary->ta_da}}" name="ta_da" class="form-control @error('ta_da') is-invalid @enderror"/>
+                @error('ta_da')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

@@ -30,6 +30,8 @@
                         <th>Month</th>
                         <th>Year</th>
                         <th>Action</th>
+                        <th>Receipt</th>
+
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -39,11 +41,12 @@
                             <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
+                            <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
                         </tr>
                     @empty
 
                         <tr>
-                            <td colspan="3"> no data</td>
+                            <td colspan="4"> no data</td>
                         </tr>
                     @endforelse
                     </tbody>
@@ -60,6 +63,7 @@
                         <th>Month</th>
                         <th>Year</th>
                         <th>Action</th>
+                        <th>Receipt</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -69,11 +73,13 @@
                             <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.pedit',$salary->id)}}">Edit
                                 </a></td>
+                            <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
+
                         </tr>
                     @empty
 
                        <tr>
-                           <td colspan="3"> no data</td>
+                           <td colspan="4"> no data</td>
                        </tr>
                     @endforelse
                     </tbody>

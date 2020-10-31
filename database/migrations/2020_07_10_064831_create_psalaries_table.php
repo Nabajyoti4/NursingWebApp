@@ -15,11 +15,13 @@ class CreatePsalariesTable extends Migration
     {
         Schema::create('psalaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('nurse_id')->index();
+            $table->string('nurse_id')->index();
             $table->string('month_days')->nullable();
             $table->bigInteger('basic');
             $table->bigInteger('per_day_rate');
-            $table->integer('payable_days')->default(0);
+            $table->integer('full_day')->default(0);
+            $table->integer('half_day')->default(0);
+            $table->bigInteger('ta_da')->default(0);
             $table->bigInteger('special_allowance')->default(0);
             $table->bigInteger('hra')->default(0);
             $table->bigInteger('esic')->default(0);

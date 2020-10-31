@@ -20,7 +20,7 @@
             <div class="form-group font-weight-bold">
                 <label for="nurse_id">Nurse Employee ID</label>
                 <select name="nurse_id" class="form-control @error('nurse_id') is-invalid @enderror">
-                    <option class="form-control" value="{{$nurse->id}}" selected>{{$nurse->employee_id}}</option>
+                    <option class="form-control" value="{{$salary->nurse_id}}" selected>{{$salary->nurse_id}}</option>
                 </select>
                 @error('nurse_id')
                 <div class="alert alert-danger">{{ $message }}</div>
