@@ -67,7 +67,7 @@
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Edit</th>
+                                    <th>Show</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -82,12 +82,11 @@
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6">No Bookings found</td>
+                                        <td colspan="9">No Bookings found</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
@@ -118,8 +117,7 @@
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Status</th>
-                                    <th>Edit</th>
+                                    <th>Show</th>
                                 </tr>
                                 </thead>
                                 <tbody>
