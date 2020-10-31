@@ -60,13 +60,13 @@
                                 <thead>
                                 <tr>
                                     <th>Booking ID</th>
+                                    <th>Patient ID</th>
                                     <th>Booked by</th>
                                     <th>Patient Name</th>
                                     <th>Nurse allotted</th>
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Status</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
@@ -75,25 +75,14 @@
                                 @forelse($pbookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
+                                        <td>{{$booking->patient->patient_id}}</td>
                                         <td>{{$booking->user->name}}</td>
                                         <td>{{$booking->patient->patient_name}}</td>
                                         <td>{{$booking->nurse->user->name}}</td>
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-                                        <td>
-                                            @if($booking->status == 0)
-                                                Rejected
-                                            @elseif($booking->status == 1)
-                                                Completed
-                                            @elseif($booking->status == 2)
-                                                Pending
-                                            @elseif($booking->status == 3)
-                                                Running
-                                            @else
-                                                Takeover
-                                            @endif
-                                        </td>
+
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty
@@ -122,6 +111,7 @@
                                 <thead>
                                 <tr>
                                     <th>Booking ID</th>
+                                    <th>Patient ID</th>
                                     <th>Booked by</th>
                                     <th>Patient Name</th>
                                     <th>Nurse allotted</th>
@@ -137,25 +127,14 @@
                                 @forelse($abookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
+                                        <td>{{$booking->patient->patient_id}}</td>
                                         <td>{{$booking->user->name}}</td>
                                         <td>{{$booking->patient->patient_name}}</td>
                                         <td>{{$booking->nurse->user->name}}</td>
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-                                        <td>
-                                            @if($booking->status == 0)
-                                                Rejected
-                                            @elseif($booking->status == 1)
-                                                Completed
-                                            @elseif($booking->status == 2)
-                                                Pending
-                                            @elseif($booking->status == 3)
-                                                Running
-                                            @else
-                                                Takeover
-                                            @endif
-                                        </td>
+
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty
@@ -184,13 +163,13 @@
                                 <thead>
                                 <tr>
                                     <th>Booking ID</th>
+                                    <th>Patient ID</th>
                                     <th>Booked by</th>
                                     <th>Patient Name</th>
                                     <th>Nurse allotted</th>
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Status</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
@@ -199,25 +178,13 @@
                                 @forelse($rbookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
+                                        <td>{{$booking->patient->patient_id}}</td>
                                         <td>{{$booking->user->name}}</td>
                                         <td>{{$booking->patient->patient_name}}</td>
                                         <td>{{$booking->nurse->user->name}}</td>
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-                                        <td>
-                                            @if($booking->status == 0)
-                                                Rejected
-                                            @elseif($booking->status == 1)
-                                                Completed
-                                            @elseif($booking->status == 2)
-                                                Pending
-                                            @elseif($booking->status == 3)
-                                                Running
-                                            @else
-                                                Takeover
-                                            @endif
-                                        </td>
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty
@@ -246,13 +213,13 @@
                                 <thead>
                                 <tr>
                                     <th>Booking ID</th>
+                                    <th>Patient ID</th>
                                     <th>Booked by</th>
                                     <th>Patient Name</th>
                                     <th>Nurse allotted</th>
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Status</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
@@ -261,25 +228,13 @@
                                 @forelse($tbookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
+                                        <td>{{$booking->patient->patient_id}}</td>
                                         <td>{{$booking->user->name}}</td>
                                         <td>{{$booking->patient->patient_name}}</td>
                                         <td>{{$booking->nurse->user->name}}</td>
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-                                        <td>
-                                            @if($booking->status == 0)
-                                                Rejected
-                                            @elseif($booking->status == 1)
-                                                Completed
-                                            @elseif($booking->status == 2)
-                                                Pending
-                                            @elseif($booking->status == 3)
-                                                Running
-                                            @else
-                                                Takeover
-                                            @endif
-                                        </td>
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty
@@ -308,13 +263,13 @@
                                 <thead>
                                 <tr>
                                     <th>Booking ID</th>
+                                    <th>Patient ID</th>
                                     <th>Booked by</th>
                                     <th>Patient Name</th>
                                     <th>Nurse allotted</th>
                                     <th>Shift</th>
                                     <th>Days</th>
                                     <th>Total Payment</th>
-                                    <th>Status</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
@@ -323,25 +278,13 @@
                                 @forelse($cbookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
+                                        <td>{{$booking->patient->patient_id}}</td>
                                         <td>{{$booking->user->name}}</td>
                                         <td>{{$booking->patient->patient_name}}</td>
                                         <td>{{$booking->nurse->user->name}}</td>
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-                                        <td>
-                                            @if($booking->status == 0)
-                                                Rejected
-                                            @elseif($booking->status == 1)
-                                                Completed
-                                            @elseif($booking->status == 2)
-                                                Pending
-                                            @elseif($booking->status == 3)
-                                                Running
-                                            @else
-                                                Takeover
-                                            @endif
-                                        </td>
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
                                     </tr>
                                 @empty

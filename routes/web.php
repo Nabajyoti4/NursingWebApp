@@ -91,6 +91,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
     Route::get('admin/approved/patient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
     Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
+    Route::get('admin/patient/receipt/{id}', 'AdminController\AdminPatientController@receipt')->name('admin.patient.receipt');
 
 
 // Admin salary

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Address;
 use App\Http\Controllers\Controller;
+use App\Nurse;
 use App\Patient;
 use App\Photo;
 use App\Service;
@@ -36,13 +37,13 @@ class PatientController extends Controller
         //
         $services = Service::all();
         $user = Auth::user();
-        
+
         if($user->permanent_address_id > 0){
             return view('patientapplication.index', compact('services'));
         }else{
             return redirect()->back()->with('info', 'Please fill your deatils before hiring');
         }
-      
+
     }
 
     /**
@@ -80,10 +81,18 @@ class PatientController extends Controller
             $image = $request->image->store('patients', 'public');
             $photo = Photo::create(['photo_location' => $image]);
 
+            //patient id
+        $last = Patient::all()->last();
 
+        if($last){
+            $patient_id = 'P' . (1001 + $last->id);
+        }else{
+            $patient_id = 'P' . (1001);
+        }
         // create a new record for patient
         $patient = Patient::create(['user_id' => $user->id,
             'patient_name' => $data['patient_name'],
+            'patient_id' => $patient_id,
             'photo_id' => $photo->id,
             'phone_no' => $data['phone_no'],
             'age' => $data['age'],
