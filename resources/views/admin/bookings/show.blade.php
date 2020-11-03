@@ -181,6 +181,14 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <label>Patient Id</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{$book->patient->patient_id}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
                                     <label>Name</label>
                                 </div>
                                 <div class="col-md-6">
@@ -263,6 +271,14 @@
                         <!--Nurse Allotef for patient info-->
                         <div class="tab-pane fade" id="nurse" role="tabpanel" aria-labelledby="nurse-tab">
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nurse Id</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{$book->nurse->employee_id}}</p>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Name</label>

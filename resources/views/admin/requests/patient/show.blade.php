@@ -71,7 +71,6 @@
                     <hr>
                     <h4><i class="fas fa-mobile-alt"></i> {{$patient->phone_no}}</h4>
                     <hr>
-                    <h4><a href="{{route('admin.patient.receipt', $patient->id)}}" class="btn btn-primary">Receipt</a></h4>
                 </div>
                 <br>
             </div>

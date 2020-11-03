@@ -215,10 +215,6 @@ class AdminPatientController extends Controller
             'tag' => $data['tag'],
             'reason' => $data['reason']]);
 
-        $user = User::findOrFail($patient->user_id);
-
-        Notification::send($user, new \App\Notifications\PatientRequestCancel($request, $patient));
-
         return redirect()->back();
 
 
