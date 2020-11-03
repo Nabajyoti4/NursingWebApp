@@ -22,6 +22,8 @@ class AdminSalaryController extends Controller
     public function index()
     {
         $serverDateTime = Carbon::now();
+        $lastMonth =  $serverDateTime->subMonth()->format('m');
+
         $search = request()->get('search');
         $searchMonth = request()->get('searchMonth');
         $admin = Auth::user();
@@ -30,20 +32,20 @@ class AdminSalaryController extends Controller
         if ($search) {
             if (Nurse::where("employee_id", $search)->get()->isEmpty()) {
                 $salariess = collect([]);
-                return view('admin.salary.search', compact('salariess'));
+                return view('admin.salary.search', compact('salariess','lastMonth'));
             } else {
                 $nurse = Nurse::where("employee_id", $search)->get()->first();
 
                 if (Tsalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()) {
-                    $salariess = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
+                    $salariess = Tsalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
                 } elseif (Psalary::where('nurse_id', $nurse->id)->get()->isNotEmpty()) {
-                    $salariess = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
+                    $salariess = Psalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->where('nurse_id', $nurse->id)
                         ->get();
                 } else {
                     $salariess = collect([]);
                 }
-                return view('admin.salary.search', compact('salariess'));
+                return view('admin.salary.search', compact('salariess','lastMonth'));
             }
 
         } else {
@@ -61,23 +63,26 @@ class AdminSalaryController extends Controller
                 }
                 if ($searchMonth) {
                     // permanent
-                    $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)
+                    $psalaries = Psalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)
                         ->get();
 
                     //temporary
-                    $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)
+                    $tsalaries = Tsalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)
                         ->get();
-                    return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+                    $lastMonth=Carbon::create($searchMonth)->format('F');
+                    return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
                 }
 
                 // permanent
-                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $pnurses)
+                $psalaries = Psalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $pnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
-                return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+                $lastMonth =  Carbon::create($lastMonth)->format('F');
+
+                return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
             } else {
                 $nurses = Nurse::all();
 
@@ -94,23 +99,24 @@ class AdminSalaryController extends Controller
                 }
                 if ($searchMonth) {
                     // permanent
-                    $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)->whereIn('nurse_id', $pnurses)
+                    $psalaries = Psalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', Carbon::create($searchMonth)->month)->whereIn('nurse_id', $pnurses)
                         ->get();
 
                     //temporary
-                    $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)->whereIn('nurse_id', $tnurses)
+                    $tsalaries = Tsalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)->whereIn('nurse_id', $tnurses)
                         ->get();
-                    return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+                    $lastMonth=Carbon::create($searchMonth)->format('F');
+
+                    return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
                 }
                 // permanent
-                $psalaries = Psalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
+                $psalaries = Psalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = Tsalary::whereMonth('created_at', $currentMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::whereMonth('created_at', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
-
-                return view('admin.salary.index', compact('psalaries', 'tsalaries'));
+                return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
 
             }
         }
@@ -187,7 +193,7 @@ class AdminSalaryController extends Controller
             'month_days' => 'required',
 
         ]);
-        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')->get()->first()) {
+        if (Employee::where('employee_id', 'like', "{$data["nurse_id"]}%")->get()->first()) {
             $permanent = 1;
 
         }  if (Nurse::where('employee_id', $data["nurse_id"])->get()->first())  {
@@ -428,7 +434,7 @@ class AdminSalaryController extends Controller
             $nurse = Nurse::where('employee_id', $employee_id)->get()->first();
             $permanent = $nurse->permenant;
         }
-        if (Employee::where('employee_id', 'like', '$data["nurse_id"]%')->get()->first()) {
+        if (Employee::where('employee_id', 'like', "{$employee_id}%")->get()->first()) {
             $nurse=Employee::where('employee_id', $employee_id)->get()->first();
             $permanent = 1;
         }
@@ -501,7 +507,7 @@ class AdminSalaryController extends Controller
     {
         $search = request()->get('perm');
         $admin = Auth::user();
-
+        $emps=collect([]);
         if ($search) {
             $nurses = Nurse::select('*')
                 ->where("employee_id", "LIKE", "%{$search}%")
@@ -510,18 +516,18 @@ class AdminSalaryController extends Controller
 
 
             if ($admin->role == 'super') {
-                return view('admin.salary.permanent.index', compact('nurses'));
+                return view('admin.salary.permanent.index', compact('nurses','emps'));
             } else {
                 if ($nurses->isEmpty()) {
-                    return view('admin.salary.permanent.index', compact('nurses'));
+                    return view('admin.salary.permanent.index', compact('nurses','emps'));
                 } else {
                     $user = User::where('id', $nurses->first()->user_id)->first();
 
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        return view('admin.salary.permanent.index', compact('nurses'));
+                        return view('admin.salary.permanent.index', compact('nurses','emps'));
                     } else {
                         $nurses = collect([]);
-                        return view('admin.salary.permanent.index', compact('nurses'));
+                        return view('admin.salary.permanent.index', compact('nurses','emps'));
                     }
                 }
             }
@@ -530,7 +536,8 @@ class AdminSalaryController extends Controller
         } else {
             if ($admin->role == 'super') {
                 $nurses = Nurse::where('permanent', 1)->get();
-                return view('admin.salary.permanent.index', compact('nurses'));
+                $emps = Employee::all();
+                return view('admin.salary.permanent.index', compact('nurses','emps'));
             } else {
                 $nurseAll = Nurse::where('permanent', 1)->get();
                 $nurses = array();
@@ -540,7 +547,7 @@ class AdminSalaryController extends Controller
                         array_push($nurses, $nurse);
                     }
                 }
-                return view('admin.salary.permanent.index', compact('nurses'));
+                return view('admin.salary.permanent.index', compact('nurses','emps'));
             }
         }
 

@@ -36,8 +36,8 @@
                     <tbody id="data">
                     @forelse($tsalaries as $salary)
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>

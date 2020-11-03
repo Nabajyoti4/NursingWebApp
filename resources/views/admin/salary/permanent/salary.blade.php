@@ -18,7 +18,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Nurse Name : {{$nurse->user->name}}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Employee Name : {{$nurse->user->name}}</h6>
         </div>
         <div class="card-body">
             <h4>Temporary Salary transactions</h4>
@@ -37,8 +37,8 @@
                     <tbody id="data">
                     @forelse($tsalaries as $salary)
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
@@ -69,8 +69,8 @@
                     <tbody id="data">
                     @forelse($psalaries as $salary)
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->englishMonth}}</td>
-                            <td>{{ \Carbon\Carbon::parse($salary->created_at)->year}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
+                            <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.pedit',$salary->id)}}">Edit
                                 </a></td>
                             <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>

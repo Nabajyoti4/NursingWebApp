@@ -33,7 +33,46 @@
     <hr>
     <a href="{{route('admin.salary.create',$permanent=1)}}" class="btn btn-primary">Create Salary for the Nurse</a>
     <hr>
-
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" id="usersTable">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Created at</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody id="data">
+                    @forelse($emps as $emp)
+                        <tr>
+                            <td>{{$emp->employee_id}}</td>
+                            <td>{{$emp->user->name}}</td>
+                            <td>{{$emp->user->email}}</td>
+                            <td>{{$emp->user->phone_no}}</td>
+                            <td>{{$emp->created_at}}</td>
+                            <td><a class="btn btn-primary small" href="{{route('admin.salary.salaries',$emp->employee_id)}}">View
+                                    Salary
+                                </a></td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6">No Employees</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="usersTable">
         <div class="card-header py-3">
@@ -74,6 +113,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')

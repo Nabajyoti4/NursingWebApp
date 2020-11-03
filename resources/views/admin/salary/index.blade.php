@@ -79,6 +79,8 @@
     <a href="{{route('admin.salary.create',$permanent=0)}}" class="btn btn-primary">Create Salary for the Temporary
         Nurse</a>
     <hr>
+    <h3><b>Month :</b>{{$lastMonth}}</h3>
+    <hr>
     <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#permanentNurse" role="tab"

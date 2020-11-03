@@ -76,24 +76,18 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-              @forelse($salariess as $salary)
+                @forelse($salariess as $salary)
                     <table class="table table-bordered" id="dataTableTemporary" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Employee ID</th>
                             <th>Basic Salary</th>
                             <th>Per Day Rate</th>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
-                                <th>Total Payable Days </th>
-                            @else
-                                <th>Total Days of Duty 24hrs</th>
-                                <th>Total Days of Duty 12hrs</th>
-                            @endif
+                            <th>Total Days of Duty 24hrs</th>
+                            <th>Total Days of Duty 12hrs</th>
                             <th>Special Allowance</th>
                             <th>TA & DA</th>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent ==0)
-                                <th>HRA</th>
-                            @endif
+                            <th>HRA</th>
                             <th>Bonus</th>
                             @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <th>ESIC</th>
@@ -110,17 +104,10 @@
                             <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
                             <td>{{$salary->basic}}</td>
                             <td>{{$salary->per_day_rate}}</td>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
-                                <td>{{$salary->payable_days}}</td>
-                            @else
-                                <td>{{$salary->full_day}}</td>
-                                <td>{{$salary->half_day}}</td>
-                            @endif
-
+                            <td>{{$salary->full_day}}</td>
+                            <td>{{$salary->half_day}}</td>
                             <td>{{$salary->special_allowance}}</td>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent ==0)
-                                <td>{{$salary->ta_da}}</td>
-                            @endif
+                            <td>{{$salary->ta_da}}</td>
                             <td>{{$salary->hra}}</td>
                             <td>{{$salary->bonus}}</td>
                             @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
@@ -134,11 +121,11 @@
                         </tr>
                         </tbody>
                     </table>
-                  @empty
+                @empty
                     <table class="table table-bordered" id="dataTableTemporary" width="100%" cellspacing="0">
                         <tbody id="data">
                         <tr>
-                       <td>No search result</td>
+                            <td>No search result</td>
                         </tr>
                         </tbody>
                     </table>
