@@ -51,9 +51,7 @@ class AttendanceController extends Controller
 
             Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));
             Notification::send($user, new \App\Notifications\PaymentAlert\UserAlert($book,$user));
-
             return redirect(route('nurse.index'))->with('success', 'This booking is completed');
-
         }
         else{
             Notification::send($admins, new \App\Notifications\PaymentAlert\AdminAlert($book,$admins));

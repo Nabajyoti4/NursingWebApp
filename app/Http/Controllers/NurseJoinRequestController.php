@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\NurseJoinDisapprove;
+
 use App\NurseJoinRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -193,10 +193,6 @@ class NurseJoinRequestController extends Controller
     {
 
         $candidate = NurseJoinRequest::findOrFail($id);
-        $user = User::findOrFail($candidate->user_id);
-
-        Notification::send($user, new NurseJoinDisapprove($request));
-
         $candidate->Approval = 0;
         $candidate->save();
         session()->flash('success', 'Candidated Disapproved');
