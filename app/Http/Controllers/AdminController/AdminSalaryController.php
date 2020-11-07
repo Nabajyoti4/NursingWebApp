@@ -569,12 +569,12 @@ class AdminSalaryController extends Controller
         $salary = Psalary::findOrFail($employee_id);
         return view('admin.salary.temporary.invoice', compact('salary'));
     }
-    public function tdestroy($id){
+    public function Tdestroy($id){
         Tsalary::findOrFail($id)->delete();
         return redirect()->back()->with('success','deleted');
 
     }
-    public function pdestroy($id){
+    public function Pdestroy($id){
         Psalary::findOrFail($id)->delete();
         return redirect()->back()->with('success','deleted');
 

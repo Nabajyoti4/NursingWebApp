@@ -224,8 +224,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/psalary/invoice/{employee_id}', 'AdminController\AdminSalaryController@Pinovice')->name('admin.psalary.invoice');
 
 
-    Route::delete('admin/tsalary/delete/{id}', 'AdminController\AdminSalaryController@tdestroy')->name('admin.tsalary.delete');
-    Route::delete('admin/psalary/delete/{id}', 'AdminController\AdminSalaryController@pdestroy')->name('admin.psalary.delete');
+    Route::delete('admin/tsalary/delete/{id}', 'AdminController\AdminSalaryController@Tdestroy')->name('admin.tsalary.delete');
+    Route::delete('admin/psalary/delete/{id}', 'AdminController\AdminSalaryController@Pdestroy')->name('admin.psalary.delete');
 
 });
 
