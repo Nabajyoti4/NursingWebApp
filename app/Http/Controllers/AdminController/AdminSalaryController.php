@@ -100,7 +100,7 @@ class AdminSalaryController extends Controller
                 if ($searchMonth) {
 
                     // permanent
-                    $psalaries = Psalary::where('month_days', $searchMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)->whereIn('nurse_id', $pnurses)
+                    $psalaries = Psalary::where('month_days', $searchMonth)->whereYear('created_at', Carbon::create($searchMonth)->year)->whereIn('nurse_id', $tnurses)
                         ->get();
 
                     //temporary
@@ -111,11 +111,11 @@ class AdminSalaryController extends Controller
                     return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
                 }
                 // permanent
-                $psalaries = Psalary::where('month_days', $searchMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
+                $psalaries = Psalary::where('month_days', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
 
                 //temporary
-                $tsalaries = Tsalary::where('month_days', $searchMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
+                $tsalaries = Tsalary::where('month_days', $lastMonth)->whereYear('created_at', $serverDateTime->year)->whereIn('nurse_id', $tnurses)
                     ->get();
 
                 return view('admin.salary.index', compact('psalaries', 'tsalaries','lastMonth'));
@@ -424,7 +424,7 @@ class AdminSalaryController extends Controller
     public
     function destroy($id)
     {
-        
+        //
     }
 
 
@@ -434,11 +434,14 @@ class AdminSalaryController extends Controller
         $tsalaries = Tsalary::where('nurse_id', $employee_id)->get();
         if (Nurse::where('employee_id', $employee_id)->get()->first()) {
             $nurse = Nurse::where('employee_id', $employee_id)->get()->first();
-            $permanent = $nurse->permenant;
+            $permanent = $nurse->permanent;
+
         }
         if (Employee::where('employee_id', 'like', "{$employee_id}%")->get()->first()) {
             $nurse=Employee::where('employee_id', $employee_id)->get()->first();
             $permanent = 1;
+
+
         }
 
         if ($permanent == 1) {
@@ -566,6 +569,15 @@ class AdminSalaryController extends Controller
         $salary = Psalary::findOrFail($employee_id);
         return view('admin.salary.temporary.invoice', compact('salary'));
     }
+    public function tdestroy($id){
+        Tsalary::findOrFail($id)->delete();
+        return redirect()->back()->with('success','deleted');
 
+    }
+    public function pdestroy($id){
+        Psalary::findOrFail($id)->delete();
+        return redirect()->back()->with('success','deleted');
+
+    }
 
 }

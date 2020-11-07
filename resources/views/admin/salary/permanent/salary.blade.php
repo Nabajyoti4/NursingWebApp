@@ -20,7 +20,9 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Employee Name : {{$nurse->user->name}}</h6>
         </div>
+    </div> @if($tsalaries->first() != null)
         <div class="card-body">
+
             <h4>Temporary Salary transactions</h4>
 
             <div class="table-responsive">
@@ -31,7 +33,7 @@
                         <th>Year</th>
                         <th>Action</th>
                         <th>Receipt</th>
-
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -42,6 +44,13 @@
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
+                            <td>
+                                <form action="{{route('admin.psalary.delete', $salary->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"  class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
 
@@ -54,6 +63,7 @@
             </div>
         </div>
         <hr>
+    @endif
         <div class="card-body">
             <h4>Permanent Salary transactions</h4>
             <div class="table-responsive">
@@ -64,6 +74,7 @@
                         <th>Year</th>
                         <th>Action</th>
                         <th>Receipt</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -73,14 +84,21 @@
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.pedit',$salary->id)}}">Edit
                                 </a></td>
-                            <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
-
+                            <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
+                            </td>
+                            <td>
+                                <form action="{{route('admin.psalary.delete', $salary->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
 
-                       <tr>
-                           <td colspan="4"> no data</td>
-                       </tr>
+                        <tr>
+                            <td colspan="4"> no data</td>
+                        </tr>
                     @endforelse
                     </tbody>
                 </table>

@@ -31,6 +31,7 @@
                         <th>Year</th>
                         <th>Action</th>
                         <th>Receipt</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody id="data">
@@ -40,13 +41,21 @@
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
                                 </a></td>
-                            <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a></td>
+                            <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
+                            </td>
+                            <td>
+                                <form action="{{route('admin.tsalary.delete', $salary->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"  class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
 
-                       <tr>
-                           <td colspan="4"> no data</td>
-                       </tr>
+                        <tr>
+                            <td colspan="4"> no data</td>
+                        </tr>
                     @endforelse
                     </tbody>
                 </table>
