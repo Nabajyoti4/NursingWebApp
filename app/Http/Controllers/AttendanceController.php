@@ -206,9 +206,6 @@ class AttendanceController extends Controller
             }
 
 
-            Notification::send($admins, new \App\Notifications\AttendanceMark($attendance, $nurse));
-
-
             return redirect()->back()->with('success', 'Attendance marked as Present!');
 
         }
@@ -234,7 +231,6 @@ class AttendanceController extends Controller
                 array_push($admins, $admin);
         }
 
-        Notification::send($admins, new \App\Notifications\AttendanceMark($attendance, $nurse));
 
         return redirect()->back()->with('success', 'Attendance marked as Absent!');
 

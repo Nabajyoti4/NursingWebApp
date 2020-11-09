@@ -122,7 +122,7 @@
                                 <tbody>
                                 @forelse($apatients as $patient)
                                     <tr>
-                                        <td>{{$patient->id}}</td>
+                                        <td>{{$patient->patient_id}}</td>
                                         <td>{{$patient->patient_name}}</td>
                                         <td>{{$patient->phone_no}}</td>
                                         <td>{{$patient->age}}</td>
@@ -194,7 +194,7 @@
                                 <tbody>
                                 @forelse($rpatients as $patient)
                                     <tr>
-                                        <td>{{$patient->id}}</td>
+                                        <td>{{$patient->patient_id}}</td>
                                         <td>{{$patient->patient_name}}</td>
                                         <td>{{$patient->phone_no}}</td>
                                         <td>{{$patient->age}}</td>

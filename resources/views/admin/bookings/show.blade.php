@@ -160,9 +160,9 @@
                         <form action="{{ route('admin.book.update', $book->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
-                        <div class="select">
-                            <select name="action" type="number" id="action">
-                                <option selected disabled>Take Action</option>
+                        <div class="select w-100">
+                            <select required name="action" type="number" id="action">
+                                <option selected disabled value="">Take Action</option>
                                 <option value="0">Reject</option>
                                 <option value="4">Takeover</option>
                                 <option value="1">Completed</option>

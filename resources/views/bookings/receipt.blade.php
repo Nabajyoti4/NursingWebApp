@@ -10,10 +10,10 @@
     <meta name="author" content="">
 
     <title>
-       Patient Receipt
+        Patient Receipt
     </title>
 
-<!-- Custom styles for this template-->
+    <!-- Custom styles for this template-->
     {{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
     <script src="{{asset('js/sweetalert2.min.js')}}"></script>
@@ -82,7 +82,7 @@
         <div id="content">
 
             <!-- Topbar -->
-         @include('partials.admin_navbar')
+         @include('partials.navbar')
         <!-- End of navbar -->
 
             <!-- Begin Page Content -->

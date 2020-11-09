@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Attendance;
 use App\Booking;
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
@@ -150,8 +151,17 @@ class AdminBookingController extends Controller
         // get the nurse and update the status to working 1
         Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
+        // create a employee id for nurse
+        if (Booking::all()->last()) {
+            $last = Booking::all()->last();
+            $serial = (1 + $last->id);
+        } else {
+            $serial = (101);
+        }
+
         $booking = Booking::create(['user_id' => $patient->user->id,
                         'patient_id' => $data['patient_id'],
+                        'serial' => $serial,
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
                         'due_payment' => $data['due_payment'],
@@ -349,7 +359,8 @@ class AdminBookingController extends Controller
         $booking = Booking::findOrFail($data['booking_id']);
 
         // update the nurse status to not working and set to leave
-        Nurse::findOrfail($booking->nurse_id)->update(['status' => 0,
+        Nurse::findOrfail($booking->nurse_id)->update(
+            ['status' => 0,
             'is_active' => 0]);
 
         // update the old  booking status to take over

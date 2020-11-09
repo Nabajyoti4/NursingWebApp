@@ -94,7 +94,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-lg-8">
+                <div class="col-xs-12 col-lg-8 border p-4 shadow rounded-lg">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
@@ -182,7 +182,7 @@
                         <div class="tab-pane fade" id="workHistory" role="tabpanel" aria-labelledby="booking-tab">
                             <div class="row p-2">
                                 @forelse($bookings as $booking)
-                                    <div class="col-sm-12 mb-2">
+                                    <div class="col-sm-12 mb-2 border p-3 shadow rounded-lg">
                                         <div class="row p-2">
                                             <div class="col-sm-3">
                                                 <div class="col-sm-12"><strong>Booking ID</strong></div>
@@ -214,9 +214,6 @@
                                                     </button>
                                                 </form>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <hr>
                                         </div>
                                     </div>
                                 @empty
@@ -267,6 +264,7 @@
                     </div>
 
 
+                </div>
                 </div>
             </div>
         </div>

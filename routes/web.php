@@ -47,6 +47,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/users/admin/{id}', 'AdminController\AdminUsersController@make_admin')->name('admin.users.admin');
 
 
+
     //for Admin Nurse
     Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =>[
         'index'=>'admin.nurse.index',
@@ -149,6 +150,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/dashboard/mark' , 'AdminController\AdminDashboardController@today_attendance')->name('admin.dashboard.mark');
     Route::get('admin/mark/{id}/present' , 'AdminController\AdminDashboardController@mark_present')->name('admin.mark.present');
     Route::get('admin/mark/{id}/absent' , 'AdminController\AdminDashboardController@mark_absent')->name('admin.mark.absent');
+
     Route::get('admin/dashboard/attendance' , 'AdminController\AdminDashboardController@monthly_attendance')->name('admin.dashboard.attendance');
     Route::get('admin/dashboard/preport/{id}', 'AdminController\AdminDashboardController@permanent_report')->name('admin.dashboard.preport');
     Route::get('admin/dashboard/treport/{id}', 'AdminController\AdminDashboardController@temporary_report')->name('admin.dashboard.treport');
@@ -240,6 +242,7 @@ Route::resource('users','User\UserController',['names'=> [
     'update'=>'users.update'
 ]])->middleware('auth');
 
+Route::get('user/booking-receipt/{id}', 'User\UserController@receipt')->name('user.booking.receipt');
 
 
 Route::resource('nursejoin','NurseJoinRequestController', ['names' =>[

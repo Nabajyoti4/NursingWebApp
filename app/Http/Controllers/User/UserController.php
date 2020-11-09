@@ -207,9 +207,23 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function booking($id){
         $book = Booking::findOrFail($id);
         $attendances = Attendance::where('booking_id',$book->id)->latest()->get();
         return view('bookings.show', compact('book', 'attendances'));
+    }
+
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function receipt($id){
+        $patient = Patient::findOrFail($id);
+        return view('bookings.receipt', compact('patient'));
     }
 }

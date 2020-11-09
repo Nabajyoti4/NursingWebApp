@@ -172,7 +172,6 @@
                             <label for="days">Period of Required (Days):</label>
                             <select type="number" name="days" class="form-control">
                                 <option value="30">30</option>
-                                <option value="60">60</option>
                             </select>
                         </div>
 

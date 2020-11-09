@@ -165,7 +165,7 @@
                                     @forelse($patients as $patient)
                                         <div class="col-sm-4">
                                             <div class="card shadow mb-4">
-                                                <div class="card-header">Patient ID: {{$patient->id}}</div>
+                                                <div class="card-header">Patient ID: {{$patient->patient_id}}</div>
                                                 <div class="card-body">
                                                     <p>Name : {{$patient->patient_name}}</p>
                                                     <p>Phone No : {{$patient->phone_no}}</p>

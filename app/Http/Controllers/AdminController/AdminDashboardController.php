@@ -35,6 +35,8 @@ class AdminDashboardController extends Controller
         $serverDateTime = Carbon::now();
         $booking = Booking::where('nurse_id', $id)->get();
         $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
+
+        // check for permanent or temp table for nurse
         if ($nurse->permanent == 1){
             if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
@@ -46,6 +48,7 @@ class AdminDashboardController extends Controller
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         }
+
         // reduce the remaining days
         $booking->first()->update([
             'remaining_days' => $booking->first()->remaining_days - 1
