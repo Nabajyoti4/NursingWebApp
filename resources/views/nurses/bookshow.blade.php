@@ -107,6 +107,16 @@
                 })
             </script>
         @endif
+        @if ($message = Session::get('info'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: '{{$message}}',
+                    showConfirmButton: true,
+                })
+            </script>
+        @endif
         <div class="alert alert-success py-3 container" style="border-radius: 10px;">
             <h6 class="m-0 font-weight-bold text-success">Booking Details Of {{$book->patient->patient_name}}</h6>
         </div>

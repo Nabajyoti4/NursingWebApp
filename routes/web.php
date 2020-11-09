@@ -47,6 +47,11 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/users/admin/{id}', 'AdminController\AdminUsersController@make_admin')->name('admin.users.admin');
 
 
+    //mark present absent
+    Route::get('admin/dashboard/mark' , 'AdminController\AdminDashboardController@today_attendance')->name('admin.dashboard.mark');
+    Route::get('admin/mark/present/{id}' , 'AdminController\AdminDashboardController@mark_present')->name('admin.mark.present');
+    Route::get('admin/mark/absent/{id}' , 'AdminController\AdminDashboardController@mark_absent')->name('admin.mark.absent');
+
 
     //for Admin Nurse
     Route::resource('admin/nurse','AdminController\AdminNurseController', ['names' =>[
@@ -147,9 +152,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
 
    // dashboard routes
-    Route::get('admin/dashboard/mark' , 'AdminController\AdminDashboardController@today_attendance')->name('admin.dashboard.mark');
-    Route::get('admin/mark/{id}/present' , 'AdminController\AdminDashboardController@mark_present')->name('admin.mark.present');
-    Route::get('admin/mark/{id}/absent' , 'AdminController\AdminDashboardController@mark_absent')->name('admin.mark.absent');
+
+
 
     Route::get('admin/dashboard/attendance' , 'AdminController\AdminDashboardController@monthly_attendance')->name('admin.dashboard.attendance');
     Route::get('admin/dashboard/preport/{id}', 'AdminController\AdminDashboardController@permanent_report')->name('admin.dashboard.preport');

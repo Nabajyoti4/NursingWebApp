@@ -97,12 +97,12 @@ class AttendanceController extends Controller
         if ($nurse->permanent == 1){
             if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-             return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+             return redirect()->back()->with('info', 'Ask Admin to create salary.');
             }
         }else{
             if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+                return redirect()->back()->with('info', 'Ask Admin to create salary.');
             }
         }
         // check the data is inserted or not

@@ -17,7 +17,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name"
+                        <input  id="name" type="text" class="input @error('name') is-invalid @enderror" name="name"
                                value="{{ old('name') }}" required autocomplete="name" placeholder="Full Name">
                         @error('name')
                         <div class="invalid-feedback mt-5" role="alert">
@@ -31,7 +31,7 @@
                         <i class="fas fa-phone-square-alt"></i>
                     </div>
                     <div class="div">
-                        <input type="number" name="phone_no" class="input @error('phone_no') is-invalid @enderror" placeholder="Phone">
+                        <input type="number" required name="phone_no" class="input @error('phone_no') is-invalid @enderror" placeholder="Phone">
                         @error('phone_no')
                         <div class="invalid-feedback mt-5" role="alert">
                             <strong>{{ $message }}</strong>

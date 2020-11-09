@@ -40,14 +40,15 @@ class AdminDashboardController extends Controller
         if ($nurse->permanent == 1){
             if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+                return redirect()->back()->with('info','Create Salary for Nurse In Permanent');
             }
         }else{
             if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-                return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
+                return redirect()->back()->with('info','Create Salary for Nurse In Temporary');
             }
         }
+
 
         // reduce the remaining days
         $booking->first()->update([
