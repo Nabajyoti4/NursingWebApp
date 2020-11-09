@@ -119,7 +119,7 @@
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
                                     <th>Total Days of Duty 24hrs/Day/Night</th>
-                                    <th>TTotal Days of Duty 12hrs/Day/Night</th>
+                                    <th>Total Days of Duty 12hrs/Day/Night</th>
                                     <th>Special Allowance</th>
                                     <th>HRA</th>
                                     <th>TA & DA</th>
@@ -189,7 +189,7 @@
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
                                     <th>Total Days of Duty 24hrs/Day/Night</th>
-                                    <th>TTotal Days of Duty 12hrs/Day/Night</th>
+                                    <th>Total Days of Duty 12hrs/Day/Night</th>
                                     <th>Special Allowance</th>
                                     <th>TA & DA</th>
                                     <th>HRA</th>
