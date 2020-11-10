@@ -90,7 +90,9 @@
             color: #fff;
             cursor: pointer;
         }
-
+        .profile0{
+            width: 250px; height: 250px; object-fit: cover;
+        }
     </style>
 @endsection
 
@@ -117,8 +119,8 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img
-                                src="{{ $book->patient->photo_id?asset("/storage/".$book->patient->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                width="100%" alt="avatar">
+                                class="profile0"
+                                src="{{ $book->patient->photo_id?asset("/storage/".$book->patient->photo->photo_location) :'http://placehold.it/64x64'}}" alt="avatar">
                         </div>
                     </div>
                     <div class="col-md-6">

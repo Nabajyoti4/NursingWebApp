@@ -128,7 +128,7 @@
                         <div class="profile-img">
                             <img
                                 src="{{ $book->patient->photo_id?asset("/storage/".$book->patient->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                width="100%" alt="avatar">
+                                style=" width: 300px; height: 300px; object-fit: cover;" alt="avatar">
                         </div>
                     </div>
                     <div class="col-md-6">
