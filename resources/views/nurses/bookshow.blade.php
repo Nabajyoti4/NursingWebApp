@@ -264,7 +264,7 @@
                                 </div>
                             </div>
 
-                            <!--Nurse Alloted for patient info-->
+                            <!--Nurse Allotted for patient info-->
                             <div class="tab-pane fade" id="nurse" role="tabpanel" aria-labelledby="nurse-tab">
 
                                 <div class="row">
@@ -350,7 +350,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Upload a photo with a patient.</h5>
+                                                                    Attendance</h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -362,19 +362,57 @@
                                                                 <div class="modal-body">
                                                                     <input type="hidden" name="booking_id"
                                                                            id="booking_id" value="{{$book->id}}">
-                                                                    <label for="attendance_image">Upload File</label>
-                                                                    <input type="file" name="attendance_image"
-                                                                           class="form-control-file"
-                                                                           id="attendance_image">
-                                                                </div>
+                                                                    <input type="hidden" name="absent"
+                                                                           id="absent" value="0">
+                                                                    Mark Attendance "ABSENT/PRESENT"                                                                </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close
                                                                     </button>
                                                                     <button id="selfie_submit" type="submit"
-                                                                            class="btn btn-primary">Upload
+                                                                            class="btn btn-primary">Present
                                                                     </button>
-                                                                    <button id="submit" type="submit"
+                                                                    <button id="absent" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#absent{{$book->id}}"
+                                                                            class="btn"
+                                                                            style=" color: #fff;background-color: #e3342f;!important;border-color: #e3342f;">
+                                                                        Mark Absent
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade" id="absent{{$book->id}}"
+                                                     tabindex="-1"
+                                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Are You sure you?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{route('attendance.store')}}"
+                                                                  method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="booking_id"
+                                                                           id="booking_id" value="{{$book->id}}">
+                                                                    <input type="hidden" name="absent"
+                                                                           id="absent" value="1">
+                                                                    Are You sure you want to Mark Absent!!!?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                    <button type="submit"
                                                                             class="btn"
                                                                             style=" color: #fff;background-color: #e3342f;!important;border-color: #e3342f;">
                                                                         Mark Absent
@@ -404,16 +442,20 @@
                                                 <div class="col-sm-4">
                                                        <span>
                                                     @if($attendance->photo == 'null')
-                                                               <img width="100" height="100" src="{{asset("/img/admin_mark.png")}}" alt="">
+                                                               <img width="100" height="100"
+                                                                    src="{{asset("/img/admin_mark.png")}}" alt="">
                                                            @else
-                                                               <img width="150" height="150" src="{{asset("/storage".$attendance->photo)}}" alt="">
+                                                               <img width="150" height="150"
+                                                                    src="{{asset("/storage".$attendance->photo)}}"
+                                                                    alt="">
                                                            @endif
 
                                                 </span>
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <div class="col-sm-12"> Booking ID : {{$attendance->booking->id}}</div>
+                                                    <div class="col-sm-12"> Booking ID
+                                                        : {{$attendance->booking->id}}</div>
                                                     <div class="col-sm-12">Date : {{$attendance->created_at}}</div>
                                                 </div>
 
@@ -454,59 +496,59 @@
 @endsection
 {{--        uncomment the script for image verification--}}
 
-        @section('scripts')
-            <script src="{{asset('js/exif.js')}}"></script>
-            <script>
-                const submitBtn = document.getElementById('selfie_submit').style;
-                submitBtn.display='none';
-                document.getElementById("attendance_image").onchange = function (e) {
-                    var file = e.target.files[0]
-                    if (file && file.name) {
-                        EXIF.getData(file, function () {
-                            var exifData = EXIF.pretty(this);
-                            if (exifData) {
-                                exifData = exifData.split('\n');
-                                exifData.forEach(findDateTime);
-                                var DateTime;
-                                function findDateTime(item, index) {
-                                    var data = (item.split(' : '));
-                                    if (data[0]===("DateTimeOriginal")) {
-                                        DateTime = data;
-                                    }
-                                }
-                                DateTime = DateTime[1].split(' ')[0];
-                                if(DateTime === "{{$date}}"){
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Verifying Image',
-                                        timer: 1500,
-                                        showConfirmButton: false,
-                                    })
-                                    submitBtn.display="inline";
-                                }
-                                else{
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'error',
-                                        title: 'Please, Insert Today\'s Image',
-                                        showConfirmButton: false,
-                                        timer: 1800
-                                    })
-                                    submitBtn.display="none";
-                                }
-                            } else {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'error',
-                                    title: 'Please, Select a valid Image',
-                                    showConfirmButton: false,
-                                    timer: 1800
-                                })
-                                document.getElementById("attendance_image").value = "";
-                            }
-                        });
-                    }
-                }
-            </script>
-@endsection
+{{--        @section('scripts')--}}
+{{--            <script src="{{asset('js/exif.js')}}"></script>--}}
+{{--            <script>--}}
+{{--                const submitBtn = document.getElementById('selfie_submit').style;--}}
+{{--                submitBtn.display='none';--}}
+{{--                document.getElementById("attendance_image").onchange = function (e) {--}}
+{{--                    var file = e.target.files[0]--}}
+{{--                    if (file && file.name) {--}}
+{{--                        EXIF.getData(file, function () {--}}
+{{--                            var exifData = EXIF.pretty(this);--}}
+{{--                            if (exifData) {--}}
+{{--                                exifData = exifData.split('\n');--}}
+{{--                                exifData.forEach(findDateTime);--}}
+{{--                                var DateTime;--}}
+{{--                                function findDateTime(item, index) {--}}
+{{--                                    var data = (item.split(' : '));--}}
+{{--                                    if (data[0]===("DateTimeOriginal")) {--}}
+{{--                                        DateTime = data;--}}
+{{--                                    }--}}
+{{--                                }--}}
+{{--                                DateTime = DateTime[1].split(' ')[0];--}}
+{{--                                if(DateTime === "{{$date}}"){--}}
+{{--                                    Swal.fire({--}}
+{{--                                        position: 'center',--}}
+{{--                                        icon: 'success',--}}
+{{--                                        title: 'Verifying Image',--}}
+{{--                                        timer: 1500,--}}
+{{--                                        showConfirmButton: false,--}}
+{{--                                    })--}}
+{{--                                    submitBtn.display="inline";--}}
+{{--                                }--}}
+{{--                                else{--}}
+{{--                                    Swal.fire({--}}
+{{--                                        position: 'center',--}}
+{{--                                        icon: 'error',--}}
+{{--                                        title: 'Please, Insert Today\'s Image',--}}
+{{--                                        showConfirmButton: false,--}}
+{{--                                        timer: 1800--}}
+{{--                                    })--}}
+{{--                                    submitBtn.display="none";--}}
+{{--                                }--}}
+{{--                            } else {--}}
+{{--                                Swal.fire({--}}
+{{--                                    position: 'center',--}}
+{{--                                    icon: 'error',--}}
+{{--                                    title: 'Please, Select a valid Image',--}}
+{{--                                    showConfirmButton: false,--}}
+{{--                                    timer: 1800--}}
+{{--                                })--}}
+{{--                                document.getElementById("attendance_image").value = "";--}}
+{{--                            }--}}
+{{--                        });--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            </script>--}}
+{{--@endsection--}}

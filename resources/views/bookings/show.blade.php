@@ -256,7 +256,7 @@
                                 </div>
                             </div>
 
-                            <!--Nurse Alloted for patient info-->
+                            <!--Nurse Allotted for patient info-->
                             <div class="tab-pane fade" id="nurse" role="tabpanel" aria-labelledby="nurse-tab">
 
                                 <div class="row">
