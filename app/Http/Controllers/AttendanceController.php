@@ -95,12 +95,12 @@ class AttendanceController extends Controller
         $booking = Booking::findOrFail($data['booking_id']);
         $nurse = Nurse::where('id',$booking->nurse_id)->get()->first();
         if ($nurse->permanent == 1){
-            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Psalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
              return redirect()->back()->with('info', 'Ask Admin to create salary.');
             }
         }else{
-            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Tsalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
                 return redirect()->back()->with('info', 'Ask Admin to create salary.');
             }

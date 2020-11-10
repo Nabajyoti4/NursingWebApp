@@ -38,12 +38,12 @@ class AdminDashboardController extends Controller
 
         // check for permanent or temp table for nurse
         if ($nurse->permanent == 1){
-            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Psalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
                 return redirect()->back()->with('info','Create Salary for Nurse In Permanent');
             }
         }else{
-            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Tsalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
                 return redirect()->back()->with('info','Create Salary for Nurse In Temporary');
             }
@@ -130,12 +130,12 @@ class AdminDashboardController extends Controller
         $serverDateTime = Carbon::now();
         $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
         if ($nurse->permanent == 1){
-            if(Psalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Psalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         }else{
-            if(Tsalary::where('nurse_id',$nurse->id)->whereMonth('created_at', date('m'))
+            if(Tsalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
@@ -210,8 +210,8 @@ class AdminDashboardController extends Controller
      */
     public function permanent_report($id){
         $nurse = Nurse::where('id', $id)->get();
-        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();
-        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->id)->get();
+        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->employee_id)->get();
+        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->employee_id)->get();
         return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
 
     }
@@ -223,8 +223,8 @@ class AdminDashboardController extends Controller
      */
     public function temporary_report($id){
         $nurse = Nurse::where('id', $id)->get();
-        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->id)->get();
-        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->id)->get();
+        $permanent_salary = Psalary::where('nurse_id', $nurse->first()->employee_id)->get();
+        $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->employee_id)->get();
         return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
     }
 }
