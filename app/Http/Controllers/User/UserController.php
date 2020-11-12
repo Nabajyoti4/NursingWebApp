@@ -29,9 +29,10 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         $patients = Patient::where('user_id', Auth::user()->id)->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
+        $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
+        $current_add=Address::where('id',$user->current_address_id)->get()->first();
 
-
-        return view('users.index', compact('user','patients','bookings'));
+        return view('users.index', compact('user','patients','bookings','permanent_add','current_add'));
     }
 
     /**

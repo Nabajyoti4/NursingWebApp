@@ -122,15 +122,15 @@
 
             <!--terms-->
             <h3 class="text-dark font-weight-bold"><u>TERMS AND CONDITIONS</u></h3>
-            <p>1. Registration Fees : 500/-</p>
-            <p>2. Advance Payment Requested: Cash/ Cheque/ Online Payment</p>
-            <p>3. Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only</p>
-            <p>4. Rate for one Nurse for 24 Hours Duty per month is 500x30=15000 (Rs) only</p>
-            <p>5. Customers should refrain from misbehavior to avoid complain against themselves</p>
-            <p>6. Customers should be responsible for overtime service. The authority of the sisters is not responsible for it</p>
-            <p>7. Service does not include work like Washing, Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the sisters</p>
-            <p>8. A sister is available till the patient is there only. She is not appointed for serving or helping the patient’s guardian or other relatives</p>
-            <p>9. <strong><u>Holiday :</u></strong> Our Service is not available on Bohag Bihu, Magh Bihu, Durga Puja and other Traditional Occasion.)</p>
+            <h5>1. Registration Fees : 500/-</h5>
+            <h5>2. Advance Payment Requested: Cash/ Cheque/ Online Payment</h5>
+            <h5>3. Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only</h5>
+            <h5>4. Rate for one Nurse for 24 Hours Duty per month is 500x30=15000 (Rs) only</h5>
+            <h5>5. Customers should refrain from misbehavior to avoid complain against themselves</h5>
+            <h5>6. Customers should be responsible for overtime service. The authority of the sisters is not responsible for it</h5>
+            <h5>7. Service does not include work like Washing, Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the sisters</h5>
+            <h5>8. A sister is available till the patient is there only. She is not appointed for serving or helping the patient’s guardian or other relatives</h5>
+            <h5>9. <strong><u>Holiday :</u></strong> Our Service is not available on Bohag Bihu, Magh Bihu, Durga Puja and other Traditional Occasion.)</h5>
         </div>
         </div>
 
@@ -295,8 +295,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <p style="font-size: 20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I ........{{$patient->patient_name}}......heartly apply "Home Care Nursing Service" for myself and I agree to the all terms & conditions which are mentioned above
-                and i shall Co-operative myself for quickly recovery of my patient.</p>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I ........{{$patient->patient_name}}......heartly apply "Home Care Nursing Service" for myself and I agree to the all terms & conditions which are mentioned above
+                and i shall Co-operative myself for quickly recovery of my patient.</h5>
             </div>
         </div>
         <div class="row">
