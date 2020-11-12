@@ -318,3 +318,8 @@ Route::get('contact_us',function (){
     $members = \App\Team::all();
     return view('contact_us.index',compact('members'));
 })->name('contact_us');
+
+//pay us
+Route::get('pay_us',function (){
+    return view('pay_us.index');
+})->name('pay_us');

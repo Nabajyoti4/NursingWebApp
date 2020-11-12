@@ -110,6 +110,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('about_us')}}">About Us</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('pay_us')}}">Pay Us</a>
+        </li>
     </ul>
 </div>
 <!--nav sidebar ends-->

@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="row pb-4">
-                            <div class="col-12 p-0"><h2 class="font-weight-bold">Benefits  :</h2></div>
+                            <div class="col-12 p-0"><h2 class="font-weight-bold">Benefits :</h2></div>
                             <div class="col-12">
 
                                 <ul class="f">
@@ -137,6 +137,7 @@
             </div>
         </div>
         <!--Nursing end-->
+
         <!-- Card our team -->
         <div class="container-fluid pr-0 pl-0" style="background-color: #4a4949;!important;">
             <div class="container-fluid text-center card bg-transparent">
@@ -168,8 +169,4 @@
             </div>
         </div>
         <!--card end-->
-
-
-    </div>
-
 @endsection

@@ -37,6 +37,9 @@
                 <li class="nav-item px-1 ">
                     <a class="nav-link navbar-fonts" href="{{route('about_us')}}">About Us</a>
                 </li>
+                <li class="nav-item px-1 ">
+                    <a class="nav-link navbar-fonts" href="{{route('pay_us')}}">Pay Us</a>
+                </li>
                 <li class="nav-link navbar-fonts">|</li>
                 <!-- Authentication Links -->
                 @auth
