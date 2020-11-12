@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 use App\NurseJoinRequest;
 use App\Patient;
 use App\Reject;
+use App\Service;
 use App\User;
 use App\Http\Controllers\Controller;
 
@@ -132,11 +133,13 @@ class AdminPatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
         //
+        $services = Service::all();
+        return view('admin.patients.create', compact('services'));
     }
 
     /**
@@ -148,6 +151,15 @@ class AdminPatientController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->only(['patient_name', 'photo_id', 'phone_no', 'age',
+            'gender', 'address_id', 'family_members', 'guardian_name',
+            'relation_guardian', 'shift', 'days', 'service_id',
+            'patient_history', 'patient_doctor','permanent_city',
+            'permanent_landmark','permanent_street','permanent_post','permanent_country',
+            'permanent_pincode','permanent_police','permanent_state',]);
+
+        dd($data);
+
     }
 
     /**

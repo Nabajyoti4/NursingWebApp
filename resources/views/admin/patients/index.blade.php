@@ -21,7 +21,13 @@
     </form>
 
     <hr>
-
+    <div class="d-sm-inline-block justify-content-end">
+        <a class="btn btn-primary" href="{{route('admin.patient.create')}}">
+            create
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </a>
+    </div>
+    <hr>
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="nurseTable">
         <div class="card-header py-3">

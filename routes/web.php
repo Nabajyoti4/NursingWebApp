@@ -90,6 +90,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'index'=>'admin.patient.index',
         'edit'=>'admin.patient.edit',
         'update'=>'admin.patient.update',
+        'create' => 'admin.patient.create',
+        'store' => 'admin.patient.store',
         'show'=>'admin.patient.show',
     ]]);
 
@@ -98,6 +100,9 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/approved/patient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
     Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');
     Route::get('admin/patient/receipt/{id}', 'AdminController\AdminPatientController@receipt')->name('admin.patient.receipt');
+
+
+
 
 
 // Admin salary
