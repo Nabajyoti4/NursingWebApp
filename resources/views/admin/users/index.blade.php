@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->addresses()->first()->city ?? "No city"}}</td>
+                            <td>{{$user->address($user->getCAddressId($user->id))->city ?? "No city"}}</td>
                             <td>{{$user->phone_no}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$user->id)}}">Edit
                                 </a><i class="fa fa-pencil-square" aria-hidden="true"></i>

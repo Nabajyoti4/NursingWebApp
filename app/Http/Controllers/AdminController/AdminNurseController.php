@@ -249,7 +249,7 @@ class AdminNurseController extends Controller
         $current_address = Address::findOrfail($user->current_address_id);
 
         $current_address->update(['user_id' => $user->id,
-                'city' => $data['current_city'],
+                'city' => strtolower($data['current_city']),
                 'state' => $data['current_state'],
                 'pin_code' => $data['current_pincode'],
                 'country' => $data['current_country'],

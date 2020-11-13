@@ -27,8 +27,8 @@ class NurseController extends Controller
         // find thw nurse with the id same as user_id
         $nurse = $user->nurse;
         $bookings = Booking::where('nurse_id', $nurse->id)->get();
-        $tsalaries = Tsalary::where('nurse_id', $nurse->id)->latest()->get();
-        $psalaries = Psalary::where('nurse_id', $nurse->id)->latest()->get();
+        $tsalaries = Tsalary::where('nurse_id', $nurse->employee_id)->latest()->get();
+        $psalaries = Psalary::where('nurse_id', $nurse->employee_id)->latest()->get();
         $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();
         $current_add=Address::where('id',$user->current_address_id)->get()->first();
         // check if there is attendance for the nurse

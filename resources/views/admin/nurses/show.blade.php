@@ -89,54 +89,54 @@
                         <h5 class="header font-weight-bold bg-light">Current Address</h5>
                         <div>
                             <h5 class="font">Street</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->street : ""}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->landmark : "Fill the current Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->landmark?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">City</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->city : "Fill the current Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">State</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->state : "Fill the current Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->state?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Country</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->country : "Fill the current Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->country?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Pin Code</h5>
-                            <span>: {{$nurse->user->addresses->last() ? $nurse->user->addresses->last()->pin_code : "Fill the current Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->pin_code?? ""}}</span>
                         </div>
                     </div>
                     <div class="borderdiv">
                         <h5 class="header font-weight-bold bg-light">Permanent Address</h5>
                         <div>
                             <h5 class="font">Street</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->landmark?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">City</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">State</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->state?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Country</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->country?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Pin Code</h5>
-                            <span>: {{$nurse->user->addresses->first() ? $nurse->user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->pin_code?? ""}}</span>
                         </div>
                     </div>
                     <div class="borderdiv">

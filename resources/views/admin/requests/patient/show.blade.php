@@ -79,27 +79,27 @@
                     <h5 class="header font-weight-bold bg-light">Address</h5>
                     <div>
                         <h5 class="font">Street</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->street}}</span>
                     </div>
                     <div>
                         <h5 class="font">Landmark</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->landmark}}</span>
                     </div>
                     <div>
                         <h5 class="font">City</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->city}}</span>
                     </div>
                     <div>
                         <h5 class="font">State</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->state}}</span>
                     </div>
                     <div>
                         <h5 class="font">Country</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->country}}</span>
                     </div>
                     <div>
                         <h5 class="font">Pin Code</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($patient->user->getCAddressId($patient->user->id))->pin_code}}</span>
                     </div>
                 </div>
                 <div class="borderdiv">
@@ -155,7 +155,7 @@
                         @csrf
                         <button class="btn btn-primary" type="submit">Approve</button>
                     </form>
-                    @endif
+                @endif
             </div>
         </div>
     </div>
