@@ -75,7 +75,7 @@
                                     alt="" width="100" height="100"
                                 /></td>
                             <td>{{$nurse->user->name}}</td>
-                            <td>{{$nurse->user->addresses->first()->city}}</td>
+                            <td>{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
                             <td>@if($nurse->status == 0)
                                     Not Hired
                                 @else
