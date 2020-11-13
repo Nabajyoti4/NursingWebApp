@@ -55,16 +55,33 @@
                 <div class="col-lg-6 p-2">
                     <div class="form-group font-weight-bold">
                         <label for="phone_no">Phone Number:</label>
-                        <input required type="number" class="form-control" name="phone_no"
-                               placeholder="Enter Phone number"
-                               value="{{old('phone_no')}}">
+                        <input type="number" required name="phone_no" class="input form-control @error('phone_no') is-invalid @enderror" placeholder="Phone" value="{{old('phone_no')}}">
+                        @error('phone_no')
+                        <div class="invalid-feedback mt-5" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-6 p-2">
+                    <div class="form-group font-weight-bold">
+                        <label for="email">Email:</label>
+                    <input id="email" type="text" class="input form-control @error('email') is-invalid @enderror" name="email"
+                           value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                    @error('email')
+                    <div class="invalid-feedback mt-5" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @enderror
+                    </div>
+                </div>
 
+                <div class="col-lg-6 p-2">
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Patient Pic: </label>
                 <input type="file" class="form-control" name="image">
+            </div>
+                </div>
             </div>
 
 
@@ -101,8 +118,12 @@
                                placeholder="Landmark" value="{{old('permanent_landmark')}}">
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input required type="text" class="form-control" name="permanent_city"
-                               placeholder="city" value="{{old('permanent_city')}}">
+                        <select class="form-control" name="permanent_city" >
+                            <option value="">Select City</option>
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_state"
@@ -134,21 +155,21 @@
                     <div class="form-group font-weight-bold">
                         <label for="family_members">Total Family Member ( Both M/F):</label>
                         <input type="text" class="form-control" name="family_members"
-                               value="">
+                               value="{{old('family_members')}}">
                     </div>
                 </div>
                 <div class="col-lg-4 p-2">
                     <div class="form-group font-weight-bold">
                         <label for="relation_guardian">Relation with the Guardian :</label>
                         <input type="text" class="form-control" name="relation_guardian"
-                               value="">
+                               value="{{old('relation_guardian')}}">
                     </div>
                 </div>
                 <div class="col-lg-4 p-2">
                     <div class="form-group font-weight-bold">
                         <label for="guardian_name">Name of the Guardian:</label>
                         <input type="text" class="form-control" name="guardian_name"
-                               value="">
+                               value="{{old('guardian_name')}}">
                     </div>
                 </div>
             </div>

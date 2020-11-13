@@ -111,7 +111,6 @@ class PatientController extends Controller
 
 
         // select all the admins to send the request to them
-
         $adminAll = User::where('role', 'admin')->get();
 
         $admins = array();

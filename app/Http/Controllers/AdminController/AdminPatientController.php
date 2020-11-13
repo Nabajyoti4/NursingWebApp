@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\AdminController;
+use App\Address;
+use App\City;
 use App\NurseJoinRequest;
 use App\Patient;
+use App\Photo;
 use App\Reject;
 use App\Service;
 use App\User;
@@ -10,7 +13,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AdminPatientController extends Controller
 {
@@ -139,26 +145,107 @@ class AdminPatientController extends Controller
     {
         //
         $services = Service::all();
-        return view('admin.patients.create', compact('services'));
+        $cities = City::all();
+        return view('admin.patients.create', compact('services', 'cities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
-        $data = $request->only(['patient_name', 'photo_id', 'phone_no', 'age',
+        //filter the data
+        $data = $request->only(['patient_name', 'image', 'email','phone_no', 'age',
             'gender', 'address_id', 'family_members', 'guardian_name',
             'relation_guardian', 'shift', 'days', 'service_id',
             'patient_history', 'patient_doctor','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
             'permanent_pincode','permanent_police','permanent_state',]);
 
-        dd($data);
+        //create a new user using mail
+        $validateData = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_no' => ['required', 'min:10|numeric'],
+        ]);
+
+        $user = User::create([
+            'name' => $data['patient_name'],
+            'email' => $validateData['email'],
+            'phone_no' => $validateData['phone_no'],
+            'password' => Hash::make($data['phone_no']),
+        ]);
+
+        //if patient ha sany image
+        if ($request->hasFile('image')) {
+            $image = $request->image->store('users', 'public');
+                $photo = Photo::create(['photo_location' => $image]);
+                $user['photo_id'] = $photo->id;
+        }
+
+
+        //add address details in address table for user
+        $current_address = Address::create(['user_id' => $user->id,
+            'city' => $data['permanent_city'],
+            'state' => $data['permanent_state'],
+            'pin_code' => $data['permanent_pincode'],
+            'country' => $data['permanent_country'],
+            'landmark' => $data['permanent_landmark'],
+            'street' => $data['permanent_street'],
+            'police_station' => $data['permanent_police'],
+            'post_office' => $data['permanent_post']
+
+        ]);
+        $permanent_address = Address::create(['user_id' => $user->id,
+            'city' => $data['permanent_city'],
+            'state' => $data['permanent_state'],
+            'pin_code' => $data['permanent_pincode'],
+            'country' => $data['permanent_country'],
+            'landmark' => $data['permanent_landmark'],
+            'street' => $data['permanent_street'],
+            'police_station' => $data['permanent_police'],
+            'post_office' => $data['permanent_post']
+        ]);
+
+        $user['current_address_id'] = $current_address->id;
+        $user['permanent_address_id'] = $permanent_address->id;
+
+        //Now create a new patient request
+        $last = Patient::all()->last();
+        if($last){
+            $patient_id = 'P' . (1001 + $last->id);
+        }else{
+            $patient_id = 'P' . (1001);
+        }
+
+        Patient::create(['user_id' => $user->id,
+            'patient_name' => $data['patient_name'],
+            'patient_id' => $patient_id,
+            'photo_id' => $photo->id,
+            'phone_no' => $data['phone_no'],
+            'age' => $data['age'],
+            'gender' => $data['gender'],
+            'address_id' => $permanent_address->id,
+            'family_members' => $data['family_members'],
+            'guardian_name' => $data['guardian_name'],
+            'relation_guardian' => $data['relation_guardian'],
+            'shift' => $data['shift'],
+            'days' => $data['days'],
+            'service_id' => $data['service_id'],
+            'patient_history' => $data['patient_history'],
+            'patient_doctor' => $data['patient_doctor']
+        ]);
+
+
+        // after all request are done save the changes to user table
+        $user->save();
+
+
+        return redirect()
+            ->route('admin.patient.index')
+            ->with('success','Patient created Successfully');
 
     }
 

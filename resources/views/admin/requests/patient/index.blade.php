@@ -5,7 +5,16 @@
 
 @section('content')
 
-
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pendingRequest" role="tab"
