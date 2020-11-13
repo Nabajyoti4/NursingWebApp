@@ -79,27 +79,27 @@
                     <h5 class="header font-weight-bold bg-light">Address</h5>
                     <div>
                         <h5 class="font">Street</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->address($user->getCAddressId) ? $patient->user->address->street : "Fill the Permanent Address"}}</span>
                     </div>
                     <div>
                         <h5 class="font">Landmark</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->addresses ? $patient->user->addresses->landmark : "Fill the Permanent Address"}}</span>
                     </div>
                     <div>
                         <h5 class="font">City</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->addresses ? $patient->user->addrecity : "Fill the Permanent Address"}}</span>
                     </div>
                     <div>
                         <h5 class="font">State</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->addresses ? $patient->user->addresses->state : "Fill the Permanent Address"}}</span>
                     </div>
                     <div>
                         <h5 class="font">Country</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->addresses ? $patient->user->addresses->country : "Fill the Permanent Address"}}</span>
                     </div>
                     <div>
                         <h5 class="font">Pin Code</h5>
-                        <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                        <span>: {{$patient->user->addresses ? $patient->user->addresses->pin_code : "Fill the Permanent Address"}}</span>
                     </div>
                 </div>
                 <div class="borderdiv">

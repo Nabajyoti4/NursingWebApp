@@ -96,4 +96,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function address($id){
+        return Address::findOrFail($id);
+    }
+
+    public function getPAddressId($id){
+        return User::findOrFail($id)->permanent_address_id;
+    }
+    public function getCAddressId($id){
+        return User::findOrFail($id)->current_address_id;
+    }
 }
