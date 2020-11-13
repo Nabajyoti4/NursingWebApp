@@ -67,7 +67,7 @@ class PatientController extends Controller
 
         // store the address of patient
         $permanent_address = Address::create(['user_id' => $user->id,
-            'city' => $data['permanent_city'],
+            'city' => strtolower($data['permanent_city']),
             'state' => $data['permanent_state'],
             'pin_code' => $data['permanent_pincode'],
             'country' => $data['permanent_country'],
@@ -78,10 +78,10 @@ class PatientController extends Controller
         ]);
 
         // store the image
-            $image = $request->image->store('patients', 'public');
-            $photo = Photo::create(['photo_location' => $image]);
+        $image = $request->image->store('patients', 'public');
+        $photo = Photo::create(['photo_location' => $image]);
 
-            //patient id
+        //patient id
         $last = Patient::all()->last();
 
         if($last){
