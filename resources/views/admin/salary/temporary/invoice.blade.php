@@ -7,120 +7,197 @@
 </head>
 <style>
     body {
-        background-color: white;
+        background-color: #ffffff;
+
     }
+    table, tr, td ,th{
+        border: 1px double #c8c8c8;
+        font-size: 18px;
+        font-weight:bold;!important
+    }
+
+
 
 </style>
 <body>
-<div class="container">
+<br>
+<br>
+<div class="container ">
     <div class="font-weight-bold ">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center ">
             <!--header-->
-            <div class="col-sm-2">
+            <div class="col-sm-2 " style="padding-top:0;">
                 <img src="{{asset('img/AArogya-new-edit-1.png')}}"
-                     style="width: 150px; height: 60px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
+                     style="width: 180px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
                      alt="">
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
-                <h3 class="receipt-heading__sub font-weight-bold mt-5">AAROGYA HOME CARE NURSING SERVICE</h3>
-                <h6 class="receipt-heading__description bold">HEAD OFFICE : MANDAKINI BIBAH BHAWAN COMPLEX, KOTOKY
+                <h3 class="receipt-heading__sub font-weight-bold mt-5" style="color: green">AAROGYA HOME CARE NURSING
+                    SERVICE</h3>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : MANDAKINI
+                    BIBAH BHAWAN COMPLEX, KOTOKY
                     PUKHURI,</h6>
-                <h6 class="receipt-heading__description bold">BYE PASS TINI ALI, JORHAT</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
+                    JORHAT, PIN- 785006, ASSAM</h6>
             </div>
-            <div class="col-sm-2 text-right">
+            <div class="col-sm-2 text-right" style="padding-top: 22px;">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239
             </div>
         </div>
-        <hr>
+        <hr style="background-color: black">
         <div class="row justify-content-center">
-            <h3 style="font-weight: bold; padding: 10px;">Salary Slip</h3>
+            <h3 style="font-weight: bold; padding: 20px 20px 2px; margin-bottom: 40px; border-bottom: 1px solid #121213;color: #151621">
+                Salary Slip</h3>
         </div>
         <div class="row ">
-            <table class="table table-secondary border">
-                <tr>
-                    <td>Employee ID</td>
-                    <td>{{$salary->nurse_id}}</td>
-                </tr>
-                <tr>
-                    <td>Basic Salary</td>
-                    <td>{{$salary->basic}}</td>
-                </tr>
-                <tr>
-                    <td>Per Day Rate</td>
-                    <td>{{$salary->per_day_rate}}</td>
-                </tr>
-                <tr>
-                    <td>Total Days of Duty 24hrs/Day/Night</td>
-                    <td>{{$salary->full_day}}</td>
-                </tr>
-                <tr>
-                    <td>Total Days of Duty 12hrs/Day/Night</td>
-                    <td>{{$salary->half_day}}</td>
-                </tr>
-                <tr>
-                    <td>Month-Year</td>
-                    <td>{{\Carbon\Carbon::create($salary->month_days)->format('F')}}</td>
-                </tr>
-                <tr>
-                    <td>Special Allowance</td>
-                    <td>{{$salary->special_allowance}}</td>
-                </tr>
-                <tr>
-                    <td>TA & DA</td>
-                    <td>{{$salary->ta_da}}</td>
-                </tr>
-                <tr>
-                    <td>HRA</td>
-                    <td>{{$salary->hra}}</td>
-                </tr>
-                <tr>
-                    <td>Bonus</td>
-                    <td>{{$salary->bonus}}</td>
-                </tr>
-                <tr>
-                    <td>Advance Payment</td>
-                    <td>{{$salary->advance}}</td>
-                </tr>
-                <tr>
-                    <td>Total Salary</td>
-                    <td>{{$salary->total}}</td>
-                </tr>
-                <tr>
-                    <td>Deduction</td>
-                    <td>{{$salary->deduction}}</td>
-                </tr>
-                <tr>
-                    <td>Net Payment</td>
-                    <td>{{$salary->net}}</td>
-                </tr>
-                <tr>
-                    <td>Area</td>
-                    <td>{{$salary->area}}</td>
-                </tr>
-                <tr>
-                    <td>Remarks</td>
-                    <td>{{$salary->remarks}}</td>
-                </tr>
-                <tr>
-                    <td>Payment Received Date</td>
-                    <td>{{$salary->payment_received_date}}</td>
-                </tr>
-            </table>
+            <div class="col-sm-6">
+                <table class="table  ">
+                    <tr>
+                        <td>Employee ID</td>
+                        <td>{{$salary->nurse_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{\App\Nurse::where('employee_id',$salary->nurse_id)->get()->first()->user->name??\App\Employee::where('employee_id',$salary->nurse_id)->get()->first()->user->name}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>Designation</td>
+                        @if(\App\Employee::where('employee_id',$salary->nurse_id)->get()->isNotEmpty())
+                            <td>{{\App\Employee::where('employee_id',$salary->nurse_id)->get()->first()->role(\App\Employee::where('employee_id',$salary->nurse_id)->get()->first()->role)}}</td>
+                        @elseif(\App\Nurse::where('employee_id',$salary->nurse_id)->get()->first()->user->role =='nurse')
+                            <td>Nursing Care/Nursing Attendent</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>{{$salary->area}}</td>
+                    </tr>
+
+                    @if(\App\Employee::where('employee_id',$salary->nurse_id)->get()->isEmpty())
+                        <tr>
+                            <td>Shift</td>
+                            <td> 24 hrs(&nbsp;&nbsp;&nbsp;&nbsp;)/&nbsp;&nbsp; Day Shift(&nbsp;&nbsp;&nbsp;&nbsp;)
+                                /&nbsp;&nbsp; Night Shift(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            </td>
+                        </tr>
+                    @endif
+                    <tr>
+                        <td>Month-Year</td>
+                        <td>{{\Carbon\Carbon::create($salary->month_days)->format('F-Y')}}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col-sm-6" style="text-align: end; top:-65">
+                <div class="">
+                    Date:
+                    {{$salary->created_at->format('d-F-Y')}}
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6">
+                <table class="table">
+                    <tr>
+                        <th>EMOLUMENTS</th>
+                        <th>Amounts(Rs.)</th>
+                    </tr>
+                    <tr>
+                        <td>Basic Salary</td>
+                        <td>{{$salary->basic}}</td>
+                    </tr>
+                    <tr>
+                        <td>HRA</td>
+                        <td>{{$salary->hra}}</td>
+                    </tr>
+                    <tr>
+                        <td>Special Allowance</td>
+                        <td>{{$salary->special_allowance}}</td>
+                    </tr>
+                    <tr>
+                        <td>ESIC</td>
+                        <td>{{$salary->esic??'NILL'}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>TA & DA</td>
+                        <td>{{$salary->ta_da}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Bonus</td>
+                        <td>{{$salary->bonus}}</td>
+                    </tr>
+                    <tr>
+                        <td>Advance Payment</td>
+                        <td>{{$salary->advance}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <table class="table ">
+                    <tr>
+                        <th>DEDUCTIONS</th>
+                        <th>Amounts(Rs.)</th>
+                    </tr>
+                    <tr>
+                        <td>Professional Tax(PT)</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Tax Deducted at Source(TDS)</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Other Deductions(Loans,etc)</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total Deduction</td>
+                        <td>{{$salary->deduction}}</td>
+                    </tr>
+
+                </table>
+                <table class="table" style="margin-top:45px;">
+                    <tr>
+                        <td>Net Pay</td>
+                        <td>₹ {{$salary->net}}</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pt-2">
+                <table class="table ">
+                    <tr>
+                        <td>Payment Mode</td>
+                        <td>BANK NEFT(&nbsp;&nbsp;&nbsp;&nbsp;)/ RTGS(&nbsp;&nbsp;&nbsp;&nbsp;)/ CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            / CHEQUE(&nbsp;&nbsp;&nbsp;&nbsp;) / ACCOUNT PAY(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
         </div>
-        <table class="table text-center">
-            <br><br>
+
+        <div style="font-size: 18px; margin-top: 100px">
+            <div class="row">
+                <div class="col-sm-2">Authorized by</div>
+                <div class="col-sm-8"></div>
+                <div class="col-sm-2">Received by</div>
+            </div>
             <br>
-            <tr>
-                <td>Authorized by</td>
-                <td>Received by</td>
-            </tr>
-        </table>
-        <div class="row justify-content-center">
-            <h5 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h5>
-        </div>
-    </div>
 
+        </div>
+
+    </div>
+    <div class="row justify-content-center" style="background-color: #23b77f;color: white; padding: 8px; margin-top:60px">
+        <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+    </div>
 </div>
 </body>
 </html>

@@ -441,7 +441,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="col-sm-12"> Booking ID
                                                         : {{$attendance->booking->id}}</div>
-                                                    <div class="col-sm-12">Date : {{\Carbon\Carbon::create($attendance->created_at)}}</div>
+                                                    <div class="col-sm-12">Date : {{$attendance->created_at->format('d-F-Y')}}</div>
                                                 </div>
 
 
