@@ -66,13 +66,12 @@
         <!--Nursing end-->
         <div class="container-fluid pr-0 pl-0" style="background-color: #343c48;!important;">
             <div class="container-fluid text-center card bg-transparent">
-
                 <div class="row align-items-center justify-content-center p-5">
                     <div class="col-sm-12 col-lg-4 " style="margin-bottom:20px;" data-aos="flip-right"
                          data-aos-delay="300">
                         <div class="themeioan_course">
-                            <div class="blog-content">
-                                <h5 class="title" style="text-align: start;  height: 200px;"> Bank Name: AXIS Bank
+                            <div class="blog-content"  style="background-color: #262525;">
+                                <h5 class="title" style="text-align: start;  height: 200px; color: white;"> Bank Name: AXIS Bank
                                     <br>
                                     Branch Address: A T Road Chowkbazar , Jorhat
                                     <br>
@@ -88,8 +87,8 @@
                     <div class="col-sm-12 col-lg-4 " style="margin-bottom:20px;" data-aos="flip-right"
                          data-aos-delay="300">
                         <div class="themeioan_course">
-                            <div class="blog-content">
-                                <h5 class="title" style="text-align: start;  height: 200px;"> COURIER CHEQUES TO:
+                            <div class="blog-content"  style="background-color: #262525;">
+                                <h5 class="title" style="text-align: start;  height: 200px;color: white;"> COURIER CHEQUES TO:
 
                                     <br>Address: Mandakini Bibah Bhawan complex, Kotoky Pukhuri, Bye Pass Tini Ali,
                                     Jorhat (Assam)
@@ -100,10 +99,26 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-sm-12 col-lg-4 " style="margin-bottom:20px;" data-aos="flip-right"
+                         data-aos-delay="300">
+                        <div class="themeioan_course " >
+                            <div class="blog-content" style="background-color: #262525;">
+                                <h5 class="title" style="text-align: start;  height: 200px;color: white;!important;"> Bank Name: HDFC Bank
+                                    <br>
+                                    Branch Address: Tarajan, Jorhat
+                                    <br>
+                                    Account Name: AAROGYA HOME CARE NURSING SERVICE
+                                    <br>
+                                    Account No: 50200053488670
+                                    <br>
+                                    IFSC Code: HDFC0009123
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
 
 @endsection
