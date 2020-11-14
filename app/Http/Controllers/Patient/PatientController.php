@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Address;
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
@@ -30,18 +31,19 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response|
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
         //
         $services = Service::all();
         $user = Auth::user();
+        $cities = City::all();
 
         if($user->permanent_address_id > 0){
-            return view('patientapplication.index', compact('services'));
+            return view('patientapplication.index', compact('services', 'cities'));
         }else{
-            return redirect()->back()->with('info', 'Please fill your deatils before hiring');
+            return redirect()->back()->with('info', 'Please fill your details before hiring');
         }
 
     }
@@ -67,7 +69,7 @@ class PatientController extends Controller
 
         // store the address of patient
         $permanent_address = Address::create(['user_id' => $user->id,
-            'city' => strtolower($data['permanent_city']),
+            'city' => $data['permanent_city'],
             'state' => $data['permanent_state'],
             'pin_code' => $data['permanent_pincode'],
             'country' => $data['permanent_country'],
@@ -111,7 +113,6 @@ class PatientController extends Controller
 
 
         // select all the admins to send the request to them
-
         $adminAll = User::where('role', 'admin')->get();
 
         $admins = array();

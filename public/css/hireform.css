@@ -1,6 +1,8 @@
 .wrapper{
     padding: 10px;
-    background: radial-gradient(rgba(72, 55, 97, 0.87),rgb(72, 55, 97));
+    background-color: #4e73df;
+    background-image: linear-gradient(180deg,#4e73df 10%,#224abe 100%);
+    background-size: cover;
 
 }
   .wrapper_form{
@@ -9,13 +11,15 @@
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(119,131,214,1) 0%, rgba(0,212,255,1) 99%); */
     margin: 0 auto;
     padding: 40px;
-    width: 50%;
+    width: 80%;
     min-width: 300px;
     box-shadow: 0 0 25px rgb(12, 12, 12);
+      border-radius: 20px;
   }
 
   h1 {
     text-align: center;
+      font-family: "Open Sans";
   }
   label{
 
