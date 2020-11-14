@@ -98,7 +98,6 @@ class UserController extends Controller
               'current_pincode','current_police','current_state','permanent_city',
               'permanent_landmark','permanent_street','permanent_post','permanent_country',
               'permanent_pincode','permanent_police','permanent_state']);
-
         $user = Auth::user();
 
         /**
