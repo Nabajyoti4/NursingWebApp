@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-    Services
+    About Us
 @endsection
 
 @section('links')
@@ -111,8 +111,8 @@
 
                                 <ul class="f">
                                     <li class="f">Medicationders.</li>
-                                    <li class="f">.Bathing : bed baths, tub baths or showers</li>
-                                    <li class="f"> Dressing, grooming & toileting.</li>
+                                    <li class="f">Bathing : bed baths, tub baths or showers</li>
+                                    <li class="f">Dressing, grooming & toileting.</li>
                                     <li class="f">Dressing, grooming & toileting.</li>
                                     <li class="f">Escorting clients to appointment & outing.</li>
                                     <li class="f">Mobility/Ambulation stair, wheel chairs & walkers.</li>
