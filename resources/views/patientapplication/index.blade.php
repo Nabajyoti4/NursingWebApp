@@ -49,7 +49,8 @@
                 @csrf
                 <h1>Customer Application Form</h1>
                 <div class="border rounded p-4" style="font-family: sans-serif;justify-content: center">
-                    <strong><h4 style="font-weight: bolder">Terms and Conditions:</h4></strong> <h5 style="letter-spacing: 0.5px; color: black">( Registration Fees : 500/-, Advance Payment Requested: Cash/
+                    <strong><h4 style="font-weight: bolder">Terms and Conditions:</h4></strong>
+                    <h5 style="letter-spacing: 0.5px; color: black; align-content: space-evenly">( Registration Fees : 500/-, Advance Payment Requested: Cash/
                     Cheque/ Online
                     Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate for
                     one
