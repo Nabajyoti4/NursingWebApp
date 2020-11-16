@@ -13,6 +13,7 @@ class Booking extends Model
         'status',
         'due_payment',
         'serial',
+        'serial_money',
         'total_payment',
         'remaining_days'];
 

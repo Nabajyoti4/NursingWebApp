@@ -144,7 +144,7 @@
                                         <label>Current City</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{\App\Address::find($user->current_address_id)->city}}</p>
+                                        <p>{{\App\Address::find($user->current_address_id)->city ?? "Fill Your Address"}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -152,7 +152,7 @@
                                         <label>Permanent City</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{\App\Address::find($user->permanent_address_id)->city}}</p>
+                                        <p>{{\App\Address::find($user->permanent_address_id)->city ?? "Fill Your Address"}}</p>
                                     </div>
                                 </div>
 

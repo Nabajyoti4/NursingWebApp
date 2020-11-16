@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        <label for="due_payment">Due Payment</label>
+                        <label for="due_payment">Advance Payment</label>
                         <input name="due_payment" class="form-control" type="number">
                     </div>
                 </div>

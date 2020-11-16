@@ -148,36 +148,46 @@ class AdminBookingController extends Controller
         $patient = Patient::findOrFail($data['patient_id']);
 
 
-        // get the nurse and update the status to working 1
-        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
-
-        // create a employee id for nurse
+        // create a serial number for receipt
         if (Booking::all()->last()) {
             $last = Booking::all()->last();
-            $serial = (1 + $last->id);
+            $serial = (1 + $last->serial);
         } else {
             $serial = (101);
         }
 
+        //create a money receipt serial number
+        if (Booking::all()->last()) {
+            $last = Booking::all()->last();
+            $money_serial = ('J ' . (601 + $last->id));
+        } else {
+            $money_serial = ('J ' . 601);
+        }
+
+
         $booking = Booking::create(['user_id' => $patient->user->id,
                         'patient_id' => $data['patient_id'],
                         'serial' => $serial,
+                        'serial_money' => $money_serial,
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
                         'due_payment' => $data['due_payment'],
                         'remaining_days' => $patient->days]
                         );
 
+        // get the nurse and update the status to working 1
+        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
+
 
 
         // send notification to user , nurse for new booking
-        $nurse = Nurse::where('id', $data['nurse'])->get();
-        $user = User::where('id', $nurse->first()->user_id)->get();
-        Notification::send($user, new \App\Notifications\NurseBooked($nurse));
-
-
-        $user = User::where('id', $patient->user->id)->get();
-        Notification::send($user, new \App\Notifications\UserBooked($booking,$patient));
+//        $nurse = Nurse::where('id', $data['nurse'])->get();
+//        $user = User::where('id', $nurse->first()->user_id)->get();
+//        Notification::send($user, new \App\Notifications\NurseBooked($nurse));
+//
+//
+//        $user = User::where('id', $patient->user->id)->get();
+//        Notification::send($user, new \App\Notifications\UserBooked($booking,$patient));
 
 
         $bookings = Booking::all();

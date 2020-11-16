@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 use App\Address;
+use App\Booking;
 use App\City;
 use App\NurseJoinRequest;
 use App\Patient;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\Comparator\Book;
 
 class AdminPatientController extends Controller
 {
@@ -328,6 +330,13 @@ class AdminPatientController extends Controller
         session()->flash('success', 'Patient Approved');
         return redirect()->back();
     }
+
+
+    public function money_receipt($id){
+        $booking = Booking::where('patient_id', $id)->get()->first();
+        return view('admin.patients.money-receipt', compact('booking'));
+    }
+
 
 
 

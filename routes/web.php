@@ -157,9 +157,6 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
 
    // dashboard routes
-
-
-
     Route::get('admin/dashboard/attendance' , 'AdminController\AdminDashboardController@monthly_attendance')->name('admin.dashboard.attendance');
     Route::get('admin/dashboard/preport/{id}', 'AdminController\AdminDashboardController@permanent_report')->name('admin.dashboard.preport');
     Route::get('admin/dashboard/treport/{id}', 'AdminController\AdminDashboardController@temporary_report')->name('admin.dashboard.treport');
@@ -237,6 +234,10 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
     Route::delete('admin/tsalary/delete/{id}', 'AdminController\AdminSalaryController@Tdestroy')->name('admin.tsalary.delete');
     Route::delete('admin/psalary/delete/{id}', 'AdminController\AdminSalaryController@Pdestroy')->name('admin.psalary.delete');
+
+
+    //money receipt
+    Route::get('admin/patient/money-receipt/{id}', 'AdminController\AdminPatientController@money_receipt')->name('admin.patient.money-receipt');
 
 });
 

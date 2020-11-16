@@ -116,8 +116,6 @@ class AdminNurseController extends Controller
         //find the user fro user model
         $user = User::findOrFail($user_id);
 
-        // update the user role to nurse
-        $user->update(['role' => 'nurse']);
 
         // reteive the values from request
         $data = $request->only(['age','identification', 'address', 'education', 'other']);
@@ -151,6 +149,9 @@ class AdminNurseController extends Controller
            'age' => $nurse_age,
            'qualification_id' => $qualification->id,
            ]);
+
+        // update the user role to nurse
+        $user->update(['role' => 'nurse']);
 
 
       Notification::send($user, new \App\Notifications\NewNurse($nurse));

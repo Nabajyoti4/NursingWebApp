@@ -135,6 +135,7 @@
                             </p>
                         </h6>
                         <h6><a href="{{route('admin.patient.receipt', $book->patient->id)}}" class="btn btn-primary">Receipt</a></h6>
+                        <h6><a href="{{route('admin.patient.money-receipt', $book->patient->id)}}" target="_blank" class="btn btn-primary">Money Receipt</a></h6>
                         <ul class="nav nav-tabs pt-5" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patient</a>
