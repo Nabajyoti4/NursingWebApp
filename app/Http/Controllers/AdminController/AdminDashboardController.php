@@ -109,7 +109,6 @@ class AdminDashboardController extends Controller
         // create  new attendence
         Attendance::create([
             'booking_id' => $booking->last()->id,
-            'photo' => 'null',
             'present' => 1,
             'nurse_id' => $id,
         ]);
