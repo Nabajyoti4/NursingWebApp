@@ -159,9 +159,9 @@ class AdminBookingController extends Controller
         //create a money receipt serial number
         if (Booking::all()->last()) {
             $last = Booking::all()->last();
-            $money_serial = ('J ' . (601 + $last->id));
+            $money_serial = (601 + $last->id);
         } else {
-            $money_serial = ('J ' . 601);
+            $money_serial = (601);
         }
 
 

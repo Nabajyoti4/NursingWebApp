@@ -89,14 +89,14 @@
     <div class="p-4">
         <div class="container emp-profile mt-3">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img
+                <div class="col-lg-4">
+                    <div>
+                        <img class="img-fluid"
                             src="{{ $book->patient->photo_id?asset("/storage/".$book->patient->photo->photo_location) :'http://placehold.it/64x64'}}"
-                            style=" width: 250px; height: 250px; object-fit: cover;" alt="avatar">
+                            style="object-fit: cover" alt="avatar">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="profile-head">
                         <h5>
                             Patient Name :<strong> {{$book->patient->patient_name}}</strong>
@@ -152,7 +152,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-lg-2">
                     @if($book->status == 2)
                         <a href="{{ route('admin.book.edit', $book->id) }}" style="text-decoration: none">
                             <div  class="profile-edit-btn text-center">Start Booking</div>
