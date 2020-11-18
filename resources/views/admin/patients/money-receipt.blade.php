@@ -87,7 +87,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">District:</td>
-                     <td style="font-weight: lighter; text-align: center">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
+                     <td style="font-weight: lighter; text-align: center;text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Period Required : </td>
@@ -192,7 +192,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">District:</td>
-                        <td style="font-weight: lighter; text-align: center">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
+                        <td style="font-weight: lighter; text-align: center;text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Period Required : </td>

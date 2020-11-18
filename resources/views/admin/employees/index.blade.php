@@ -70,7 +70,7 @@
                             <td>{{$employee->employee_id}}</td>
                             <td>{{$employee->user->name}}</td>
                             <td>{{$employee->user->email}}</td>
-                            <td>{{$employee->city}}</td>
+                            <td style="text-transform: capitalize;">{{$employee->city}}</td>
                             <td>{{$employee->user->phone_no}}</td>
                             <td>{{$employee->role($employee->role)}}</td>
                         </tr>
