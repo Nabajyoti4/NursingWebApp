@@ -45,10 +45,8 @@
             </div>
         </div>
         <hr style="background-color: black">
-        <div class="row justify-content-center">
 
-        </div>
-        <div class="row pt-2 pb-3">
+        <div class="row pt-2 pb-5 mb-2">
             <div class="col-sm-4" style="color: red">
                 <h4>SL NO: {{$salary->id}}</h4>
             </div>
