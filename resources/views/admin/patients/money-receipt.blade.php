@@ -50,19 +50,25 @@
             </div>
         </div>
         <hr style="background-color: black">
-        <div class="row justify-content-center">
-            <h3 style="font-weight: bold; padding: 20px 20px 2px; margin-bottom: 40px; border-bottom: 1px solid #121213;color: #151621">
-                MONEY RECEIPT</h3>
+        <div class="row ">
+
+            <div class="row pt-2 pb-5 mb-2">
+                <div class="col-sm-4" style="color: red">
+                    <h4>SL NO: {{$booking->serial_money}}</h4>
+                </div>
+                <div class="col-sm-4 justify-content-center  text-center">
+                    <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+                        MONEY RECEIPT</h3>
+                </div>
+                <div class="col-sm-4"  style="text-align: end;">
+                    <h4> Date: {{$salary->payment_received_date}}</h4>
+                </div>
+            </div>
         </div>
 
         <div class="row ">
             <div class="col-sm-6">
                 <table class="table" style="padding: 0!important;">
-                    <tr >
-                        <td>SL NO:</td>
-                        <td>{{$booking->serial_money}}</td>
-
-                    </tr>
                     <tr>
                         <td>Patient ID</td>
                         <td>{{$booking->patient->patient_id}}</td>
@@ -159,17 +165,21 @@
 
     <!--customer-->
     <div class="row justify-content-center">
-        <h3 style="font-weight: bold; padding: 20px 20px 2px; border-bottom: 1px solid #121213;color: #151621">
-            MONEY RECEIPT</h3>
+        <div class="col-sm-4" style="color: red">
+            <h4>SL NO: {{$booking->serial_money}}</h4>
+        </div>
+        <div class="col-sm-4 justify-content-center  text-center">
+            <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+                MONEY RECEIPT</h3>
+        </div>
+        <div class="col-sm-4"  style="text-align: end;">
+            <h4> Date: {{$salary->payment_received_date}}</h4>
+        </div>
     </div>
         <div class="row mt-5">
             <div class="col-sm-6">
                 <table class="table  ">
-                    <tr>
-                        <td>SL NO:</td>
-                        <td>{{$booking->serial_money}}</td>
-
-                    </tr>
+                 
                     <tr>
                         <td>Patient ID</td>
                         <td>{{$booking->patient->patient_id}}</td>
