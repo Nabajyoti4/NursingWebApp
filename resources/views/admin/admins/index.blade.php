@@ -47,7 +47,7 @@
                             <td>{{$admin->id}}</td>
                             <td>{{$admin->name}}</td>
                             <td>{{$admin->email}}</td>
-                            <td>{{$user->current_address_id? $user->address($user->getCAddressId($user->id))->city : "Fill the Permanent Address"}}</td>
+                            <td>{{$admin->current_address_id? $admin->address($admin->getCAddressId($admin->id))->city : "Fill the Permanent Address"}}</td>
                             <td>{{$admin->phone_no}}</td>
                             <td>{{$admin->created_at}}</td>
                             <td><a class="btn btn-primary small" href="{{route('admin.users.edit',$admin->id)}}">Edit
