@@ -55,7 +55,7 @@
         </div>
         <hr style="background-color: black">
 
-        <div class="row pt-2 pb-5 mb-2">
+        <div class="row pt-2 pb-2 mb-2">
             <div class="col-sm-4" style="color: red">
                 <h4>SL NO: {{$booking->serial_money}}</h4>
             </div>
@@ -64,17 +64,13 @@
                     MONEY RECEIPT</h3>
             </div>
             <div class="col-sm-4"  style="text-align: end;">
-                <h4> Date: {{$salary->payment_received_date}}</h4>
+                <h4> Date: {{$booking->created_at->format('d-F-Y')}}</h4>
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-sm-8">
                 <table class="table" style="padding: 0!important;">
-                    <tr >
-                        <td style="font-weight: bolder">SL NO:</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->serial_money}}</td>
-                    </tr>
                     <tr>
                         <td style="font-weight: bolder">Patient ID</td>
                         <td style="font-weight: lighter; text-align: center">{{$booking->patient->patient_id}}</td>
@@ -132,16 +128,6 @@
 
                 </table>
             </div>
-
-            <div class="col-sm-4">
-                <table class="table  ">
-                    <tr>
-                        <td>Date:</td>
-                        <td>    {{$booking->created_at->format('d-F-Y')}}</td>
-
-                    </tr>
-                </table>
-            </div>
         </div>
 
 
@@ -169,13 +155,13 @@
         </div>
 
     </div>
-    <div class="row justify-content-center" style="background-color: #23b77f;color: white; padding: 3px; margin-top:5px">
+    <div class="row justify-content-center" style="background-color:  #85d534;color: white; padding: 3px;">
         <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
     </div>
 
     <!--customer-->
 
-    <div class="row pt-2 pb-5 mb-2">
+    <div class="row pt-2 pb-2 mt-5">
         <div class="col-sm-4" style="color: red">
             <h4>SL NO: {{$booking->serial_money}}</h4>
         </div>
@@ -184,16 +170,12 @@
                 MONEY RECEIPT</h3>
         </div>
         <div class="col-sm-4"  style="text-align: end;">
-            <h4> Date: {{$salary->payment_received_date}}</h4>
+            <h4> Date: {{$booking->created_at->format('d-F-Y')}}</h4>
         </div>
     </div>
         <div class="row mt-2">
             <div class="col-sm-8">
                 <table class="table" style="padding: 0!important;">
-                    <tr >
-                        <td style="font-weight: bolder">SL NO:</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->serial_money}}</td>
-                    </tr>
                     <tr>
                         <td style="font-weight: bolder">Patient ID</td>
                         <td style="font-weight: lighter; text-align: center">{{$booking->patient->patient_id}}</td>
@@ -251,15 +233,6 @@
 
                 </table>
             </div>
-            <div class="col-sm-4">
-                <table class="table  ">
-                    <tr>
-                        <td>Date:</td>
-                        <td>    {{$booking->created_at->format('d-F-Y')}}</td>
-
-                    </tr>
-                </table>
-            </div>
         </div>
         <div class="row">
             <div class="col-sm-12 pt-2">
@@ -282,13 +255,13 @@
             <div class="col-sm-4">Customer Signature</div>
         </div>
         <br>
-
     </div>
+    <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
+        <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+    </div>
+</div>
 
-</div>
-<div class="row justify-content-center" style="background-color: #23b77f;color: white; padding: 3px; margin-top:5px">
-    <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
-</div>
+
 
 </div>
 </body>
