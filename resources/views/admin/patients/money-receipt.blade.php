@@ -179,7 +179,7 @@
         <div class="row mt-5">
             <div class="col-sm-6">
                 <table class="table  ">
-                 
+
                     <tr>
                         <td>Patient ID</td>
                         <td>{{$booking->patient->patient_id}}</td>
