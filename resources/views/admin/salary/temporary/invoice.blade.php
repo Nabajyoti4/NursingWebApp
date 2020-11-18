@@ -81,7 +81,7 @@
                     </tr>
                     <tr>
                         <td>Location</td>
-                        <td>{{$salary->area}}</td>
+                        <td style="text-transform: capitalize;">{{$salary->area}}</td>
                     </tr>
 
                     @if(\App\Employee::where('employee_id',$salary->nurse_id)->get()->isEmpty())
