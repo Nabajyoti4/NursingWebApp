@@ -125,7 +125,7 @@
             <h5>1. Registration Fees : 500/-</h5>
             <h5>2. Advance Payment Requested: Cash/ Cheque/ Online Payment</h5>
             <h5>3. Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only</h5>
-            <h5>4. Rate for one Nurse for 24 Hours Duty per month is 500x30=15000 (Rs) only</h5>
+            <h5>4. Rate for one Nurse for 24 Hours Duty per month is Rs. 500x30=15000 (Rs) only</h5>
             <h5>5. Customers should refrain from misbehaviours to sisters to avoid complain against themselves.</h5>
             <h5>6. Customers should be responsible for overtime service. The authority of the sisters is not responsible for it</h5>
             <h5>7. Service does not include work like Washing, Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the sisters</h5>

@@ -61,7 +61,7 @@ class AdminDashboardController extends Controller
         if ($nurse->permanent == 0) {
             if ($patient->shift == 'day' || $patient->shift == 'night') {
                 //get the salary data
-                $data = Tsalary::where('nurse_id', $booking->first()->nurse_id)
+                $data = Tsalary::where('nurse_id', $nurse->employee_id)
                     ->whereMonth('created_at', date('m'))
                     ->whereYear('created_at', $serverDateTime->year)->first();
                 // increase the working days
@@ -75,7 +75,7 @@ class AdminDashboardController extends Controller
                 $data->update([$data]);
             } else {
                 //get the salary data
-                $data = Tsalary::where('nurse_id', $booking->first()->nurse_id)
+                $data = Tsalary::where('nurse_id', $nurse->employee_id)
                     ->whereMonth('created_at', date('m'))
                     ->whereYear('created_at', $serverDateTime->year)->first();
                 // increase the working days
@@ -90,13 +90,13 @@ class AdminDashboardController extends Controller
             }
         } else {
             //get the salary data
-            $data = Psalary::where('nurse_id', $booking->first()->nurse_id)
+            $data = Psalary::where('nurse_id', $nurse->employee_id)
                 ->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', $serverDateTime->year)->first();
             // increase the working days
             $data->payable_days = $data->payable_days + 1;
             //calculation of salary
-            $data->total = $data->per_day_rate * $data->payable_days + $data->special_allowance;
+            $data->total = $data->per_day_rate * $data->payable_days + $data->ta_da + $data->special_allowance;
             //ESIC (4% of Total Tsalary)
             $data->esic = $data->basic * (4 / 100);
 
@@ -191,7 +191,7 @@ class AdminDashboardController extends Controller
                 $temporary_nurses = collect([]);
             }else{
                 foreach ($temporary_nurse as $nurse) {
-                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                    if (($nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         array_push($temporary_nurses, $nurse);
                     }
                 }
