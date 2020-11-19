@@ -93,6 +93,16 @@
             $('#disapproveModal').modal('show')
         }
 
+
+        {{--function getUser(){--}}
+        {{--    axios.get(`{{route('api.users')}}`)--}}
+        {{--        .then(result => {--}}
+        {{--            console.log(result.data);--}}
+        {{--        })--}}
+        {{--        .catch(err => {--}}
+        {{--            console.log(err);--}}
+        {{--        })--}}
+        {{--}--}}
     </script>
 
 @endsection

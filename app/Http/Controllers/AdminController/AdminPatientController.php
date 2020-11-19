@@ -173,23 +173,35 @@ class AdminPatientController extends Controller
 
         //create a new user using mail
         $validateData = $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_no' => ['required', 'min:10|numeric'],
         ]);
 
-        $user = User::create([
-            'name' => $data['patient_name'],
-            'email' => $validateData['email'],
-            'phone_no' => $validateData['phone_no'],
-            'password' => Hash::make($data['phone_no']),
-        ]);
+        $user = User::where('email', $data['email'])->get()->first();
 
-        //if patient ha sany image
-        if ($request->hasFile('image')) {
-            $image = $request->image->store('users', 'public');
+
+        //if not exists
+        if($user === null) {
+                $user = User::create([
+                'name' => $data['patient_name'],
+                'email' => $data['email'],
+                'phone_no' => $validateData['phone_no'],
+                'password' => Hash::make($data['phone_no']),
+            ]);
+
+            //if patient ha sany image
+            if ($request->hasFile('image')) {
+                $image = $request->image->store('users', 'public');
                 $photo = Photo::create(['photo_location' => $image]);
                 $user['photo_id'] = $photo->id;
+            }
+        }else{
+            if ($request->hasFile('image')) {
+                $image = $request->image->store('patients', 'public');
+                $photo = Photo::create(['photo_location' => $image]);
+            }
         }
+
+
 
 
         //add address details in address table for user
@@ -301,21 +313,13 @@ class AdminPatientController extends Controller
     {
         //
         $patient = Patient::findOrFail($id);
-        $user = User::findOrFail($patient->user_id);
 
 
         //delete photo
-        Storage::disk('public')->delete($user->photo->photo_location);
         Storage::disk('public')->delete($patient->photo->photo_location);
 
-        // delete user address
-        Address::findOrFail($user->permanent_address_id)->delete();
-        Address::findOrFail($user->current_address_id)->delete();
-
-        
 
         //delete
-        $user->delete();
         $patient->delete();
 
         return redirect()->back()

@@ -66,14 +66,9 @@
                 <div class="col-lg-6 p-2">
                     <div class="form-group font-weight-bold">
                         <label for="email">Email:</label>
-                    <input id="email" type="text" class="input form-control @error('email') is-invalid @enderror" name="email"
+                    <input id="email" type="text" class="input form-control" name="email"
                            value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
-                    @error('email')
-                    <div class="invalid-feedback mt-5" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                    @enderror
-                    </div>
+                </div>
                 </div>
 
                 <div class="col-lg-6 p-2">
