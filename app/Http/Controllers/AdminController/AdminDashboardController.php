@@ -20,7 +20,8 @@ class AdminDashboardController extends Controller
      * display current date attendance
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function today_attendance(){
+    public function today_attendance()
+    {
         $nurses = Nurse::where('status', 1)->get();
         return view('admin.dashboard.mark', compact('nurses'));
     }
@@ -31,21 +32,22 @@ class AdminDashboardController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function mark_present($id){
+    public function mark_present($id)
+    {
         $serverDateTime = Carbon::now();
         $booking = Booking::where('nurse_id', $id)->get()->last();
-        $nurse = Nurse::where('id',$booking->nurse_id)->get()->first();
+        $nurse = Nurse::where('id', $booking->nurse_id)->get()->first();
 
         // check for permanent or temp table for nurse
-        if ($nurse->permanent == 1){
-            if(Psalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-                return redirect()->back()->with('info','Create Salary for Nurse In Permanent');
+        if ($nurse->permanent == 1) {
+            if (Psalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+                return redirect()->back()->with('info', 'Create Salary for Nurse In Permanent');
             }
-        }else{
-            if(Tsalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
-                return redirect()->back()->with('info','Create Salary for Nurse In Temporary');
+        } else {
+            if (Tsalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+                return redirect()->back()->with('info', 'Create Salary for Nurse In Temporary');
             }
         }
 
@@ -97,7 +99,7 @@ class AdminDashboardController extends Controller
             // increase the working days
             $data->payable_days = $data->payable_days + 1;
             //calculation of salary
-            $data->total = $data->per_day_rate * $data->payable_days + $data->ta_da + $data->special_allowance;
+            $data->total = $data->per_day_rate * $data->payable_days + $data->ta_da + $data->special_allowance + ($data->half_day * ($data->per_day_rate / 2));
             //ESIC (4% of Total Tsalary)
             $data->esic = $data->basic * (4 / 100);
 
@@ -131,19 +133,20 @@ class AdminDashboardController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function mark_absent($id){
+    public function mark_absent($id)
+    {
 
         $booking = Booking::where('nurse_id', $id)->get();
         $serverDateTime = Carbon::now();
-        $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
-        if ($nurse->permanent == 1){
-            if(Psalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+        $nurse = Nurse::where('id', $booking->first()->nurse_id)->get()->first();
+        if ($nurse->permanent == 1) {
+            if (Psalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
-        }else{
-            if(Tsalary::where('nurse_id',$nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()){
+        } else {
+            if (Tsalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         }
@@ -167,36 +170,37 @@ class AdminDashboardController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function monthly_attendance(){
+    public function monthly_attendance()
+    {
         $admin = Auth::user();
 
 
         // get all permanent nurses
-        if($admin->role == 'super'){
-            $permanent_nurses = Nurse::where('permanent' , 1)->get();
-            $temporary_nurses = Nurse::where('permanent' , 0)->get();
-            return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
+        if ($admin->role == 'super') {
+            $permanent_nurses = Nurse::where('permanent', 1)->get();
+            $temporary_nurses = Nurse::where('permanent', 0)->get();
+            return view('admin.dashboard.attendence', compact('permanent_nurses', 'temporary_nurses'));
 
-        }else{
-            $permanent_nurse = Nurse::where('permanent' , 1)->get();
+        } else {
+            $permanent_nurse = Nurse::where('permanent', 1)->get();
             $permanent_nurses = array();
-            if($permanent_nurse->isEmpty()){
+            if ($permanent_nurse->isEmpty()) {
                 $permanent_nurses = collect([]);
-            }else{
+            } else {
 
                 foreach ($permanent_nurse as $nurse) {
-                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                    if (($nurse->user->addresses->first()->city) == ($admin->addresses->first()->city)) {
                         array_push($permanent_nurses, $nurse);
                     }
                 }
             }
 
             //get all temporary nurses
-            $temporary_nurse = Nurse::where('permanent' , 0)->get();
+            $temporary_nurse = Nurse::where('permanent', 0)->get();
             $temporary_nurses = array();
-            if($temporary_nurse->isEmpty()){
+            if ($temporary_nurse->isEmpty()) {
                 $temporary_nurses = collect([]);
-            }else{
+            } else {
                 foreach ($temporary_nurse as $nurse) {
                     if (($nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         array_push($temporary_nurses, $nurse);
@@ -205,7 +209,7 @@ class AdminDashboardController extends Controller
             }
 
 
-            return view('admin.dashboard.attendence', compact('permanent_nurses','temporary_nurses'));
+            return view('admin.dashboard.attendence', compact('permanent_nurses', 'temporary_nurses'));
         }
 
     }
@@ -215,11 +219,12 @@ class AdminDashboardController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function permanent_report($id){
+    public function permanent_report($id)
+    {
         $nurse = Nurse::where('id', $id)->get();
         $permanent_salary = Psalary::where('nurse_id', $nurse->first()->employee_id)->get();
         $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->employee_id)->get();
-        return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
+        return view('admin.dashboard.report', compact('permanent_salary', 'temporary_salary'));
 
     }
 
@@ -228,10 +233,11 @@ class AdminDashboardController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function temporary_report($id){
+    public function temporary_report($id)
+    {
         $nurse = Nurse::where('id', $id)->get();
         $permanent_salary = Psalary::where('nurse_id', $nurse->first()->employee_id)->get();
         $temporary_salary = Tsalary::where('nurse_id', $nurse->first()->employee_id)->get();
-        return view('admin.dashboard.report', compact('permanent_salary',  'temporary_salary'));
+        return view('admin.dashboard.report', compact('permanent_salary', 'temporary_salary'));
     }
 }
