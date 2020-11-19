@@ -113,19 +113,6 @@ class AttendanceController extends Controller
             }
         }
 
-//        // checking the image is there or not
-//        if ($request->hasFile('attendance_image')) {
-//            //resizing the image using image intervention
-//            $img = Image::make($data['attendance_image'])->resize(null, 600, function ($constraint) {
-//                $constraint->aspectRatio();
-//                $constraint->upsize();
-//            })->encode('jpg');
-//
-//
-//            //storing the image
-////            $image = $img->store('attendance/' . $booking->nurse->user->name, 'public');
-//            $image = '/attendance/' . $booking->nurse->user->name . '/' . $data['attendance_image']->getClientOriginalName();
-//            Storage::disk('public')->put($image, $img);
 //if absent
         if ($data['absent'] == 1) {
 
@@ -159,10 +146,7 @@ class AttendanceController extends Controller
             'present' => 1,
             'nurse_id' => $booking->nurse_id,
         ]);
-        // reduce the remaining days
-        $booking->update([
-            'remaining_days' => $booking->remaining_days - 1
-        ]);
+
 
         //updating the total working days in salary table
         $nurse = Nurse::findOrFail($booking['nurse_id']);
@@ -182,7 +166,7 @@ class AttendanceController extends Controller
                 //deduction payment
                 $data->deduction = $data->hra + $data->bonus + $data->advance;
                 $data->net = $data->total - $data->deduction;
-                $data->update([$data]);
+//                $data->update([$data]);
             } else {
                 //get the salary data
                 $data = Tsalary::where('nurse_id', $nurse->employee_id)
@@ -196,7 +180,7 @@ class AttendanceController extends Controller
                 //deduction payment
                 $data->deduction = $data->hra + $data->bonus + $data->advance;
                 $data->net = $data->total - $data->deduction;
-                $data->update([$data]);
+//                $data->update([$data]);
             }
         } else {
             //get the salary data
@@ -213,8 +197,15 @@ class AttendanceController extends Controller
             $data->deduction = $data->hra + $data->bonus + $data->esic + $data->pf + $data->advance;
             $data->net = $data->total - $data->deduction;
 
-            $data->update([$data]);
+//            $data->update([$data]);
         }
+
+        // reduce the remaining days
+        $booking->update([
+            'remaining_days' => $booking->remaining_days - 1
+        ]);
+        //save salary
+        $data->save();
 
         $this->payementAlert($booking);
 
@@ -230,8 +221,6 @@ class AttendanceController extends Controller
 
 
         return redirect()->back()->with('success', 'Attendance marked as Present!');
-
-//        }
 
     }
 
