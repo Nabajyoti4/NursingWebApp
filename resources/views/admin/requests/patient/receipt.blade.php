@@ -152,13 +152,13 @@
             <div class="col-sm-4 text-right">
             </div>
             <div class="col-sm-1">
-                <h6 class="text-dark">(i) Age : </h6>
+                <h6 class="text-dark" ><span style="text-transform: lowercase">(i)</span> Age : </h6>
             </div>
             <div class="col-sm-1">
                 <h6 class="text-dark">{{$patient->age}} </h6>
             </div>
             <div class="col-sm-2">
-                <h6 class="text-dark">(ii) Gender :  </h6>
+                <h6 class="text-dark"><span style="text-transform: lowercase">(ii)</span> Gender :  </h6>
             </div>
             <div class="col-sm-2 text-left">
                 <h6 class="text-dark"> Male
@@ -215,21 +215,21 @@
                 <h6 class="text-dark">6. Duty Shift of the Nurse</h6>
             </div>
             <div class="col-sm-3">
-                : (i) Day Shift
+                : <span style="text-transform: lowercase">(i)</span> Day Shift
                 @if($patient->shift === "day")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
                 @endif
             </div>
             <div class="col-sm-3">
-                : (ii) Night Shift
+                : <span style="text-transform: lowercase">(ii)</span> Night Shift
                 @if($patient->shift === "night")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
                 @endif
             </div>
             <div class="col-sm-2">
-                : (i) 24 hours
+                : <span style="text-transform: lowercase">(iii)</span> 24 hours
                 @if($patient->shift === "full")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
@@ -249,21 +249,21 @@
                 <h6 class="text-dark">8. Service</h6>
             </div>
             <div class="col-sm-3">
-                : (i) Nursing Aide
+                :<span style="text-transform: lowercase"> (i)</span> Nursing Aide
                 @if(\App\Service::findOrFail($patient->service->id)->title === "Nursing Aide")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
                 @endif
             </div>
             <div class="col-sm-3">
-                : (ii) Nursing Attendent
+                : <span style="text-transform: lowercase">(ii)</span> Nursing Attendent
                 @if(\App\Service::findOrFail($patient->service->id)->title === "Nursing Attendent")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
                 @endif
             </div>
             <div class="col-sm-2">
-                : (iii) Other
+                : <span style="text-transform: lowercase">(iii)</span> Other
                 @if(\App\Service::findOrFail($patient->service->id)->title === "Other")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>

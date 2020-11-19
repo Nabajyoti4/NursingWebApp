@@ -2,7 +2,7 @@
 
 
 <head>
-    <title>Salary Receipt</title>
+    <title>Money Receipt</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
 <style>
@@ -99,7 +99,13 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder" >Duty Shift: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->shift}}</td>
+                        <td style="font-weight: lighter; text-align: center">
+                            @if($booking->patient->shift == 'full')
+                            24 hours
+                            @else
+                                <span style="text-transform: capitalize">$booking->patient->shift</span>
+                            @endif
+                            </td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift Start: </td>
@@ -107,7 +113,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift End: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(31)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Total Amount: </td>

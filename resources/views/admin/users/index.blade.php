@@ -48,7 +48,8 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td style="text-transform: capitalize;">{{$user->current_address_id? $user->address($user->getCAddressId($user->id))->city : "No city"}}</td>   <td>{{$user->phone_no}}</td>
+                            <td style="text-transform: capitalize;">{{$user->current_address_id? $user->address($user->getCAddressId($user->id))->city : "No city"}}</td>
+                            <td>{{$user->phone_no}}</td>
                             <td>
                             @if($user->current_address_id == null)
                                     Fill the address

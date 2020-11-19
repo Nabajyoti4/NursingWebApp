@@ -89,7 +89,7 @@
                             <th>TA & DA</th>
                             <th>HRA</th>
                             <th>Bonus</th>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
+                            @if(\App\Nurse::where('employee_id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <th>ESIC</th>
                                 <th>PF</th>
                             @endif
@@ -101,7 +101,7 @@
                         </thead>
                         <tbody id="data">
                         <tr>
-                            <td>{{\App\Nurse::where('id',$salary->nurse_id)->get()->first()->employee_id}}</td>
+                            <td>{{\App\Nurse::where('employee_id',$salary->nurse_id)->get()->first()->employee_id}}</td>
                             <td>{{$salary->basic}}</td>
                             <td>{{$salary->per_day_rate}}</td>
                             <td>{{$salary->full_day}}</td>
@@ -110,7 +110,7 @@
                             <td>{{$salary->ta_da}}</td>
                             <td>{{$salary->hra}}</td>
                             <td>{{$salary->bonus}}</td>
-                            @if(\App\Nurse::where('id',$salary->nurse_id)->get()->first()->permanent == 1)
+                            @if(\App\Nurse::where('employee_id',$salary->nurse_id)->get()->first()->permanent == 1)
                                 <td>{{$salary->esic}}</td>
                                 <td>{{$salary->pf}}</td>
                             @endif
