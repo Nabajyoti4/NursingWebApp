@@ -90,12 +90,12 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'index'=>'admin.patient.index',
         'edit'=>'admin.patient.edit',
         'update'=>'admin.patient.update',
-        'create' => 'admin.patient.create',
         'store' => 'admin.patient.store',
-        'show'=>'admin.patient.show',
+        'create' => 'admin.patient.create',
+        'show'=>'admin.patient.show'
     ]]);
 
-
+    Route::delete('admin/patient/{patient}/delete','AdminController\AdminPatientController@destroy')->name('admin.patient.destroy');
     Route::post('admin/patient/{patient}/approve','AdminController\AdminPatientController@approve')->name('patient.approve');
     Route::get('admin/approved/patient','AdminController\AdminPatientController@approved')->name('admin.patient.approved');
     Route::post('admin/patient/{id}/disapprove', 'AdminController\AdminPatientController@disapprove');

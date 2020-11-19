@@ -434,39 +434,45 @@
                             <!--Attendance table-->
                             <div class="tab-pane fade" id="attendence" role="tabpanel" aria-labelledby="attendence-tab">
 
-                                <div class="row pt-2">
-                                    @forelse($attendances as $attendance)
-                                        <div class="col-sm-12">
-                                            <div class="row mb-4">
-                                                <div class="col-sm-6">
-                                                    <div class="col-sm-12"> Booking ID
-                                                        : {{$attendance->booking->id}}</div>
-                                                    <div class="col-sm-12">Date : {{$attendance->created_at->format('d-F-Y')}}</div>
-                                                </div>
 
-
-                                                <div class="col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Booking ID</th>
+                                            <th>Date</th>
+                                            <th>Today Attendance</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @forelse($attendances as $attendance)
+                                            <tr>
+                                                <td>{{$attendance->booking->id}}</td>
+                                                <td>
+                                                    {{$attendance->created_at}}
+                                                </td>
+                                                <td class="text-center">
                                                     @if($attendance->present == 2)
-                                                        <span class="p-2"
-                                                              style="float: right; background-color: red; color: white; border-radius: 10px">    Absent
+                                                        <span class="p-2 "
+                                                              style=" background-color: red; color: white; border-radius: 10px">Absent
                                                          </span>@elseif($attendance->present == 1)
                                                         <span class="p-2"
-                                                              style="float: right; background-color: green; color: white; border-radius: 10px"> Present
+                                                              style="background-color: green; color: white; border-radius: 10px"> Present
                                                         </span>
                                                     @else
                                                         <span class="p-2"
-                                                              style="float: right; background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
+                                                              style="background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
                                                         </span>
                                                     @endif
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <hr>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <p>Booking Not yet Started</p>
-                                    @endforelse
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6">No Attendance for today</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </div>

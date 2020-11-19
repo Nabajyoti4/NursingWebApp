@@ -50,7 +50,7 @@
                                     <th>Status</th>
                                     <th>View</th>
                                     <th>Disapprove</th>
-                                    <th>Book</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -79,18 +79,12 @@
                                         <td>
                                             <button class="btn btn-primary"  onclick="handleDisapprove({{$patient->id}})">Disapprove</button>
                                         </td>
-                                        <td>@if($patient->status == 1)
-                                                @if(\App\Booking::where('patient_id',$patient->id)->get()->isEmpty())
-                                                    <form action="{{route('admin.book.bookCreate',$patient->id)}}" method="get">
-                                                        @csrf
-                                                        <button class="btn btn-primary"  type="submit">Book</button>
-                                                    </form>
-                                                @else
-                                                    Booked
-                                                @endif
-                                            @else
-                                                Not Approved
-                                            @endif
+                                        <td>
+                                            <form action="{{route('admin.patient.destroy', $patient->id)}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty

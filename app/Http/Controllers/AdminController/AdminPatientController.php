@@ -133,6 +133,10 @@ class AdminPatientController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function receipt($id){
         $patient = Patient::findOrFail($id);
         return view('admin.requests.patient.receipt', compact('patient'));
@@ -255,7 +259,7 @@ class AdminPatientController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -291,11 +295,32 @@ class AdminPatientController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        $user = User::findOrFail($patient->user_id);
+
+
+        //delete photo
+        Storage::disk('public')->delete($user->photo->photo_location);
+        Storage::disk('public')->delete($patient->photo->photo_location);
+
+        // delete user address
+        Address::findOrFail($user->permanent_address_id)->delete();
+        Address::findOrFail($user->current_address_id)->delete();
+
+        
+
+        //delete
+        $user->delete();
+        $patient->delete();
+
+        return redirect()->back()
+            ->with('success', 'Patient Record Deleted');
+
     }
 
 
@@ -321,7 +346,10 @@ class AdminPatientController extends Controller
 
     }
 
-    // method approve the patient
+    /**
+     * @param Patient $patient
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function approve(Patient $patient)
     {
         $patient->status=1;
