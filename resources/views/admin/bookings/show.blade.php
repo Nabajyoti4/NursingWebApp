@@ -340,13 +340,18 @@
                                                     <td>
                                                         {{$attendance->created_at}}
                                                     </td>
-                                                    <td>
-                                                        @if($attendance->present == 0)
-                                                            Pending
-                                                        @elseif($attendance->present == 2)
-                                                            Absent
-                                                        @elseif($attendance->present == 1)
-                                                            Present
+                                                    <td class="text-center">
+                                                        @if($attendance->present == 2)
+                                                            <span class="p-2 "
+                                                                  style=" background-color: red; color: white; border-radius: 10px">Absent
+                                                         </span>@elseif($attendance->present == 1)
+                                                            <span class="p-2"
+                                                                  style="background-color: green; color: white; border-radius: 10px"> Present
+                                                        </span>
+                                                        @else
+                                                            <span class="p-2"
+                                                                  style="background-color: #2ebe8c; color: white; border-radius: 10px"> Pending
+                                                        </span>
                                                         @endif
                                                     </td>
                                                 </tr>

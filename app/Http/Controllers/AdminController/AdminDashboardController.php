@@ -33,8 +33,8 @@ class AdminDashboardController extends Controller
      */
     public function mark_present($id){
         $serverDateTime = Carbon::now();
-        $booking = Booking::where('nurse_id', $id)->get();
-        $nurse = Nurse::where('id',$booking->first()->nurse_id)->get()->first();
+        $booking = Booking::where('nurse_id', $id)->get()->last();
+        $nurse = Nurse::where('id',$booking->nurse_id)->get()->first();
 
         // check for permanent or temp table for nurse
         if ($nurse->permanent == 1){
@@ -51,13 +51,14 @@ class AdminDashboardController extends Controller
 
 
         // reduce the remaining days
-        $booking->first()->update([
-            'remaining_days' => $booking->first()->remaining_days - 1
-        ]);
+        $booking['remaining_days'] = $booking->remaining_days - 1;
+
 
         //updating the total working days in salary table
-        $nurse = Nurse::findOrFail($booking->first()->nurse_id);
-        $patient = Patient::findOrFail($booking->first()->patient_id);
+        $nurse = Nurse::findOrFail($booking->nurse_id);
+
+        $patient = Patient::findOrFail($booking->patient_id);
+
         if ($nurse->permanent == 0) {
             if ($patient->shift == 'day' || $patient->shift == 'night') {
                 //get the salary data
@@ -106,9 +107,13 @@ class AdminDashboardController extends Controller
             $data->update([$data]);
         }
 
+
+        //save booking
+        $booking->save();
+
         // create  new attendence
         Attendance::create([
-            'booking_id' => $booking->last()->id,
+            'booking_id' => $booking->id,
             'present' => 1,
             'nurse_id' => $id,
         ]);
