@@ -73,7 +73,7 @@ class AdminDashboardController extends Controller
                 //deduction payment
                 $data->deduction = $data->hra + $data->bonus + $data->advance;
                 $data->net = $data->total - $data->deduction;
-                $data->update([$data]);
+//                $data->update([$data]);
             } else {
                 //get the salary data
                 $data = Tsalary::where('nurse_id', $nurse->employee_id)
@@ -87,7 +87,7 @@ class AdminDashboardController extends Controller
                 //deduction payment
                 $data->deduction = $data->hra + $data->bonus + $data->advance;
                 $data->net = $data->total - $data->deduction;
-                $data->update([$data]);
+//                $data->update([$data]);
             }
         } else {
             //get the salary data
@@ -104,12 +104,11 @@ class AdminDashboardController extends Controller
             $data->deduction = $data->hra + $data->bonus + $data->esic + $data->pf + $data->advance;
             $data->net = $data->total - $data->deduction;
 
-            $data->update([$data]);
+//            $data->update([$data]);
         }
 
 
-        //save booking
-        $booking->save();
+
 
         // create  new attendence
         Attendance::create([
@@ -117,6 +116,12 @@ class AdminDashboardController extends Controller
             'present' => 1,
             'nurse_id' => $id,
         ]);
+
+        //save booking
+        $booking->save();
+
+        //save salary
+        $data->save();
 
         $nurses = Nurse::where('status', 1)->get();
         return redirect()->route('admin.dashboard.mark', compact('nurses'))
