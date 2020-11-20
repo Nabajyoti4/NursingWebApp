@@ -129,7 +129,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(31)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -218,7 +218,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift End: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(31)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Total Amount: </td>
@@ -234,7 +234,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(31)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
