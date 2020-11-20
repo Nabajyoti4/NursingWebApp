@@ -188,47 +188,59 @@ class AdminPatientController extends Controller
                 'password' => Hash::make($data['phone_no']),
             ]);
 
-            //if patient ha sany image
+            //if patient has any image
             if ($request->hasFile('image')) {
                 $image = $request->image->store('users', 'public');
                 $photo = Photo::create(['photo_location' => $image]);
                 $user['photo_id'] = $photo->id;
             }
+
+
+            //add address details in address table for user
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+
+            ]);
+            $permanent_address = Address::create(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+            ]);
+
+            $user['current_address_id'] = $current_address->id;
+            $user['permanent_address_id'] = $permanent_address->id;
+
         }else{
             if ($request->hasFile('image')) {
                 $image = $request->image->store('patients', 'public');
                 $photo = Photo::create(['photo_location' => $image]);
             }
+
+            $permanent_address = Address::create(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+            ]);
         }
 
 
-
-
-        //add address details in address table for user
-        $current_address = Address::create(['user_id' => $user->id,
-            'city' => $data['permanent_city'],
-            'state' => $data['permanent_state'],
-            'pin_code' => $data['permanent_pincode'],
-            'country' => $data['permanent_country'],
-            'landmark' => $data['permanent_landmark'],
-            'street' => $data['permanent_street'],
-            'police_station' => $data['permanent_police'],
-            'post_office' => $data['permanent_post']
-
-        ]);
-        $permanent_address = Address::create(['user_id' => $user->id,
-            'city' => $data['permanent_city'],
-            'state' => $data['permanent_state'],
-            'pin_code' => $data['permanent_pincode'],
-            'country' => $data['permanent_country'],
-            'landmark' => $data['permanent_landmark'],
-            'street' => $data['permanent_street'],
-            'police_station' => $data['permanent_police'],
-            'post_office' => $data['permanent_post']
-        ]);
-
-        $user['current_address_id'] = $current_address->id;
-        $user['permanent_address_id'] = $permanent_address->id;
 
         //Now create a new patient request
         $last = Patient::all()->last();
