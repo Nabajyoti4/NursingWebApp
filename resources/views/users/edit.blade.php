@@ -88,7 +88,10 @@
                         <label class="header font-weight-bold bg-light">Office Address<span class="required">*</span></label>
                         <div class="row">
                             <div class="col-lg-4 p-2">
-                                <select id="current_city" class="form-control @error('current_city') is-invalid @enderror" name="current_city" onchange="selectionchange();">
+                                <select id="current_city"
+                                        class="form-control @error('current_city') is-invalid @enderror"
+                                        name="current_city"
+                                        onchange="selectionchange();">
                                     @if($current_add)
                                         <option selected value="{{$current_add->city}}">{{$current_add->city}}</option>
                                     @else
@@ -105,7 +108,11 @@
                                 @enderror
                             </div>
                             <div class="col-lg-4 p-2">
-                                <input readonly id="current_street" type="text" class="form-control @error('current_street') is-invalid @enderror" name="current_street" placeholder="Street name"
+                                <input readonly id="current_street"
+                                       type="text"
+                                       class="form-control @error('current_street') is-invalid @enderror"
+                                       name="current_street"
+                                       placeholder="Street name"
                                        value="{{ $current_add->street ?? ""}}">
                                 @error('current_street')
                                 <div class="invalid-feedback mt-2" role="alert">
