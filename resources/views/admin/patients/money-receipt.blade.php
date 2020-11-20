@@ -129,7 +129,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -240,7 +240,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
