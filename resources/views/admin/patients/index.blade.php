@@ -4,7 +4,16 @@
 @endsection
 
 @section('content')
-
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <!-- Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.patient.approved')}}"
           method="GET">
@@ -43,6 +52,7 @@
                         <th>Phone No</th>
                         <th>Age</th>
                         <th>Status</th>
+                        <th>Edit</th>
                         <th>View</th>
                     </tr>
                     </thead>
@@ -62,6 +72,7 @@
                                     Pending
                                 @endif
                             </td>
+                            <td><a class="btn btn-primary" href="{{route('admin.patient.edit', $patient->id)}}">Edit</a></td>
                             <td>
                                 <form action="{{route('admin.patient.show',$patient->id)}}" method="GET">
                                     @csrf
