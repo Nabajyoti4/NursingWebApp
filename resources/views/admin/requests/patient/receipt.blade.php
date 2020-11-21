@@ -257,7 +257,7 @@
             </div>
             <div class="col-sm-3">
                 : <span style="text-transform: lowercase">(ii)</span> Nursing Attendent
-                @if(\App\Service::findOrFail($patient->service->id)->title === "Nursing Attendent")
+                @if(\App\Service::findOrFail($patient->service->id)->title === "Nursing Attendant")
                     <i class="fa fa-check-circle"
                        style="color: greenyellow"></i>
                 @endif

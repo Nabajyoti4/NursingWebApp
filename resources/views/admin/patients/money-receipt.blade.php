@@ -10,22 +10,25 @@
         background-color: #ffffff;
 
     }
-    table, tr, td{
+
+    table, tr, td {
         border: 1px double #c8c8c8;
-        font-weight:bold;!important
+        font-weight: bold;
+    !important
     }
 
-    table td{
-        padding: 0.2rem !important;
+    table td {
+        padding: 0.6rem !important;
         margin: 0 !important;
     }
 
-    table th{
+    table th {
         padding: 0.2rem !important;
         margin: 0 !important;
     }
-
-
+    .width_100{
+        width: 150px;
+    }
 
 </style>
 <body>
@@ -37,11 +40,11 @@
             <!--header-->
             <div class="col-sm-2 " style="padding-top:0;">
                 <img src="{{asset('img/AArogya-new-edit-1.png')}}"
-                     style="width: 180px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
+                     style=" margin-top:-30px;width: 180px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
                      alt="">
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
-                <h3 class="receipt-heading__sub font-weight-bold" style="color: green">AAROGYA HOME CARE NURSING
+                <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME CARE NURSING
                     SERVICE</h3>
                 <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : MANDAKINI
                     BIBAH BHAWAN COMPLEX, KOTOKY
@@ -49,7 +52,7 @@
                 <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
                     JORHAT, PIN- 785006, ASSAM</h6>
             </div>
-            <div class="col-sm-2 text-right" style="padding-top: 22px;">
+            <div class="col-sm-2 text-right" style=" margin-top:-30px;padding-top: 22px;">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239
             </div>
         </div>
@@ -63,86 +66,99 @@
                 <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
                     MONEY RECEIPT</h3>
             </div>
-            <div class="col-sm-4"  style="text-align: end;">
+            <div class="col-sm-4" style="text-align: end;">
                 <h4> Date: {{$booking->created_at->format('d-F-Y')}}</h4>
             </div>
         </div>
 
-        <div class="row mt-2">
-            <div class="col-sm-8">
+        <div class="row ">
+            <div class="col-sm-6">
                 <table class="table" style="padding: 0!important;">
                     <tr>
-                        <td style="font-weight: bolder">Patient ID</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->patient_id}}</td>
+                        <td class="width_100" style="font-weight: bolder">Patient ID</td>
+                        <td style="font-weight: lighter; ">{{$booking->patient->patient_id}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Name</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->user->name}}</td>
+                        <td style="font-weight: lighter; ">{{$booking->user->name}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Address</td>
-                        <td style="width: 100px; font-weight: lighter; text-align: center">{{\App\Address::where('id',$booking->patient->address_id)->get()->first()->landmark}},
+                        <td class="width_100" style="font-weight: bolder">Address</td>
+                        <td style=" font-weight: lighter; ">{{\App\Address::where('id',$booking->patient->address_id)->get()->first()->landmark}}
+                            ,
                             {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->street}}
                         </td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">District:</td>
-                     <td style="font-weight: lighter; text-align: center;text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
+                        <td class="width_100" style="font-weight: bolder">District</td>
+                        <td style="font-weight: lighter; text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Period Required : </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->days}} Days</td>
+                        <td style="font-weight: bolder">Contact Number </td>
+                        <td style="font-weight: lighter; ">{{$booking->patient->phone_no}}</td>
                     </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6">
+                <table class="table" style="padding: 0!important;">
                     <tr>
-                        <td style="font-weight: bolder">Contact Number : </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->phone_no}}</td>
+                        <td style="font-weight: bolder">Period Required :</td>
+                        <td style="font-weight: lighter; ">{{$booking->patient->days}} Days</td>
                     </tr>
+
                     <tr>
-                        <td style="font-weight: bolder" >Duty Shift: </td>
-                        <td style="font-weight: lighter; text-align: center">
+                        <td style="font-weight: bolder">Duty Shift:</td>
+                        <td style="font-weight: lighter; ">
                             @if($booking->patient->shift == 'full')
-                            24 hours
+                                24 Hours
                             @else
                                 <span style="text-transform: capitalize">$booking->patient->shift</span>
                             @endif
-                            </td>
+                        </td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Shift Start: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->format('d-F-Y')}}</td>
+                        <td style="font-weight: bolder">Shift Start:</td>
+                        <td style="font-weight: lighter; ">{{$booking->created_at->format('d-F-Y')}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Shift End: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                        <td style="font-weight: bolder">Shift End:</td>
+                        <td style="font-weight: lighter; ">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <table class="table" style="padding: 0!important;">
+                    <tr>
+                        <td style="font-weight: bolder">Total Amount:</td>
+                        <td style="font-weight: lighter; ">{{$booking->total_payment}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Total Amount: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->total_payment}}</td>
+                        <td style="font-weight: bolder">Advance Payment:</td>
+                        <td style="font-weight: lighter; ">{{$booking->due_payment}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Advance Payment: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->due_payment}}</td>
+                        <td style="font-weight: bolder">Balance Amount:</td>
+                        <td style="font-weight: lighter; ">{{$booking->total_payment - $booking->due_payment}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Balance Amount: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->total_payment - $booking->due_payment}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
+                        <td style="font-weight: bolder">Next Due Date:</td>
+                        <td style="font-weight: lighter; ">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
             </div>
         </div>
 
-
         <div class="row">
-            <div class="col-sm-12 pt-2">
+            <div class="col-sm-12 pt-1">
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/ CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/
+                            CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
                             &nbsp;&nbsp;&nbsp;&nbsp;/CARD(&nbsp;&nbsp;&nbsp;&nbsp;)
                         </td>
                     </tr>
@@ -169,98 +185,113 @@
 
     <div class="row pt-2 pb-2 mt-5">
         <div class="col-sm-4" style="color: red">
-            <h4>SL NO: {{$booking->serial_money}}</h4>
+            <h5>SL NO: {{$booking->serial_money}}</h5>
         </div>
         <div class="col-sm-4 justify-content-center  text-center">
-            <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
-                MONEY RECEIPT</h3>
+            <h4 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+                MONEY RECEIPT</h4>
         </div>
-        <div class="col-sm-4"  style="text-align: end;">
-            <h4> Date: {{$booking->created_at->format('d-F-Y')}}</h4>
+        <div class="col-sm-4" style="text-align: end;">
+            <h5> Date: {{$booking->created_at->format('d-F-Y')}}</h5>
         </div>
     </div>
-        <div class="row mt-2">
-            <div class="col-sm-8">
-                <table class="table" style="padding: 0!important;">
-                    <tr>
-                        <td style="font-weight: bolder">Patient ID</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->patient_id}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Name</td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->user->name}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Address</td>
-                        <td style="width: 100px; font-weight: lighter; text-align: center">{{\App\Address::where('id',$booking->patient->address_id)->get()->first()->landmark}},
-                            {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->street}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">District:</td>
-                        <td style="font-weight: lighter; text-align: center;text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Period Required : </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->days}} Days</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Contact Number : </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->phone_no}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder" >Duty Shift: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->patient->shift}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Shift Start: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->format('d-F-Y')}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Shift End: </td>
-                        <td style="font-weight: lighter; text-align: center">
-                            @if($booking->patient->shift == 'full')
-                                24 hours
-                            @else
-                                <span style="text-transform: capitalize">$booking->patient->shift</span>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Total Amount: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->total_payment}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Advance Payment: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->due_payment}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Balance Amount: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->total_payment - $booking->due_payment}}</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder">Next Due Date: </td>
-                        <td style="font-weight: lighter; text-align: center">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
-                    </tr>
-
-                </table>
-            </div>
+    <div class="row m-0" >
+        <div class="col-sm-6" >
+            <table class="table" style="padding: 0!important; font-size: 12px;">
+                <tr>
+                    <td style="font-weight: bolder">Patient ID</td>
+                    <td style="font-weight: lighter; ">{{$booking->patient->patient_id}}</td>
+                </tr>
+                <tr>
+                    <td class="width_100" style="font-weight: bolder">Name</td>
+                    <td style="font-weight: lighter; ">{{$booking->user->name}}</td>
+                </tr>
+                <tr>
+                    <td class="width_100" style="font-weight: bolder">Address</td>
+                    <td style="font-weight: lighter; ">{{\App\Address::where('id',$booking->patient->address_id)->get()->first()->landmark}}
+                        ,
+                        {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->street}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="width_100" style="font-weight: bolder">District:</td>
+                    <td style="font-weight: lighter; text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Contact Number :</td>
+                    <td style="font-weight: lighter; ">{{$booking->patient->phone_no}}</td>
+                </tr>
+            </table>
         </div>
-        <div class="row">
-            <div class="col-sm-12 pt-2">
-                <table class="table ">
-                    <tr>
-                        <td>Payment Mode</td>
-                        <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/ CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            &nbsp;&nbsp;&nbsp;&nbsp;/CARD(&nbsp;&nbsp;&nbsp;&nbsp;)
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    </div>
+    <div class="row m-0">
+        <div class="col-sm-6">
+            <table class="table" style="padding: 0!important; font-size: 12px;">
+                <tr>
+                    <td style="font-weight: bolder">Period Required :</td>
+                    <td style="font-weight: lighter; ">{{$booking->patient->days}} Days</td>
+                </tr>
 
+                <tr>
+                    <td style="font-weight: bolder">Duty Shift:</td>
+                    <td style="font-weight: lighter; ">
+                        @if($booking->patient->shift == 'full')
+                            24 Hours
+                        @else
+                            <span style="text-transform: capitalize">$booking->patient->shift</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Shift Start:</td>
+                    <td style="font-weight: lighter; ">{{$booking->created_at->format('d-F-Y')}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Shift End:</td>
+                    <td style="font-weight: lighter; ">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table" style="padding: 0!important; font-size: 12px;">
+                <tr>
+                    <td style="font-weight: bolder">Total Amount:</td>
+                    <td style="font-weight: lighter; ">{{$booking->total_payment}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Advance Payment:</td>
+                    <td style="font-weight: lighter; ">{{$booking->due_payment}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Balance Amount:</td>
+                    <td style="font-weight: lighter; ">{{$booking->total_payment - $booking->due_payment}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder">Next Due Date:</td>
+                    <td style="font-weight: lighter; ">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="row m-0">
+        <div class="col-sm-12 ">
+            <table class="table " style="font-size: 12px;">
+                <tr>
+                    <td>Payment Mode</td>
+                    <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/
+                        CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        &nbsp;&nbsp;&nbsp;&nbsp;/CARD(&nbsp;&nbsp;&nbsp;&nbsp;)
+                    </td>
+                </tr>
+            </table>
         </div>
 
-    <div style="font-size: 18px; margin-top: 30px">
+    </div>
+
+    <div style="font-size: 15px; margin-top: 30px">
         <div class="row">
             <div class="col-sm-2">Authorized by</div>
             <div class="col-sm-6"></div>
@@ -272,7 +303,6 @@
         <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
     </div>
 </div>
-
 
 
 </div>
