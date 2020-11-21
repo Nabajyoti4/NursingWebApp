@@ -179,7 +179,6 @@ class AdminPatientController extends Controller
         $user = User::where('email', $data['email'])->get()->first();
 
 
-
         //if not exists
         if($user === null) {
                 $user = User::create([
@@ -209,16 +208,7 @@ class AdminPatientController extends Controller
                 'post_office' => $data['permanent_post']
             ]);
 
-            $user['current_address_id'] = $permanent_address->id;
-            $user['permanent_address_id'] = $permanent_address->id;
-
-        }else{
-            if ($request->hasFile('image')) {
-                $image = $request->image->store('patients', 'public');
-                $photo = Photo::create(['photo_location' => $image]);
-            }
-
-            $permanent_address = Address::create(['user_id' => $user->id,
+            $current_address = Address::create(['user_id' => $user->id,
                 'city' => $data['permanent_city'],
                 'state' => $data['permanent_state'],
                 'pin_code' => $data['permanent_pincode'],
@@ -229,11 +219,47 @@ class AdminPatientController extends Controller
                 'post_office' => $data['permanent_post']
             ]);
 
+            $user['current_address_id'] = $current_address->id;
+            $user['permanent_address_id'] = $permanent_address->id;
+
+        }
+        // if user exists and address field is empty for user
+        // then insert address given for the patient
+        else{
+
             if($user->permanent_address_id === null){
-                $user['current_address_id'] = $permanent_address->id;
+                $permanent_address = Address::create(['user_id' => $user->id,
+                    'city' => $data['permanent_city'],
+                    'state' => $data['permanent_state'],
+                    'pin_code' => $data['permanent_pincode'],
+                    'country' => $data['permanent_country'],
+                    'landmark' => $data['permanent_landmark'],
+                    'street' => $data['permanent_street'],
+                    'police_station' => $data['permanent_police'],
+                    'post_office' => $data['permanent_post']
+                ]);
+
+                $current_address = Address::create(['user_id' => $user->id,
+                    'city' => $data['permanent_city'],
+                    'state' => $data['permanent_state'],
+                    'pin_code' => $data['permanent_pincode'],
+                    'country' => $data['permanent_country'],
+                    'landmark' => $data['permanent_landmark'],
+                    'street' => $data['permanent_street'],
+                    'police_station' => $data['permanent_police'],
+                    'post_office' => $data['permanent_post']
+                ]);
+
+                $user['current_address_id'] = $current_address->id;
                 $user['permanent_address_id'] = $permanent_address->id;
             }
 
+        }
+
+        // add image for patient
+        if ($request->hasFile('image')) {
+            $image = $request->image->store('patients', 'public');
+            $photo = Photo::create(['photo_location' => $image]);
         }
 
 
