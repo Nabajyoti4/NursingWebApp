@@ -60,4 +60,12 @@ class Patient extends Model
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function getFullAddress(){
+        return Address::findOrFail($this->address_id);
+    }
+
+
 }

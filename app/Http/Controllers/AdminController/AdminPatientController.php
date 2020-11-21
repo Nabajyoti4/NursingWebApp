@@ -292,11 +292,15 @@ class AdminPatientController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        $cities = City::all();
+        $services = Service::all();
+        return view('admin.patients.edit', compact('patient', 'cities', 'services'));
     }
 
     /**
@@ -304,11 +308,86 @@ class AdminPatientController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
         //
+        $data = $request->only(['patient_name','user_name','phone_no', 'image', 'email','patient_phone_no', 'age',
+            'gender', 'address_id', 'family_members', 'guardian_name',
+            'relation_guardian', 'shift', 'days', 'service_id',
+            'patient_history', 'patient_doctor','permanent_city',
+            'permanent_landmark','permanent_street','permanent_post','permanent_country',
+            'permanent_pincode','permanent_police','permanent_state',]);
+
+        //create a new user using mail
+        $validateData = $request->validate([
+            'phone_no' => ['required', 'min:10|numeric'],
+        ]);
+
+        $patient = Patient::findOrFail($id);
+        $address = Address::findOrFail($patient->address_id);
+        $user = User::findOrFail($patient->user_id);
+
+
+
+        if ($request->hasFile('image')) {
+//        update if
+            $image = $request->image->store('patients', 'public');
+
+//        delete old image
+            if ($patient->photo_id) {
+                $photo =Photo::findOrFail($patient->photo_id);
+                Storage::disk('public')->delete($patient->photo->photo_location);
+                $photo->update(['photo_location'=>$image]);
+            } else {
+                $photo = Photo::create(['photo_location' => $image]);
+                $patient['photo_id'] = $photo->id;
+                $patient->save();
+            }
+        }
+
+
+        $user->update([
+            'name' => $data['user_name'],
+            "email" => $data['email'],
+            'phone_no' => $validateData['phone_no'],
+            'password' => Hash::make($data['phone_no'])
+        ]);
+
+        $address->update([
+            'city' => $data['permanent_city'],
+            'state' => $data['permanent_state'],
+            'pin_code' => $data['permanent_pincode'],
+            'country' => $data['permanent_country'],
+            'landmark' => $data['permanent_landmark'],
+            'street' => $data['permanent_street'],
+            'police_station' => $data['permanent_police'],
+            'post_office' => $data['permanent_post']
+        ]);
+
+        $patient->update([
+            'patient_name' => $data['patient_name'],
+            'phone_no' => $data['patient_phone_no'],
+            'age' => $data['age'],
+            'gender' => $data['gender'],
+            'family_members' => $data['family_members'],
+            'guardian_name' => $data['guardian_name'],
+            'relation_guardian' => $data['relation_guardian'],
+            'shift' => $data['shift'],
+            'days' => $data['days'],
+            'service_id' => $data['service_id'],
+            'patient_history' => $data['patient_history'],
+            'patient_doctor' => $data['patient_doctor']
+        ]);
+
+
+        return redirect()
+            ->route('admin.patient.approved')
+            ->with('success', 'Patient Record Updated');
+
+
+
     }
 
     /**
