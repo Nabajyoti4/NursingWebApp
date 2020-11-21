@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +9,10 @@
     <meta name="author" content="">
 
     <title>
-       Patient Receipt
+        Patient Receipt
     </title>
 
-<!-- Custom styles for this template-->
+    <!-- Custom styles for this template-->
     {{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <link href="{{asset('css/adminPanel.min.css')}}" rel="stylesheet">
     <script src="{{asset('js/sweetalert2.min.js')}}"></script>
@@ -31,16 +30,17 @@
         transition: all .1s;
         color: #5d5656;
     }
+
     h4 {
         text-transform: initial;
     }
 
-    p{
+    p {
         font-size: 12px;
         color: #1b1e21;
     }
 
-    .text-dark{
+    .text-dark {
         color: black;
     }
 
@@ -49,22 +49,23 @@
         text-transform: capitalize;
     }
 
-    .receipt{
-        border: 1px solid black;!important;
+    .receipt {
+        border: 1px solid black;
+    !important;
         padding: 20px;
         background-color: white;
     }
 
-    .receipt-heading{
+    .receipt-heading {
         color: green;
 
     }
 
-    .receipt-heading__title{
+    .receipt-heading__title {
         font-weight: bolder;
     }
 
-    .receipt-heading__description{
+    .receipt-heading__description {
         font-weight: bolder;
     }
 
@@ -74,13 +75,11 @@
 <!-- Page Wrapper -->
 <span id="wrapper">
 
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
-
             <!-- Topbar -->
          @include('partials.admin_navbar')
         <!-- End of navbar -->
@@ -113,7 +112,8 @@
             <!--date and serial number-->
             <div class="row">
                 <div class="col-sm-6">
-                    SL.NO. <span style="color: red">{{\App\Booking::where('patient_id', $patient->id)->get()->first()->serial}}</span>
+                    SL.NO. <span
+                        style="color: red">{{\App\Booking::where('patient_id', $patient->id)->get()->first()->serial}}</span>
                 </div>
                 <div class="col-sm-6 text-right">
                     Date : {{$patient->created_at}}
@@ -152,7 +152,7 @@
             <div class="col-sm-4 text-right">
             </div>
             <div class="col-sm-1">
-                <h6 class="text-dark" ><span style="text-transform: lowercase">(i)</span> Age : </h6>
+                <h6 class="text-dark"><span style="text-transform: lowercase">(i)</span> Age : </h6>
             </div>
             <div class="col-sm-1">
                 <h6 class="text-dark">{{$patient->age}} </h6>
