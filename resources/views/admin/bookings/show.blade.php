@@ -329,6 +329,7 @@
                                             <thead>
                                             <tr>
                                                 <th>Booking ID</th>
+                                                <th>Nurse Name</th>
                                                 <th>Date</th>
                                                 <th>Today Attendance</th>
                                             </tr>
@@ -337,6 +338,9 @@
                                             @forelse($attendances as $attendance)
                                                 <tr>
                                                     <td>{{$attendance->booking->id}}</td>
+                                                    <td>
+                                                        {{\App\Nurse::findOrFail($attendance->nurse_id)->user->name}}
+                                                    </td>
                                                     <td>
                                                         {{$attendance->created_at}}
                                                     </td>

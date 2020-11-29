@@ -155,19 +155,19 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="total_payment">Total Payment</label>
-                        <input name="total_payment" class="form-control" type="number">
+                        <input required name="total_payment" class="form-control" type="number">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="due_payment">Advance Payment</label>
-                        <input name="due_payment" class="form-control" type="number">
+                        <input required name="due_payment" class="form-control" type="number" placeholder="0 if not paid">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="nurse">Select Nurse</label>
-                        <select name="nurse"  class="form-control">
+                        <select required name="nurse"  class="form-control">
                             <option value="">Select</option>
                             @forelse($nurses as $nurse)
                                 <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>

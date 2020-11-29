@@ -239,7 +239,10 @@
                         <div class="form-group font-weight-bold">
                             <label for="days">Period of Required (Days):</label>
                             <select required type="number" name="days" class="form-control">
+                                <option value="{{$patient->days}}">{{$patient->days}}</option>
                                 <option value="30">30</option>
+                                <option value="15">15</option>
+                                <option value="3">3</option>
                             </select>
                         </div>
                     </div>

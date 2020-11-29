@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Address;
 use App\Attendance;
 use App\Booking;
 use App\Employee;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Nurse;
 use App\Patient;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -124,12 +126,15 @@ class AdminBookingController extends Controller
             ->where('status', 0)
             ->get();
 
+
+
         $nurses = array();
         foreach ($nursesAll as $nurse) {
-            if (($nurse->user->addresses->first()->city) == ($patient->getAddress())) {
+            if ((Address::findOrFail($nurse->user->current_address_id)->city) === ($patient->getAddress())) {
                 array_push($nurses, $nurse);
             }
         }
+
         return view('admin.bookings.create', compact('patient', 'nurses'));
     }
 
@@ -137,7 +142,7 @@ class AdminBookingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -215,7 +220,7 @@ class AdminBookingController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function edit($id)
     {
@@ -231,7 +236,7 @@ class AdminBookingController extends Controller
      * takeover if new nurse is available
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|RedirectResponse|\Illuminate\View\View
      */
     public function update(Request $request, $id)
     {
@@ -275,7 +280,6 @@ class AdminBookingController extends Controller
             $booking->update(['status'=>1]);
         }
 
-
     }
 
     /**
@@ -294,6 +298,7 @@ class AdminBookingController extends Controller
      * @param $id
      * forward the extend request to the extend create view form
      * pass the booking details of the old booking
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function request($id){
         $booking = Booking::findOrFail($id);
@@ -309,7 +314,7 @@ class AdminBookingController extends Controller
      * days is needed for new records
      * new amount is also added
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function extend(Request $request){
         //use request only to fetch the required data
@@ -359,9 +364,9 @@ class AdminBookingController extends Controller
      * takeover the old booking from where it is left
      * create new booking record with new nurse allotted
      * new booking record will continue from the remaining days of left over booking
-     * new nurse attendence will be recorded for the left over days only
+     * new nurse attendance will be recorded for the left over days only
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function takeover(Request $request){
         $data = $request->only(['booking_id', 'patient_id', 'nurse']);
@@ -369,25 +374,32 @@ class AdminBookingController extends Controller
         $booking = Booking::findOrFail($data['booking_id']);
 
         // update the nurse status to not working and set to leave
-        Nurse::findOrfail($booking->nurse_id)->update(
-            ['status' => 0,
-            'is_active' => 0]);
+        $old_nurse = Nurse::findOrFail($booking->nurse_id);
+        $old_nurse['status'] = 0;
+        $old_nurse['is_active'] = 0;
+        $old_nurse->save();
 
-        // update the old  booking status to take over
-        $booking->update(['status'=>4]);
+        $booking['nurse_id'] = $data['nurse'];
+
+
+        // update the new allotted nurse status to working
+        Nurse::findOrFail($data['nurse'])->update(['status' => 1]);
+
+        //save booking
+        $booking->save();
 
 
         // create the new booking using the old records
-        Booking::create(['user_id' => $booking->user_id,
-                'patient_id' => $booking->patient_id,
-                'nurse_id' => $data['nurse'],
-                'total_payment' => $booking->total_payment,
-                'due_payment' => $booking->due_payment,
-                'remaining_days' => $booking->remaining_days
-            ]);
+//        Booking::create([
+//                'user_id' => $booking->user_id,
+//                'patient_id' => $booking->patient_id,
+//                'nurse_id' => $data['nurse'],
+//                'total_payment' => $booking->total_payment,
+//                'due_payment' => $booking->due_payment,
+//                'remaining_days' => $booking->remaining_days
+//            ]);
 
-        // update the new alloted nurse status to working
-        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
+
 
         $bookings = Booking::all();
 

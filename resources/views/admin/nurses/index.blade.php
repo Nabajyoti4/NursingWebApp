@@ -72,21 +72,23 @@
                             <td>{{$nurse->employee_id}}</td>
                             <td><img
                                     src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                    alt="" width="100" height="100"
-                                /></td>
+                                    alt="" width="100" height="100" /></td>
                             <td>{{$nurse->user->name}}</td>
                             <td style="text-transform: capitalize;">{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
-                            <td>@if($nurse->status == 0)
+                            <td>
+                                @if($nurse->status === 0)
                                     Not Hired
                                 @else
                                     Booked
                                 @endif
                             </td>
-                            <td>@if($nurse->is_active == 0)
+                            <td>
+                                @if($nurse->is_active === 0)
                                     On leave
                                 @else
                                     Working
-                                @endif</td>
+                                @endif
+                            </td>
                             <td><a class="btn btn-primary small"
                                    href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
                             <td><a class="btn btn-primary small"

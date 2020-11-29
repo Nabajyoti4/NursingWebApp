@@ -56,12 +56,12 @@
             <input type="hidden" value="{{$booking->patient_id}}" name="patient_id">
             <input type="hidden" value="{{$booking->id}}" name="booking_id">
 
-            <!--deatils of user and patient-->
+            <!--details of user and patient-->
             <div class="row bg-light">
                 <div class="col-xs-12 col-lg-4">
-                    <img
-                        src="{{ $booking->patient->user->photo?asset("/storage/".$booking->patient->user->photo->photo_location) :'http://placehold.it/64x64'}}"
-                        width="70%" alt="avatar">
+                    <img class="img-fluid"
+                         src="{{ $booking->patient->photo_id?asset("/storage/".$booking->patient->photo->photo_location) :'http://placehold.it/64x64'}}"
+                         style="object-fit: cover" alt="avatar">
                     <div class="pt-5">
                         <label for="patient_name">Patient Name: </label>
                         <input name="patient_name" type="text" class="form-control" value="{{$booking->patient->patient_name}}">
@@ -153,20 +153,20 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="total_payment">Total Payment</label>
-                        <input name="total_payment" class="form-control" type="number" value="{{$booking->total_payment}}">
+                        <input readonly name="total_payment" class="form-control" type="number" value="{{$booking->total_payment}}">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="due_payment">Due Payment</label>
-                        <input name="due_payment" class="form-control" type="number" value="{{$booking->due_payment}}">
+                        <input readonly name="due_payment" class="form-control" type="number" value="{{$booking->due_payment}}">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="nurse">Select Nurse</label>
-                        <select name="nurse"  class="form-control">
-                            <option value="">Select</option>
+                        <select required name="nurse"  class="form-control">
+                            <option  value="">Select</option>
                             @forelse($nurses as $nurse)
                                 <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
                             @empty
