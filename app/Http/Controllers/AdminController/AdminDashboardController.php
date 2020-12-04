@@ -40,13 +40,11 @@ class AdminDashboardController extends Controller
 
         // check for permanent or temp table for nurse
         if ($nurse->permanent == 1) {
-            if (Psalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+            if (Psalary::where('nurse_id', $nurse->employee_id)->where('month_days', date('Y-m'))->get()->isEmpty()) {
                 return redirect()->back()->with('info', 'Create Salary for Nurse In Permanent');
             }
         } else {
-            if (Tsalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+            if (Tsalary::where('nurse_id', $nurse->employee_id)->where('month_days', date('Y-m'))->get()->isEmpty()) {
                 return redirect()->back()->with('info', 'Create Salary for Nurse In Temporary');
             }
         }
@@ -65,8 +63,7 @@ class AdminDashboardController extends Controller
             if ($patient->shift == 'day' || $patient->shift == 'night') {
                 //get the salary data
                 $data = Tsalary::where('nurse_id', $nurse->employee_id)
-                    ->whereMonth('created_at', date('m'))
-                    ->whereYear('created_at', $serverDateTime->year)->first();
+                    ->where('month_days', date('Y-m'))->first();
                 // increase the working days
                 $data->half_day = $data->half_day + 1;
                 //calculation of salary
@@ -79,8 +76,7 @@ class AdminDashboardController extends Controller
             } else {
                 //get the salary data
                 $data = Tsalary::where('nurse_id', $nurse->employee_id)
-                    ->whereMonth('created_at', date('m'))
-                    ->whereYear('created_at', $serverDateTime->year)->first();
+                    ->where('month_days', date('Y-m'))->first();
                 // increase the working days
                 $data->full_day = $data->full_day + 1;
                 //calculation of salary
@@ -94,8 +90,7 @@ class AdminDashboardController extends Controller
         } else {
             //get the salary data
             $data = Psalary::where('nurse_id', $nurse->employee_id)
-                ->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->first();
+                ->where('month_days', date('Y-m'))->first();
             // increase the working days
             $data->payable_days = $data->payable_days + 1;
             //calculation of salary
@@ -140,13 +135,13 @@ class AdminDashboardController extends Controller
         $serverDateTime = Carbon::now();
         $nurse = Nurse::where('id', $booking->first()->nurse_id)->get()->first();
         if ($nurse->permanent == 1) {
-            if (Psalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+            if (Psalary::where('nurse_id', $nurse->employee_id)->where('month_days', date('Y-m'))
+                ->get()->isEmpty()) {
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         } else {
-            if (Tsalary::where('nurse_id', $nurse->employee_id)->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', $serverDateTime->year)->get()->isEmpty()) {
+            if (Tsalary::where('nurse_id', $nurse->employee_id)->where('month_days', date('Y-m'))
+             ->get()->isEmpty()) {
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         }
