@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Name</td>
-                        <td style="font-weight: lighter; ">{{$booking->user->name}}</td>
+                        <td style="font-weight: lighter; ">{{$booking->patient->patient_name}}</td>
                     </tr>
                     <tr>
                         <td class="width_100" style="font-weight: bolder">Address</td>
@@ -204,7 +204,7 @@
                 </tr>
                 <tr>
                     <td class="width_100" style="font-weight: bolder">Name</td>
-                    <td style="font-weight: lighter; ">{{$booking->user->name}}</td>
+                    <td style="font-weight: lighter; ">{{$booking->patient->patient_name}}</td>
                 </tr>
                 <tr>
                     <td class="width_100" style="font-weight: bolder">Address</td>
