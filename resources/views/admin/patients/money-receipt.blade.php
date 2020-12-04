@@ -120,11 +120,11 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift Start:</td>
-                        <td style="font-weight: lighter; ">{{$booking->created_at->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->format('d-F-Y')}}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift End:</td>
-                        <td style="font-weight: lighter; ">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(29)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -145,7 +145,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date:</td>
-                        <td style="font-weight: lighter; ">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -244,11 +244,11 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Shift Start:</td>
-                    <td style="font-weight: lighter; ">{{$booking->created_at->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->format('d-F-Y')}}</td>
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Shift End:</td>
-                    <td style="font-weight: lighter; ">{{$booking->created_at->addDays(29)->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(29)->format('d-F-Y')}}</td>
                 </tr>
 
             </table>
@@ -269,7 +269,7 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Next Due Date:</td>
-                    <td style="font-weight: lighter; ">{{$booking->created_at->addDays(30)->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</td>
                 </tr>
 
             </table>
