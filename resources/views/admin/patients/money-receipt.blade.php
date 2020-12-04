@@ -114,7 +114,7 @@
                             @if($booking->patient->shift == 'full')
                                 24 Hours
                             @else
-                                <span style="text-transform: capitalize">$booking->patient->shift</span>
+                                <span style="text-transform: capitalize">{{$booking->patient->shift}}</span>
                             @endif
                         </td>
                     </tr>
@@ -238,7 +238,7 @@
                         @if($booking->patient->shift == 'full')
                             24 Hours
                         @else
-                            <span style="text-transform: capitalize">$booking->patient->shift</span>
+                            <span style="text-transform: capitalize">{{$booking->patient->shift}}</span>
                         @endif
                     </td>
                 </tr>
