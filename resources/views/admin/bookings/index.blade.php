@@ -4,7 +4,16 @@
 @endsection
 
 @section('content')
-
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{$message}}',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
     <!-- Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{route('admin.book.index')}}" method="GET">
         @csrf
@@ -33,10 +42,6 @@
         <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rejectRequest" role="tab"
                aria-controls="profile" aria-selected="false">Rejected Request</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#takeoverRequest" role="tab"
-               aria-controls="profile" aria-selected="false">Takeover Request</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#completedRequest" role="tab"
@@ -68,6 +73,7 @@
                                     <th>Days</th>
                                     <th>Total Payment</th>
                                     <th>Show</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -83,6 +89,7 @@
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
+                                        <td><a class="btn btn-primary small" href="{{route('admin.book.booking-edit',$booking->id)}}">Edit</a></td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -118,6 +125,7 @@
                                     <th>Days</th>
                                     <th>Total Payment</th>
                                     <th>Show</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -132,8 +140,8 @@
                                         <td>{{$booking->patient->shift}}</td>
                                         <td>{{$booking->patient->days}}</td>
                                         <td>{{$booking->total_payment}}</td>
-
                                         <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
+                                        <td><a class="btn btn-primary small" href="{{route('admin.book.booking-edit',$booking->id)}}">Edit</a></td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -174,56 +182,6 @@
                                 <tbody>
 
                                 @forelse($rbookings as $booking)
-                                    <tr>
-                                        <td>{{$booking->id}}</td>
-                                        <td>{{$booking->patient->patient_id}}</td>
-                                        <td>{{$booking->user->name}}</td>
-                                        <td>{{$booking->patient->patient_name}}</td>
-                                        <td>{{$booking->nurse->user->name}}</td>
-                                        <td>{{$booking->patient->shift}}</td>
-                                        <td>{{$booking->patient->days}}</td>
-                                        <td>{{$booking->total_payment}}</td>
-                                        <td><a class="btn btn-primary small" href="{{route('admin.book.show',$booking->id)}}">Show</a></td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">No Bookings found</td>
-                                    </tr>
-                                @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!--takeover-->
-            <div class="tab-pane fade" id="takeoverRequest" role="tabpanel" aria-labelledby="takeoverRequest-tab">
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Takeover Bookings</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive" >
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Booking ID</th>
-                                    <th>Patient ID</th>
-                                    <th>Booked by</th>
-                                    <th>Patient Name</th>
-                                    <th>Nurse allotted</th>
-                                    <th>Shift</th>
-                                    <th>Days</th>
-                                    <th>Total Payment</th>
-                                    <th>Edit</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @forelse($tbookings as $booking)
                                     <tr>
                                         <td>{{$booking->id}}</td>
                                         <td>{{$booking->patient->patient_id}}</td>

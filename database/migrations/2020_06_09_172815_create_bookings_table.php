@@ -19,6 +19,8 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->bigInteger('serial');
             $table->bigInteger('serial_money');
+            $table->date('start_date')->nullable();
+            $table->date('due_date')->nullable();
             $table->unsignedBigInteger('nurse_id');
             // 0-> Reject , 1-> complete , 2-> pending, 3->running, 4->Takeover
             $table->integer('status')->default(2);

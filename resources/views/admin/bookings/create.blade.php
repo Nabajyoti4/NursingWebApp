@@ -178,6 +178,21 @@
                     </div>
                 </div>
             </div>
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Date details</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="start_date">Start Date </label>
+                        <input required type="date" class="form-control" name="start_date"
+                               placeholder="Enter booking start date" value="{{old('start_date')}}">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="due_date">Due Date</label>
+                        <input required type="date" class="form-control" name="due_date"
+                               placeholder="Enter booking due date" value="{{old('due_date')}}">
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     @if($patient->status ==1)

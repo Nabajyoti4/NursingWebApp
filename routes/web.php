@@ -139,6 +139,9 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         'show'=>'admin.book.show'
     ]]);
 
+    Route::get('admin/book/booking-edit/{id}', 'AdminController\AdminBookingController@booking_edit')->name('admin.book.booking-edit');
+    Route::patch('admin/book/booking-update/{id}', 'AdminController\AdminBookingController@booking_update')->name('admin.book.booking-update');
+
 
 
 

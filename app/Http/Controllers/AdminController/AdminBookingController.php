@@ -147,7 +147,7 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //use request only to fetch the required data
-        $data = $request->only(['patient_id','total_payment','due_payment','nurse']);
+        $data = $request->only(['patient_id','total_payment','start_date', 'due_date','due_payment','nurse']);
 
         //fetch user_id from patient
         $patient = Patient::findOrFail($data['patient_id']);
@@ -174,6 +174,8 @@ class AdminBookingController extends Controller
                         'patient_id' => $data['patient_id'],
                         'serial' => $serial,
                         'serial_money' => $money_serial,
+                        'start_date' => $data['start_date'],
+                        'due_date' => $data['due_date'],
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
                         'due_payment' => $data['due_payment'],
@@ -199,6 +201,33 @@ class AdminBookingController extends Controller
         return redirect()
             ->route('admin.book.index', compact('bookings'))
             ->with('success','Booking done successfully!');
+
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function booking_edit($id){
+        $booking = Booking::findOrFail($id);
+        return view('admin.bookings.edit', compact('booking'));
+    }
+
+
+    public function booking_update(Request $request, $id){
+        $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date');
+
+        $booking = Booking::findOrFail($id);
+
+        $booking['total_payment'] = $data['total_payment'];
+        $booking['due_payment'] =$data['due_payment'];
+        $booking['start_date'] =$data['start_date'];
+        $booking['due_date'] = $data['due_date'];
+
+        $booking->save();
+
+        return redirect()->route('admin.book.index')
+            ->with('success', 'Booking details updated');
 
     }
 

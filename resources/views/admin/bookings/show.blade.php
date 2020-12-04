@@ -157,6 +157,8 @@
                         <a href="{{ route('admin.book.edit', $book->id) }}" style="text-decoration: none">
                             <div  class="profile-edit-btn text-center">Start Booking</div>
                         </a>
+                    @elseif($book->status == 1)
+                            <div class="profile-edit-btn text-center">Booking Completed</div>
                     @else
                         <form action="{{ route('admin.book.update', $book->id) }}" method="POST">
                             @csrf

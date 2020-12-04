@@ -57,24 +57,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($nurses as $nurse)
+                    @forelse($bookings as $booking)
                         <tr>
-                            <td>{{$nurse->employee_id}}</td>
-                            <td>{{$nurse->user->name}}</td>
+                            <td>{{$booking->nurse->employee_id}}</td>
+                            <td>{{$booking->nurse->user->name}}</td>
                             <td>
-                                @if($nurse->day_attendance($nurse->id) == 1)
+                                @if($booking->nurse->day_attendance($booking->nurse->id) == 1)
                                     Present
-                                @elseif($nurse->day_attendance($nurse->id) == 2)
+                                @elseif($booking->nurse->day_attendance($booking->nurse->id) == 2)
                                     Absent
                                 @else
-                                    {{$nurse->day_attendance($nurse->id)}}
+                                    {{$booking->nurse->day_attendance($booking->nurse->id)}}
                                 @endif
 
                             </td>
                             <td>
-                                @if($nurse->day_attendance($nurse->id) == 'Not Marked')
-                                        <a class="btn btn-success" href="{{route('admin.mark.present', $nurse->id)}}">Present</a>
-                                        <a class="btn btn-danger " href="{{route('admin.mark.absent', $nurse->id)}}">Absent</a>
+                                @if($booking->nurse->day_attendance($booking->nurse->id) == 'Not Marked')
+                                        <a class="btn btn-success" href="{{route('admin.mark.present', $booking->nurse->id)}}">Present</a>
+                                        <a class="btn btn-danger " href="{{route('admin.mark.absent', $booking->nurse->id)}}">Absent</a>
                                 @else
                                     Attendance Marked
                                 @endif

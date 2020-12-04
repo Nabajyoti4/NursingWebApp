@@ -22,8 +22,8 @@ class AdminDashboardController extends Controller
      */
     public function today_attendance()
     {
-        $nurses = Nurse::where('status', 1)->get();
-        return view('admin.dashboard.mark', compact('nurses'));
+        $bookings = Booking::where('status', 3)->get();
+        return view('admin.dashboard.mark', compact('bookings'));
     }
 
 

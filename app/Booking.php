@@ -12,6 +12,8 @@ class Booking extends Model
         'nurse_id',
         'status',
         'due_payment',
+        'start_date',
+        'due_date',
         'serial',
         'serial_money',
         'total_payment',
