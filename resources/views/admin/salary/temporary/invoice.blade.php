@@ -182,8 +182,12 @@
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td>BANK NEFT(&nbsp;&nbsp;&nbsp;&nbsp;)/ RTGS(&nbsp;&nbsp;&nbsp;&nbsp;)/ CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            / CHEQUE(&nbsp;&nbsp;&nbsp;&nbsp;) / ACCOUNT PAY(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td>BANK NEFT&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;
+                            RTGS&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;) &nbsp;&nbsp;&nbsp;&nbsp; ACCOUNT PAY&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
                         </td>
                     </tr>
                 </table>
