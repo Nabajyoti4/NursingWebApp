@@ -31,20 +31,12 @@ class AdminUsersController extends Controller
          */
         $search = request()->get('searchUser');
 
-
-
-
         if ($search){
             $users = User::where("name","LIKE","%{$search}%")->get();
-
-
         }
         else{
             $users = User::where('role', 'user')->latest()->get();
-
         }
-
-
         return view('admin.users.index', compact('users'));
     }
 
