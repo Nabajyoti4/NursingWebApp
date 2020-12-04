@@ -295,7 +295,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I ........{{$patient->patient_name}}......heartly apply "Home Care Nursing Service" for myself and I agree to the all terms & conditions which are mentioned above
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I ........{{$patient->user->name}}......heartly apply "Home Care Nursing Service" for myself and I agree to the all terms & conditions which are mentioned above
                 and i shall Co-operative myself for quickly recovery of my patient.</h5>
             </div>
         </div>
