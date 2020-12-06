@@ -36,6 +36,18 @@
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
+                <label for="shift">Shift</label>
+                <select name="shift" class="form-control @error('shift') is-invalid @enderror" required>
+                    <option class="form-control" value="" selected>Select Shift</option>
+                    <option class="form-control" value="24 hrs" >24 hrs</option>
+                    <option class="form-control" value="Day" >Day</option>
+                    <option class="form-control" value="Night" >Night</option>
+                </select>
+                @error('shift')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group font-weight-bold">
                 <label for="per_day_rate">Per Day Rate</label>
                 <input type="number" value="{{$salary->per_day_rate}}" disabled name="per_day_rate" class="form-control"/>
 
@@ -138,6 +150,21 @@
                 <input type="text" value="{{$salary->payment_received_date}}" name="payment_received_date"
                        class="form-control @error('payment_received_date') is-invalid @enderror"/>
                 @error('payment_received_date')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group font-weight-bold">
+                <label for="payment_mode">Payment Mode</label>
+                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
+                    <option class="form-control" value="" selected>Select </option>
+                    <option class="form-control" value="BANK NEFT" >BANK NEFT</option>
+                    <option class="form-control" value="RTGS" >RTGS</option>
+                    <option class="form-control" value="CASH" >CASH</option>
+                    <option class="form-control" value="CHEQUE" >CHEQUE</option>
+                    <option class="form-control" value="ACCOUNT PAY" >ACCOUNT PAY</option>
+                </select>
+                @error('payment_mode')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

@@ -43,14 +43,26 @@
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
-                <label for="full_day">Total Days of Duty 24hrs/Day/Night</label>
+                <label for="shift">Shift</label>
+                <select name="shift" class="form-control @error('shift') is-invalid @enderror" required>
+                    <option class="form-control" value="" selected>Select Shift</option>
+                    <option class="form-control" value="24 hrs" >24 hrs</option>
+                    <option class="form-control" value="Day" >Day</option>
+                    <option class="form-control" value="Night" >Night</option>
+                </select>
+                @error('shift')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="full_day">Total Days of Duty 24hrs</label>
                 <input type="number" name="full_day" class="form-control @error('full_day') is-invalid @enderror"/>
                 @error('full_day')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group font-weight-bold">
-                <label for="half_day">Total Days of Duty 12hrs/Day/Night</label>
+                <label for="half_day">Total Days of Duty 12hrs</label>
                 <input type="number" name="half_day" class="form-control @error('half_day') is-invalid @enderror"/>
                 @error('half_day')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -100,6 +112,20 @@
                     @enderror
                 </div>
             @endif
+            <div class="form-group font-weight-bold">
+                <label for="payment_mode">Payment Mode</label>
+                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
+                    <option class="form-control" value="" selected>Select </option>
+                    <option class="form-control" value="BANK NEFT" >BANK NEFT</option>
+                    <option class="form-control" value="RTGS" >RTGS</option>
+                    <option class="form-control" value="CASH" >CASH</option>
+                    <option class="form-control" value="CHEQUE" >CHEQUE</option>
+                    <option class="form-control" value="ACCOUNT PAY" >ACCOUNT PAY</option>
+                </select>
+                @error('payment_mode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
             <button class="btn btn-primary" type="submit">Create</button>
 

@@ -26,6 +26,8 @@ class Psalary extends Model
             'payment_received_date',
             'remarks',
             'status',
-            'area'];
+            'area',
+            'shift',
+            'payment_mode'];
 
 }

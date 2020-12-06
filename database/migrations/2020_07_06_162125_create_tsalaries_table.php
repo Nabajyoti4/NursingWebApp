@@ -30,6 +30,8 @@ class CreateTsalariesTable extends Migration
             $table->bigInteger('deduction');
             $table->bigInteger('net');
             $table->string('area')->nullable();
+            $table->string('shift')->nullable();
+            $table->string('payment_mode')->nullable();
             $table->string('payment_received_date')->nullable();
             $table->mediumText('remarks')->nullable();
             $table->integer('status')->default(0);

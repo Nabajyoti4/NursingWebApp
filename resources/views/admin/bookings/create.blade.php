@@ -187,7 +187,7 @@
                                placeholder="Enter booking start date" value="{{old('start_date')}}">
                     </div>
                     <div class="col-lg-6">
-                        <label for="due_date">Due Date</label>
+                        <label for="due_date">Payment Date</label>
                         <input required type="date" class="form-control" name="due_date"
                                placeholder="Enter booking due date" value="{{old('due_date')}}">
                     </div>

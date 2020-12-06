@@ -146,7 +146,7 @@ class AttendanceController extends Controller
                     ->where('month_days', Carbon::now()->format('Y-m'))
                     ->whereYear('created_at', $serverDateTime->year)->first();
                 // increase the working days
-                $data->half_day = $data->half_day + 1;
+                $data->full_day = $data->full_day + 1;
                 //calculation of salary
                 $data->total = $data->per_day_rate * $data->full_day + $data->special_allowance + $data->ta_da
                     + ($data->half_day * ($data->per_day_rate / 2));
@@ -175,9 +175,10 @@ class AttendanceController extends Controller
                 ->where('month_days', date('Y-m'))
                 ->whereYear('created_at', $serverDateTime->year)->first();
             // increase the working days
-            $data->payable_days = $data->payable_days + 1;
+            $data->full_day = $data->full_day + 1;
             //calculation of salary
-            $data->total = $data->per_day_rate * $data->payable_days + $data->special_allowance + $data->ta_da;
+            $data->total = $data->per_day_rate * $data->full_day + $data->special_allowance + $data->ta_da
+                + ($data->half_day * ($data->per_day_rate / 2));
             //ESIC (4% of Total Psalary)
             $data->esic = $data->basic * (4 / 100);
 

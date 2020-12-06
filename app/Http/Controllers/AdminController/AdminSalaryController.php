@@ -193,6 +193,8 @@ class AdminSalaryController extends Controller
             'advance' => 'nullable|integer',
             'pf' => 'integer',
             'month_days' => 'required',
+            'payment_mode' => 'nullable|string',
+            'shift' => 'nullable|string',
 
         ]);
         if (Employee::where('employee_id', 'like', "{$data["nurse_id"]}%")->get()->first()) {
@@ -232,6 +234,8 @@ class AdminSalaryController extends Controller
                 'total' => $data['total'],
                 'deduction' => $data['deduction'],
                 'net' => $data['net'],
+                'payment_mode' => $data['payment_mode'],
+                'shift' => $data['shift'],
 
             ]);
         } else {
@@ -252,7 +256,9 @@ class AdminSalaryController extends Controller
                 'advance' => $data['advance'],
                 'total' => $data['total'],
                 'deduction' => $data['deduction'],
-                'net' => $data['net']
+                'net' => $data['net'],
+                'payment_mode' => $data['payment_mode'],
+                'shift' => $data['shift'],
             ]);
         }
 
@@ -315,7 +321,9 @@ class AdminSalaryController extends Controller
             'month_days' => 'date',
             'remarks' => 'nullable|string',
             'area' => 'nullable|string',
-            'payment_received_date' => 'nullable|string'
+            'payment_received_date' => 'nullable|string',
+            'payment_mode' => 'nullable|string',
+            'shift' => 'nullable|string',
         ]);
         //calculate per day rate
 
@@ -352,6 +360,8 @@ class AdminSalaryController extends Controller
             'area' => $data['area'],
             'remarks' => $data['remarks'],
             'payment_received_date' => $data['payment_received_date'],
+            'payment_mode' => $data['payment_mode'],
+            'shift' => $data['shift'],
 
 
         ]);
@@ -377,7 +387,9 @@ class AdminSalaryController extends Controller
             'bonus' => 'integer',
             'remarks' => 'nullable|string',
             'area' => 'nullable|string',
-            'payment_received_date' => 'nullable|string'
+            'payment_received_date' => 'nullable|string',
+            'payment_mode' => 'nullable|string',
+            'shift' => 'nullable|string',
         ]);
 
         $total_days = Carbon::create($data['month_days'])->daysInMonth;
@@ -408,6 +420,8 @@ class AdminSalaryController extends Controller
             'area' => $data['area'],
             'remarks' => $data['remarks'],
             'payment_received_date' => $data['payment_received_date'],
+            'payment_mode' => $data['payment_mode'],
+            'shift' => $data['shift'],
 
         ]);
 

@@ -65,7 +65,7 @@ class AdminDashboardController extends Controller
                 $data = Tsalary::where('nurse_id', $nurse->employee_id)
                     ->where('month_days', date('Y-m'))->first();
                 // increase the working days
-                $data->half_day = $data->half_day + 1;
+                $data->full_day = $data->full_day + 1;
                 //calculation of salary
                 $data->total = $data->per_day_rate * $data->full_day + $data->special_allowance + $data->ta_da
                     + ($data->half_day * ($data->per_day_rate / 2));
@@ -92,9 +92,10 @@ class AdminDashboardController extends Controller
             $data = Psalary::where('nurse_id', $nurse->employee_id)
                 ->where('month_days', date('Y-m'))->first();
             // increase the working days
-            $data->payable_days = $data->payable_days + 1;
+            $data->full_day = $data->full_day + 1;
             //calculation of salary
-            $data->total = $data->per_day_rate * $data->payable_days + $data->ta_da + $data->special_allowance + ($data->half_day * ($data->per_day_rate / 2));
+            $data->total = $data->per_day_rate * $data->full_day + $data->ta_da + $data->special_allowance
+                + ($data->half_day * ($data->per_day_rate / 2));
             //ESIC (4% of Total Tsalary)
             $data->esic = $data->basic * (4 / 100);
 
@@ -141,7 +142,7 @@ class AdminDashboardController extends Controller
             }
         } else {
             if (Tsalary::where('nurse_id', $nurse->employee_id)->where('month_days', date('Y-m'))
-             ->get()->isEmpty()) {
+                ->get()->isEmpty()) {
                 return redirect(route('nurse.index'))->with('info', 'Ask Admin to create salary.');
             }
         }

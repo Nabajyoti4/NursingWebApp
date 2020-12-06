@@ -26,7 +26,9 @@ class Tsalary extends Model
             'pf',
             'payment_received_date',
             'remarks',
-            'area'];
+            'area',
+            'shift',
+            'payment_mode'];
 
 
 }

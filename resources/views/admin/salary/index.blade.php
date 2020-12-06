@@ -118,8 +118,9 @@
                                     <th>Employee ID</th>
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
-                                    <th>Total Days of Duty 24hrs/Day/Night</th>
-                                    <th>Total Days of Duty 12hrs/Day/Night</th>
+                                    <th>Total Days of Duty 24hrs</th>
+                                    <th>Total Days of Duty 12hrs</th>
+                                    <th>Shift</th>
                                     <th>Special Allowance</th>
                                     <th>HRA</th>
                                     <th>TA & DA</th>
@@ -140,6 +141,7 @@
                                         <td>{{$salary->per_day_rate}}</td>
                                         <td>{{$salary->full_day}}</td>
                                         <td>{{$salary->half_day}}</td>
+                                        <td>{{$salary->shift}}</td>
                                         <td>{{$salary->special_allowance}}</td>
                                         <td>{{$salary->hra}}</td>
                                         <td>{{$salary->ta_da}}</td>
@@ -188,8 +190,9 @@
                                     <th>Employee ID</th>
                                     <th>Basic Salary</th>
                                     <th>Per Day Rate</th>
-                                    <th>Total Days of Duty 24hrs/Day/Night</th>
-                                    <th>Total Days of Duty 12hrs/Day/Night</th>
+                                    <th>Total Days of Duty 24hrs</th>
+                                    <th>Total Days of Duty 12hrs</th>
+                                    <th>Shift</th>
                                     <th>Special Allowance</th>
                                     <th>TA & DA</th>
                                     <th>HRA</th>
@@ -208,6 +211,7 @@
                                         <td>{{$salary->per_day_rate}}</td>
                                         <td>{{$salary->full_day}}</td>
                                         <td>{{$salary->half_day}}</td>
+                                        <td>{{$salary->shift}}</td>
                                         <td>{{$salary->special_allowance}}</td>
                                         <td>{{$salary->ta_da}}</td>
                                         <td>{{$salary->hra}}</td>
