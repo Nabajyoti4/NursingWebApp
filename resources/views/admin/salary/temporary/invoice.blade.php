@@ -4,18 +4,21 @@
 <head>
     <title>Salary Receipt</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
 </head>
 <style>
     body {
         background-color: #ffffff;
 
     }
-    table, tr, td ,th{
+
+    table, tr, td, th {
         border: 1px double #c8c8c8;
         font-size: 18px;
-        font-weight:bold;!important
+        font-weight: bold;
+    !important
     }
-
 
 
 </style>
@@ -54,7 +57,7 @@
                 <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
                     Salary Slip</h3>
             </div>
-            <div class="col-sm-4"  style="text-align: end;">
+            <div class="col-sm-4" style="text-align: end;">
                 <h4> Date: {{$salary->payment_received_date}}</h4>
             </div>
         </div>
@@ -87,8 +90,23 @@
                     @if(\App\Employee::where('employee_id',$salary->nurse_id)->get()->isEmpty())
                         <tr>
                             <td>Shift</td>
-                            <td> 24 hrs(&nbsp;&nbsp;&nbsp;&nbsp;)/&nbsp;&nbsp; Day Shift(&nbsp;&nbsp;&nbsp;&nbsp;)
-                                /&nbsp;&nbsp; Night Shift(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            <td> 24 hrs&nbsp;(&nbsp;
+                                @if($salary->shift == "24 hrs")
+                                    <i class="fa fa-check-circle"
+                                       style="color: greenyellow"></i>
+                                @endif
+                                &nbsp;)&nbsp;&nbsp; Day Shift&nbsp;(&nbsp;
+                                @if($salary->shift == "Day")
+                                    <i class="fa fa-check-circle"
+                                       style="color: greenyellow"></i>
+                                @endif
+                                &nbsp;)
+                                &nbsp;&nbsp; Night Shift&nbsp;(&nbsp;
+                                @if($salary->shift == "Night")
+                                    <i class="fa fa-check-circle"
+                                       style="color: greenyellow"></i>
+                                @endif
+                                &nbsp;)
                             </td>
                         </tr>
                     @endif
@@ -100,7 +118,7 @@
                 </table>
             </div>
 
-            <div class="col-sm-6" >
+            <div class="col-sm-6">
 
             </div>
         </div>
@@ -182,8 +200,40 @@
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td>BANK NEFT(&nbsp;&nbsp;&nbsp;&nbsp;)/ RTGS(&nbsp;&nbsp;&nbsp;&nbsp;)/ CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            / CHEQUE(&nbsp;&nbsp;&nbsp;&nbsp;) / ACCOUNT PAY(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td>
+                            BANK NEFT&nbsp;&nbsp;&nbsp;&nbsp;
+                            (&nbsp;&nbsp;
+                            @if($salary->payment_mode == "BANK NEFT")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;
+                            RTGS&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($salary->payment_mode == "RTGS")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($salary->payment_mode == "CASH")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($salary->payment_mode == "CHEQUE")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;) &nbsp;&nbsp;&nbsp;&nbsp; ACCOUNT
+                            PAY&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($salary->payment_mode == "ACCOUNT PAY")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
                         </td>
                     </tr>
                 </table>
@@ -202,7 +252,8 @@
         </div>
 
     </div>
-    <div class="row justify-content-center" style="background-color: #85D534;color: white; padding: 8px; margin-top:60px">
+    <div class="row justify-content-center"
+         style="background-color: #85D534;color: white; padding: 8px; margin-top:60px">
         <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
     </div>
 </div>

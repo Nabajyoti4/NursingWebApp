@@ -67,7 +67,7 @@
                     MONEY RECEIPT</h3>
             </div>
             <div class="col-sm-4" style="text-align: end;">
-                <h4> Date: {{$booking->created_at->format('d-F-Y')}}</h4>
+                <h4> Date: {{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</h4>
             </div>
         </div>
 
@@ -145,7 +145,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date:</td>
-                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(30)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -157,9 +157,9 @@
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/
-                            CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            &nbsp;&nbsp;&nbsp;&nbsp;/CARD(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td class="justify-content-center">ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
                         </td>
                     </tr>
                 </table>
@@ -192,7 +192,7 @@
                 MONEY RECEIPT</h4>
         </div>
         <div class="col-sm-4" style="text-align: end;">
-            <h5> Date: {{$booking->created_at->format('d-F-Y')}}</h5>
+            <h5> Date: {{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</h5>
         </div>
     </div>
     <div class="row m-0" >
@@ -269,7 +269,7 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Next Due Date:</td>
-                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(30)->format('d-F-Y')}}</td>
                 </tr>
 
             </table>
@@ -281,9 +281,9 @@
             <table class="table " style="font-size: 12px;">
                 <tr>
                     <td>Payment Mode</td>
-                    <td>ONLINE(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/CHECK(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;/
-                        CASH(&nbsp;&nbsp;&nbsp;&nbsp;)
-                        &nbsp;&nbsp;&nbsp;&nbsp;/CARD(&nbsp;&nbsp;&nbsp;&nbsp;)
+                    <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
                     </td>
                 </tr>
             </table>

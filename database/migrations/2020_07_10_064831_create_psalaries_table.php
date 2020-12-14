@@ -32,6 +32,8 @@ class CreatePsalariesTable extends Migration
             $table->bigInteger('total')->default(0);
             $table->bigInteger('net')->default(0);
             $table->string('area')->nullable();
+            $table->string('shift')->nullable();
+            $table->string('payment_mode')->nullable();
             $table->string('payment_received_date')->nullable();
             $table->mediumText('remarks')->nullable();
             $table->integer('status')->default(0);
