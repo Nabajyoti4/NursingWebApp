@@ -334,12 +334,15 @@
                                                 <div class="col-sm-12">{{$book->created_at}}</div>
                                             </div>
                                             <div class="col-sm-2">
+                                                @if($book->nurse->id === \Illuminate\Support\Facades\Auth::user()->nurse->id)
                                                 @if($book->status == 3)
                                                     <button id="attendance_btn" type="button" class="btn btn-primary"
                                                             data-toggle="modal"
                                                             data-target="#exampleModalCenter{{$book->id}}">
                                                         Give Attendance
                                                     </button>
+                                                @else
+                                                @endif
                                             @endif
                                             <!-- Modal -->
                                                 <div class="modal fade" id="exampleModalCenter{{$book->id}}"

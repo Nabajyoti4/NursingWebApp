@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use SebastianBergmann\Comparator\Book;
 
@@ -182,6 +183,8 @@ class AdminBookingController extends Controller
                         'remaining_days' => $patient->days]
                         );
 
+        $booking->nurses()->attach($data['nurse']);
+
         // get the nurse and update the status to working 1
         Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
@@ -214,6 +217,11 @@ class AdminBookingController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function booking_update(Request $request, $id){
         $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date');
 
@@ -297,10 +305,11 @@ class AdminBookingController extends Controller
             //  find the nurse same as patient address
             $nurses = array();
             foreach ($nursesAll as $nurse) {
-                if (($nurse->user->addresses->last()->city) == ($patient->getAddress())) {
+                if (($nurse->user->addresses->first()->city) === ($patient->getAddress())) {
                     array_push($nurses, $nurse);
                 }
             }
+
 
             return view('admin.bookings.takeover', compact('booking', 'nurses'));
         }
@@ -402,6 +411,8 @@ class AdminBookingController extends Controller
 
         $booking = Booking::findOrFail($data['booking_id']);
 
+
+
         // update the nurse status to not working and set to leave
         $old_nurse = Nurse::findOrFail($booking->nurse_id);
         $old_nurse['status'] = 0;
@@ -414,19 +425,23 @@ class AdminBookingController extends Controller
         // update the new allotted nurse status to working
         Nurse::findOrFail($data['nurse'])->update(['status' => 1]);
 
+
+        $verify = DB::table('booking_nurse')
+            ->where('booking_id', $booking->id)
+            ->where('nurse_id', $data['nurse'])
+            ->first();
+
+
+        if(!$verify){
+            $booking->nurses()->attach($data['nurse']);
+        }
+
+
+
         //save booking
         $booking->save();
 
 
-        // create the new booking using the old records
-//        Booking::create([
-//                'user_id' => $booking->user_id,
-//                'patient_id' => $booking->patient_id,
-//                'nurse_id' => $data['nurse'],
-//                'total_payment' => $booking->total_payment,
-//                'due_payment' => $booking->due_payment,
-//                'remaining_days' => $booking->remaining_days
-//            ]);
 
 
 

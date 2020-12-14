@@ -165,7 +165,7 @@
                             @method('PATCH')
                         <div class="select w-100">
                             <select required name="action" type="number" id="action">
-                                <option selected disabled value="">Take Action</option>
+                                <option selected disabled value="">Choose Option</option>
                                 <option value="0">Reject</option>
                                 <option value="4">Takeover</option>
                                 <option value="1">Completed</option>

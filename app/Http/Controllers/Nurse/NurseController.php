@@ -12,6 +12,7 @@ use App\Tsalary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NurseController extends Controller
 {
@@ -26,7 +27,17 @@ class NurseController extends Controller
         $user = Auth::user();
         // find thw nurse with the id same as user_id
         $nurse = $user->nurse;
-        $bookings = Booking::where('nurse_id', $nurse->id)->get();
+
+        $bookings = DB::table('booking_nurse')
+            ->where('nurse_id','=',$nurse->id)
+            ->get()
+            ->pluck('booking_id');
+
+
+
+        $bookings = Booking::whereIn('id', $bookings)->get();
+
+
         $tsalaries = Tsalary::where('nurse_id', $nurse->employee_id)->latest()->get();
         $psalaries = Psalary::where('nurse_id', $nurse->employee_id)->latest()->get();
         $permanent_add=Address::where('id',$user->permanent_address_id)->get()->first();

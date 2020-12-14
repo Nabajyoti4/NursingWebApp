@@ -35,6 +35,13 @@ class Booking extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function nurses(){
+        return $this->belongsToMany(Nurse::class)->withTimestamps();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function patient(){
