@@ -21,7 +21,7 @@
 
         .font {
             display: inline-block;
-            width: 105px;
+            width: 110px;
         }
 
         h4 {
@@ -86,17 +86,17 @@
                 <div class="bg-light">
 
                     <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Current Address</h5>
+                        <h5 class="header font-weight-bold bg-light">Office Address</h5>
                         <div>
-                            <h5 class="font">Street</h5>
-                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city?? ""}}</span>
+                            <h5 class="font">Town/village</h5>
+                            <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->street?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
                             <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->landmark?? ""}}</span>
                         </div>
                         <div>
-                            <h5 class="font">City</h5>
+                            <h5 class="font">District</h5>
                             <span>: {{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>
@@ -115,15 +115,15 @@
                     <div class="borderdiv">
                         <h5 class="header font-weight-bold bg-light">Permanent Address</h5>
                         <div>
-                            <h5 class="font">Street</h5>
-                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->city?? ""}}</span>
+                            <h5 class="font">Town/village</h5>
+                            <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->street?? ""}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
                             <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->landmark?? ""}}</span>
                         </div>
                         <div>
-                            <h5 class="font">City</h5>
+                            <h5 class="font">District</h5>
                             <span>: {{$nurse->user->address($nurse->user->getPAddressId($nurse->user->id))->city?? ""}}</span>
                         </div>
                         <div>

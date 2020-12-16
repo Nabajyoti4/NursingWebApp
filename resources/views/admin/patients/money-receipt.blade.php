@@ -46,11 +46,13 @@
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME CARE NURSING
                     SERVICE</h3>
+                @if()
                 <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : MANDAKINI
                     BIBAH BHAWAN COMPLEX, KOTOKY
                     PUKHURI,</h6>
                 <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
                     JORHAT, PIN- 785006, ASSAM</h6>
+                @endif
             </div>
             <div class="col-sm-2 text-right" style=" margin-top:-30px;padding-top: 22px;">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239

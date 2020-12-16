@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control @error('current_street') is-invalid @enderror"
-                               name="current_street" placeholder="Street name"
+                               name="current_street" placeholder="Town/Village"
                                value="{{ $current_add->street ?? ""}}">
                         @error('current_street')
                         <div class="invalid-feedback mt-2" role="alert">
@@ -89,10 +89,10 @@
                             @if($current_add)
                                 <option selected value="{{$current_add->city}}">{{$current_add->city}}</option>
                             @else
-                                <option value="">Select City</option>
+                                <option value="">Select District</option>
                             @endif
                             @foreach($cities as $city)
-                                <option value="{{$city->city}}">{{$city->city}}</option>
+                                <option value="{{$city->city}}" style="text-transform: uppercase">{{$city->city}}</option>
                             @endforeach
                         </select>
                         @error('current_city')
@@ -161,7 +161,7 @@
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control @error('permanent_street') is-invalid @enderror"
                                name="permanent_street"
-                               placeholder="Street name"
+                               placeholder="Town/Village"
                                value="{{$permanent_add->street ?? ""}}">
                         @error('permanent_street')
                         <div class="invalid-feedback mt-2" role="alert">
@@ -181,7 +181,7 @@
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control @error('permanent_city') is-invalid @enderror"
-                               name="permanent_city" placeholder="City"
+                               name="permanent_city" placeholder="District"
                                value="{{$permanent_add->city ?? ""}}">
                         @error('permanent_city')
                         <div class="invalid-feedback mt-2" role="alert">
