@@ -38,9 +38,9 @@
                 @csrf
                 <label class="form-group font-weight-bold">
                     <select class="form-control" name="city">
-                        <option value="">Select City</option>
+                        <option value="">Select District</option>
                         @foreach($cities as $city)
-                            <option value="{{$city->city}}">{{$city->city}}</option>
+                            <option value="{{$city->city}}" style="text-transform: uppercase;">{{$city->city}}</option>
                         @endforeach
                     </select>
                 </label>
@@ -57,12 +57,14 @@
                         <th>Employee ID</th>
                         <th>Profile Image</th>
                         <th>Name</th>
-                        <th>City</th>
+                        <th>District</th>
                         <th>Status</th>
                         <th>Active</th>
                         <th>View Profile</th>
                         <th>Edit</th>
+                        @if(Auth::user()->role == 'super')
                         <th>Make Permanent</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -93,12 +95,14 @@
                                    href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
                             <td><a class="btn btn-primary small"
                                    href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
+                            @if(Auth::user()->role == 'super')
                             @if($nurse->permanent == 0)
                                 <td><a class="btn btn-primary small"
                                        href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
                             @else
                                 <td><a class="btn btn-primary small disabled"
                                        href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                @endif
                             @endif
                         </tr>
                     @empty

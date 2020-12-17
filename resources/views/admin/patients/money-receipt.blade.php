@@ -26,7 +26,8 @@
         padding: 0.2rem !important;
         margin: 0 !important;
     }
-    .width_100{
+
+    .width_100 {
         width: 150px;
     }
 
@@ -44,13 +45,27 @@
                      alt="">
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
-                <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME CARE NURSING
+                <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME
+                    CARE NURSING
                     SERVICE</h3>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : MANDAKINI
-                    BIBAH BHAWAN COMPLEX, KOTOKY
-                    PUKHURI,</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
-                    JORHAT, PIN- 785006, ASSAM</h6>
+                @if($patient->getFullAddress()->city == 'jorhat')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                        MANDAKINI
+                        BIBAH BHAWAN COMPLEX, KOTOKY
+                        PUKHURI,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
+                        JORHAT, PIN- 785006, ASSAM</h6>
+                @elseif($patient->getFullAddress()->city == 'sivasagar')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : GANAK
+                        PATTY OLD AMALAPATTY SIVASAGAR,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
+                        SIVASAGAR, PIN- 786001, ASSAM</h6>
+                @elseif($patient->getFullAddress()->city == 'dibrugarh')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                        NEAR SANKAR DEV HOSPITAL SASHAN PARA RAOD,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
+                        DIBRUGARH, PIN- 786003, ASSAM</h6>
+                @endif
             </div>
             <div class="col-sm-2 text-right" style=" margin-top:-30px;padding-top: 22px;">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239
@@ -94,7 +109,7 @@
                         <td style="font-weight: lighter; text-transform: capitalize;">   {{\App\Address::where('id',$booking->patient->address_id)->get()->first()->city}}</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bolder">Contact Number </td>
+                        <td style="font-weight: bolder">Contact Number</td>
                         <td style="font-weight: lighter; ">{{$booking->patient->phone_no}}</td>
                     </tr>
                 </table>
@@ -195,8 +210,8 @@
             <h5> Date: {{\Illuminate\Support\Carbon::parse($booking->due_date)->format('d-F-Y')}}</h5>
         </div>
     </div>
-    <div class="row m-0" >
-        <div class="col-sm-6" >
+    <div class="row m-0">
+        <div class="col-sm-6">
             <table class="table" style="padding: 0!important; font-size: 12px;">
                 <tr>
                     <td style="font-weight: bolder">Patient ID</td>

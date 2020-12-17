@@ -55,6 +55,20 @@
                 <input type="number" class="form-control" name="age" value="{{$nurse->age}}" placeholder="Enter Age">
             </div>
 
+            <div class="form-group font-weight-bold">
+                <label for="permanent">Permanent/Temporary:</label>
+                <select name="permanent" id="" class="form-control">
+                    <option value="{{$nurse->permanent}}">
+                        @if($nurse->permanent == 0)
+                            Temporary
+                        @else
+                            Permanent
+                        @endif
+                    </option>
+                    <option value="0">Temporary</option>
+                    <option value="1">Permanent</option>
+                </select>
+            </div>
             <div >
                 <img src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}" width="20%" height="30%" />
             </div>
@@ -84,10 +98,10 @@
                             @if($current_add)
                                 <option selected value="{{$current_add->city}}">{{$current_add->city}}</option>
                             @else
-                                <option value="">Select City</option>
+                                <option value="">Select District</option>
                             @endif
                             @foreach($cities as $city)
-                                <option value="{{$city->city}}" >{{$city->city}}</option>
+                                <option value="{{$city->city}}" style="text-transform: uppercase;">{{$city->city}}</option>
                             @endforeach
                         </select>
                         @error('current_city')
@@ -97,7 +111,7 @@
                         @enderror
                     </div>
                     <div class="col-lg-4 p-2">
-                        <input readonly id="current_street" type="text" class="form-control @error('current_street') is-invalid @enderror" name="current_street" placeholder="Street name"
+                        <input readonly id="current_street" type="text" class="form-control @error('current_street') is-invalid @enderror" name="current_street" placeholder="Town/Village"
                                value="{{ $current_add->street ?? ""}}">
                         @error('current_street')
                         <div class="invalid-feedback mt-2" role="alert">
@@ -169,7 +183,7 @@
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control @error('permanent_street') is-invalid @enderror"
                                name="permanent_street"
-                               placeholder="Street name"
+                               placeholder="Town/Village"
                                value="{{$permanent_add->street ?? ""}}">
                         @error('permanent_street')
                         <div class="invalid-feedback mt-2" role="alert">
@@ -189,7 +203,7 @@
                     </div>
                     <div class="col-lg-4 p-2">
                         <input type="text" class="form-control @error('permanent_city') is-invalid @enderror"
-                               name="permanent_city" placeholder="City"
+                               name="permanent_city" placeholder="District"
                                value="{{$permanent_add->city ?? ""}}">
                         @error('permanent_city')
                         <div class="invalid-feedback mt-2" role="alert">

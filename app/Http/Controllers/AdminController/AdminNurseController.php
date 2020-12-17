@@ -223,7 +223,7 @@ class AdminNurseController extends Controller
             'current_pincode','current_police','current_state','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
             'permanent_pincode','permanent_police','permanent_state',
-            'identification', 'address', 'education', 'other']);
+            'identification', 'address', 'education', 'other','permanent']);
 
 
         // find the nurse using the id
@@ -311,7 +311,8 @@ class AdminNurseController extends Controller
 
 
          $nurse->update(['age' => $data['age'],
-            'is_active' => $data['active']]);
+            'is_active' => $data['active'],
+             'permanent'=>$data['permanent']]);
 
 
         $nurses = Nurse::all();
