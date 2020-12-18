@@ -37,14 +37,10 @@ class PatientController extends Controller
     {
         //
         $services = Service::all();
-        $user = Auth::user();
         $cities = City::all();
 
-        if($user->permanent_address_id > 0){
-            return view('patientapplication.index', compact('services', 'cities'));
-        }else{
-            return redirect()->back()->with('info', 'Please fill your details before hiring');
-        }
+        return view('patientapplication.index', compact('services', 'cities'));
+
 
     }
 
@@ -78,6 +74,22 @@ class PatientController extends Controller
             'police_station' => $data['permanent_police'],
             'post_office' => $data['permanent_post']
         ]);
+
+        if($user->permanent_address_id === null){
+            $current_address = Address::create(['user_id' => $user->id,
+                'city' => $data['permanent_city'],
+                'state' => $data['permanent_state'],
+                'pin_code' => $data['permanent_pincode'],
+                'country' => $data['permanent_country'],
+                'landmark' => $data['permanent_landmark'],
+                'street' => $data['permanent_street'],
+                'police_station' => $data['permanent_police'],
+                'post_office' => $data['permanent_post']
+            ]);
+
+            $user['current_address_id'] = $current_address->id;
+            $user['permanent_address_id'] = $permanent_address->id;
+        }
 
         // store the image
         $image = $request->image->store('patients', 'public');
@@ -115,13 +127,16 @@ class PatientController extends Controller
         // select all the admins to send the request to them
         $adminAll = User::where('role', 'admin')->get();
 
+        //save user
+        $user->save();
+
         $admins = array();
         foreach ($adminAll as $admin) {
             if($admin->addresses->first()->city == $patient->getAddress())
                 array_push($admins, $admin);
         }
 
-        Notification::send($admins, new \App\Notifications\PatientRequest($patient));
+        //Notification::send($admins, new \App\Notifications\PatientRequest($patient));
 
 
         return redirect()
