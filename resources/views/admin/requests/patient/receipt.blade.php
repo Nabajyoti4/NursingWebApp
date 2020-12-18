@@ -381,6 +381,17 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
-
+<style type="text/css" media="print">
+    * {
+        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+        color-adjust: exact !important; /*Firefox*/
+    }
+</style>
+<script>
+    window.onload = function invoice()
+    {
+        window.print();
+    }
+</script>
 </body>
 </html>
