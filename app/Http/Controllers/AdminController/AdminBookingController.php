@@ -232,6 +232,12 @@ class AdminBookingController extends Controller
         $booking['due_payment'] =$data['due_payment'];
         $booking['start_date'] =$data['start_date'];
         $booking['due_date'] = $data['due_date'];
+
+        //calculate remaining days
+        if($patient['days'] !== $data['days']) {
+            $booking['remaining_days'] = ($data['days']) - ($booking->patient->days - $booking->remaining_days);
+        }
+
         $patient['days'] = $data['days'];
 
         $booking->save();
