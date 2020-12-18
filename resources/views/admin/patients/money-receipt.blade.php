@@ -140,7 +140,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Shift End:</td>
-                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(29)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays($booking->patient->days - 1)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -161,7 +161,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bolder">Next Due Date:</td>
-                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(30)->format('d-F-Y')}}</td>
+                        <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays($booking->patient->days)->format('d-F-Y')}}</td>
                     </tr>
 
                 </table>
@@ -264,7 +264,7 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Shift End:</td>
-                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(29)->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays($booking->patient->days - 1)->format('d-F-Y')}}</td>
                 </tr>
 
             </table>
@@ -285,7 +285,7 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bolder">Next Due Date:</td>
-                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays(30)->format('d-F-Y')}}</td>
+                    <td style="font-weight: lighter; ">{{\Illuminate\Support\Carbon::parse($booking->start_date)->addDays($booking->patient->days)->format('d-F-Y')}}</td>
                 </tr>
 
             </table>
