@@ -322,5 +322,18 @@
 
 
 </div>
+
+<style type="text/css" media="print">
+    * {
+        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+        color-adjust: exact !important; /*Firefox*/
+    }
+</style>
+<script>
+    window.onload = function invoice()
+    {
+        window.print();
+    }
+</script>
 </body>
 </html>
