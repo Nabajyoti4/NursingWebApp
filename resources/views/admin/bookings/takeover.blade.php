@@ -75,27 +75,27 @@
                         <h5 class="header font-weight-bold bg-light">Address</h5>
                         <div>
                             <h5 class="font">Street</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id) ? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->street : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id) ? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->landmark : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">City</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id) ? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->city : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">State</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id) ? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->state : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Country</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id) ? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->country : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Pin Code</h5>
-                            <span>: {{$booking->patient->user->addresses->first() ? $booking->patient->user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                            <span>: {{$booking->patient->getFullAddress($booking->patient->permanent_address_id)? $booking->patient->getFullAddress($booking->patient->permanent_address_id)->pin_code : "Fill the Permanent Address"}}</span>
                         </div>
                     </div>
                     <div class="borderdiv">
