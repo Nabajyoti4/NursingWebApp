@@ -194,7 +194,7 @@
 
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
-        <div><h4 class="text-center">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+        <div><h4 class="text-center m-0">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
     </div>
 
     <!--customer-->
@@ -316,7 +316,7 @@
         <br>
     </div>
     <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
-        <div><h4 class="text-center">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+        <div><h4 class="text-center m-0">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
     </div>
 </div>
 

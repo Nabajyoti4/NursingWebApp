@@ -97,8 +97,24 @@
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold mt-5">AAROGYA HOME CARE NURSING SERVICE</h3>
-                <h6 class="receipt-heading__description bold">HEAD OFFICE : MANDAKINI BIBAH BHAWAN COMPLEX, KOTOKY PUKHURI,</h6>
-                <h6 class="receipt-heading__description bold">BYE PASS TINI ALI, JORHAT</h6>
+                @if($patient->getFullAddress()->city == 'sivasagar')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
+                        HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
+                @elseif($patient->getFullAddress()->city == 'dibrugarh')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
+                        DIBRUGARH, PIN- 786003, ASSAM</h6>
+                @else
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                        MANDAKINI
+                        BIBAH BHAWAN COMPLEX, KOTOKY
+                        PUKHURI,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
+                        JORHAT, PIN- 785006, ASSAM</h6>
+                @endif
             </div>
             <div class="col-sm-2 text-right">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239
