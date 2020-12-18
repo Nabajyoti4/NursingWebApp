@@ -48,23 +48,24 @@
                 <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME
                     CARE NURSING
                     SERVICE</h3>
-                @if($patient->getFullAddress()->city == 'jorhat')
+
+                @if($booking->patient->getFullAddress()->city == 'sivasagar')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
+                        HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
+                @elseif($booking->patient->getFullAddress()->city == 'dibrugarh')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
+                        DIBRUGARH, PIN- 786003, ASSAM</h6>
+                @else
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
                         MANDAKINI
                         BIBAH BHAWAN COMPLEX, KOTOKY
                         PUKHURI,</h6>
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
                         JORHAT, PIN- 785006, ASSAM</h6>
-                @elseif($patient->getFullAddress()->city == 'sivasagar')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : GANAK
-                        PATTY OLD AMALAPATTY SIVASAGAR,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
-                        SIVASAGAR, PIN- 786001, ASSAM</h6>
-                @elseif($patient->getFullAddress()->city == 'dibrugarh')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
-                        NEAR SANKAR DEV HOSPITAL SASHAN PARA RAOD,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
-                        DIBRUGARH, PIN- 786003, ASSAM</h6>
                 @endif
             </div>
             <div class="col-sm-2 text-right" style=" margin-top:-30px;padding-top: 22px;">
@@ -192,8 +193,8 @@
         </div>
 
     </div>
-    <div class="row justify-content-center" style="background-color:  #85d534;color: white; padding: 3px;">
-        <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+    <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
+        <div><h4 class="text-center">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
     </div>
 
     <!--customer-->
@@ -315,7 +316,7 @@
         <br>
     </div>
     <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
-        <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+        <div><h4 class="text-center">Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
     </div>
 </div>
 
