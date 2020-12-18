@@ -113,6 +113,18 @@
                 </div>
             @endif
             <div class="form-group font-weight-bold">
+                <label for="area">Area</label>
+                <select name="area" class="form-control @error('area') is-invalid @enderror">
+                    <option class="form-control" value="" selected>SELECT DISTRICT</option>
+                    <option class="form-control" value="DIBRUGARH, ASSAM">DIBRUGARH, ASSAM</option>
+                    <option class="form-control" value="SIVASAGAR, ASSAM">SIVASAGAR, ASSAM</option>
+                    <option class="form-control" value="JORHAT, ASSAM">JORHAT, ASSAM</option>
+                </select>
+                @error('area')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group font-weight-bold">
                 <label for="payment_mode">Payment Mode</label>
                 <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
                     <option class="form-control" value="" selected>Select </option>
