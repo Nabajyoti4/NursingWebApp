@@ -182,7 +182,7 @@ class AdminPatientController extends Controller
         //if not exists
         if($user === null) {
                 $user = User::create([
-                'name' => $data['patient_name'],
+                'name' => $data['guardian_name'],
                 'email' => $data['email'],
                 'phone_no' => $validateData['phone_no'],
                 'password' => Hash::make($data['phone_no']),
