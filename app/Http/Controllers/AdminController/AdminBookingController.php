@@ -7,6 +7,7 @@ use App\Attendance;
 use App\Booking;
 use App\Employee;
 use App\Http\Controllers\Controller;
+use App\Notifications\NurseBooked;
 use App\Nurse;
 use App\Patient;
 use App\User;
@@ -289,15 +290,17 @@ class AdminBookingController extends Controller
         $booking = Booking::findOrFail($id);
         $data = $request->only(['action']);
 
+
         $value = $data['action'];
 
         // 0 reject
         if($value == 0){
+            $nurse = Nurse::findOrFail($booking->nurse_id);
+            $nurse->status = 0;
             $booking->status = 0;
             $booking->save();
-
+            $nurse->save();
             return redirect()->back()->with('success', 'Booking cancelled');
-
         }
 
         // 4 takeover action
@@ -325,6 +328,7 @@ class AdminBookingController extends Controller
         // 1 complete
         else{
             $booking->update(['status'=>1]);
+            return redirect()->back()->with('success', 'Booking Completed');
         }
 
     }
