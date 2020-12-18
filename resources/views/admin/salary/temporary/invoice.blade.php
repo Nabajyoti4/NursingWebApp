@@ -254,7 +254,7 @@
     </div>
     <div class="row justify-content-center"
          style="background-color: #85D534;color: white; padding: 8px; margin-top:60px">
-        <div><h3 class="text-center">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+        <div><h3 class="text-center m-0">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
     </div>
 </div>
 </body>
