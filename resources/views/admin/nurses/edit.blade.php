@@ -96,7 +96,7 @@
                     <div class="col-lg-4 p-2">
                         <select id="current_city" class="form-control @error('current_city') is-invalid @enderror" name="current_city" onchange="selectionchange();">
                             @if($current_add)
-                                <option selected value="{{$current_add->city}}">{{$current_add->city}}</option>
+                                <option selected value="{{$current_add->city}}" style="text-transform: uppercase;">{{$current_add->city}}</option>
                             @else
                                 <option value="">Select District</option>
                             @endif
