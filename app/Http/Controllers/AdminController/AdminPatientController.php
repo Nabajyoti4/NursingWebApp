@@ -209,7 +209,7 @@ class AdminPatientController extends Controller
             ]);
 
             $current_address = Address::create(['user_id' => $user->id,
-                'city' => $data['permanent_city'],
+                'city' => strtolower($data['permanent_city']),
                 'state' => $data['permanent_state'],
                 'pin_code' => $data['permanent_pincode'],
                 'country' => $data['permanent_country'],
