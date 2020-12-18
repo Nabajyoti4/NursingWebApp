@@ -122,19 +122,19 @@ class AdminBookingController extends Controller
     public function bookCreate($id)
     {
         $patient = Patient::findOrFail($id);
-        $nursesAll = Nurse::select('*')
+        $nurses = Nurse::select('*')
             ->where('is_active', 1)
             ->where('status', 0)
             ->get();
 
 
 
-        $nurses = array();
-        foreach ($nursesAll as $nurse) {
-            if ((Address::findOrFail($nurse->user->current_address_id)->city) === ($patient->getAddress())) {
-                array_push($nurses, $nurse);
-            }
-        }
+//        $nurses = array();
+//        foreach ($nursesAll as $nurse) {
+//            if ((Address::findOrFail($nurse->user->current_address_id)->city) === ($patient->getAddress())) {
+//                array_push($nurses, $nurse);
+//            }
+//        }
 
         return view('admin.bookings.create', compact('patient', 'nurses'));
     }
