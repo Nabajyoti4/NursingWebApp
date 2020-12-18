@@ -133,7 +133,12 @@
             </div>
             <div class="form-group font-weight-bold">
                 <label for="area">Area</label>
-                <input type="text" value="{{$salary->area}}" name="area" class="form-control @error('area') is-invalid @enderror"/>
+                <select name="area" class="form-control @error('area') is-invalid @enderror">
+                    <option class="form-control" value="{{$salary->area}}" selected>{{$salary->area}}</option>
+                    <option class="form-control" value="DIBRUGARH, ASSAM">DIBRUGARH, ASSAM</option>
+                    <option class="form-control" value="SIVASAGAR, ASSAM">SIVASAGAR, ASSAM</option>
+                    <option class="form-control" value="JORHAT, ASSAM">JORHAT, ASSAM</option>
+                </select>
                 @error('area')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -156,7 +161,7 @@
 
             <div class="form-group font-weight-bold">
                 <label for="payment_mode">Payment Mode</label>
-                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
+                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror">
                     <option class="form-control" value="" selected>Select </option>
                     <option class="form-control" value="BANK NEFT" >BANK NEFT</option>
                     <option class="form-control" value="RTGS" >RTGS</option>

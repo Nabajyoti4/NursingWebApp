@@ -37,11 +37,24 @@
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold mt-5" style="color: green">AAROGYA HOME CARE NURSING
                     SERVICE</h3>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE : MANDAKINI
-                    BIBAH BHAWAN COMPLEX, KOTOKY
-                    PUKHURI,</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
-                    JORHAT, PIN- 785006, ASSAM</h6>
+                @if($salary->area == 'Sivasagar, Assam' || $salary->area == 'SIVASAGAR, ASSAM')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
+                        HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
+                @elseif($salary->area == 'Dibrugarh, Assam' || $salary->area == 'DIBRUGARH, ASSAM')
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                        SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
+                        DIBRUGARH, PIN- 786003, ASSAM</h6>
+                @else
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                        MANDAKINI
+                        BIBAH BHAWAN COMPLEX, KOTOKY
+                        PUKHURI,</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
+                        JORHAT, PIN- 785006, ASSAM</h6>
+                @endif
             </div>
             <div class="col-sm-2 text-right" style="padding-top: 22px;">
                 Ph.No 9101786597 <br> 8753955565<br>6002450239
@@ -253,8 +266,8 @@
 
     </div>
     <div class="row justify-content-center"
-         style="background-color: #85D534;color: white; padding: 8px; margin-top:60px">
-        <div><h3 class="text-center m-0">www.aarogyahomecare.in Tel: +91 9435960652</h3></div>
+         style="background-color: #70d45d;color: white; padding: 8px; margin-top:60px">
+        <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
     </div>
 </div>
 </body>

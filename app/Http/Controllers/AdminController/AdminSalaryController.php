@@ -195,7 +195,7 @@ class AdminSalaryController extends Controller
             'month_days' => 'required',
             'payment_mode' => 'nullable|string',
             'shift' => 'nullable|string',
-
+            'area' => 'nullable|string',
         ]);
         if (Employee::where('employee_id', 'like', "{$data["nurse_id"]}%")->get()->first()) {
             $permanent = 1;
@@ -236,7 +236,7 @@ class AdminSalaryController extends Controller
                 'net' => $data['net'],
                 'payment_mode' => $data['payment_mode'],
                 'shift' => $data['shift'],
-
+                'area'=>$data['area'],
             ]);
         } else {
             $data = $this->calculateTemporaryTotal($data);
@@ -259,6 +259,7 @@ class AdminSalaryController extends Controller
                 'net' => $data['net'],
                 'payment_mode' => $data['payment_mode'],
                 'shift' => $data['shift'],
+                'area'=>$data['area'],
             ]);
         }
 
