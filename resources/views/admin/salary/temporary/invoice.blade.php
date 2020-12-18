@@ -103,7 +103,7 @@
                     @if(\App\Employee::where('employee_id',$salary->nurse_id)->get()->isEmpty())
                         <tr>
                             <td>Shift</td>
-                            <td> 24 hrs&nbsp;(&nbsp;
+                            <td> 24 Hrs&nbsp;(&nbsp;
                                 @if($salary->shift == "24 hrs")
                                     <i class="fa fa-check-circle"
                                        style="color: greenyellow"></i>
