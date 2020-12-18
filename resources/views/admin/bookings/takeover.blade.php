@@ -125,6 +125,7 @@
                                         <th>Employee ID</th>
                                         <th>Profile Image</th>
                                         <th>Name</th>
+                                        <th>District</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -137,6 +138,7 @@
                                                     alt="" width="100" height="100"/>
                                             </td>
                                             <td>{{$nurse->user->name}}</td>
+                                            <td>{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
                                         </tr>
                                     @empty
                                         <tr>
