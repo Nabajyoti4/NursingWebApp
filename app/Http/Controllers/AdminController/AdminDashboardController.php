@@ -106,6 +106,8 @@ class AdminDashboardController extends Controller
         }
 
 
+
+
         // create  new attendence
         Attendance::create([
             'booking_id' => $booking->id,
@@ -115,6 +117,14 @@ class AdminDashboardController extends Controller
 
         //save booking
         $booking->save();
+
+        if($booking->remaining_days === 0){
+            $booking['status'] = 1;
+            $nurse['status'] = 0;
+        }
+
+        $booking->save();
+        $nurse->save();
 
         //save salary
         $data->save();
@@ -150,6 +160,14 @@ class AdminDashboardController extends Controller
         $booking->first()->update([
             'remaining_days' => $booking->first()->remaining_days - 1
         ]);
+
+        if($booking->first()->remaining_days === 0){
+            $booking->first()->status = 1;
+            $nurse['status'] = 0;
+        }
+
+        $booking->first()->save();
+        $nurse->save();
 
         Attendance::create([
             'booking_id' => $booking->last()->id,
