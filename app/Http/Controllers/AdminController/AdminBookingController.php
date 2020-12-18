@@ -223,16 +223,19 @@ class AdminBookingController extends Controller
      * @return RedirectResponse
      */
     public function booking_update(Request $request, $id){
-        $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date');
+        $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date', 'days');
 
         $booking = Booking::findOrFail($id);
+        $patient = Patient::findOrFail($booking->patient->id);
 
         $booking['total_payment'] = $data['total_payment'];
         $booking['due_payment'] =$data['due_payment'];
         $booking['start_date'] =$data['start_date'];
         $booking['due_date'] = $data['due_date'];
+        $patient['days'] = $data['days'];
 
         $booking->save();
+        $patient->save();
 
         return redirect()->route('admin.book.index')
             ->with('success', 'Booking details updated');

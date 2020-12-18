@@ -82,6 +82,19 @@
                     </div>
                 </div>
             </div>
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Booking Days</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="days">Days</label>
+                        <select required type="number" name="days" class="form-control">
+                            <option value="{{$booking->patient->days}}">{{$booking->patient->days}}</option>
+                            <option value="30">30</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                         <button class="btn btn-primary" type="submit">Update a Booking</button>
