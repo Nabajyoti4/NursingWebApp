@@ -242,6 +242,12 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     //money receipt
     Route::get('admin/patient/money-receipt/{id}', 'AdminController\AdminPatientController@money_receipt')->name('admin.patient.money-receipt');
 
+    //receipts
+    Route::get('admin/receipts', 'AdminController\AdminReceiptController@index')
+        ->name('admin.receipts.index');
+
+    Route::get('admin/receipts/{id}', 'AdminController\AdminReceiptController@show')
+        ->name('admin.receipts.show');
 });
 
 // Admin Routes End
