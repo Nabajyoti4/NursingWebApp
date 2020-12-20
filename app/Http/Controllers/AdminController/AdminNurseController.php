@@ -32,39 +32,49 @@ class AdminNurseController extends Controller
 
 
         if ($search){
-            $nurses = Nurse::where("employee_id","LIKE","%{$search}%")->get();
+            $nurses = Nurse::where("employee_id","LIKE","%{$search}%")
+                ->get();
 
             if($admin->role == 'super'){
-                return view('admin.nurses.index', compact('nurses', 'cities'));
+                return view('admin.nurses.search', compact('nurses', 'cities'));
             }else{
                 if($nurses->isEmpty()){
-                    return view('admin.nurses.index', compact('nurses', 'cities'));
+                    return view('admin.nurses.search', compact('nurses', 'cities'));
                 }else{
                     $user = User::where('id', $nurses->first()->user_id)->first();
 
                     if (($user->addresses->first()->city) == ($admin->addresses->first()->city)) {
-                        return view('admin.nurses.index', compact('nurses', 'cities'));
+                        return view('admin.nurses.search', compact('nurses', 'cities'));
                     }else{
                         $nurses = collect([]);
-                        return view('admin.nurses.index', compact('nurses', 'cities'));
+                        return view('admin.nurses.search', compact('nurses', 'cities'));
                     }
                 }
             }
         }
         else{
             if($admin->role == 'super'){
-                $nurses = Nurse::all();
-                return view('admin.nurses.index', compact('nurses', 'cities'));
+                $hired_nurses = Nurse::where('status', 1)->get();
+                $nothired_nurses = Nurse::where('status', 0)->get();
+                return view('admin.nurses.index', compact('hired_nurses','nothired_nurses', 'cities'));
             }else{
-                $nurseAll = Nurse::all();
-                $nurses = array();
+                $hired = Nurse::where('status', 1)->get();
+                $nothired = Nurse::where('status', 0)->get();
+                $hired_nurses = array();
+                $nothired_nurses = array();
 
-                foreach ($nurseAll as $nurse) {
+                foreach ($hired as $nurse) {
                     if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
-                        array_push($nurses, $nurse);
+                        array_push($hired_nurses, $nurse);
                     }
                 }
-                return view('admin.nurses.index', compact('nurses', 'cities'));
+
+                foreach ($nothired as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($nothired_nurses, $nurse);
+                    }
+                }
+                return view('admin.nurses.index', compact('hired_nurses','nothired_nurses', 'cities'));
             }
 
         }
@@ -80,14 +90,36 @@ class AdminNurseController extends Controller
     public function filter(Request $request){
         $data = $request->only('city');
         $cities = City::all();
+        $admin = Auth::user();
 
         if($data['city'] == null){
-            $nurses = Nurse::all();
-            return view('admin.nurses.index', compact('nurses', 'cities'));
+            if($admin->role == 'super'){
+                $hired_nurses = Nurse::where('status', 1)->get();
+                $nothired_nurses = Nurse::where('status', 0)->get();
+                return view('admin.nurses.index', compact('hired_nurses','nothired_nurses', 'cities'));
+            }else{
+                $hired = Nurse::where('status', 1)->get();
+                $nothired = Nurse::where('status', 0)->get();
+                $hired_nurses = array();
+                $nothired_nurses = array();
+
+                foreach ($hired as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($hired_nurses, $nurse);
+                    }
+                }
+
+                foreach ($nothired as $nurse) {
+                    if (($nurse->user->addresses->first()->city ) == ($admin->addresses->first()->city)) {
+                        array_push($nothired_nurses, $nurse);
+                    }
+                }
+                return view('admin.nurses.index', compact('hired_nurses','nothired_nurses', 'cities'));
+            }
         }
 
         $nurses = (new \App\Nurse)->filter($data['city']);
-        return view('admin.nurses.index', compact('nurses', 'cities'));
+        return view('admin.nurses.search', compact('nurses', 'cities'));
 
 
     }
