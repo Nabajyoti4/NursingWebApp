@@ -22,7 +22,19 @@ class AdminDashboardController extends Controller
      */
     public function today_attendance()
     {
-        $bookings = Booking::where('status', 3)->get();
+        $bookingsAll = Booking::where('status', 3)->get();
+        $admin = Auth::user();
+        $bookings=[];
+        if ($admin->role == 'admin'){
+            foreach ($bookingsAll as $booking) {
+                if ($admin->address($admin->getCAddressId($admin->id))->city == $booking->patient->getAddress()){
+                    array_push($bookings, $booking);
+                }
+            }
+            return view('admin.dashboard.mark', compact('bookings'));
+
+        }
+
         return view('admin.dashboard.mark', compact('bookings'));
     }
 
@@ -106,8 +118,6 @@ class AdminDashboardController extends Controller
         }
 
 
-
-
         // create  new attendence
         Attendance::create([
             'booking_id' => $booking->id,
@@ -118,7 +128,7 @@ class AdminDashboardController extends Controller
         //save booking
         $booking->save();
 
-        if($booking->remaining_days === 0){
+        if ($booking->remaining_days === 0) {
             $booking['status'] = 1;
             $nurse['status'] = 0;
         }
@@ -161,7 +171,7 @@ class AdminDashboardController extends Controller
             'remaining_days' => $booking->first()->remaining_days - 1
         ]);
 
-        if($booking->first()->remaining_days === 0){
+        if ($booking->first()->remaining_days === 0) {
             $booking->first()->status = 1;
             $nurse['status'] = 0;
         }
