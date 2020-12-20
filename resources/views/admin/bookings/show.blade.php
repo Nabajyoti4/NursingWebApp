@@ -96,7 +96,7 @@
                             style="object-fit: cover" alt="avatar">
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="profile-head">
                         <h5>
                             Patient Name :<strong> {{$book->patient->patient_name}}</strong>
@@ -125,12 +125,10 @@
                         </h6>
                         <h6>
                             <p>Remaining Days: <strong>{{$book->remaining_days}}</strong> &nbsp;
-                                @if($book->status == 3)
-{{--                                @if($book->remaining_days == 2)--}}
+                                @if($book->status == 1 or $book->status == 0)
                                 <a href="{{ route('admin.book.request', $book->id) }}" style="text-decoration: none">
                                     <button  class="profile-edit-btn text-center">Extend Booking</button>
                                 </a>
-{{--                                @endif--}}
                                 @endif
                             </p>
                         </h6>
@@ -152,7 +150,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     @if($book->status == 2)
                         <a href="{{ route('admin.book.edit', $book->id) }}" style="text-decoration: none">
                             <div  class="profile-edit-btn text-center">Start Booking</div>
