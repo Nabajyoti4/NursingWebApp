@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\NurseBooked;
 use App\Nurse;
 use App\Patient;
+use App\Service;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -184,21 +185,12 @@ class AdminBookingController extends Controller
                         'remaining_days' => $patient->days]
                         );
 
+        //attach booking with nurse
         $booking->nurses()->attach($data['nurse']);
 
         // get the nurse and update the status to working 1
         Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
-
-
-        // send notification to user , nurse for new booking
-//        $nurse = Nurse::where('id', $data['nurse'])->get();
-//        $user = User::where('id', $nurse->first()->user_id)->get();
-//        Notification::send($user, new \App\Notifications\NurseBooked($nurse));
-//
-//
-//        $user = User::where('id', $patient->user->id)->get();
-//        Notification::send($user, new \App\Notifications\UserBooked($booking,$patient));
 
 
         $bookings = Booking::all();
@@ -327,7 +319,11 @@ class AdminBookingController extends Controller
         }
         // 1 complete
         else{
-            $booking->update(['status'=>1]);
+            $nurse = Nurse::findOrFail($booking->nurse_id);
+            $nurse->status = 0;
+            $booking->status = 1;
+            $booking->save();
+            $nurse->save();
             return redirect()->back()->with('success', 'Booking Completed');
         }
 
@@ -353,11 +349,12 @@ class AdminBookingController extends Controller
      */
     public function request($id){
         $booking = Booking::findOrFail($id);
+        $services = Service::all();
         $nurses = Nurse::select('*')
             ->where('is_active', 1)
             ->where('status', 0)
             ->get();
-        return view('admin.bookings.extend', compact('booking', 'nurses'));
+        return view('admin.bookings.extend', compact('booking', 'nurses', 'services'));
     }
 
 
@@ -372,13 +369,22 @@ class AdminBookingController extends Controller
      */
     public function extend(Request $request){
         //use request only to fetch the required data
-        $data = $request->only(['patient_id','total_payment','due_payment','nurse', 'days']);
+        $data = $request->only(['patient_id','total_payment','due_payment','nurse', 'shift', 'service_id','days', 'start_date', 'due_date']);
 
         //fetch user_id from patient
         $old_patient = Patient::findOrFail($data['patient_id']);
 
+
+        $last = Patient::all()->last();
+        if($last){
+            $patient_id = 'P' . (1001 + $last->id);
+        }else{
+            $patient_id = 'P' . (1001);
+        }
+
         // create a new patient
         $patient = Patient::create(['user_id' =>  $old_patient->user->id,
+            'patient_id' => $patient_id,
             'patient_name' => $old_patient->patient_name,
             'photo_id' => $old_patient->photo_id,
             'phone_no' => $old_patient->phone_no,
@@ -388,24 +394,47 @@ class AdminBookingController extends Controller
             'family_members' => $old_patient->family_members,
             'guardian_name' => $old_patient->guardian_name,
             'relation_guardian' => $old_patient->relation_guardian,
-            'shift' => $old_patient->shift,
+            'shift' => $data['shift'],
             'days' => $data['days'],
             'status' => 1,
-            'service_id' => $old_patient->service_id,
+            'service_id' => $data['service_id'],
             'patient_history' => $old_patient->patient_history,
             'patient_doctor' => $old_patient->patient_doctor
         ]);
 
 
-        // now create a new booking record
-        Booking::create(['user_id' => $patient->user->id,
+
+        // create a serial number for receipt
+        if (Booking::all()->last()) {
+            $last = Booking::all()->last();
+            $serial = (1 + $last->serial);
+        } else {
+            $serial = (101);
+        }
+
+        //create a money receipt serial number
+        if (Booking::all()->last()) {
+            $last = Booking::all()->last();
+            $money_serial = (601 + $last->id);
+        } else {
+            $money_serial = (601);
+        }
+
+        $booking = Booking::create(['user_id' => $patient->user->id,
                 'patient_id' => $patient->id,
+                'serial' => $serial,
+                'serial_money' => $money_serial,
+                'start_date' => $data['start_date'],
+                'due_date' => $data['due_date'],
                 'nurse_id' => $data['nurse'],
                 'total_payment' => $data['total_payment'],
                 'due_payment' => $data['due_payment'],
                 'remaining_days' => $patient->days]
         );
 
+        $booking->nurses()->attach($data['nurse']);
+        // get the nurse and update the status to working 1
+        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
 
         $bookings = Booking::all();
         return redirect()

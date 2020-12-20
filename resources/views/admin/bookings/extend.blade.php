@@ -151,45 +151,99 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="nurse">Select Nurse</label>
-                        <select required name="nurse"  class="form-control">
-                            <option value="">Select</option>
-                            @forelse($nurses as $nurse)
-                                <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
-                            @empty
-                                No users found
-                            @endforelse
-                        </select>
+<hr>
+                <div class="borderdiv">
+                    <label class="header font-weight-bold bg-light">Service Details</label>
+                    <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="total_payment">Total Payment</label>
+                            <input required name="total_payment" class="form-control" type="number">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="due_payment">Advance Payment</label>
+                            <input required name="due_payment" class="form-control" type="number" placeholder="0 if not paid">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="nurse">Select Nurse</label>
+                            <select required name="nurse"  class="form-control">
+                                <option value="">Select</option>
+                                @forelse($nurses as $nurse)
+                                    <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
+                                @empty
+                                    No users found
+                                @endforelse
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Service Details</label>
+                <div class="row">
+                    <div class="col-lg-4 p-2">
+                        <div class="form-group font-weight-bold">
+                            <label for="shift">Duty Shift of the Nurse:</label>
+                            <select required name="shift" class="form-control">
+                                <option value="">Select Shift</option>
+                                <option value="day">Day Shift</option>
+                                <option value="night">Night Shift</option>
+                                <option value="full">24 hours</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 p-2">
+                        <div class="form-group font-weight-bold">
+                            <label for="service_id">Service :</label>
+                            <select required name="service_id" required class="form-control">
+                                <option value="">Select Service</option>
+                                @foreach($services as $service)
+                                    <option value="{{$service->id}}">{{ $service->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 p-2">
+                        <div class="form-group font-weight-bold">
+                            <label for="days">Period of Required (Days):</label>
+                            <select required type="number" name="days" class="form-control">
+                                <option value="30">30</option>
+                                <option value="15">15</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
 
 
+                </div>
+            </div>
+            <hr>
             <!--details of payment-->
-            <div class="row">
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="total_payment">Total Payment</label>
-                    <input name="total_payment" class="form-control" type="number">
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Date details</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="start_date">Start Date </label>
+                        <input required type="date" class="form-control" name="start_date"
+                               placeholder="Enter booking start date" value="{{old('start_date')}}">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="due_date">Payment Date</label>
+                        <input required type="date" class="form-control" name="due_date"
+                               placeholder="Enter booking due date" value="{{old('due_date')}}">
+                    </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="due_payment">Due Payment</label>
-                    <input name="due_payment" class="form-control" type="number">
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="days">No of Days</label>
-                    <input name="days" class="form-control" type="number">
-                </div>
-            </div>
-            </div>
-
+            <hr>
             <div class="row">
                 <div class="col-12">
                         <button class="btn btn-primary" type="submit">Create a Booking</button>
