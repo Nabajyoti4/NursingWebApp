@@ -6,12 +6,15 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminReceiptController extends Controller
 {
     //
     public function index(){
+        $admin = Auth::user();
         $patients=Patient::where('status',1)->get();
+
         return view('admin.receipts.index',compact('patients'));
     }
     public function show($id){
