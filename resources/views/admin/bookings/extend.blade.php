@@ -110,20 +110,59 @@
                 </div>
             </div>
 
-            <!--details of same nurse-->
-            <div  class="row">
-                <div class="col-lg-12">
-                    <div class="borderdiv">
-                        <h5 class="header font-weight-bold bg-light">Nurse Details</h5>
-                        <div>
-                            <h5 class="font">Name</h5>
-                            <span>:  {{$booking->nurse->user->name}} </span>
+            <!--details of  nurse-->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Available Nurses</h6>
                         </div>
-                        <div>
-                            <h5 class="font">Employee ID</h5>
-                            <span>:  {{$booking->nurse->employee_id}} </span>
-                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Profile Image</th>
+                                        <th>Name</th>
+                                        <th>District</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
+                                    @forelse($nurses as $nurse)
+                                        <tr>
+                                            <td>{{$nurse->employee_id}}</td>
+                                            <td><img
+                                                    src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
+                                                    alt="" width="100" height="100"/>
+                                            </td>
+                                            <td>{{$nurse->user->name}}</td>
+                                            <td>{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">No users found</td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="nurse">Select Nurse</label>
+                        <select required name="nurse"  class="form-control">
+                            <option value="">Select</option>
+                            @forelse($nurses as $nurse)
+                                <option value="{{$nurse->id}}">{{$nurse->employee_id}}</option>
+                            @empty
+                                No users found
+                            @endforelse
+                        </select>
                     </div>
                 </div>
             </div>

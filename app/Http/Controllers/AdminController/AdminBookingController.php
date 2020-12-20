@@ -353,8 +353,11 @@ class AdminBookingController extends Controller
      */
     public function request($id){
         $booking = Booking::findOrFail($id);
-
-        return view('admin.bookings.extend', compact('booking'));
+        $nurses = Nurse::select('*')
+            ->where('is_active', 1)
+            ->where('status', 0)
+            ->get();
+        return view('admin.bookings.extend', compact('booking', 'nurses'));
     }
 
 
