@@ -169,7 +169,7 @@ class AdminPatientController extends Controller
             'relation_guardian', 'shift', 'days', 'service_id',
             'patient_history', 'patient_doctor','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
-            'permanent_pincode','permanent_police','permanent_state',]);
+            'permanent_pincode','permanent_police','permanent_state','office_location']);
 
         //create a new user using mail
         $validateData = $request->validate([
@@ -287,7 +287,8 @@ class AdminPatientController extends Controller
             'days' => $data['days'],
             'service_id' => $data['service_id'],
             'patient_history' => $data['patient_history'],
-            'patient_doctor' => $data['patient_doctor']
+            'patient_doctor' => $data['patient_doctor'],
+            'office_location' => strtolower($data['office_location']),
         ]);
 
 
@@ -344,7 +345,7 @@ class AdminPatientController extends Controller
             'relation_guardian', 'shift', 'days', 'service_id',
             'patient_history', 'patient_doctor','permanent_city',
             'permanent_landmark','permanent_street','permanent_post','permanent_country',
-            'permanent_pincode','permanent_police','permanent_state',]);
+            'permanent_pincode','permanent_police','permanent_state','office_location']);
 
         //create a new user using mail
         $validateData = $request->validate([
@@ -404,7 +405,8 @@ class AdminPatientController extends Controller
             'days' => $data['days'],
             'service_id' => $data['service_id'],
             'patient_history' => $data['patient_history'],
-            'patient_doctor' => $data['patient_doctor']
+            'patient_doctor' => $data['patient_doctor'],
+            'office_location' => strtolower($data['office_location']),
         ]);
 
 

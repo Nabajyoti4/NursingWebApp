@@ -80,27 +80,27 @@
                         <h5 class="header font-weight-bold bg-light">Address</h5>
                         <div>
                             <h5 class="font">Street</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->street : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id) ? $patient->getFullAddress($patient->permanent_address_id)->street : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Landmark</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->landmark : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id) ? $patient->getFullAddress($patient->permanent_address_id)->landmark : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">City</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->city : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id) ? $patient->getFullAddress($patient->permanent_address_id)->city : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">State</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->state : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id) ? $patient->getFullAddress($patient->permanent_address_id)->state : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Country</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->country : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id) ? $patient->getFullAddress($patient->permanent_address_id)->country : "Fill the Permanent Address"}}</span>
                         </div>
                         <div>
                             <h5 class="font">Pin Code</h5>
-                            <span>: {{$patient->user->addresses->first() ? $patient->user->addresses->first()->pin_code : "Fill the Permanent Address"}}</span>
+                            <span>: {{$patient->getFullAddress($patient->permanent_address_id)? $patient->getFullAddress($patient->permanent_address_id)->pin_code : "Fill the Permanent Address"}}</span>
                         </div>
                     </div>
                     <div class="borderdiv">
@@ -180,6 +180,20 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group font-weight-bold">
+                <label for="payment_mode">Payment Mode</label>
+                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
+                    <option class="form-control" value="" selected>Select </option>
+                    <option class="form-control" value="ONLINE" >ONLINE</option>
+                    <option class="form-control" value="CASH" >CASH</option>
+                    <option class="form-control" value="CHEQUE" >CHEQUE</option>
+                    <option class="form-control" value="CARD" >CARD</option>
+                </select>
+                @error('payment_mode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <br>
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light">Date details</label>
                 <div class="row">

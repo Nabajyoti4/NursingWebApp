@@ -95,6 +95,23 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group font-weight-bold">
+                <label for="payment_mode">Payment Mode</label>
+                <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
+                    @if($booking->payment_mode == "")
+                        <option class="form-control" value="" selected>Select Mode</option>
+                    @else
+                        <option class="form-control" value="{{$booking->payment_mode}}" selected>{{$booking->payment_mode}}</option>
+                    @endif <hr>
+                    <option class="form-control" value="ONLINE" >ONLINE</option>
+                    <option class="form-control" value="CASH" >CASH</option>
+                    <option class="form-control" value="CHEQUE" >CHEQUE</option>
+                    <option class="form-control" value="CARD" >CARD</option>
+                </select>
+                @error('payment_mode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="row">
                 <div class="col-12">
                         <button class="btn btn-primary" type="submit">Update a Booking</button>

@@ -20,6 +20,7 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
         }
+
         .header {
             position: absolute;
             top: -14px;
@@ -65,7 +66,9 @@
                 <div class="col-lg-6 p-2">
                     <div class="form-group font-weight-bold">
                         <label for="phone_no">User Phone Number:</label>
-                        <input type="number"  required name="phone_no" class="input form-control @error('phone_no') is-invalid @enderror" placeholder="Phone" value="{{$patient->user->phone_no}}">
+                        <input type="number" required name="phone_no"
+                               class="input form-control @error('phone_no') is-invalid @enderror" placeholder="Phone"
+                               value="{{$patient->user->phone_no}}">
                         @error('phone_no')
                         <div class="invalid-feedback mt-5" role="alert">
                             <strong>{{ $message }}</strong>
@@ -75,6 +78,23 @@
                 </div>
 
             </div>
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Select the Office Location from where you want to take
+                    Services</label>
+                <div class="row">
+                    <div class="col-lg-6 p-2">
+                        <select class="form-control" name="office_location">
+                            <option value="{{$patient->office_location}}"
+                                    style="text-transform: capitalize">{{$patient->office_location}}</option>
+                            <hr>
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}"
+                                        style="text-transform: capitalize;">{{$city->city}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light">Patient personal Details</label>
@@ -82,7 +102,8 @@
                     <div class="col-lg-6 p-2">
                         <div class="form-group font-weight-bold">
                             <label for="patient_name">Patient Full Name:</label>
-                            <input required type="text" class="form-control" name="patient_name" placeholder="Enter Name"
+                            <input required type="text" class="form-control" name="patient_name"
+                                   placeholder="Enter Name"
                                    value="{{$patient->patient_name}}">
                         </div>
                     </div>
@@ -90,7 +111,8 @@
                     <div class="col-lg-6 p-2">
                         <div class="form-group font-weight-bold">
                             <label for="patient_phone_no">Phone Number:</label>
-                            <input type="number"  required name="patient_phone_no" class="input form-control" placeholder="Phone" value="{{$patient->phone_no}}">
+                            <input type="number" required name="patient_phone_no" class="input form-control"
+                                   placeholder="Phone" value="{{$patient->phone_no}}">
                         </div>
                     </div>
                     <div class="col-lg-6 p-2">
@@ -108,7 +130,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-lg-6 p-2">
@@ -130,26 +151,22 @@
                     </div>
                 </div>
             </div>
-
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light">Address</label>
                 <div class="row">
                     <div class="col-lg-4 p-2">
+                        <input required type="text" class="form-control" name="permanent_city"
+                               placeholder="District" value="{{$patient->getFullAddress()->permanent_city}}">
+                    </div>
+                    <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_street"
-                               placeholder="Street name" value="{{$patient->getFullAddress()->street}}">
+                               placeholder="Town/Village" value="{{$patient->getFullAddress()->street}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_landmark"
                                placeholder="Landmark" value="{{$patient->getFullAddress()->landmark}}">
                     </div>
-                    <div class="col-lg-4 p-2">
-                        <select class="form-control" name="permanent_city" >
-                            <option value="{{$patient->getFullAddress()->city}}">{{$patient->getFullAddress()->city}}</option>
-                            @foreach($cities as $city)
-                                <option value="{{$city->city}}">{{$city->city}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_state"
                                placeholder="State" value="{{$patient->getFullAddress()->state}}">
@@ -227,7 +244,8 @@
                         <div class="form-group font-weight-bold">
                             <label for="service_id">Service :</label>
                             <select required name="service_id" required class="form-control">
-                                <option value="{{$patient->service_id}}">{{\App\Service::where('id', $patient->service_id)->get()->first()->title}}</option>
+                                <option
+                                    value="{{$patient->service_id}}">{{\App\Service::where('id', $patient->service_id)->get()->first()->title}}</option>
                                 @foreach($services as $service)
                                     <option value="{{$service->id}}">{{ $service->title }}</option>
                                 @endforeach

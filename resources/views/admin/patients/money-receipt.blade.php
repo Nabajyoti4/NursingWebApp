@@ -4,6 +4,7 @@
 <head>
     <title>Money Receipt</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 </head>
 <style>
     body {
@@ -173,9 +174,29 @@
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td class="justify-content-center">ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "ONLINE")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CHEQUE")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CASH")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CARD")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
                         </td>
                     </tr>
                 </table>
@@ -301,9 +322,29 @@
             <table class="table " style="font-size: 12px;">
                 <tr>
                     <td>Payment Mode</td>
-                    <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+                    <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "ONLINE")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CHEQUE")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CASH")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CARD")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)
                     </td>
                 </tr>
             </table>

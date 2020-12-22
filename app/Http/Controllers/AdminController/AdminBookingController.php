@@ -150,7 +150,7 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //use request only to fetch the required data
-        $data = $request->only(['patient_id','total_payment','start_date', 'due_date','due_payment','nurse']);
+        $data = $request->only(['patient_id','total_payment','start_date', 'due_date','due_payment','nurse','payment_mode']);
 
         //fetch user_id from patient
         $patient = Patient::findOrFail($data['patient_id']);
@@ -182,7 +182,9 @@ class AdminBookingController extends Controller
                         'nurse_id' => $data['nurse'],
                         'total_payment' => $data['total_payment'],
                         'due_payment' => $data['due_payment'],
-                        'remaining_days' => $patient->days]
+                        'remaining_days' => $patient->days,
+                        'payment_mode'=>$data['payment_mode'],
+                        ]
                         );
 
         //attach booking with nurse
@@ -216,7 +218,7 @@ class AdminBookingController extends Controller
      * @return RedirectResponse
      */
     public function booking_update(Request $request, $id){
-        $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date', 'days');
+        $data = $request->only('total_payment', 'due_payment', 'start_date', 'due_date', 'days','payment_mode');
 
         $booking = Booking::findOrFail($id);
         $patient = Patient::findOrFail($booking->patient->id);
@@ -225,6 +227,7 @@ class AdminBookingController extends Controller
         $booking['due_payment'] =$data['due_payment'];
         $booking['start_date'] =$data['start_date'];
         $booking['due_date'] = $data['due_date'];
+        $booking['payment_mode'] = $data['payment_mode'];
 
         //calculate remaining days
         if($patient['days'] !== $data['days']) {
