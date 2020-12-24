@@ -43,6 +43,7 @@
                         <th>Patient ID</th>
                         <th>Name</th>
                         <th>Phone No</th>
+                        <th>Location from where Service is Taken</th>
                         <th>View</th>
                     </tr>
                     </thead>
@@ -52,6 +53,7 @@
                             <td>{{$patient->patient_id}}</td>
                             <td>{{$patient->patient_name}}</td>
                             <td>{{$patient->phone_no}}</td>
+                            <td style="text-transform: capitalize">{{$patient->office_location}}</td>
                             <td>
                                 <form action="{{route('admin.receipts.show',$patient->id)}}" method="GET">
                                     @csrf

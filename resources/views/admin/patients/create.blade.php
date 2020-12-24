@@ -74,7 +74,7 @@
                 <div class="col-lg-6 p-2">
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Patient Pic: </label>
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control" name="image" required>
             </div>
                 </div>
             </div>

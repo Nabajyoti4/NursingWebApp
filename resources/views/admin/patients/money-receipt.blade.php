@@ -215,10 +215,10 @@
 
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
-        @if($booking->patient->getFullAddress()->city == 'jorhat')
+        @if($booking->patient->office_location == 'jorhat')
             <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 
@@ -361,10 +361,10 @@
         <br>
     </div>
     <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
-        @if($booking->patient->getFullAddress()->city == 'jorhat')
+        @if($booking->patient->office_location == 'jorhat')
             <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 </div>
