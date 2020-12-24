@@ -378,16 +378,9 @@ class AdminBookingController extends Controller
         $old_patient = Patient::findOrFail($data['patient_id']);
 
 
-        $last = Patient::all()->last();
-        if($last){
-            $patient_id = 'P' . (1001 + $last->id);
-        }else{
-            $patient_id = 'P' . (1001);
-        }
-
         // create a new patient
         $patient = Patient::create(['user_id' =>  $old_patient->user->id,
-            'patient_id' => $patient_id,
+            'patient_id' => $old_patient->patient_id,
             'patient_name' => $old_patient->patient_name,
             'photo_id' => $old_patient->photo_id,
             'phone_no' => $old_patient->phone_no,
