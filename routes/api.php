@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/getSalary/{id}', 'AdminController\AdminSalaryController@nurseSalaryFinder')
+    ->name('get.salary');
+
 
 //Route::get('/users', 'User\UserController@create')->name('api.users');
 

@@ -17,7 +17,8 @@
             @csrf
             <div class="form-group font-weight-bold">
                 <label for="nurse_id">Nurse Employee ID</label>
-                <select name="nurse_id" class="form-control @error('nurse_id') is-invalid @enderror">
+                <select name="nurse_id" class="form-control @error('nurse_id') is-invalid @enderror"
+                        onmousedown="this.value='';" onchange="getSalary(this.value);">
                     <option class="form-control" value="" selected>Select Nurse</option>
                     @foreach($nurses as $nurse)
                         <option class="form-control" value="{{$nurse->employee_id}}">{{$nurse->employee_id}}</option>
@@ -30,7 +31,7 @@
             </div>
             <div class="form-group font-weight-bold">
                 <label for="basic">Basic Salary</label>
-                <input type="number" name="basic" class="form-control @error('basic') is-invalid @enderror"/>
+                <input id="basic" type="number" name="basic" class="form-control @error('basic') is-invalid @enderror"/>
                 @error('basic')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -46,9 +47,9 @@
                 <label for="shift">Shift</label>
                 <select name="shift" class="form-control @error('shift') is-invalid @enderror" required>
                     <option class="form-control" value="" selected>Select Shift</option>
-                    <option class="form-control" value="24 hrs" >24 hrs</option>
-                    <option class="form-control" value="Day" >Day</option>
-                    <option class="form-control" value="Night" >Night</option>
+                    <option class="form-control" value="24 hrs">24 hrs</option>
+                    <option class="form-control" value="Day">Day</option>
+                    <option class="form-control" value="Night">Night</option>
                 </select>
                 @error('shift')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -127,12 +128,12 @@
             <div class="form-group font-weight-bold">
                 <label for="payment_mode">Payment Mode</label>
                 <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror" required>
-                    <option class="form-control" value="" selected>Select </option>
-                    <option class="form-control" value="BANK NEFT" >BANK NEFT</option>
-                    <option class="form-control" value="RTGS" >RTGS</option>
-                    <option class="form-control" value="CASH" >CASH</option>
-                    <option class="form-control" value="CHEQUE" >CHEQUE</option>
-                    <option class="form-control" value="ACCOUNT PAY" >ACCOUNT PAY</option>
+                    <option class="form-control" value="" selected>Select</option>
+                    <option class="form-control" value="BANK NEFT">BANK NEFT</option>
+                    <option class="form-control" value="RTGS">RTGS</option>
+                    <option class="form-control" value="CASH">CASH</option>
+                    <option class="form-control" value="CHEQUE">CHEQUE</option>
+                    <option class="form-control" value="ACCOUNT PAY">ACCOUNT PAY</option>
                 </select>
                 @error('payment_mode')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -143,5 +144,18 @@
 
         </form>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
 
+           function getSalary(id){
+               axios.get(`http://127.0.0.1:8000/api/getSalary/${id}`)
+                   .then(result => {
+                       document.getElementById('basic').value = result.data.basic;
+                       // console.log(result.data.basic);
+                   })
+                   .catch(err => {
+                       console.log(err);
+                   })
+           }
+    </script>
 @endsection
