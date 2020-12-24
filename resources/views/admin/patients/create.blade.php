@@ -74,7 +74,7 @@
                 <div class="col-lg-6 p-2">
             <div class="form-group font-weight-bold">
                 <label for="image">Upload Patient Pic: </label>
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control" name="image" required>
             </div>
                 </div>
             </div>
@@ -100,26 +100,36 @@
                 </div>
             </div>
             </div>
+            <div class="borderdiv">
+                <label class="header font-weight-bold bg-light">Select the Office Location from where you want to take Services</label>
+                <div class="row">
+                    <div class="col-lg-6 p-2">
+                        <select class="form-control" name="office_location" >
+                            <option value="">Select District</option>
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}" style="text-transform: capitalize;">{{$city->city}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <div class="borderdiv">
                 <label class="header font-weight-bold bg-light">Address</label>
                 <div class="row">
                     <div class="col-lg-4 p-2">
+                        <input required type="text" class="form-control" name="permanent_city"
+                               placeholder="District" value="{{old('permanent_city')}}">
+                    </div>
+                    <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_street"
-                               placeholder="Street name" value="{{old('permanent_street')}}">
+                               placeholder="Town/Village" value="{{old('permanent_street')}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_landmark"
                                placeholder="Landmark" value="{{old('permanent_landmark')}}">
                     </div>
-                    <div class="col-lg-4 p-2">
-                        <select class="form-control" name="permanent_city" >
-                            <option value="">Select City</option>
-                            @foreach($cities as $city)
-                                <option value="{{$city->city}}">{{$city->city}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_state"
                                placeholder="State" value="{{old('permanent_state')}}">

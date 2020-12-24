@@ -31,10 +31,11 @@ class AdminDashboardController extends Controller
                     array_push($bookings, $booking);
                 }
             }
+
             return view('admin.dashboard.mark', compact('bookings'));
 
         }
-
+        $bookings=$bookingsAll;
         return view('admin.dashboard.mark', compact('bookings'));
     }
 

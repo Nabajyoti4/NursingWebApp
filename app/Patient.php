@@ -11,7 +11,7 @@ class Patient extends Model
         'patient_name','patient_id', 'photo_id', 'phone_no', 'age',
         'gender', 'address_id', 'family_members', 'guardian_name',
         'relation_guardian', 'shift', 'days', 'service_id',
-        'patient_history', 'patient_doctor', 'status'];
+        'patient_history', 'patient_doctor', 'status','office_location'];
 
 
     /**

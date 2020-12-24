@@ -28,6 +28,7 @@ class CreatePatientsTable extends Migration
             $table->string('relation_guardian');
             $table->string('shift');
             $table->integer('days');
+            $table->string('office_location');
             $table->unsignedBigInteger('service_id');
             $table->string('patient_history');
             $table->string('patient_doctor');

@@ -4,6 +4,7 @@
 <head>
     <title>Money Receipt</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 </head>
 <style>
     body {
@@ -173,9 +174,29 @@
                 <table class="table ">
                     <tr>
                         <td>Payment Mode</td>
-                        <td class="justify-content-center">ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)
+                        <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "ONLINE")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CHEQUE")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CASH")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                            @if($booking->payment_mode == "CARD")
+                                <i class="fa fa-check-circle"
+                                   style="color: greenyellow"></i>
+                            @endif
+                            &nbsp;&nbsp;)
                         </td>
                     </tr>
                 </table>
@@ -194,10 +215,10 @@
 
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
-        @if($booking->patient->getFullAddress()->city == 'jorhat')
+        @if($booking->patient->office_location == 'jorhat')
             <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 
@@ -301,9 +322,29 @@
             <table class="table " style="font-size: 12px;">
                 <tr>
                     <td>Payment Mode</td>
-                    <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+                    <td>ONLINE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "ONLINE")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHEQUE&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CHEQUE")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        CASH&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CASH")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARD&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;
+                        @if($booking->payment_mode == "CARD")
+                            <i class="fa fa-check-circle"
+                               style="color: greenyellow"></i>
+                        @endif
+                        &nbsp;&nbsp;)
                     </td>
                 </tr>
             </table>
@@ -320,10 +361,10 @@
         <br>
     </div>
     <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
-        @if($booking->patient->getFullAddress()->city == 'jorhat')
+        @if($booking->patient->office_location == 'jorhat')
             <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 </div>

@@ -50,18 +50,23 @@
                 <h1>Customer Application Form</h1>
                 <div class="border rounded p-4" style="font-family: sans-serif;justify-content: center">
                     <strong><h4 style="font-weight: bolder">Terms and Conditions:</h4></strong>
-                    <h5 style="letter-spacing: 0.5px; color: black; align-content: space-evenly">( Registration Fees : 500/-, Advance Payment Requested: Cash/
-                    Cheque/ Online
-                    Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate for
-                    one
-                    Nurse for 24 Hours Duty per month is 450x30=13,500 (Rs) only, Customers should refrain from
-                    misbehavior
-                    to avoid complain against themselves, Customers should be responsible for overtime service. The
-                    authority of the sisters is not responsible for it; Service does not include work like Washing,
-                    Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the
-                    sisters; A sister is available till the patient is there only. She is not appointed for serving or
-                    helping the patient’s guardian or other relatives; Holiday: Our Service is not available on Bohag
-                    Bihu,
+                    <h5 style="letter-spacing: 0.5px; color: black; align-content: space-evenly">( Registration Fees :
+                        500/-, Advance Payment Requested: Cash/
+                        Cheque/ Online
+                        Payment, Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only, Rate
+                        for
+                        one
+                        Nurse for 24 Hours Duty per month is 450x30=13,500 (Rs) only, Customers should refrain from
+                        misbehavior
+                        to avoid complain against themselves, Customers should be responsible for overtime service. The
+                        authority of the sisters is not responsible for it; Service does not include work like Washing,
+                        Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of
+                        the
+                        sisters; A sister is available till the patient is there only. She is not appointed for serving
+                        or
+                        helping the patient’s guardian or other relatives; Holiday: Our Service is not available on
+                        Bohag
+                        Bihu,
                         Magh Bihu, Durga Puja and other Traditional Occasion.)</h5>
                 </div>
                 <!-- One "tab" for each step in the form: -->
@@ -69,55 +74,70 @@
 
                     <div class="borderdiv">
                         <label class="header font-weight-bold bg-light">Patient personal Details</label>
-                    <div class="row">
-                        <div class="col-lg-6 p-2">
-                            <div class="form-group font-weight-bold">
-                                <label for="patient_name">Patient Full Name:</label>
-                                <input required type="text" class="form-control" name="patient_name"
-                                       placeholder="Enter Name"
-                                       value="{{old('patient_name')}}">
+                        <div class="row">
+                            <div class="col-lg-6 p-2">
+                                <div class="form-group font-weight-bold">
+                                    <label for="patient_name">Patient Full Name:</label>
+                                    <input required type="text" class="form-control" name="patient_name"
+                                           placeholder="Enter Name"
+                                           value="{{old('patient_name')}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 p-2">
+                                <div class="form-group font-weight-bold">
+                                    <label for="phone_no">Phone Number:</label>
+                                    <input required type="number" class="form-control" name="phone_no"
+                                           placeholder="Enter Phone number"
+                                           value="{{old('phone_no')}}">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-6 p-2">
-                            <div class="form-group font-weight-bold">
-                                <label for="phone_no">Phone Number:</label>
-                                <input required type="number" class="form-control" name="phone_no"
-                                       placeholder="Enter Phone number"
-                                       value="{{old('phone_no')}}">
+                        <div class="form-group font-weight-bold">
+                            <label for="image">Upload Patient Pic: </label>
+                            <input type="file" class="form-control" name="image">
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-6 p-2">
+                                <div class="form-group font-weight-bold">
+                                    <label for="age">Age:</label>
+                                    <input required type="number" class="form-control" name="age" placeholder="Age"
+                                           value="{{old('age')}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 p-2">
+                                <div class="form-group font-weight-bold">
+                                    <label for="gender">Gender:</label>
+                                    <select required name="gender" class="form-control">
+                                        <option value="">Select Gender</option>
+                                        <option value="Male" class="form-control">Male</option>
+                                        <option value="Female" class="form-control">Female</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group font-weight-bold">
-                        <label for="image">Upload Patient Pic: </label>
-                        <input type="file" class="form-control" name="image">
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-6 p-2">
-                            <div class="form-group font-weight-bold">
-                                <label for="age">Age:</label>
-                                <input required type="number" class="form-control" name="age" placeholder="Age"
-                                       value="{{old('age')}}">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 p-2">
-                            <div class="form-group font-weight-bold">
-                                <label for="gender">Gender:</label>
-                                <select required name="gender" class="form-control">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male" class="form-control">Male</option>
-                                    <option value="Female" class="form-control">Female</option>
+                    <div class="borderdiv">
+                        <label class="header font-weight-bold bg-light">Select the Office Location from where you
+                            want to take
+                            Services</label>
+                        <div class="row">
+                            <div class="col-lg-6 p-2">
+                                <select class="form-control" name="office_location">
+                                    <option value="">Select District</option>
+                                    @foreach($cities as $city)
+                                        <option value="{{$city->city}}"
+                                                style="text-transform: capitalize;">{{$city->city}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
-                    </div>
-
-
                     <div class="borderdiv">
                         <label class="header font-weight-bold bg-light">Address</label>
                         <div class="row">
@@ -234,7 +254,7 @@
                             <div class="col-lg-6 p-2">
                                 <div class="form-group font-weight-bold">
                                     <label for="patient_history">Patient's History :</label>
-                                    <textarea required name="patient_history"  rows="5"
+                                    <textarea required name="patient_history" rows="5"
                                               class="form-control">{{old('patient_history')}}</textarea>
                                 </div>
                             </div>
