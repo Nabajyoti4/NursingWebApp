@@ -156,7 +156,7 @@
                 <div class="row">
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_city"
-                               placeholder="District" value="{{$patient->getFullAddress()->permanent_city}}">
+                               placeholder="District" value="{{$patient->getFullAddress()->city}}">
                     </div>
                     <div class="col-lg-4 p-2">
                         <input required type="text" class="form-control" name="permanent_street"

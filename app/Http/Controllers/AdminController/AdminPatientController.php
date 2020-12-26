@@ -56,7 +56,7 @@ class AdminPatientController extends Controller
                 $apatients = array();//approved
                 $rpatients = array();//rejected
                 foreach ($patientAll as $patient) {
-                    if (($patient->getAddress()) == ($admin->addresses->first()->city)) {
+                    if (($patient->office_location) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         if ($patient->status == 0){
                             array_push($rpatients, $patient);
 
@@ -99,7 +99,7 @@ class AdminPatientController extends Controller
                 }else{
                     // get the address of the requested PATIENT
                     // check if the address of the candidate is same as admin
-                    if (($patients->first()->getAddress()) == ($admin->addresses->first()->city)) {
+                    if (($patients->office_location) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         return view('admin.patients.index', compact('patients'));
                     }else{
                         $patients = collect([]);
@@ -120,7 +120,7 @@ class AdminPatientController extends Controller
                 $patients = array();
 
                 foreach ($patientAll as $patient) {
-                    if (($patient->getAddress()) == ($admin->addresses->first()->city)) {
+                    if (($patient->office_location) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         array_push($patients, $patient);
                     }
                 }

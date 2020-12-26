@@ -43,7 +43,7 @@ class AdminBookingController extends Controller
                     // get the address of the requested PATIENT
                     // check f the address of the candidate is same as admin
                 }else{
-                        if (($bookings->first()->patient->getAddress()) == ($admin->addresses->first()->city)) {
+                        if (($bookings->first()->patient->office_location) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                             return view('admin.bookings.search', compact('bookings'));
                         } else {
                             $bookings = collect([]);
@@ -86,7 +86,7 @@ class AdminBookingController extends Controller
                 $abookings = array();
 
                 foreach ($bookingAll as $booking) {
-                    if (($booking->patient->getAddress()) == ($admin->addresses->first()->city)) {
+                    if (($booking->patient->office_location) == ($admin->address($admin->getCAddressId($admin->id))->city)) {
                         if($booking->status == 0){
                             array_push($rbookings, $booking);
                         }elseif ($booking->status == 1){

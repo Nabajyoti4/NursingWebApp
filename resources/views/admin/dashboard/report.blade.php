@@ -40,8 +40,8 @@
                                 <tbody id="data">
                                 @forelse($permanent_salary as $psalary)
                                     <tr>
-                                        <td>{{ \Carbon\Carbon::parse($psalary->created_at)->englishMonth}}</td>
-                                        <td>{{ \Carbon\Carbon::parse($psalary->created_at)->year}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($psalary->month_days)->englishMonth}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($psalary->month_days)->year}}</td>
                                         <td>{{ $psalary->payable_days }}</td>
                                         <td>{{ \Carbon\Carbon::now()->daysInMonth - $psalary->payable_days }}</td>
                                     </tr>
@@ -81,8 +81,8 @@
                                 <tbody id="data">
                                 @forelse($temporary_salary as $tsalary)
                                     <tr>
-                                        <td>{{ \Carbon\Carbon::parse($tsalary->created_at)->englishMonth}}</td>
-                                        <td>{{ \Carbon\Carbon::parse($tsalary->created_at)->year}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($tsalary->month_days)->englishMonth}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($tsalary->month_days)->year}}</td>
                                         <td>{{ $tsalary->full_day + $tsalary->half_day}}</td>
                                         <td>{{ \Carbon\Carbon::now()->daysInMonth - ($tsalary->full_day + $tsalary->half_day)}}</td>
                                     </tr>
