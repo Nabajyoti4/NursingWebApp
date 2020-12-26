@@ -52,162 +52,165 @@
 
         <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#nothired" role="tab"
-                   aria-controls="home" aria-selected="true">Not Hired</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#hired" role="tab"
+                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#hired" role="tab"
                    aria-controls="profile" aria-selected="false">Hired</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#nothired" role="tab"
+                   aria-controls="home" aria-selected="true">Not Hired</a>
+            </li>
+
         </ul>
 
-        <!--Not hired-->
+
         <div class="col-md-12 p-0 pt-2">
             <div class="tab-content profile-tab" id="myTabContent">
-        <div class="tab-pane fade show active" id="nothired" role="tabpanel" aria-labelledby="pendingRequest-tab">
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Profile Image</th>
-                        <th>Name</th>
-                        <th>District</th>
-                        <th>Status</th>
-                        <th>Active</th>
-                        <th>View Profile</th>
-                        <th>Edit</th>
-                        @if(Auth::user()->role == 'super')
-                        <th>Make Permanent</th>
-                        @endif
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    @forelse($nothired_nurses as $nurse)
-                        <tr>
-                            <td>{{$nurse->employee_id}}</td>
-                            <td><img
-                                    src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                    alt="" width="100" height="100" /></td>
-                            <td>{{$nurse->user->name}}</td>
-                            <td style="text-transform: capitalize;">{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
-                            <td>
-                                @if($nurse->status === 0)
-                                    Not Hired
-                                @else
-                                    Booked
-                                @endif
-                            </td>
-                            <td>
-                                @if($nurse->is_active === 0)
-                                    On leave
-                                @else
-                                    Working
-                                @endif
-                            </td>
-                            <td><a class="btn btn-primary small"
-                                   href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
-                            <td><a class="btn btn-primary small"
-                                   href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
-                            @if(Auth::user()->role == 'super')
-                            @if($nurse->permanent == 0)
-                                <td><a class="btn btn-primary small"
-                                       href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
-                            @else
-                                <td><a class="btn btn-primary small disabled"
-                                       href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
-                                @endif
-                            @endif
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6">No users found <a class="btn btn-primary" href="{{route('admin.nurse.index')}}">Show all</a></td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-            </div>
-        </div>
 
 
-        <!--Hired-->
-        <div class="tab-pane fade" id="hired" role="tabpanel" aria-labelledby="hired-tab">
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>Employee ID</th>
-                                <th>Profile Image</th>
-                                <th>Name</th>
-                                <th>District</th>
-                                <th>Status</th>
-                                <th>Active</th>
-                                <th>View Profile</th>
-                                <th>Edit</th>
-                                @if(Auth::user()->role == 'super')
-                                    <th>Make Permanent</th>
-                                @endif
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            @forelse($hired_nurses as $nurse)
-                                <tr>
-                                    <td>{{$nurse->employee_id}}</td>
-                                    <td><img
-                                            src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
-                                            alt="" width="100" height="100" /></td>
-                                    <td>{{$nurse->user->name}}</td>
-                                    <td style="text-transform: capitalize;">{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
-                                    <td>
-                                        @if($nurse->status === 0)
-                                            Not Hired
-                                        @else
-                                            Booked
+                <!--Hired-->
+                <div class="tab-pane fade show active" id="hired" role="tabpanel" aria-labelledby="hired-tab">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Profile Image</th>
+                                        <th>Name</th>
+                                        <th>District</th>
+                                        <th>Status</th>
+                                        <th>Active</th>
+                                        <th>View Profile</th>
+                                        <th>Edit</th>
+                                        @if(Auth::user()->role == 'super')
+                                            <th>Make Permanent</th>
                                         @endif
-                                    </td>
-                                    <td>
-                                        @if($nurse->is_active === 0)
-                                            On leave
-                                        @else
-                                            Working
-                                        @endif
-                                    </td>
-                                    <td><a class="btn btn-primary small"
-                                           href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
-                                    <td><a class="btn btn-primary small"
-                                           href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
-                                    @if(Auth::user()->role == 'super')
-                                        @if($nurse->permanent == 0)
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @forelse($hired_nurses as $nurse)
+                                        <tr>
+                                            <td>{{$nurse->employee_id}}</td>
+                                            <td><img
+                                                    src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
+                                                    alt="" width="100" height="100" /></td>
+                                            <td>{{$nurse->user->name}}</td>
+                                            <td style="text-transform: capitalize;">{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
+                                            <td>
+                                                @if($nurse->status === 0)
+                                                    Not Hired
+                                                @else
+                                                    Booked
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($nurse->is_active === 0)
+                                                    On leave
+                                                @else
+                                                    Working
+                                                @endif
+                                            </td>
                                             <td><a class="btn btn-primary small"
-                                                   href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
-                                        @else
-                                            <td><a class="btn btn-primary small disabled"
-                                                   href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                                   href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
+                                            <td><a class="btn btn-primary small"
+                                                   href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
+                                            @if(Auth::user()->role == 'super')
+                                                @if($nurse->permanent == 0)
+                                                    <td><a class="btn btn-primary small"
+                                                           href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                                @else
+                                                    <td><a class="btn btn-primary small disabled"
+                                                           href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                                @endif
+                                            @endif
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">No users found <a class="btn btn-primary" href="{{route('admin.nurse.index')}}">Show all</a></td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Not hired-->
+                <div class="tab-pane fade" id="nothired" role="tabpanel" aria-labelledby="pendingRequest-tab">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Profile Image</th>
+                                        <th>Name</th>
+                                        <th>District</th>
+                                        <th>Status</th>
+                                        <th>Active</th>
+                                        <th>View Profile</th>
+                                        <th>Edit</th>
+                                        @if(Auth::user()->role == 'super')
+                                            <th>Make Permanent</th>
                                         @endif
-                                    @endif
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6">No users found <a class="btn btn-primary" href="{{route('admin.nurse.index')}}">Show all</a></td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @forelse($nothired_nurses as $nurse)
+                                        <tr>
+                                            <td>{{$nurse->employee_id}}</td>
+                                            <td><img
+                                                    src="{{ $nurse->user->photo?asset("/storage/".$nurse->user->photo->photo_location) :'http://placehold.it/64x64'}}"
+                                                    alt="" width="100" height="100" /></td>
+                                            <td>{{$nurse->user->name}}</td>
+                                            <td style="text-transform: capitalize;">{{$nurse->user->address($nurse->user->getCAddressId($nurse->user->id))->city}}</td>
+                                            <td>
+                                                @if($nurse->status === 0)
+                                                    Not Hired
+                                                @else
+                                                    Booked
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($nurse->is_active === 0)
+                                                    On leave
+                                                @else
+                                                    Working
+                                                @endif
+                                            </td>
+                                            <td><a class="btn btn-primary small"
+                                                   href="{{route('admin.nurse.show',$nurse->id)}}">Show</a></td>
+                                            <td><a class="btn btn-primary small"
+                                                   href="{{route('admin.nurse.edit',$nurse->id)}}">Edit</a></td>
+                                            @if(Auth::user()->role == 'super')
+                                                @if($nurse->permanent == 0)
+                                                    <td><a class="btn btn-primary small"
+                                                           href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                                @else
+                                                    <td><a class="btn btn-primary small disabled"
+                                                           href="{{route('admin.nurse.makePermanent',$nurse->id)}}">Permanent</a></td>
+                                                @endif
+                                            @endif
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">No users found <a class="btn btn-primary" href="{{route('admin.nurse.index')}}">Show all</a></td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
             </div></div>
     </div>
 @endsection
