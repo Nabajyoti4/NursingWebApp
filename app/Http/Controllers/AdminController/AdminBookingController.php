@@ -191,7 +191,7 @@ class AdminBookingController extends Controller
         $booking->nurses()->attach($data['nurse']);
 
         // get the nurse and update the status to working 1
-        Nurse::findOrfail($data['nurse'])->update(['status' => 1]);
+        Nurse::findOrFail($data['nurse'])->update(['status' => 1]);
 
 
 

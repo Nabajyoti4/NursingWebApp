@@ -27,7 +27,7 @@ class AdminDashboardController extends Controller
         $bookings=[];
         if ($admin->role == 'admin'){
             foreach ($bookingsAll as $booking) {
-                if ($admin->address($admin->getCAddressId($admin->id))->city == $booking->patient->getAddress()){
+                if ($admin->address($admin->getCAddressId($admin->id))->city == $booking->patient->office_location){
                     array_push($bookings, $booking);
                 }
             }
