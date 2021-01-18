@@ -38,7 +38,7 @@
             <div class="form-group font-weight-bold">
                 <label for="shift">Shift</label>
                 <select name="shift" class="form-control @error('shift') is-invalid @enderror" required>
-                    <option class="form-control" value="" selected>Select Shift</option>
+                    <option class="form-control" value="{{$salary->shift}}" selected>{{$salary->shift}}</option>
                     <option class="form-control" value="24 hrs" >24 hrs</option>
                     <option class="form-control" value="Day" >Day</option>
                     <option class="form-control" value="Night" >Night</option>
@@ -162,7 +162,7 @@
             <div class="form-group font-weight-bold">
                 <label for="payment_mode">Payment Mode</label>
                 <select name="payment_mode" class="form-control @error('payment_mode') is-invalid @enderror">
-                    <option class="form-control" value="" selected>Select </option>
+                    <option class="form-control" value="{{$salary->payment_mode}}" selected>{{$salary->payment_mode}}</option>
                     <option class="form-control" value="BANK NEFT" >BANK NEFT</option>
                     <option class="form-control" value="RTGS" >RTGS</option>
                     <option class="form-control" value="CASH" >CASH</option>

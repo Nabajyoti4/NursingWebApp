@@ -55,7 +55,7 @@
                             <td>{{$patient->phone_no}}</td>
                             <td style="text-transform: capitalize">{{$patient->office_location}}</td>
                             <td>
-                                <form action="{{route('admin.receipts.show',$patient->id)}}" method="GET">
+                                <form action="{{route('admin.receipts.show',$patient->patient_id)}}" method="GET">
                                     @csrf
                                     <button class="btn btn-primary"  type="submit">View Detials</button>
                                 </form>

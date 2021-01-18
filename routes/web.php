@@ -246,7 +246,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('admin/receipts', 'AdminController\AdminReceiptController@index')
         ->name('admin.receipts.index');
 
-    Route::get('admin/receipts/{id}', 'AdminController\AdminReceiptController@show')
+    Route::get('admin/receipts/{patient_id}', 'AdminController\AdminReceiptController@show')
         ->name('admin.receipts.show');
 });
 
