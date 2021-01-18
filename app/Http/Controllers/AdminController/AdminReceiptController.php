@@ -28,7 +28,11 @@ class AdminReceiptController extends Controller
     }
     public function show($patient_id){
         $patientsAll = Patient::where('patient_id',$patient_id)->get();
-        $bookings=Booking::whereIn('patient_id',$patientsAll)->latest()->get();
+        $patients_ids=[];
+        foreach($patientsAll as $patients){
+            array_push($patients_ids, $patients->id);
+        }
+        $bookings=Booking::whereIn('patient_id',$patients_ids)->latest()->get();
         $patient=Patient::where('patient_id',$patient_id)->get()->first();
         return view('admin.receipts.show',compact('bookings','patient'));
     }
