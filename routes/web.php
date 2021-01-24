@@ -200,6 +200,7 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
     Route::get('admin/query', 'QueryController@index')->name('admin.query.index');
     Route::get('admin/query/{id}', 'QueryController@update')->name('admin.query.update');
+    Route::delete('admin/query/{id}/delete', 'QueryController@destory')->name('query.destroy');
 
     //Role
     Route::get('admin/role', 'AdminController\RoleController@index')->name('admin.role.index');

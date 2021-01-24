@@ -31,10 +31,10 @@ class QueryController extends Controller
 
         $queries = array();
 
-if(Auth::user()->role === 'super'){
-    $queries=Query::latest()->get();
-   return view('admin.query.index', compact('queries'));
-}
+    if(Auth::user()->role === 'super'){
+        $queries=Query::latest()->get();
+       return view('admin.query.index', compact('queries'));
+    }
         foreach ($querieAll as $query) {
             if ($query->city == ($admin->addresses->first()->city)) {
                 array_push($queries, $query);
@@ -49,6 +49,11 @@ if(Auth::user()->role === 'super'){
         $query['status'] = 1;
         $query->save();
         return redirect()->back()->with('success', 'Query Responded');
+
+    }
+    public function destory($id){
+        Query::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Query Deleted');
 
     }
 
