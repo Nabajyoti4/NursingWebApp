@@ -39,17 +39,23 @@
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
-                                </a></td>
+                            <td>
+                                @if(Auth::user()->role=='admin' && $salary->payment_received_date !='')
+                                    Payment Date Added
+                                @else
+                                    <a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
+                                    </a>
+                                @endif
+                            </td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
                             </td>
                             <td>
                                 @if(Auth::user()->role=='super')
-                                <form action="{{route('admin.tsalary.delete', $salary->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"  class="btn btn-danger">Delete</button>
-                                </form>
+                                    <form action="{{route('admin.tsalary.delete', $salary->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"  class="btn btn-danger">Delete</button>
+                                    </form>
                                 @else
                                     You are not Authorized for this Feature
                                 @endif
