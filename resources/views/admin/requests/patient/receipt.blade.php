@@ -100,11 +100,11 @@
                     <h3 class="receipt-heading__sub font-weight-bold mt-5" style="text-align:initial;">AAROGYA HOME CARE NURSING SERVICE</h3>
                  <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">A Unit of GIYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
                 <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">Registered No. :U85100AS2021NPL021070 , License No. :123920</h6>
-                @if($patient->getFullAddress()->city == 'sivasagar' ||$booking->patient->getFullAddress()->city == 'SIVASAGAR' )
+                @if($patient->getFullAddress()->city == 'sivasagar' ||$patient->getFullAddress()->city == 'SIVASAGAR' )
                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                         OLD AMALAPATTY ,
                         HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
-                   @elseif($patient->getFullAddress()->city == 'dibrugarh'||$booking->patient->getFullAddress()->city == 'DIBRUGARH')
+                   @elseif($patient->getFullAddress()->city == 'dibrugarh'||$patient->getFullAddress()->city == 'DIBRUGARH')
                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                         SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL,
                         DIBRUGARH, PIN- 786003, ASSAM</h6>

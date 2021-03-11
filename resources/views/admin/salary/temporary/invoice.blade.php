@@ -269,13 +269,13 @@
     </div>
     <div class="row justify-content-center"
          style="background-color: #70d45d;color: white; padding: 8px; margin-top:30px">
-        @if($salary->area != 'JORHAT, ASSAM')
+{{--        @if($salary->area != 'JORHAT, ASSAM')--}}
             <div><h5 class=" m-0">Registered Office: GIYAMOY FOUNDATION
                     1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h5></div>
-        @else
-            <div><h5 class=" m-0">Registered Office: GIYAMOY FOUNDATION
-                    1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br>Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>
-        @endif
+{{--        @else--}}
+{{--            <div><h5 class=" m-0">Registered Office: GIYAMOY FOUNDATION--}}
+{{--                    1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br>Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>--}}
+{{--        @endif--}}
     </div>
 </div>
 </body>
