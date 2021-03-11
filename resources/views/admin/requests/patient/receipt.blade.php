@@ -97,8 +97,8 @@
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold mt-5">AAROGYA HOME CARE NURSING SERVICE</h3>
-                 <h6 class="receipt-heading__description font-weight-bold" style="color: #06b503">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #06b503">Registered No. :U85100AS2021NPL021070 , License No. :12390</h6>
+                 <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">Registered No. :U85100AS2021NPL021070 , License No. :12390</h6>
                 @if($patient->getFullAddress()->city == 'sivasagar')
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>

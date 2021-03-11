@@ -49,9 +49,9 @@
                 <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME
                     CARE NURSING
                     SERVICE</h3>
-                <h5>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h5>
-                <h5>Registered No. :U85100AS2021NPL021070</h5>
-                <h5>License No. :12390</h5>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">Registered No. :U85100AS2021NPL021070</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">License No. :12390</h6>
 
                 @if($booking->patient->getFullAddress()->city == 'sivasagar')
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
