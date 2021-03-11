@@ -41,8 +41,10 @@
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
                             <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
-                            <td><a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
-                                </a></td>
+                            <td> @if(Auth::user()->role=='admin' && $salary->payment_received_date !='')
+                                    Payment Date Added
+                                @else<a class="btn btn-primary small" href="{{route('admin.salary.tedit',$salary->id)}}">Edit
+                                    </a>@endif</td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
                                 <hr>
                                 <a href="{{route('admin.tsalary.invoice',$salary->id)}}" download>Download</a></td>
@@ -51,7 +53,7 @@
                                     <form action="{{route('admin.psalary.delete', $salary->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"  class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 @else
                                     You are not Authorized for this Feature
@@ -88,8 +90,14 @@
                     <tr>
                         <td>{{ \Carbon\Carbon::parse($salary->month_days)->englishMonth}}</td>
                         <td>{{ \Carbon\Carbon::parse($salary->month_days)->year}}</td>
-                        <td><a class="btn btn-primary small" href="{{route('admin.salary.pedit',$salary->id)}}">Edit
-                            </a></td>
+                        <td>
+                            @if(Auth::user()->role=='admin' && $salary->payment_received_date !='')
+                                Payment Date Added
+                            @else
+                                <a class="btn btn-primary small" href="{{route('admin.salary.pedit',$salary->id)}}">Edit
+                                </a>
+                            @endif
+                        </td>
                         <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
                             <hr>
                             <a href="{{route('admin.psalary.invoice',$salary->id)}}" download>Download</a>
