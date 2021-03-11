@@ -137,7 +137,7 @@
                         We provide high quality Nursing Support and Aide 24x7 on demand.
                         <a href="{{route('about_us')}}">Read more...</a>
                     <li class="text-muted">Registered Office Address: GIYAMOY FOUNDATION <br>
-                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008</li>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008</li>
                     </li>
                     <li class="text-muted">© aarogyahomecare.com 2020</li>
                 </ul>

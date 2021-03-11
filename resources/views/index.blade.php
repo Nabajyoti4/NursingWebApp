@@ -128,8 +128,7 @@
                     <h1 class="mb-0 p-2 text-uppercase font-weight-bold">
                         <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
                     <h4>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h4>
-                    <h5>Registered No. :U85100AS2021NPL021070</h5>
-                    <h5>License No. :123920</h5>
+                    <h5>Registered No. :U85100AS2021NPL021070, License No. :123920</h5>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6  col-sm-12">
