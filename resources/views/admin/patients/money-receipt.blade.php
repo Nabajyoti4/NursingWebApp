@@ -45,35 +45,35 @@
                      style=" margin-top:-30px;width: 180px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
                      alt="">
             </div>
-            <div class="col-sm-8 text-center receipt-heading ">
-                <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME
-                    CARE NURSING
-                    SERVICE</h3>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">Registered No. :U85100AS2021NPL021070</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">License No. :12390</h6>
+            <div class="col-sm-8 text-center receipt-heading d-flex justify-content-center">
+                <div>
+                    <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green;text-align:initial;">AAROGYA HOME
+                        CARE NURSING
+                        SERVICE</h3>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">A Unit of GIYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">Registered No. :U85100AS2021NPL021070, License No. :123920</h6>
 
-                @if($booking->patient->getFullAddress()->city == 'sivasagar')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
-                        OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
-                        HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
-                @elseif($booking->patient->getFullAddress()->city == 'dibrugarh')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
-                        SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
-                        DIBRUGARH, PIN- 786003, ASSAM</h6>
-                @else
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
-                        MANDAKINI
-                        BIBAH BHAWAN COMPLEX, KOTOKY
-                        PUKHURI,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
-                        JORHAT, PIN- 785006, ASSAM</h6>
-                @endif
+                    @if($booking->patient->getFullAddress()->city == 'sivasagar')
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
+                            OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">
+                            HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
+                    @elseif($booking->patient->getFullAddress()->city == 'dibrugarh')
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
+                            SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">,
+                            DIBRUGARH, PIN- 786003, ASSAM</h6>
+                    @else
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
+                            MBB COMPLEX, KOTOKY
+                            PUKHURI,
+                            JORHAT, PIN- 785006, ASSAM</h6>
+                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;"></h6>
+                    @endif
+                </div>
             </div>
             <div class="col-sm-2 text-right" style=" margin-top:-30px;padding-top: 22px;">
-                Ph.No 9101786597 <br> 8753955565<br>6002450239
+                <h5>Ph.No 9101786597 <br> 8753955565<br>6002450239</h5>
             </div>
         </div>
         <hr style="background-color: black">
@@ -83,7 +83,7 @@
                 <h4>SL NO: {{$booking->serial_money}}</h4>
             </div>
             <div class="col-sm-4 justify-content-center  text-center">
-                <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+                <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #70d45d">
                     MONEY RECEIPT</h3>
             </div>
             <div class="col-sm-4" style="text-align: end;">
@@ -206,11 +206,11 @@
             </div>
 
         </div>
-        <div style="font-size: 18px; margin-top: 30px">
+        <div style="font-size: 18px; margin-top: 60px">
             <div class="row">
                 <div class="col-sm-2">Authorized by</div>
-                <div class="col-sm-6"></div>
-                <div class="col-sm-4">Customer Signature</div>
+                <div class="col-sm-7"></div>
+                <div class="col-sm-3 " style="text-align: end;">Customer Signature</div>
             </div>
             <br>
 
@@ -219,23 +219,23 @@
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
         @if($booking->patient->office_location == 'jorhat')
-            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
-                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
+            <div><h5 class="text-center m-0">
+                    Registered Office : GIYAMOY FOUNDATION  1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h5></div>
         @else
-            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
-                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h5 class="text-center m-0">
+                    Registered Office : GIYAMOY FOUNDATION 1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>
         @endif
     </div>
 
-    <hr style ="border:1px dashed black; margin-top:50px; padding:0;">
+    <hr style ="border:1px dashed black; margin-top:30px; padding:0;">
     <!--customer-->
 
-    <div class="row pt-2 pb-2 mt-5">
+    <div class="row pt-2 pb-2 mt-2">
         <div class="col-sm-4" style="color: red">
             <h5>SL NO: {{$booking->serial_money}}</h5>
         </div>
         <div class="col-sm-4 justify-content-center  text-center">
-            <h4 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+            <h4 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #70d45d;">
                 MONEY RECEIPT</h4>
         </div>
         <div class="col-sm-4" style="text-align: end;">
@@ -361,20 +361,23 @@
     <div style="font-size: 15px; margin-top: 30px">
         <div class="row">
             <div class="col-sm-2">Authorized by</div>
-            <div class="col-sm-6"></div>
-            <div class="col-sm-4">Customer Signature</div>
+            <div class="col-sm-8"></div>
+            <div class="col-sm-2">Customer Signature</div>
         </div>
         <br>
     </div>
-    <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
-        @if($booking->patient->office_location == 'jorhat')
-            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
-                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
-        @else
-            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
-                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
-        @endif
-    </div>
+    <div class="row justify-content-center"><div class="col-sm-12 text-center"><h5 class="text-center font-weight-bold" style="color:#70d45d;">Office Copy</h5></div></div>
+
+
+    {{--    <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">--}}
+    {{--        @if($booking->patient->office_location == 'jorhat')--}}
+    {{--            <div><h4 class="text-center m-0">--}}
+    {{--                    Registered Office: GIYAMOY FOUNDATION  1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>--}}
+    {{--        @else--}}
+    {{--            <div><h4 class="text-center m-0">--}}
+    {{--                    Registered Office: GIYAMOY FOUNDATION  1 No. Choudaung Gaon, Cinamora,  Jorhat,Assam, India, 785008 <br>Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>--}}
+    {{--        @endif--}}
+    {{--    </div>--}}
 </div>
 
 

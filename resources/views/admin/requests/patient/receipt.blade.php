@@ -95,31 +95,31 @@
                      style="width: 150px; height: 60px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
                      alt="">
             </div>
-            <div class="col-sm-8 text-center receipt-heading ">
-                <h3 class="receipt-heading__sub font-weight-bold mt-5">AAROGYA HOME CARE NURSING SERVICE</h3>
-                 <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
-                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">Registered No. :U85100AS2021NPL021070 , License No. :12390</h6>
+            <div class="col-sm-8 text-center receipt-heading d-flex justify-content-center">
+               <div>
+                    <h3 class="receipt-heading__sub font-weight-bold mt-5" style="text-align:initial;">AAROGYA HOME CARE NURSING SERVICE</h3>
+                 <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">A Unit of GIYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14;text-align:initial;">Registered No. :U85100AS2021NPL021070 , License No. :123920</h6>
                 @if($patient->getFullAddress()->city == 'sivasagar')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                       <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                         OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
+                       <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
                         HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
-                @elseif($patient->getFullAddress()->city == 'dibrugarh')
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
+                   @elseif($patient->getFullAddress()->city == 'dibrugarh')
+                       <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                         SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
+                       <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
                         DIBRUGARH, PIN- 786003, ASSAM</h6>
-                @else
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
-                        MANDAKINI
-                        BIBAH BHAWAN COMPLEX, KOTOKY
-                        PUKHURI,</h6>
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BYE PASS TINI ALI,
+                   @else
+                       <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
+                        MBB COMPLEX, KOTOKY
+                        PUKHURI,
                         JORHAT, PIN- 785006, ASSAM</h6>
-                @endif
+                   @endif
+               </div>
             </div>
             <div class="col-sm-2 text-right">
-                Ph.No 9101786597 <br> 8753955565<br>6002450239
+                Ph No.<br>9101786597 <br> 8753955565<br>6002450239
             </div>
         </div>
 
@@ -142,8 +142,8 @@
             <h3 class="text-dark font-weight-bold"><u>TERMS AND CONDITIONS</u></h3>
             <h5>1. Registration Fees : 500/-</h5>
             <h5>2. Advance Payment Requested: Cash/ Cheque/ Online Payment</h5>
-            <h5>3. Rate for one Nurse Per month (Day or Night shift) is Rs. 250x30=7500 (Rs) only</h5>
-            <h5>4. Rate for one Nurse for 24 Hours Duty per month is Rs. 500x30=15000 (Rs) only</h5>
+            <h5>3. Rate for one Nurse Per month (Day or Night shift) is Rs. 8260  only [including GST].</h5>
+            <h5>4. Rate for one Nurse for 24 Hours Duty per month is Rs. 15340  only [including GST].</h5>
             <h5>5. Customers should refrain from misbehaviours to sisters to avoid complain against themselves.</h5>
             <h5>6. Customers should be responsible for overtime service. The authority of the sisters is not responsible for it</h5>
             <h5>7. Service does not include work like Washing, Cleaning, Cooking, Marketing, Travelling and Attending other patients or for any personal use of the sisters</h5>

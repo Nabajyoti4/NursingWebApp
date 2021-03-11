@@ -115,7 +115,7 @@
                 icon: 'info',
                 title: '{{$message}}',
                 showConfirmButton: false,
-                html:'<a class="btn btn-primary text-white" href="{{route('users.edit',Auth::user()->id)}}">Go To Edit Page</a>'
+                html: '<a class="btn btn-primary text-white" href="{{route('users.edit',Auth::user()->id)}}">Go To Edit Page</a>'
             })
         </script>
     @endif
@@ -129,7 +129,7 @@
                         <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
                     <h4>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h4>
                     <h5>Registered No. :U85100AS2021NPL021070</h5>
-                    <h5>License No. :12390</h5>
+                    <h5>License No. :123920</h5>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6  col-sm-12">
@@ -143,8 +143,12 @@
                         <div class="welcome_text">
                             <h4 class="font-weight-bold">Our Missions</h4>
                             <ul style="list-style-type: circle !important;">
-                                <li>• To provide high quality services to home bound patients in a responsible, compassionate manner.</li>
-                                <li>• To provide patient education when indicated to promote maintain and restore health.</li>
+                                <li>• To provide high quality services to home bound patients in a responsible,
+                                    compassionate manner.
+                                </li>
+                                <li>• To provide patient education when indicated to promote maintain and restore
+                                    health.
+                                </li>
                                 <li>• To be advocates for patients right, respect and confidentiality.</li>
                                 <li>• To deliver service without regard, religion or national origin..</li>
                             </ul>
@@ -334,7 +338,9 @@
                     <div class="address-location h-100">
                         <h2 class="d-flex align-items-center">Branch Office (Jorhat)</h2>
                         <ul class="p-0 m-0">
-                            <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
+                            <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006,
+                                Assam.
+                            </li>
                             <li>Call: 9435960652, 9101786597, 6002281528</li>
                         </ul>
                     </div>
@@ -345,13 +351,13 @@
                         <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
 
                         <ul class="p-0 m-0">
-                            <li>Old Amalapatty, Ganak Patty, By Lane,  Harakanta Nazir Path Sivasagar-785640, Assam.</li>
+                            <li>Old Amalapatty, Ganak Patty, By Lane, Harakanta Nazir Path Sivasagar-785640, Assam.</li>
                             <li>Call: 9435960652, 9101786597, 6002450239</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-bottom" data-aos-delay="200">
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-bottom" data-aos-delay="200">
                     <div class="address-location h-100">
                         <h2 class="d-flex align-items-center">Branch Office (Dibrugarh)</h2>
 
@@ -431,7 +437,8 @@
 
             <div class="row align-items-center justify-content-center p-5">
                 @foreach($members as $member)
-                    <div class="col-sm-12 col-lg-4 "style="margin-bottom:20px;" data-aos="flip-right" data-aos-delay="300">
+                    <div class="col-sm-12 col-lg-4 " style="margin-bottom:20px;" data-aos="flip-right"
+                         data-aos-delay="300">
                         <div class="themeioan_course">
                             <div class="blog-photo">
                                 <img style="width:100%;object-fit: cover;" height="250"
@@ -441,7 +448,8 @@
                             <div class="blog-content">
                                 <h5 class="title" style="text-transform: capitalize">{{$member->name}}
                                 </h5>
-                                <div class="title" style="text-transform: capitalize; color:grey;">{{$member->designation}}
+                                <div class="title"
+                                     style="text-transform: capitalize; color:grey;">{{$member->designation}}
                                 </div>
                             </div>
                         </div>
