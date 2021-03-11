@@ -37,7 +37,10 @@
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold mt-5" style="color: green">AAROGYA HOME CARE NURSING
                     SERVICE</h3>
-                @if($salary->area == 'Sivasagar, Assam' || $salary->area == 'SIVASAGAR, ASSAM')
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #709b14">Registered No. :U85100AS2021NPL021070, License No. :12390</h6>
+
+            @if($salary->area == 'Sivasagar, Assam' || $salary->area == 'SIVASAGAR, ASSAM')
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">
@@ -48,7 +51,7 @@
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
                         DIBRUGARH, PIN- 786003, ASSAM</h6>
                 @else
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         MANDAKINI
                         BIBAH BHAWAN COMPLEX, KOTOKY
                         PUKHURI,</h6>
@@ -266,11 +269,13 @@
 
     </div>
     <div class="row justify-content-center"
-         style="background-color: #70d45d;color: white; padding: 8px; margin-top:60px">
+         style="background-color: #70d45d;color: white; padding: 8px; margin-top:30px">
         @if($salary->area == 'JORHAT, ASSAM')
-            <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 </div>
