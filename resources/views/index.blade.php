@@ -125,8 +125,11 @@
         <div class="welcome_sewa">
             <div class="container">
                 <div class="col-md-12 text-center">
-                    <h1 class="mb-0 p-2 text-uppercase font-weight-bold">Welcome To
-                            <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
+                    <h1 class="mb-0 p-2 text-uppercase font-weight-bold">
+                        <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
+                    <h4>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h4>
+                    <h5>Registered No. :U85100AS2021NPL021070</h5>
+                    <h5>License No. :12390</h5>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6  col-sm-12">
@@ -319,107 +322,107 @@
     {{--    </div>--}}
     <!--Business partners section end-->
 
-        <!-- address section start -->
-        <div class="address-page-short-boxes">
-            <div class="col-md-12 text-center">
-                <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
-            </div>
+    <!-- address section start -->
+    <div class="address-page-short-boxes">
+        <div class="col-md-12 text-center">
+            <h1 class=" mb-0 mb-5 text-uppercase">Contact Us</h1>
+        </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-bottom" data-aos-delay="200">
-                        <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Head Office (Jorhat)</h2>
-                            <ul class="p-0 m-0">
-                                <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
-                                <li>Call: 9435960652, 9101786597, 6002281528</li>
-                            </ul>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-bottom" data-aos-delay="200">
+                    <div class="address-location h-100">
+                        <h2 class="d-flex align-items-center">Branch Office (Jorhat)</h2>
+                        <ul class="p-0 m-0">
+                            <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
+                            <li>Call: 9435960652, 9101786597, 6002281528</li>
+                        </ul>
                     </div>
-
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-up" data-aos-delay="200">
-                        <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
-
-                            <ul class="p-0 m-0">
-                                <li>Old Amalapatty, Ganak Patty, By Lane,  Harakanta Nazir Path Sivasagar-785640, Assam.</li>
-                                <li>Call: 9435960652, 9101786597, 6002450239</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-bottom" data-aos-delay="200">
-                        <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Branch Office (Dibrugarh)</h2>
-
-                            <ul class="p-0 m-0">
-                                <li>Sashan Para Road, Near Sankar Dev Hospital, Mancotta Road, Dibrugarh-786003 Assam.</li>
-                                <li>Call: 9435960652, 8753955565, 9101786597</li>
-                            </ul>
-                        </div>
-                    </div>
-
-
                 </div>
+
+                <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-up" data-aos-delay="200">
+                    <div class="address-location h-100">
+                        <h2 class="d-flex align-items-center">Branch Office (Sivsagar)</h2>
+
+                        <ul class="p-0 m-0">
+                            <li>Old Amalapatty, Ganak Patty, By Lane,  Harakanta Nazir Path Sivasagar-785640, Assam.</li>
+                            <li>Call: 9435960652, 9101786597, 6002450239</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mt-5 mt-lg-0"  data-aos="flip-bottom" data-aos-delay="200">
+                    <div class="address-location h-100">
+                        <h2 class="d-flex align-items-center">Branch Office (Dibrugarh)</h2>
+
+                        <ul class="p-0 m-0">
+                            <li>Sashan Para Road, Near Sankar Dev Hospital, Mancotta Road, Dibrugarh-786003 Assam.</li>
+                            <li>Call: 9435960652, 8753955565, 9101786597</li>
+                        </ul>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-        <!-- address section end  -->
+    </div>
+    <!-- address section end  -->
 
 
-        <!--Nurse request form-->
-        <div class="container-nurserequest" id="joinForm">
-            <div class="wrap-nurserequest" data-aos="zoom-out-up" data-aos-delay="400">
-                <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
-                    @csrf
-                    <span class="nurserequest-form-title">
+    <!--Nurse request form-->
+    <div class="container-nurserequest" id="joinForm">
+        <div class="wrap-nurserequest" data-aos="zoom-out-up" data-aos-delay="400">
+            <form class="nurserequest-form" action="{{route('nursejoin.store')}}" method="POST">
+                @csrf
+                <span class="nurserequest-form-title">
 					To Join As A Nurse  Send Your Request
 				</span>
 
-                    <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
-                    @elseauth''@endauth" required>
+                <input class="input100" type="hidden" name="user_id" value="@auth{{Auth::user()->id}}
+                @elseauth''@endauth" required>
 
-                    <div class="wrap-input100">
-                        <input class="input100" type="text" name="name" placeholder="Full Name"
-                               value="@auth{{Auth::user()->name}}
-                               @elseauth''@endauth" required readonly>
-                        <span class="focus-input100"></span>
-                    </div>
+                <div class="wrap-input100">
+                    <input class="input100" type="text" name="name" placeholder="Full Name"
+                           value="@auth{{Auth::user()->name}}
+                           @elseauth''@endauth" required readonly>
+                    <span class="focus-input100"></span>
+                </div>
 
-                    <div class="wrap-input100 ">
-                        <input class="input100" type="text" name="email" value="@auth{{Auth::user()->email}}
-                        @elseauth''@endauth" placeholder="Email" required readonly>
-                        <span class="focus-input100"></span>
-                    </div>
+                <div class="wrap-input100 ">
+                    <input class="input100" type="text" name="email" value="@auth{{Auth::user()->email}}
+                    @elseauth''@endauth" placeholder="Email" required readonly>
+                    <span class="focus-input100"></span>
+                </div>
 
-                    <div class="wrap-input100 ">
-                        <input class="input100" type="text" name="phone_no" placeholder="Contact number" required>
-                        <span class="focus-input100"></span>
-                    </div>
+                <div class="wrap-input100 ">
+                    <input class="input100" type="text" name="phone_no" placeholder="Contact number" required>
+                    <span class="focus-input100"></span>
+                </div>
 
-                    <div class="wrap-input100 ">
-                        <input class="input100" type="text" name="age" placeholder="Age">
-                        <span class="focus-input100"></span>
-                    </div>
+                <div class="wrap-input100 ">
+                    <input class="input100" type="text" name="age" placeholder="Age">
+                    <span class="focus-input100"></span>
+                </div>
 
-                    @auth
+                @auth
                     @if(Auth::user()->role == 'user')
-                    <div class="container-nurserequest-form-btn">
-                        <button type="submit" class="btn profile-edit-btn ">
-                            Send Request
-                        </button>
-                    </div>
-                        @else
-                            <div class="container-nurserequest-form-btn">
-                                Employee Are not authorized to Send Request
-                            </div>
-                        @endif
-                        @elseauth
-                        @endauth
+                        <div class="container-nurserequest-form-btn">
+                            <button type="submit" class="btn profile-edit-btn ">
+                                Send Request
+                            </button>
+                        </div>
+                    @else
+                        <div class="container-nurserequest-form-btn">
+                            Employee Are not authorized to Send Request
+                        </div>
+                    @endif
+                @elseauth
+                @endauth
 
-                </form>
-              <div class="text-center"><strong>Note:</strong>Please Register and Login to send request</div>
-            </div>
+            </form>
+            <div class="text-center"><strong>Note:</strong>Please Register and Login to send request</div>
         </div>
+    </div>
 
     <!-- Card our team -->
     <div class="container-fluid team-background pr-0 pl-0">

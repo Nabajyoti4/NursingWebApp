@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-    Services
+    Contact Us
 @endsection
 
 @section('links')
@@ -43,7 +43,7 @@
     @endif
 
     <div class="container-fluid p-0">
-        <div id="demo" class="carousel slide" data-ride="carousel" style="height: 700px">
+        <div id="demo" class="carousel slide" data-ride="carousel" >
             <!-- navbar start -->
             <div style="background-color: #4d6de4">
                 @include('partials.navbar')
@@ -70,7 +70,7 @@
         </div>
 
         <!-- address section start -->
-        <div class="address-page-short-boxes">
+        <div class="address-page-short-boxes pt-0">
             <!--Nurse request form-->
             <div class="container-nurserequest mb-5" id="joinForm" >
                 <div class="wrap-nurserequest "  data-aos="flip-down" data-aos-delay="200">
@@ -80,26 +80,29 @@
 					Send Any Queries , We will Respond You soon
 				</span>
 
-                        <div class="wrap-input100">
-                            <input class="input100" type="text" name="name" placeholder="Full Name"
-                                   required>
-                            <span class="focus-input100"></span>
-                        </div>
+                       <div class="row">
+                           <div class="col-sm-12 col-md-6"> <div class="wrap-input100">
+                                   <input class="input100" type="text" name="name" placeholder="Full Name"
+                                          required>
+                                   <span class="focus-input100"></span>
+                               </div>
 
-                        <div class="wrap-input100 ">
-                            <input class="input100" type="email" name="email"  placeholder="Email" required >
-                            <span class="focus-input100"></span>
-                        </div>
+                               <div class="wrap-input100 ">
+                                   <input class="input100" type="email" name="email"  placeholder="Email" required >
+                                   <span class="focus-input100"></span>
+                               </div>
 
-                        <div class="wrap-input100 ">
-                            <input class="input100" type="text" name="city"  placeholder="city name" required>
-                            <span class="focus-input100"></span>
-                        </div>
+                             </div>
+                           <div class="col-sm-12 col-md-6">  <div class="wrap-input100 ">
+                                   <input class="input100" type="text" name="city"  placeholder="city name" required>
+                                   <span class="focus-input100"></span>
+                               </div>
 
-                        <div class="wrap-input100 ">
-                            <input class="input100" type="number" name="phone"  placeholder="contact number" required>
-                            <span class="focus-input100"></span>
-                        </div>
+                               <div class="wrap-input100 ">
+                                   <input class="input100" type="number" name="phone"  placeholder="contact number" required>
+                                   <span class="focus-input100"></span>
+                               </div></div>
+                       </div>
 
 
                         <div class="wrap-input100 ">
@@ -120,7 +123,7 @@
                 <div class="row">
                     <div class="col-12 col-md-4 mt-5 mt-lg-0" data-aos="flip-left" data-aos-delay="200">
                         <div class="address-location h-100">
-                            <h2 class="d-flex align-items-center">Head Office</h2>
+                            <h2 class="d-flex align-items-center">Branch Office</h2>
                             <ul class="p-0 m-0">
                                 <li>Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Bye Pass Tini Ali, Jorhat-785006, Assam.</li>
                                 <li>Call: 9435960652, 9101786597, 6002281528</li>

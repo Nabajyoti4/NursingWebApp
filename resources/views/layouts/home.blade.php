@@ -131,11 +131,15 @@
                     <li class="mb-2">
                         <h6 class="text-uppercase">About</h6>
                     </li>
+
                     <li class="text-muted">
                         About AarogyaHomeCare.
                         We provide high quality Nursing Support and Aide 24x7 on demand.
                         <a href="{{route('about_us')}}">Read more...</a>
-                    </li><li class="text-muted">© aarogyahomecare.com 2020</li>
+                    <li class="text-muted">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008</li>
+                    </li>
+                    <li class="text-muted">© aarogyahomecare.com 2020</li>
                 </ul>
             </div>
             <div class="col-md-2 offset-md-1 mb-5">
@@ -148,28 +152,28 @@
                     <li class="text-muted"><a href="{{route('contact_us')}}">Contact Us</a></li>
                 </ul>
             </div>
-{{--            <div class="col-md-2 mb-5">--}}
-{{--                <ul class="list-unstyled list-spaced">--}}
-{{--                    <li class="mb-2">--}}
-{{--                        <h6 class="text-uppercase">Apis</h6>--}}
-{{--                    </li>--}}
-{{--                    <li class="text-muted">Rich data</li>--}}
-{{--                    <li class="text-muted">Simple data</li>--}}
-{{--                    <li class="text-muted">Real time</li>--}}
-{{--                    <li class="text-muted">Social</li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--            <div class="col-md-2 mb-5">--}}
-{{--                <ul class="list-unstyled list-spaced">--}}
-{{--                    <li class="mb-2">--}}
-{{--                        <h6 class="text-uppercase">Legal</h6>--}}
-{{--                    </li>--}}
-{{--                    <li class="text-muted">Terms</li>--}}
-{{--                    <li class="text-muted">Legal</li>--}}
-{{--                    <li class="text-muted">Privacy</li>--}}
-{{--                    <li class="text-muted">License</li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
+            {{--            <div class="col-md-2 mb-5">--}}
+            {{--                <ul class="list-unstyled list-spaced">--}}
+            {{--                    <li class="mb-2">--}}
+            {{--                        <h6 class="text-uppercase">Apis</h6>--}}
+            {{--                    </li>--}}
+            {{--                    <li class="text-muted">Rich data</li>--}}
+            {{--                    <li class="text-muted">Simple data</li>--}}
+            {{--                    <li class="text-muted">Real time</li>--}}
+            {{--                    <li class="text-muted">Social</li>--}}
+            {{--                </ul>--}}
+            {{--            </div>--}}
+            {{--            <div class="col-md-2 mb-5">--}}
+            {{--                <ul class="list-unstyled list-spaced">--}}
+            {{--                    <li class="mb-2">--}}
+            {{--                        <h6 class="text-uppercase">Legal</h6>--}}
+            {{--                    </li>--}}
+            {{--                    <li class="text-muted">Terms</li>--}}
+            {{--                    <li class="text-muted">Legal</li>--}}
+            {{--                    <li class="text-muted">Privacy</li>--}}
+            {{--                    <li class="text-muted">License</li>--}}
+            {{--                </ul>--}}
+            {{--            </div>--}}
         </div>
     </div>
 </div>

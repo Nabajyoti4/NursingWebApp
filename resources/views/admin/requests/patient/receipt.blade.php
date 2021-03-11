@@ -87,7 +87,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-    <div class="container p-3 receipt mt-4">
+    <div class="container  receipt mt-4 " >
         <!--header-->
         <div class="row">
             <div class="col-sm-2">
@@ -97,6 +97,8 @@
             </div>
             <div class="col-sm-8 text-center receipt-heading ">
                 <h3 class="receipt-heading__sub font-weight-bold mt-5">AAROGYA HOME CARE NURSING SERVICE</h3>
+                 <h6 class="receipt-heading__description font-weight-bold" style="color: #06b503">A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h6>
+                <h6 class="receipt-heading__description font-weight-bold" style="color: #06b503">Registered No. :U85100AS2021NPL021070 , License No. :12390</h6>
                 @if($patient->getFullAddress()->city == 'sivasagar')
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
@@ -108,7 +110,7 @@
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
                         DIBRUGARH, PIN- 786003, ASSAM</h6>
                 @else
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         MANDAKINI
                         BIBAH BHAWAN COMPLEX, KOTOKY
                         PUKHURI,</h6>
@@ -151,14 +153,14 @@
         </div>
 
         <!--form-->
-        <div class="row mt-5">
+        <div class="row mt-2">
             <div class="col-sm-12">
                 <h3 class="text-dark font-weight-bold"><u>CUSTOMER APPLICATION FORM</u></h3>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">1. Patient Name : Mr/Mrs/Miss</h6>
+                <h5 class="text-dark">1. Patient Name : Mr/Mrs/Miss</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->patient_name}}
@@ -168,35 +170,35 @@
             <div class="col-sm-4 text-right">
             </div>
             <div class="col-sm-1">
-                <h6 class="text-dark"><span style="text-transform: lowercase">(i)</span> Age : </h6>
+                <h5 class="text-dark"><span style="text-transform: lowercase">(i)</span> Age : </h5>
             </div>
             <div class="col-sm-1">
-                <h6 class="text-dark">{{$patient->age}} </h6>
+                <h5 class="text-dark">{{$patient->age}} </h5>
             </div>
             <div class="col-sm-2">
-                <h6 class="text-dark"><span style="text-transform: lowercase">(ii)</span> Gender :  </h6>
+                <h5 class="text-dark"><span style="text-transform: lowercase">(ii)</span> Gender :  </h5>
             </div>
             <div class="col-sm-2 text-left">
-                <h6 class="text-dark"> Male
+                <h5 class="text-dark"> Male
                     @if($patient->gender == "Male")
                         <i class="fa fa-check-circle"
                            style="color: greenyellow"></i>
                     @endif
-                </h6>
+                </h5>
             </div>
             <div class="col-sm-2 text-left">
-                <h6 class="text-dark"> Female
+                <h5 class="text-dark"> Female
                     @if($patient->gender == "Female")
                         <i class="fa fa-check-circle"
                            style="color: greenyellow"></i>
                     @endif
-                </h6>
+                </h5>
 
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">2. Address</h6>
+                <h5 class="text-dark">2. Address</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->getAddress()}}
@@ -204,7 +206,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">3. Phone Number</h6>
+                <h5 class="text-dark">3. Phone Number</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->phone_no}}
@@ -212,7 +214,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">4. Family's Member (Both G/F)</h6>
+                <h5 class="text-dark">4. Family's Member (Both G/F)</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->family_members}}
@@ -220,7 +222,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">5. Name of the Guardian</h6>
+                <h5 class="text-dark">5. Name of the Guardian</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->guardian_name}}
@@ -228,7 +230,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">6. Duty Shift of the Nurse</h6>
+                <h5 class="text-dark">6. Duty Shift of the Nurse</h5>
             </div>
             <div class="col-sm-3">
                 : <span style="text-transform: lowercase">(i)</span> Day Shift
@@ -254,7 +256,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">7. Period of Required</h6>
+                <h5 class="text-dark">7. Period of Required</h5>
             </div>
             <div class="col-sm-8">
                 :30 days (minimum) {{$patient->days}}
@@ -262,7 +264,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">8. Service</h6>
+                <h5 class="text-dark">8. Service</h5>
             </div>
             <div class="col-sm-3">
                 :<span style="text-transform: lowercase"> (i)</span> Nursing Aide
@@ -288,7 +290,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">9. Patient's History</h6>
+                <h5 class="text-dark">9. Patient's History</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->patient_history}}
@@ -296,15 +298,14 @@
         </div>
         <div class="row mt-2">
             <div class="col-sm-4">
-                <h6 class="text-dark">10. Doctor and Hospital</h6>
+                <h5 class="text-dark">10. Doctor and Hospital</h5>
             </div>
             <div class="col-sm-8">
                 : {{$patient->patient_doctor}}
             </div>
         </div>
-
         <!--decalration-->
-        <div class="row mt-5">
+        <div class="row mt-2">
             <div class="col-sm text-center">
                 <h3 class="text-dark font-weight-bold"><u>GUARDIAN DECLARATION OF PATIENT</u></h3>
             </div>
@@ -315,7 +316,7 @@
                 and i shall Co-operative myself for quickly recovery of my patient.</h5>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-sm-6 text-dark mt-4">
                 Date : ...........................
             </div>
@@ -331,7 +332,7 @@
                 <h3 class="text-dark font-weight-bold">OFFICE USE ONLY</h3>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-sm-6 text-dark">
                 Signature of In-Charge
             </div>
@@ -381,17 +382,17 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/admin/adminPanel.js')}}"></script>
-{{--<style type="text/css" media="print">--}}
-{{--    * {--}}
-{{--        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */--}}
-{{--        color-adjust: exact !important; /*Firefox*/--}}
-{{--    }--}}
-{{--</style>--}}
-{{--<script>--}}
-{{--    window.onload = function invoice()--}}
-{{--    {--}}
-{{--        window.print();--}}
-{{--    }--}}
-{{--</script>--}}
+{{--/*<style type="text/css" media="print">*/--}}
+{{--    /*    * {*/--}}
+{{--    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */--}}
+{{--    color-adjust: exact !important; /*Firefox*/--}}
+{{--    /*    }*/--}}
+{{--    /*</style>*/--}}
+{{--/*<script>*/--}}
+{{--    /*    window.onload = function invoice()*/--}}
+{{--    /*    {*/--}}
+{{--    /*        window.print();*/--}}
+{{--    /*    }*/--}}
+{{--    /*</script>*/--}}
 </body>
 </html>

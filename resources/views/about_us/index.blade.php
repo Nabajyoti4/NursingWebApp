@@ -64,79 +64,79 @@
         </div>
 
 
-        <!--Nursing about-->
-        <div class="block block-secondary app-iphone-block p-0  ">
-            <div class="container ">
-                <div class="row ">
+{{--        <!--Nursing about-->--}}
+{{--        <div class="block block-secondary app-iphone-block p-0  ">--}}
+{{--            <div class="container ">--}}
+{{--                <div class="row ">--}}
 
-                    <div class="col-md-12 pt-5 pb-2  about ">
-                        <div class="row pb-4">
-                            <h2 class="font-weight-bold ">​Home Care Nursing Service :</h2>
-                            <p>
-                                We render nursing service to the elderly home bound, post operative, partiality chronic
-                                and
-                                terminally ill patient in their home environment.​This is targeted at patients who
-                                require
-                                24x7 assistance with personal care. Our nursing care takers will hep with the client’s
-                                hygienic requirement, assist with mobilization, and help with feeding. they will also
-                                play a
-                                role in promoting the mental health of the client by occupying them with various
-                                activities
-                                when they are awake and up to it.
-                            </p>
-                        </div>
-                        <div class="row pb-4">
-                            <h2 class="font-weight-bold">Offer :</h2>
-                            <ul class="f">
-                                <li class="f">
-                                    We specialize in: Enema, IV line, Dressings, Bed Sore Care, Ryles Tube Feeding,
-                                    Tracheostomy, Suture Removal, Injections (IV, IM, SC), IV Infusion, Post Surgical
-                                    Care,
-                                    Home Ventillatory Care, Urine catheterization, Wound Care ​
-                                </li>
-                            </ul>
-                        </div>
+{{--                    <div class="col-md-12 pt-5 pb-2  about ">--}}
+{{--                        <div class="row pb-4">--}}
+{{--                            <h2 class="font-weight-bold ">​Home Care Nursing Service :</h2>--}}
+{{--                            <p>--}}
+{{--                                We render nursing service to the elderly home bound, post operative, partiality chronic--}}
+{{--                                and--}}
+{{--                                terminally ill patient in their home environment.​This is targeted at patients who--}}
+{{--                                require--}}
+{{--                                24x7 assistance with personal care. Our nursing care takers will hep with the client’s--}}
+{{--                                hygienic requirement, assist with mobilization, and help with feeding. they will also--}}
+{{--                                play a--}}
+{{--                                role in promoting the mental health of the client by occupying them with various--}}
+{{--                                activities--}}
+{{--                                when they are awake and up to it.--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="row pb-4">--}}
+{{--                            <h2 class="font-weight-bold">Offer :</h2>--}}
+{{--                            <ul class="f">--}}
+{{--                                <li class="f">--}}
+{{--                                    We specialize in: Enema, IV line, Dressings, Bed Sore Care, Ryles Tube Feeding,--}}
+{{--                                    Tracheostomy, Suture Removal, Injections (IV, IM, SC), IV Infusion, Post Surgical--}}
+{{--                                    Care,--}}
+{{--                                    Home Ventillatory Care, Urine catheterization, Wound Care ​--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
 
-                        <div class="row pb-4">
-                            <h2 class="font-weight-bold ">Caregivers/attendant :</h2>
-                            <p>
-                                Caregivers offer reliable assistance and support with activities of daily living on
-                                shift basis. Our assertive staff is trained to follow an individualized plan of care for
-                                each client.
-                            </p>
-                        </div>
-                        <div class="row pb-4">
-                            <div class="col-12 p-0"><h2 class="font-weight-bold">Caregivers/Attendant Offer :</h2></div>
-                            <div class="col-12">
+{{--                        <div class="row pb-4">--}}
+{{--                            <h2 class="font-weight-bold ">Caregivers/attendant :</h2>--}}
+{{--                            <p>--}}
+{{--                                Caregivers offer reliable assistance and support with activities of daily living on--}}
+{{--                                shift basis. Our assertive staff is trained to follow an individualized plan of care for--}}
+{{--                                each client.--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="row pb-4">--}}
+{{--                            <div class="col-12 p-0"><h2 class="font-weight-bold">Caregivers/Attendant Offer :</h2></div>--}}
+{{--                            <div class="col-12">--}}
 
-                                <ul class="f">
-                                    <li class="f">Medicationders.</li>
-                                    <li class="f">Bathing : bed baths, tub baths or showers</li>
-                                    <li class="f">Dressing, grooming & toileting.</li>
-                                    <li class="f">Dressing, grooming & toileting.</li>
-                                    <li class="f">Escorting clients to appointment & outing.</li>
-                                    <li class="f">Mobility/Ambulation stair, wheel chairs & walkers.</li>
-                                    <li class="f">Nutrition assistance with eating.</li>
-                                    <li class="f">Physical exercises: Active or passive range of motion.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row pb-4">
-                            <div class="col-12 p-0"><h2 class="font-weight-bold">Benefits :</h2></div>
-                            <div class="col-12">
+{{--                                <ul class="f">--}}
+{{--                                    <li class="f">Medicationders.</li>--}}
+{{--                                    <li class="f">Bathing : bed baths, tub baths or showers</li>--}}
+{{--                                    <li class="f">Dressing, grooming & toileting.</li>--}}
+{{--                                    <li class="f">Dressing, grooming & toileting.</li>--}}
+{{--                                    <li class="f">Escorting clients to appointment & outing.</li>--}}
+{{--                                    <li class="f">Mobility/Ambulation stair, wheel chairs & walkers.</li>--}}
+{{--                                    <li class="f">Nutrition assistance with eating.</li>--}}
+{{--                                    <li class="f">Physical exercises: Active or passive range of motion.</li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="row pb-4">--}}
+{{--                            <div class="col-12 p-0"><h2 class="font-weight-bold">Benefits :</h2></div>--}}
+{{--                            <div class="col-12">--}}
 
-                                <ul class="f">
-                                    <li class="f">Time benefit.</li>
-                                    <li class="f">Save money</li>
-                                    <li class="f">Easy for patient with limited mobility.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Nursing end-->
+{{--                                <ul class="f">--}}
+{{--                                    <li class="f">Time benefit.</li>--}}
+{{--                                    <li class="f">Save money</li>--}}
+{{--                                    <li class="f">Easy for patient with limited mobility.</li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!--Nursing end-->--}}
 
         <!-- Card our team -->
         <div class="container-fluid pr-0 pl-0" style="background-color: #4a4949;!important;">

@@ -49,6 +49,9 @@
                 <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green">AAROGYA HOME
                     CARE NURSING
                     SERVICE</h3>
+                <h5>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h5>
+                <h5>Registered No. :U85100AS2021NPL021070</h5>
+                <h5>License No. :12390</h5>
 
                 @if($booking->patient->getFullAddress()->city == 'sivasagar')
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
@@ -61,7 +64,7 @@
                     <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">,
                         DIBRUGARH, PIN- 786003, ASSAM</h6>
                 @else
-                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">HEAD OFFICE :
+                    <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72">BRANCH OFFICE :
                         MANDAKINI
                         BIBAH BHAWAN COMPLEX, KOTOKY
                         PUKHURI,</h6>
@@ -216,12 +219,15 @@
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
         @if($booking->patient->office_location == 'jorhat')
-            <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 
+    <hr style ="border:1px dashed black; margin-top:50px; padding:0;">
     <!--customer-->
 
     <div class="row pt-2 pb-2 mt-5">
@@ -362,9 +368,11 @@
     </div>
     <div class="row justify-content-center" style="background-color: #70d45d;color: white; padding: 3px;">
         @if($booking->patient->office_location == 'jorhat')
-            <div><h4 class="text-center m-0">https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 https://www.aarogyahomecare.in/ Tel: +91 9435960652</h4></div>
         @else
-            <div><h4 class="text-center m-0">Head Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
+            <div><h4 class="text-center m-0">Registered Office Address: GIYAMOY FOUNDATION <br>
+                    C/O Ranjan Deori, 1 No. Choudaung Gaon, Cinamora, P.O. Cinamora, P.S. Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h4></div>
         @endif
     </div>
 </div>
@@ -372,17 +380,17 @@
 
 </div>
 
-{{--<style type="text/css" media="print">--}}
-{{--    * {--}}
-{{--        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */--}}
-{{--        color-adjust: exact !important; /*Firefox*/--}}
-{{--    }--}}
-{{--</style>--}}
-{{--<script>--}}
-{{--    window.onload = function invoice()--}}
-{{--    {--}}
-{{--        window.print();--}}
-{{--    }--}}
-{{--</script>--}}
+<!--<style type="text/css" media="print">-->
+<!--    * {-->
+<!---webkit-print-color-adjust: exact !important; /*Chrome, Safari */-->
+<!--color-adjust: exact !important; /*Firefox*/-->
+<!--    }-->
+<!--</style>-->
+<!--<script>-->
+<!--    window.onload = function invoice()-->
+<!--    {-->
+<!--        window.print();-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>
