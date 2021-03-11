@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col-sm-2 text-right" style="padding-top: 22px;">
-                Ph.No 9101786597 <br> 8753955565<br>6002450239
+                <h5>Ph.No 9101786597 <br> 8753955565<br>6002450239</h5>
             </div>
         </div>
         <hr style="background-color: black">
