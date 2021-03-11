@@ -43,13 +43,11 @@
 
                     @if($salary->area == 'Sivasagar, Assam' || $salary->area == 'SIVASAGAR, ASSAM')
                         <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72; text-align:initial;">BRANCH OFFICE :
-                            OLD AMALAPATTY GANAK PATTY SIVASAGAR, BY LANE,</h6>
-                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72; text-align:initial;">
+                            OLD AMALAPATTY ,
                             HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
                     @elseif($salary->area == 'Dibrugarh, Assam' || $salary->area == 'DIBRUGARH, ASSAM')
                         <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72; text-align:initial;">BRANCH OFFICE :
-                            SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL, MANCOTTA ROAD,</h6>
-                        <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72; text-align:initial;">,
+                            SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL,
                             DIBRUGARH, PIN- 786003, ASSAM</h6>
                     @else
                         <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72; text-align:initial;">BRANCH OFFICE :
@@ -71,7 +69,7 @@
                 <h4>SL NO: {{$salary->id}}</h4>
             </div>
             <div class="col-sm-4 justify-content-center  text-center">
-                <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #151621">
+                <h3 style="display:inline-block; font-weight: bold;border-bottom: 1px solid #121213;color: #70d45d">
                     Salary Slip</h3>
             </div>
             <div class="col-sm-4" style="text-align: end;">
@@ -271,12 +269,12 @@
     </div>
     <div class="row justify-content-center"
          style="background-color: #70d45d;color: white; padding: 8px; margin-top:30px">
-        @if($salary->area == 'JORHAT, ASSAM')
+        @if($salary->area != 'JORHAT, ASSAM')
             <div><h5 class=" m-0">Registered Office: GIYAMOY FOUNDATION
                     1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h5></div>
         @else
             <div><h5 class=" m-0">Registered Office: GIYAMOY FOUNDATION
-                    1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>
+                    1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br>Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>
         @endif
     </div>
 </div>
