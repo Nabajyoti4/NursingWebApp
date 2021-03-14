@@ -17,6 +17,7 @@
     <style>
         * {
             font-size: 14px;
+            font-family: sans-serif;!important;
         }
         .contact{
             color: white;
@@ -25,6 +26,9 @@
         .contact:hover{
             background-color: white;
             color: black;
+        }
+        p,.f {
+            font-size: 20px;
         }
     </style>
 @endsection
@@ -89,8 +93,8 @@
 
                     <div class="col-md-12 pt-5 pb-2  about ">
                         <div class="row pb-4">
-                            <h2 class="font-weight-bold ">​Home Care Nursing Service :</h2>
-                            <p>
+                            <h2 class="font-weight-bold " >​Home Care Nursing Service :</h2>
+                            <p style="font-size: 20px;">
                                 We render nursing service to the elderly home bound, post operative, partiality chronic
                                 and
                                 terminally ill patient in their home environment.​This is targeted at patients who

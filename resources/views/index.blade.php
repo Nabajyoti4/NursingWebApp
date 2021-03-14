@@ -127,9 +127,10 @@
                 <div class="col-md-12 text-center">
                     <h1 class="mb-0 p-2 text-uppercase font-weight-bold">
                         <span>AAROGYA HOME CARE NURSING SERVICE</span></h1>
-                    <h4>A Unit of GYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h4>
+                    <h4>A Unit of GIYANMOY FOUNDATION registered under Section 8 of Companies Act 2013</h4>
                     <h5>Registered No. :U85100AS2021NPL021070, License No. :123920</h5>
                 </div>
+                <br>
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-6  col-sm-12">
                         <div class="welcome_pic" data-aos="fade-right" data-aos-delay="200">
@@ -140,16 +141,16 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-sm-12">
                         <div class="welcome_text">
-                            <h4 class="font-weight-bold">Our Missions</h4>
-                            <ul style="list-style-type: circle !important;">
-                                <li>• To provide high quality services to home bound patients in a responsible,
+                            <h4 class="font-weight-bold text-uppercase" style="color: green">Our Missions</h4>
+                            <ul style="list-style-type: circle !important; ">
+                                <li style="font-size: 20px;">• To provide high quality services to home bound patients in a responsible,
                                     compassionate manner.
                                 </li>
-                                <li>• To provide patient education when indicated to promote maintain and restore
+                                <li style="font-size: 20px;">• To provide patient education when indicated to promote maintain and restore
                                     health.
                                 </li>
-                                <li>• To be advocates for patients right, respect and confidentiality.</li>
-                                <li>• To deliver service without regard, religion or national origin..</li>
+                                <li style="font-size: 20px;">• To be advocates for patients right, respect and confidentiality.</li>
+                                <li style="font-size: 20px;">• To deliver service without regard, religion or national origin..</li>
                             </ul>
                         </div>
                     </div>

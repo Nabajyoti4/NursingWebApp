@@ -18,6 +18,7 @@
         * {
             font-style: inherit;
             font-size: 15px;
+            font-family: sans-serif;
         }
 
         p, .f {

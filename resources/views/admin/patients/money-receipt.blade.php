@@ -42,11 +42,11 @@
             <!--header-->
             <div class="col-sm-2 " style="padding-top:0;">
                 <img src="{{asset('img/AArogya-new-edit-1.png')}}"
-                     style=" margin-top:-30px;width: 180px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
+                     style=" margin-top:-30px;width: 160px; height: 70px; background: #fff; padding: 2px; border-radius: 4px; color: #28669F;"
                      alt="">
             </div>
             <div class="col-sm-8 text-center receipt-heading d-flex justify-content-center">
-                <div>
+                <div >
                     <h3 class="receipt-heading__sub font-weight-bold " style="padding-top:10px;color: green;text-align:initial;">AAROGYA HOME
                         CARE NURSING
                         SERVICE</h3>
@@ -56,7 +56,7 @@
                     @if($booking->patient->getFullAddress()->city == 'sivasagar' ||$booking->patient->getFullAddress()->city == 'SIVASAGAR' )
                         <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                             OLD AMALAPATTY,
-                            HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640, ASSAM</h6>
+                            HARAKANTA NAZIR PATH SIVASAGAR, PIN- 785640</h6>
                     @elseif($booking->patient->getFullAddress()->city == 'dibrugarh'||$booking->patient->getFullAddress()->city == 'DIBRUGARH')
                         <h6 class="receipt-heading__description font-weight-bold" style="color: #1b4b72;text-align:initial;">BRANCH OFFICE :
                             SASHAN PARA ROAD, NEAR SANKAR DEV HOSPITAL,
@@ -216,13 +216,13 @@
 
     </div>
     <div class="row justify-content-center" style="background-color:  #70d45d;color: white; padding: 3px;">
-{{--        @if($booking->patient->office_location != 'jorhat')--}}
-            <div><h5 class=" m-0">
-                    Registered Office : GIYAMOY FOUNDATION  1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h5></div>
-{{--        @else--}}
-{{--            <div><h5 class="m-0">--}}
-{{--                    Registered Office : GIYAMOY FOUNDATION 1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>--}}
-{{--        @endif--}}
+        {{--        @if($booking->patient->office_location != 'jorhat')--}}
+        <div><h5 class=" m-0">
+                Registered Office : GIYAMOY FOUNDATION  1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> https://www.aarogyahomecare.in/ Tel: +91 9435960652</h5></div>
+        {{--        @else--}}
+        {{--            <div><h5 class="m-0">--}}
+        {{--                    Registered Office : GIYAMOY FOUNDATION 1 No. Choudaung Gaon, Cinamora, Jorhat,Assam, India, 785008 <br> Branch Office: Mandakini Bibah Bhawan Complex, Katoky Pukhuri, Jorhat-785006, Assam. Tel: +91 9435960652</h5></div>--}}
+        {{--        @endif--}}
     </div>
 
     <hr style ="border:1px dashed black; margin-top:30px; padding:0;">
