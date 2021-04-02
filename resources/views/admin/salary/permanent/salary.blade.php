@@ -99,8 +99,7 @@
                             @endif
                         </td>
                         <td><a href="{{route('admin.psalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
-                            <hr>
-                            <a href="{{route('admin.psalary.invoice',$salary->id)}}" download>Download</a>
+
                         </td>
                         <td>
                             <form action="{{route('admin.psalary.delete', $salary->id)}}" method="POST">

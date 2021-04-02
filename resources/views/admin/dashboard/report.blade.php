@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-     Attendance Report
+    Attendance Report
 @endsection
 
 @section('content')
@@ -42,8 +42,8 @@
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($psalary->month_days)->englishMonth}}</td>
                                         <td>{{ \Carbon\Carbon::parse($psalary->month_days)->year}}</td>
-                                        <td>{{ $psalary->payable_days }}</td>
-                                        <td>{{ \Carbon\Carbon::now()->daysInMonth - $psalary->payable_days }}</td>
+                                        <td>{{ $psalary->full_day + $psalary->half_day}}</td>
+                                        <td>{{ \Carbon\Carbon::now()->daysInMonth - ($psalary->full_day + $psalary->half_day)}}</td>
                                     </tr>
                                 @empty
                                     <tr>

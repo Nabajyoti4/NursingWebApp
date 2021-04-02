@@ -596,14 +596,21 @@ class AdminSalaryController extends Controller
     }
 
     public function nurseSalaryFinder($id){
-        $nurse = Nurse::where('employee_id',$id)->get()->first();
-        //temporary
-        if ($nurse->permanent == 0){
-            $salary = Tsalary::where('nurse_id',$nurse->employee_id)->get()->first();
+
+        if(Employee::where('employee_id',$id)->get()->first()){
+            $nurse = Employee::where('employee_id',$id)->get()->first();
+            $salary = Psalary::where('nurse_id',$nurse->employee_id)->latest()->get()->first();
             return $salary;
         }else{
-            $salary = Psalary::where('nurse_id',$nurse->employee_id)->get()->first();
-            return $salary;
+            $nurse = Nurse::where('employee_id',$id)->get()->first();
+            //temporary
+            if ($nurse->permanent == 0){
+                $salary = Tsalary::where('nurse_id',$nurse->employee_id)->latest()->get()->first();
+                return $salary;
+            }else{
+                $salary = Psalary::where('nurse_id',$nurse->employee_id)->latest()->get()->first();
+                return $salary;
+            }
         }
     }
 }

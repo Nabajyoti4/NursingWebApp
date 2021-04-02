@@ -48,7 +48,6 @@
                                 @endif
                             </td>
                             <td><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank">Receipt</a>
-                                <hr><a href="{{route('admin.tsalary.invoice',$salary->id)}}" target="_blank" download>Download</a></td>
                             <td>
                                 @if(Auth::user()->role=='super')
                                     <form action="{{route('admin.tsalary.delete', $salary->id)}}" method="POST">
